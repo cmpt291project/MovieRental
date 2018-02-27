@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
+//using App1.config;
 namespace MovieRental
 {
     public partial class Form1 : Form
@@ -16,5 +18,12 @@ namespace MovieRental
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            maskedTextBox1.Text = "Hello World.";
+        }
+
+        
     }
 }
