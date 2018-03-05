@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 //using App1.config;
 namespace MovieRental
@@ -17,14 +18,66 @@ namespace MovieRental
         public Form1()
         {
             InitializeComponent();
+            //FillData();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             maskedTextBox1.Text = "New Test";
+            FillData();
+            //string connectionString = "Data Source=DESKTOP-V2MG4LO;Initial Catalog=MovieRental;Integrated Security=True";
+            //SqlConnection connection = new SqlConnection(connectionString);
+           // connection.Open();
+            //string cmdString = "select AID from Actor";
+            //SqlCommand cmd = new SqlCommand(cmdString, connection);
+            //SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //maskedTextBox1.Text = sda; 
+            //connection.Close();
+
         }
 
+        void FillData()
+        {
+            string connectionString = "Data Source=DESKTOP-V2MG4LO;Initial Catalog=MovieRental;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            //Console.WriteLine("SELECT * FROM Actor WHERE FirstName=" + textBox1.Text);
+
+            SqlDataAdapter a = new SqlDataAdapter("SELECT FirstName, LastName FROM Actor WHERE FirstName ='" + textBox1.Text + "'", connection);
+
+            DataTable t = new DataTable();
+            a.Fill(t);
+            dataGridView1.DataSource = t;
+            connection.Close();
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'movieRentalDataSet.Actor' table. You can move, or remove it, as needed.
+            this.actorTableAdapter.Fill(this.movieRentalDataSet.Actor);
+
+        }
+
+        private void actorBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.actorBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.movieRentalDataSet);
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
