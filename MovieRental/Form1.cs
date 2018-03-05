@@ -21,9 +21,12 @@ namespace MovieRental
 
         private void button1_Click(object sender, EventArgs e)
         {
-            maskedTextBox1.Text = "Hello World.";
+            maskedTextBox1.Text = "New Test";
         }
 
-        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
