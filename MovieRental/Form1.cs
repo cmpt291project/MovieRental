@@ -36,9 +36,10 @@ namespace MovieRental
 
         }
 
+        //comment by yan test
         void FillData()
         {
-            string connectionString = "Data Source=DESKTOP-V2MG4LO;Initial Catalog=MovieRental;Integrated Security=True";
+            string connectionString = "Data Source=DESKTOP-MJ5OPGU;Initial Catalog=MovieRental;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
             //Console.WriteLine("SELECT * FROM Actor WHERE FirstName=" + textBox1.Text);
