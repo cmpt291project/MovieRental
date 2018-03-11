@@ -90,5 +90,11 @@ namespace MovieRental
             var newForm = new Form2();
             newForm.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var newForm = new Form3();
+            newForm.Show();
+        }
     }
 }
