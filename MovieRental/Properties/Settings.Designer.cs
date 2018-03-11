@@ -26,7 +26,7 @@ namespace MovieRental.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-GP802NB;Initial Catalog=MovieRental;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-V2MG4LO;Initial Catalog=MovieRental;Integrated Security=True")]
         public string MovieRentalConnectionString {
             get {
                 return ((string)(this["MovieRentalConnectionString"]));
