@@ -39,7 +39,9 @@ namespace MovieRental
         //comment by yan test
         void FillData()
         {
-            string connectionString = "Data Source=DESKTOP-MJ5OPGU;Initial Catalog=MovieRental;Integrated Security=True";
+
+            string connectionString = "Data Source=DESKTOP-V2MG4LO;Initial Catalog=MovieRental;Integrated Security=True";
+            //var cs = System.Configuration.ConfigurationManager.
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
             //Console.WriteLine("SELECT * FROM Actor WHERE FirstName=" + textBox1.Text);
@@ -81,6 +83,18 @@ namespace MovieRental
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var newForm = new Form2();
+            newForm.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var newForm = new Form3();
+            newForm.Show();
         }
     }
 }
