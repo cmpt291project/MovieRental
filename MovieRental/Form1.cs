@@ -67,17 +67,11 @@ namespace MovieRental
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'movieRentalDataSet.Actor' table. You can move, or remove it, as needed.
-            this.actorTableAdapter.Fill(this.movieRentalDataSet.Actor);
+           
 
         }
 
-        private void actorBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.actorBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.movieRentalDataSet);
-
-        }
+        
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -110,5 +104,6 @@ namespace MovieRental
         {
 
         }
+
     }
 }
