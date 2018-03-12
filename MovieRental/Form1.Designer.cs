@@ -136,6 +136,7 @@
             this.actorBindingNavigator.Size = new System.Drawing.Size(657, 25);
             this.actorBindingNavigator.TabIndex = 2;
             this.actorBindingNavigator.Text = "bindingNavigator1";
+            this.actorBindingNavigator.RefreshItems += new System.EventHandler(this.actorBindingNavigator_RefreshItems);
             // 
             // bindingNavigatorCountItem
             // 
