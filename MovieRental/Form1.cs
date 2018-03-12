@@ -40,7 +40,7 @@ namespace MovieRental
         void FillData()
         {
 
-            string connectionString = "Data Source=DESKTOP-V2MG4LO;Initial Catalog=MovieRental;Integrated Security=True";
+            string connectionString = "Data Source=DESKTOP-GP802NB;Initial Catalog=MovieRental;Integrated Security=True";
             //var cs = System.Configuration.ConfigurationManager.
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -58,7 +58,7 @@ namespace MovieRental
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'movieRentalDataSet.Actor' table. You can move, or remove it, as needed.
-            this.actorTableAdapter.Fill(this.movieRentalDataSet.Actor);
+            //this.actorTableAdapter.Fill(this.movieRentalDataSet.Actor);
 
         }
 
