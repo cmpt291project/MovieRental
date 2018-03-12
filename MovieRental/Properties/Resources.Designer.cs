@@ -63,6 +63,26 @@ namespace MovieRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap detective_chinatown {
+            get {
+                object obj = ResourceManager.GetObject("detective chinatown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap god_father {
+            get {
+                object obj = ResourceManager.GetObject("god father", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icons8_Ios7_Very_Basic_Search {
             get {
                 object obj = ResourceManager.GetObject("Icons8-Ios7-Very-Basic-Search", resourceCulture);
@@ -73,9 +93,49 @@ namespace MovieRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mad_max {
+            get {
+                object obj = ResourceManager.GetObject("mad max", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mary_and_max {
+            get {
+                object obj = ResourceManager.GetObject("mary and max", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap north_by_northwest {
+            get {
+                object obj = ResourceManager.GetObject("north by northwest", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pexels_photo_459301 {
             get {
                 object obj = ResourceManager.GetObject("pexels-photo-459301", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap The_love_witch {
+            get {
+                object obj = ResourceManager.GetObject("The love witch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

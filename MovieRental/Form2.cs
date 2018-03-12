@@ -99,5 +99,33 @@ namespace MovieRental
         {
 
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            groupBox2.Visible = false;
+            groupBox1.Visible = false;
+            groupBox3.Visible = false;
+            groupBox7.Visible = true;
+            groupBox8.Visible = true;
+            groupBox9.Visible = true;
+            groupBox4.Visible = false;
+            groupBox5.Visible = false;
+            groupBox6.Visible = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
