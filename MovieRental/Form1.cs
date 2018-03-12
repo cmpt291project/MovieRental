@@ -15,11 +15,20 @@ namespace MovieRental
 {
     public partial class Form1 : Form
     {
+        string connectionString;
+
         public Form1()
         {
             InitializeComponent();
             //FillData();
+            //Console.WriteLine("Hello");
+            connectionString = ConfigurationManager.
+                ConnectionStrings["MovieRental.Properties." +
+                "Settings.MovieRentalConnectionString"].ConnectionString;
+            Console.WriteLine(connectionString);
         }
+
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -39,8 +48,7 @@ namespace MovieRental
         //comment by yan test
         void FillData()
         {
-
-            string connectionString = "Data Source=DESKTOP-GP802NB;Initial Catalog=MovieRental;Integrated Security=True";
+            //string connectionString = "Data Source=DESKTOP-GP802NB;Initial Catalog=MovieRental;Integrated Security=True";
             //var cs = System.Configuration.ConfigurationManager.
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -95,6 +103,11 @@ namespace MovieRental
         {
             var newForm = new Form3();
             newForm.Show();
+        }
+
+        private void actorBindingNavigator_RefreshItems(object sender, EventArgs e)
+        {
+
         }
     }
 }
