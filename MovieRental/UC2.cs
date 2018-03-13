@@ -29,6 +29,18 @@ namespace MovieRental
 
         private void UC2_Load(object sender, EventArgs e)
         {
+            MessageBox.Show(UC1.info);
+        }
+
+        
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
 
         }
     }
