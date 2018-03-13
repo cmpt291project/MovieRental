@@ -70,6 +70,7 @@ namespace MovieRental
                 newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03");
             }
+            
         }
     }
 }
