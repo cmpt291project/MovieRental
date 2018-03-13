@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace MovieRental
 {
@@ -15,10 +16,15 @@ namespace MovieRental
 
     public partial class Form2 : Form
     {
-        string connectionString = "Data Source=DESKTOP-V2MG4LO;Initial Catalog=MovieRental;Integrated Security=True";
+        string connectionString;
         public Form2()
         {
             InitializeComponent();
+            
+            connectionString = ConfigurationManager.
+                ConnectionStrings["MovieRental.Properties." +
+                "Settings.MovieRentalConnectionString"].ConnectionString;
+            FillFeatureTabData();
         }
 
         void FillData()
@@ -36,6 +42,20 @@ namespace MovieRental
             a.Fill(t);
             dataGridView1.DataSource = t;
             connection.Close();
+        }
+
+        void FillFeatureTabData()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlDataAdapter a = new SqlDataAdapter("SELECT MovieName, MovieType FROM Movie WHERE " +
+                "ReleaseDate like '" + "2017%" + "'" + "or ReleaseDate like '" + "2018%'", connection);
+            DataTable t = new DataTable();
+            a.Fill(t);
+            Console.WriteLine(a);
+            dataGridView2.DataSource = t;
+            connection.Close();
+
         }
 
 
@@ -91,6 +111,7 @@ namespace MovieRental
 
             DataTable t = new DataTable();
             a.Fill(t);
+            Console.WriteLine(a);
             dataGridView1.DataSource = t;
             connection.Close();
         }
