@@ -7,17 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace MovieRental
 {
     public partial class Form3 : Form
     {
+        //static int attempt = 3;
+        string connectionString;
+        public static string info = "";
         public Form3()
         {
             InitializeComponent();
+            connectionString = ConfigurationManager.
+                ConnectionStrings["MovieRental.Properties." +
+                "Settings.MovieRentalConnectionString"].ConnectionString;
+            Console.WriteLine(connectionString);
         }
 
-        Login login = new Login("admin", "1234");
+       
+
+        
 
         private void Form3_Load(object sender, EventArgs e)
         {
@@ -36,18 +47,59 @@ namespace MovieRental
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string user = textBox1.Text;
-            string pass = textBox2.Text;
-            //check if eligible to be logged in 
-            if (login.IsLoggedIn(user, pass))
+            
+            SqlConnection scn = new SqlConnection();
+            scn.ConnectionString = connectionString;
+            scn.Open();
+
+            SqlCommand scmd = new SqlCommand("select count (*) as cnt from Password where EmailAddress=@email and Password=@pwd", scn);
+            scmd.Parameters.Clear();
+            scmd.Parameters.AddWithValue("@email", textBox1.Text);
+            scmd.Parameters.AddWithValue("@pwd", textBox2.Text);
+
+
+            if (scmd.ExecuteScalar().ToString() == "1")
             {
-                MessageBox.Show("You are logged in successfully");
+                //pictureBox1.Image = new Bitmap(@"C:\Users\Mic 18\Documents\Visual Studio 2015\Projects\mylogin\granted.png");
+                MessageBox.Show("YOU ARE GRANTED WITH ACCESS");
+                SqlCommand scmd2 = new SqlCommand("select UserType from Password where EmailAddress=@email and Password=@pwd", scn);
+                scmd2.Parameters.AddWithValue("@email", textBox1.Text);
+                scmd2.Parameters.AddWithValue("@pwd", textBox2.Text);
+                Console.WriteLine(scmd2.ExecuteScalar().ToString().Length);
+                bool result = scmd2.ExecuteScalar().ToString().Equals("c         ");
+                Console.WriteLine(result);
+                if (result)
+                {
+                    info = scmd2.ExecuteScalar().ToString();
+                    var customerForm = new Form2();
+                    customerForm.Show();
+                    this.Owner = customerForm;
+                    Console.WriteLine("CUSTOMER");
+                    this.Hide();
+                }
+                else
+                {
+                    info = info = scmd2.ExecuteScalar().ToString();
+                    var employeeForm = new EmployeeHome();
+                    employeeForm.Show();
+                    this.Owner = employeeForm;
+                    Console.WriteLine("EMPLOYEE");
+                    this.Hide();
+                }
+                
             }
+
             else
             {
-                //show default login error message 
-                MessageBox.Show("Login Error!");
+
+                //pictureBox1.Image = new Bitmap(@"C:\Users\Mic 18\Documents\Visual Studio 2015\Projects\mylogin\denied.jpg");
+                MessageBox.Show("YOU ARE NOT GRANTED WITH ACCESS");
+                //lbl_Msg.Text = ("You Have Only " + Convert.ToString(attempt) + " Attempt Left To Try");
+                // --attempt;
+                textBox1.Clear();
+                textBox2.Clear();
             }
+            scn.Close();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -58,6 +110,11 @@ namespace MovieRental
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("Under development");
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
