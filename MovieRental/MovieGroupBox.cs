@@ -25,13 +25,13 @@ namespace MovieRental
             textBox = new TextBox();
         }
         
-        public void setGroupBox(TabPage tabpage, int index)
+        public void setGroupBox(Panel tabpage, int index)
         {
             groupBox.Name = "Movie Name";
             groupBox.Location = new Point(150, 200);
             groupBox.Size = new Size(400, 200);
             groupBox.Top = index * 220 - 195;
-            groupBox.Left = 120;
+            groupBox.Left = 10;
             groupBox.BackColor = Color.FromArgb(222, 222, 255);
             //groupBox.Text = "Movie Title";
             groupBox.Font = new Font("Segoe UI", 15);
@@ -85,9 +85,9 @@ namespace MovieRental
                     default:
                         break;
                 }
-                text.Font = new Font("Segoe UI", 15);
+                text.Font = new Font("Segoe UI", 11);
                 text.Location = new Point(260, 0);
-                text.Size = new Size(118, 21);
+                text.Size = new Size(135, 21);
                 text.Top = i * 30 + 25;
                 groupBox.Controls.Add(text);
 
