@@ -137,15 +137,7 @@ namespace MovieRental
 
         private void button3_Click(object sender, EventArgs e)
         {
-            groupBox2.Visible = false;
-            groupBox1.Visible = false;
-            groupBox3.Visible = false;
-            groupBox7.Visible = true;
-            groupBox8.Visible = true;
-            groupBox9.Visible = true;
-            groupBox4.Visible = false;
-            groupBox5.Visible = false;
-            groupBox6.Visible = false;
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -155,7 +147,15 @@ namespace MovieRental
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
+            string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
+            for (int i = 1; i < 5; i++)
+            {
+                MovieGroupBox newGroupBox = new MovieGroupBox();
+                newGroupBox.setGroupBox(tabPage3, i);
+                newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
+                newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03"); 
+            }
+
         }
     }
 }
