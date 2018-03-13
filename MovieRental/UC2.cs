@@ -43,5 +43,33 @@ namespace MovieRental
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
+            for (int i = 1; i < 5; i++)
+            {
+                MovieGroupBox newGroupBox = new MovieGroupBox();
+                newGroupBox.setGroupBox(YourMovie, i);
+                newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
+                newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03");
+            }
+        }
     }
 }
