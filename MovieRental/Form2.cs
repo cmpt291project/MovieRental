@@ -125,7 +125,37 @@ namespace MovieRental
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
+            for (int i = 1; i < 4; i++)
+            {
+
+                    GroupBox GroupBox1 = new GroupBox();
+                    GroupBox1.Name = "Movie Name";
+                    GroupBox1.Location = new Point(200, 200);
+                    GroupBox1.Size = new Size(200, 100);
+                    GroupBox1.Top = i * 100;
+                    GroupBox1.Left = 200;
+                    GroupBox1.BackColor = Color.FromArgb(255, 232, 232);
+                    GroupBox1.Text = "Movie Title";
+                    GroupBox1.Font = new Font("Segoe UI", 15);
+                    GroupBox1.FlatStyle = FlatStyle.Standard;
+                    tabPage3.Controls.Add(GroupBox1);
+
+                
+                PictureBox image = new PictureBox();
+                image.Location = new Point(0, 0);
+                image.Size = new Size(120, 120);
+                image.Top = i * 10;
+                image.Left = 20;
+                //image.
+                //image.FlatStyle = FlatStyle.Standard;
+                string path = "god_father.jpg";
+                Bitmap bmp = new Bitmap(System.Reflection.Assembly.GetEntryAssembly().GetManifestResourceStream("MovieRental.Resources.god father"));// + path));
+                //image.Image = new Bitmap(MovieRental.Properties.Resources.i);
+                image.Image = bmp;
+                image.SizeMode = PictureBoxSizeMode.Zoom;
+                GroupBox1.Controls.Add(image);
+            }
+
         }
     }
 }
