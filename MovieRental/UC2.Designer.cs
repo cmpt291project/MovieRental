@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
+            this.SuspendLayout();
+            // 
+=======
             this.Form2Tab1 = new System.Windows.Forms.TabControl();
             this.Features = new System.Windows.Forms.TabPage();
             this.Suggestion = new System.Windows.Forms.TabPage();
@@ -168,10 +172,16 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+>>>>>>> 87c20481a761a31e6f3f6e5ad76b8c581f622483
             // UC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
+            this.Name = "UC2";
+            this.Size = new System.Drawing.Size(600, 450);
+            this.Load += new System.EventHandler(this.UC2_Load);
+=======
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Form2Tab1);
             this.Name = "UC2";
@@ -182,6 +192,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+>>>>>>> 87c20481a761a31e6f3f6e5ad76b8c581f622483
             this.ResumeLayout(false);
 
         }
@@ -200,5 +211,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
+
     }
 }
