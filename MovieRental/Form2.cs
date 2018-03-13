@@ -52,7 +52,14 @@ namespace MovieRental
                 "ReleaseDate like '" + "2017%" + "'" + "or ReleaseDate like '" + "2018%'", connection);
             DataTable t = new DataTable();
             a.Fill(t);
-            Console.WriteLine(a);
+            foreach (DataRow row in t.Rows)
+            {
+                foreach (DataColumn column in t.Columns)
+                {
+                    Console.WriteLine(row[column]);
+                }
+            }
+            //Console.WriteLine(a);
             dataGridView2.DataSource = t;
             connection.Close();
 
@@ -76,7 +83,9 @@ namespace MovieRental
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-           
+            Bitmap bmp = new Bitmap(
+            System.Reflection.Assembly.GetEntryAssembly().
+            GetManifestResourceStream("MyProject.Resources.myimage.png"));
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
