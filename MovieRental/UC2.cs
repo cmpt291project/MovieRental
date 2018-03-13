@@ -34,6 +34,14 @@ namespace MovieRental
         private void UC2_Load(object sender, EventArgs e)
         {
             MessageBox.Show(UC1.info);
+            if (!rank.Controls.Contains(Ranking.Instance))
+            {
+                rank.Controls.Add(Ranking.Instance);
+                Ranking.Instance.Dock = DockStyle.Fill;
+                Ranking.Instance.BringToFront();
+            }
+            else
+                Ranking.Instance.BringToFront();
         }
 
         
@@ -45,12 +53,6 @@ namespace MovieRental
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            
 
         }
 
@@ -74,11 +76,6 @@ namespace MovieRental
                 newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03");
             }
-        }
-
-        private void Features_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void FillData()
@@ -156,5 +153,7 @@ namespace MovieRental
         {
 
         }
+
+        
     }
 }

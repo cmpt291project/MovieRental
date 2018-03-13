@@ -76,10 +76,16 @@ namespace MovieRental
             else
                 UC1.Instance.BringToFront();
 
+
             connectionString = ConfigurationManager.
                 ConnectionStrings["MovieRental.Properties." +
                 "Settings.MovieRentalConnectionString"].ConnectionString;
             Console.WriteLine(connectionString);
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }
