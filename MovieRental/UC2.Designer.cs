@@ -30,6 +30,9 @@
         {
             this.Form2Tab1 = new System.Windows.Forms.TabControl();
             this.Features = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.Suggestion = new System.Windows.Forms.TabPage();
             this.YourMovie = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
@@ -40,9 +43,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.YourMoviePanel = new System.Windows.Forms.Panel();
             this.Form2Tab1.SuspendLayout();
             this.Features.SuspendLayout();
             this.YourMovie.SuspendLayout();
@@ -55,10 +56,10 @@
             this.Form2Tab1.Controls.Add(this.Features);
             this.Form2Tab1.Controls.Add(this.Suggestion);
             this.Form2Tab1.Controls.Add(this.YourMovie);
-            this.Form2Tab1.Location = new System.Drawing.Point(0, 33);
+            this.Form2Tab1.Location = new System.Drawing.Point(0, 30);
             this.Form2Tab1.Name = "Form2Tab1";
             this.Form2Tab1.SelectedIndex = 0;
-            this.Form2Tab1.Size = new System.Drawing.Size(574, 387);
+            this.Form2Tab1.Size = new System.Drawing.Size(574, 357);
             this.Form2Tab1.TabIndex = 0;
             // 
             // Features
@@ -70,132 +71,11 @@
             this.Features.Location = new System.Drawing.Point(4, 22);
             this.Features.Name = "Features";
             this.Features.Padding = new System.Windows.Forms.Padding(3);
-            this.Features.Size = new System.Drawing.Size(566, 361);
+            this.Features.Size = new System.Drawing.Size(566, 331);
             this.Features.TabIndex = 0;
             this.Features.Text = "Feature";
             this.Features.UseVisualStyleBackColor = true;
             this.Features.Click += new System.EventHandler(this.Features_Click);
-            // 
-            // Suggestion
-            // 
-            this.Suggestion.Location = new System.Drawing.Point(4, 22);
-            this.Suggestion.Name = "Suggestion";
-            this.Suggestion.Padding = new System.Windows.Forms.Padding(3);
-            this.Suggestion.Size = new System.Drawing.Size(566, 361);
-            this.Suggestion.TabIndex = 1;
-            this.Suggestion.Text = "Suggestion";
-            this.Suggestion.UseVisualStyleBackColor = true;
-            this.Suggestion.Click += new System.EventHandler(this.Suggestion_Click);
-            // 
-            // YourMovie
-            // 
-            this.YourMovie.AutoScroll = true;
-            this.YourMovie.Controls.Add(this.button5);
-            this.YourMovie.Controls.Add(this.button4);
-            this.YourMovie.Controls.Add(this.button3);
-            this.YourMovie.Location = new System.Drawing.Point(4, 22);
-            this.YourMovie.Name = "YourMovie";
-            this.YourMovie.Padding = new System.Windows.Forms.Padding(3);
-            this.YourMovie.Size = new System.Drawing.Size(566, 361);
-            this.YourMovie.TabIndex = 2;
-            this.YourMovie.Text = "Your Movie";
-            this.YourMovie.UseVisualStyleBackColor = true;
-            this.YourMovie.Click += new System.EventHandler(this.tabPage3_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(6, 105);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(91, 40);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Wish List";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(6, 59);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(91, 40);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Rental History";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(6, 11);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(91, 40);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Current Rental";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(194, 30);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 23);
-            this.panel1.TabIndex = 2;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(151, 1);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(33, 21);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Wishlist";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(110, 1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(35, 21);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Account";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(0, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(70, 20);
-            this.textBox1.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::MovieRental.Properties.Resources.Icons8_Ios7_Very_Basic_Search;
-            this.pictureBox1.Location = new System.Drawing.Point(72, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 19);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel2
-            // 
-            this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(103, 7);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(460, 351);
-            this.panel2.TabIndex = 0;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(6, 20);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 25);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // comboBox1
             // 
@@ -208,23 +88,155 @@
             "Drama",
             "Horror",
             "Thriller"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 51);
+            this.comboBox1.Location = new System.Drawing.Point(3, 47);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(94, 21);
+            this.comboBox1.Size = new System.Drawing.Size(94, 20);
             this.comboBox1.TabIndex = 2;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(6, 18);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 1;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Location = new System.Drawing.Point(103, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(460, 324);
+            this.panel2.TabIndex = 0;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // Suggestion
+            // 
+            this.Suggestion.Location = new System.Drawing.Point(4, 22);
+            this.Suggestion.Name = "Suggestion";
+            this.Suggestion.Padding = new System.Windows.Forms.Padding(3);
+            this.Suggestion.Size = new System.Drawing.Size(566, 331);
+            this.Suggestion.TabIndex = 1;
+            this.Suggestion.Text = "Suggestion";
+            this.Suggestion.UseVisualStyleBackColor = true;
+            this.Suggestion.Click += new System.EventHandler(this.Suggestion_Click);
+            // 
+            // YourMovie
+            // 
+            this.YourMovie.AutoScroll = true;
+            this.YourMovie.Controls.Add(this.YourMoviePanel);
+            this.YourMovie.Controls.Add(this.button5);
+            this.YourMovie.Controls.Add(this.button4);
+            this.YourMovie.Controls.Add(this.button3);
+            this.YourMovie.Location = new System.Drawing.Point(4, 22);
+            this.YourMovie.Name = "YourMovie";
+            this.YourMovie.Padding = new System.Windows.Forms.Padding(3);
+            this.YourMovie.Size = new System.Drawing.Size(566, 331);
+            this.YourMovie.TabIndex = 2;
+            this.YourMovie.Text = "Your Movie";
+            this.YourMovie.UseVisualStyleBackColor = true;
+            this.YourMovie.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(6, 97);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(91, 37);
+            this.button5.TabIndex = 8;
+            this.button5.Text = "Wish List";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(6, 54);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(91, 37);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Rental History";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 10);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(91, 37);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Current Rental";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Location = new System.Drawing.Point(194, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 21);
+            this.panel1.TabIndex = 2;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(151, 1);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(33, 19);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Wishlist";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(110, 1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(35, 19);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Account";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(0, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(70, 21);
+            this.textBox1.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MovieRental.Properties.Resources.Icons8_Ios7_Very_Basic_Search;
+            this.pictureBox1.Location = new System.Drawing.Point(72, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 18);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // YourMoviePanel
+            // 
+            this.YourMoviePanel.AutoScroll = true;
+            this.YourMoviePanel.AutoSize = true;
+            this.YourMoviePanel.Location = new System.Drawing.Point(106, 10);
+            this.YourMoviePanel.Name = "YourMoviePanel";
+            this.YourMoviePanel.Size = new System.Drawing.Size(447, 310);
+            this.YourMoviePanel.TabIndex = 9;
             // 
             // UC2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Form2Tab1);
             this.Name = "UC2";
-            this.Size = new System.Drawing.Size(600, 450);
+            this.Size = new System.Drawing.Size(600, 415);
             this.Load += new System.EventHandler(this.UC2_Load);
             this.Form2Tab1.ResumeLayout(false);
             this.Features.ResumeLayout(false);
             this.YourMovie.ResumeLayout(false);
+            this.YourMovie.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -249,5 +261,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel YourMoviePanel;
     }
 }
