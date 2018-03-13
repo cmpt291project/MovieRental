@@ -30,6 +30,9 @@
         {
             this.Form2Tab1 = new System.Windows.Forms.TabControl();
             this.Features = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.Suggestion = new System.Windows.Forms.TabPage();
             this.YourMovie = new System.Windows.Forms.TabPage();
             this.button5 = new System.Windows.Forms.Button();
@@ -40,9 +43,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.Form2Tab1.SuspendLayout();
             this.Features.SuspendLayout();
             this.YourMovie.SuspendLayout();
@@ -75,6 +75,41 @@
             this.Features.Text = "Feature";
             this.Features.UseVisualStyleBackColor = true;
             this.Features.Click += new System.EventHandler(this.Features_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Horror",
+            "Thriller"});
+            this.comboBox1.Location = new System.Drawing.Point(3, 51);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(94, 21);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(6, 20);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 25);
+            this.button6.TabIndex = 1;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Location = new System.Drawing.Point(103, 7);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(460, 351);
+            this.panel2.TabIndex = 0;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // Suggestion
             // 
@@ -177,41 +212,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // panel2
-            // 
-            this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(103, 7);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(460, 351);
-            this.panel2.TabIndex = 0;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(6, 20);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 25);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Action",
-            "Adventure",
-            "Comedy",
-            "Drama",
-            "Horror",
-            "Thriller"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 51);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(94, 21);
-            this.comboBox1.TabIndex = 2;
             // 
             // UC2
             // 

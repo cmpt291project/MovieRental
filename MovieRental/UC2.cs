@@ -127,11 +127,11 @@ namespace MovieRental
                 var texbox = c as TextBox;
                 var comboBox = c as ComboBox;
                 var dateTimePicker = c as DateTimePicker;
-
+                
                 if (texbox != null)
                     texbox.Clear();
                 if (comboBox != null)
-                    comboBox.SelectedIndex = -1;
+                    //comboBox.Controls.Remove()
                 if (dateTimePicker != null)
                 {
                     dateTimePicker.Format = DateTimePickerFormat.Short;
@@ -154,7 +154,7 @@ namespace MovieRental
 
         private void Suggestion_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("SUGGESTIONS");
         }
     }
 }
