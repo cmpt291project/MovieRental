@@ -137,15 +137,7 @@ namespace MovieRental
 
         private void button3_Click(object sender, EventArgs e)
         {
-            groupBox2.Visible = false;
-            groupBox1.Visible = false;
-            groupBox3.Visible = false;
-            groupBox7.Visible = true;
-            groupBox8.Visible = true;
-            groupBox9.Visible = true;
-            groupBox4.Visible = false;
-            groupBox5.Visible = false;
-            groupBox6.Visible = false;
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -155,35 +147,13 @@ namespace MovieRental
 
         private void button5_Click(object sender, EventArgs e)
         {
-            for (int i = 1; i < 4; i++)
+            string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
+            for (int i = 1; i < 5; i++)
             {
-
-                    GroupBox GroupBox1 = new GroupBox();
-                    GroupBox1.Name = "Movie Name";
-                    GroupBox1.Location = new Point(200, 200);
-                    GroupBox1.Size = new Size(200, 100);
-                    GroupBox1.Top = i * 100;
-                    GroupBox1.Left = 200;
-                    GroupBox1.BackColor = Color.FromArgb(255, 232, 232);
-                    GroupBox1.Text = "Movie Title";
-                    GroupBox1.Font = new Font("Segoe UI", 15);
-                    GroupBox1.FlatStyle = FlatStyle.Standard;
-                    tabPage3.Controls.Add(GroupBox1);
-
-                
-                PictureBox image = new PictureBox();
-                image.Location = new Point(0, 0);
-                image.Size = new Size(120, 120);
-                image.Top = i * 10;
-                image.Left = 20;
-                //image.
-                //image.FlatStyle = FlatStyle.Standard;
-                string path = "god_father.jpg";
-                Bitmap bmp = new Bitmap(System.Reflection.Assembly.GetEntryAssembly().GetManifestResourceStream("MovieRental.Resources.god father"));// + path));
-                //image.Image = new Bitmap(MovieRental.Properties.Resources.i);
-                image.Image = bmp;
-                image.SizeMode = PictureBoxSizeMode.Zoom;
-                GroupBox1.Controls.Add(image);
+                MovieGroupBox newGroupBox = new MovieGroupBox();
+                newGroupBox.setGroupBox(tabPage3, i);
+                newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
+                newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03"); 
             }
 
         }
