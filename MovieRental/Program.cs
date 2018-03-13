@@ -20,7 +20,7 @@ namespace MovieRental
 
             OpenDetailFormOnClose = false;
 
-            Application.Run(new Form1());
+            Application.Run(new Form4());
 
            /* if (OpenDetailFormOnClose)
             {
