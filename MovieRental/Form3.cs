@@ -63,6 +63,7 @@ namespace MovieRental
                 //pictureBox1.Image = new Bitmap(@"C:\Users\Mic 18\Documents\Visual Studio 2015\Projects\mylogin\granted.png");
                 MessageBox.Show("YOU ARE GRANTED WITH ACCESS");
                 SqlCommand scmd2 = new SqlCommand("select UserType from Password where EmailAddress=@email and Password=@pwd", scn);
+                scmd.Parameters.Clear();
                 scmd2.Parameters.AddWithValue("@email", textBox1.Text);
                 scmd2.Parameters.AddWithValue("@pwd", textBox2.Text);
                 Console.WriteLine(scmd2.ExecuteScalar().ToString().Length);
@@ -79,7 +80,7 @@ namespace MovieRental
                 }
                 else
                 {
-                    info = info = scmd2.ExecuteScalar().ToString();
+                    info = scmd2.ExecuteScalar().ToString();
                     var employeeForm = new EmployeeHome();
                     employeeForm.Show();
                     this.Owner = employeeForm;
@@ -112,9 +113,6 @@ namespace MovieRental
             MessageBox.Show("Under development");
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
