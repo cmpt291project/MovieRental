@@ -67,5 +67,10 @@ namespace MovieRental
 
             }
         }
+
+        private void MoviePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
