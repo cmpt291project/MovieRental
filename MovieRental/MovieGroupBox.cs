@@ -31,7 +31,7 @@ namespace MovieRental
             groupBox.Location = new Point(150, 200);
             groupBox.Size = new Size(400, 200);
             groupBox.Top = index * 220 - 195;
-            groupBox.Left = 10;
+            groupBox.Left = 65;
             groupBox.BackColor = Color.FromArgb(222, 222, 255);
             //groupBox.Text = "Movie Title";
             groupBox.Font = new Font("Segoe UI", 15);

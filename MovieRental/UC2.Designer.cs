@@ -73,7 +73,6 @@
             // 
             // FeaturePanel
             // 
-            this.FeaturePanel.AutoScroll = true;
             this.FeaturePanel.Location = new System.Drawing.Point(6, 4);
             this.FeaturePanel.Name = "FeaturePanel";
             this.FeaturePanel.Size = new System.Drawing.Size(722, 448);
