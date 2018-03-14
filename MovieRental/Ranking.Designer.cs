@@ -33,35 +33,21 @@
             // 
             // panelInRanking
             // 
-<<<<<<< HEAD
-            this.panelInRanking.Location = new System.Drawing.Point(3, 3);
+            this.panelInRanking.AutoScroll = true;
+            this.panelInRanking.Location = new System.Drawing.Point(0, 0);
+            this.panelInRanking.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panelInRanking.Name = "panelInRanking";
-            this.panelInRanking.Size = new System.Drawing.Size(1448, 493);
+            this.panelInRanking.Size = new System.Drawing.Size(1410, 591);
             this.panelInRanking.TabIndex = 0;
-=======
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
->>>>>>> a0ae57dae235b9f401a4f0749e0aaf2fc4449627
             // 
             // Ranking
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
             this.Controls.Add(this.panelInRanking);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Ranking";
-            this.Size = new System.Drawing.Size(1454, 499);
-=======
-            this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "Ranking";
-            this.Size = new System.Drawing.Size(562, 213);
->>>>>>> a0ae57dae235b9f401a4f0749e0aaf2fc4449627
+            this.Size = new System.Drawing.Size(1410, 591);
             this.Load += new System.EventHandler(this.Ranking_Load);
             this.ResumeLayout(false);
 
