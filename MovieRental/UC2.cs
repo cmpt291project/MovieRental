@@ -42,6 +42,15 @@ namespace MovieRental
             }
             else
                 Ranking.Instance.BringToFront();
+
+            if (!YourMoviePanel.Controls.Contains(YourMovieControl.Instance))
+            {
+                YourMoviePanel.Controls.Add(YourMovieControl.Instance);
+                YourMovieControl.Instance.Dock = DockStyle.Fill;
+                YourMovieControl.Instance.BringToFront();
+            }
+            else
+                YourMovieControl.Instance.BringToFront();
         }
 
         
@@ -72,10 +81,11 @@ namespace MovieRental
             for (int i = 1; i < 5; i++)
             {
                 MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(YourMovie, i);
+                //newGroupBox.setGroupBox(YourMoviePanel, i);
                 newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03");
             }
+            
         }
 
         private void FillData()
@@ -124,11 +134,11 @@ namespace MovieRental
                 var texbox = c as TextBox;
                 var comboBox = c as ComboBox;
                 var dateTimePicker = c as DateTimePicker;
-
+                
                 if (texbox != null)
                     texbox.Clear();
                 if (comboBox != null)
-                    comboBox.SelectedIndex = -1;
+                    //comboBox.Controls.Remove()
                 if (dateTimePicker != null)
                 {
                     dateTimePicker.Format = DateTimePickerFormat.Short;
@@ -139,6 +149,15 @@ namespace MovieRental
             }
         }
 
+        private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(Form2Tab1.SelectedTab);
+            if (Form2Tab1.SelectedTab == Form2Tab1.TabPages["Suggestion"])
+            {
+                MessageBox.Show("Suggestion");
+            }
+        }
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -146,14 +165,17 @@ namespace MovieRental
 
         private void button6_Click(object sender, EventArgs e)
         {
-            ClearAll(panel2);
+            panel2.Controls.Clear();
         }
 
         private void Suggestion_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("SUGGESTIONS");
         }
 
-        
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -126,6 +126,12 @@
     <Compile Include="UC3.Designer.cs">
       <DependentUpon>UC3.cs</DependentUpon>
     </Compile>
+    <Compile Include="YourMovieControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="YourMovieControl.Designer.cs">
+      <DependentUpon>YourMovieControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="EmployeeHome.resx">
       <DependentUpon>EmployeeHome.cs</DependentUpon>
     </EmbeddedResource>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC3.resx">
       <DependentUpon>UC3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YourMovieControl.resx">
+      <DependentUpon>YourMovieControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="MovieRentalDataSet.xsc">
       <DependentUpon>MovieRentalDataSet.xsd</DependentUpon>
