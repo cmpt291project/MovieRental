@@ -13,8 +13,6 @@ namespace MovieRental
 {
     public partial class UC2 : UserControl
     {
-        private string[] movieInfo = new string[5];
-        private int x = 0;
         private static UC2 _instance;
         public static UC2 Instance
         {
@@ -28,7 +26,6 @@ namespace MovieRental
         public UC2()
         {
             InitializeComponent();
-            FillData();
         }
 
         private void UC2_Load(object sender, EventArgs e)
@@ -73,39 +70,6 @@ namespace MovieRental
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03");
             }
             
-        }
-
-        private void FillData()
-        {
-            string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
-            SqlConnection connection = new SqlConnection(Form4.connectionString);
-            connection.Open();
-            SqlDataAdapter a = new SqlDataAdapter("SELECT MovieName, Director, MovieType, ReleaseDate, AddDate FROM Movie WHERE " +
-                "ReleaseDate like '" + "2017%" + "'" + "or ReleaseDate like '" + "2018%'", connection);
-            DataTable t = new DataTable();
-            a.Fill(t);
-            int i = 1;
-            foreach (DataRow row in t.Rows)
-            {
-                foreach (DataColumn column in t.Columns)
-                {
-                    movieInfo[x] = row[column].ToString(); 
-                    x++;
-                    //Console.WriteLine(row[column]);
-                }
-                x = 0;
-                //Console.Write("row data: " + movieInfo.Length);
-                MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(FeaturePanel, i);
-                i++;
-                Console.WriteLine(movieInfo[3].Trim());
-                var releaseDate = movieInfo[3].Substring(0, movieInfo[3].IndexOf(' '));
-                var addDate = movieInfo[4].Substring(0, movieInfo[4].IndexOf(' '));
-                newGroupBox.setImage(newGroupBox.groupBox, filename[1]);
-                newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate);
-                
-            }
-           
         }
 
         private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
