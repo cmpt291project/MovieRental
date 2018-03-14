@@ -29,7 +29,10 @@ namespace MovieRental
 
         private void Ranking_Load(object sender, EventArgs e)
         {
-
+            Label l = new Label();
+            l.Text = "new label";
+            panelInRanking.Controls.Add(l);
+            
         }
     }
 }
