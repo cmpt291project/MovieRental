@@ -83,10 +83,5 @@ namespace MovieRental
             Console.WriteLine(connectionString);
 
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

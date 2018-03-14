@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FeatureControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FeatureControl.Designer.cs">
+      <DependentUpon>FeatureControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MovieBoxRent.cs" />
     <Compile Include="EmployeeHome.cs">
       <SubType>Form</SubType>
@@ -134,6 +140,9 @@
     </Compile>
     <EmbeddedResource Include="EmployeeHome.resx">
       <DependentUpon>EmployeeHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeatureControl.resx">
+      <DependentUpon>FeatureControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

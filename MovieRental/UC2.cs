@@ -33,7 +33,7 @@ namespace MovieRental
 
         private void UC2_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(UC1.info);
+            //MessageBox.Show(UC1.info);
             if (!rank.Controls.Contains(Ranking.Instance))
             {
                 rank.Controls.Add(Ranking.Instance);
@@ -48,6 +48,15 @@ namespace MovieRental
                 YourMoviePanel.Controls.Add(YourMovieControl.Instance);
                 YourMovieControl.Instance.Dock = DockStyle.Fill;
                 YourMovieControl.Instance.BringToFront();
+            }
+            else
+                YourMovieControl.Instance.BringToFront();
+
+            if (!FeaturePanel.Controls.Contains(FeatureControl.Instance))
+            {
+                FeaturePanel.Controls.Add(FeatureControl.Instance);
+                FeatureControl.Instance.Dock = DockStyle.Fill;
+                FeatureControl.Instance.BringToFront();
             }
             else
                 YourMovieControl.Instance.BringToFront();
@@ -87,7 +96,7 @@ namespace MovieRental
                 x = 0;
                 //Console.Write("row data: " + movieInfo.Length);
                 MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(panel2, i);
+                newGroupBox.setGroupBox(FeaturePanel, i);
                 i++;
                 Console.WriteLine(movieInfo[3].Trim());
                 var releaseDate = movieInfo[3].Substring(0, movieInfo[3].IndexOf(' '));

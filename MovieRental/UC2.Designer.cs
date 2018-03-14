@@ -30,7 +30,7 @@
         {
             this.Form2Tab1 = new System.Windows.Forms.TabControl();
             this.Features = new System.Windows.Forms.TabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.FeaturePanel = new System.Windows.Forms.Panel();
             this.Suggestion = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.rank = new System.Windows.Forms.Panel();
@@ -62,7 +62,7 @@
             // Features
             // 
             this.Features.AutoScroll = true;
-            this.Features.Controls.Add(this.panel2);
+            this.Features.Controls.Add(this.FeaturePanel);
             this.Features.Location = new System.Drawing.Point(4, 22);
             this.Features.Name = "Features";
             this.Features.Padding = new System.Windows.Forms.Padding(3);
@@ -71,13 +71,13 @@
             this.Features.Text = "Feature";
             this.Features.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // FeaturePanel
             // 
-            this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(6, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(722, 448);
-            this.panel2.TabIndex = 0;
+            this.FeaturePanel.AutoScroll = true;
+            this.FeaturePanel.Location = new System.Drawing.Point(6, 4);
+            this.FeaturePanel.Name = "FeaturePanel";
+            this.FeaturePanel.Size = new System.Drawing.Size(722, 448);
+            this.FeaturePanel.TabIndex = 0;
             // 
             // Suggestion
             // 
@@ -205,7 +205,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel FeaturePanel;
         private System.Windows.Forms.Panel rank;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel YourMoviePanel;
