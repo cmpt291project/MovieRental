@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
+
 namespace MovieRental
 {
     public partial class UC2 : UserControl
@@ -57,6 +58,7 @@ namespace MovieRental
             }
             else
                 YourMovieControl.Instance.BringToFront();
+
         }
 
         private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,6 +69,7 @@ namespace MovieRental
                 MessageBox.Show("Suggestion");
             }
         }
+            
 
         private void Suggestion_Click(object sender, EventArgs e)
         {

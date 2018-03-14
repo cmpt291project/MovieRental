@@ -37,6 +37,7 @@
             this.MoviePanel.Name = "MoviePanel";
             this.MoviePanel.Size = new System.Drawing.Size(577, 404);
             this.MoviePanel.TabIndex = 0;
+            this.MoviePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MoviePanel_Paint);
             // 
             // TestForm
             // 
