@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MovieBoxRent.cs" />
     <Compile Include="EmployeeHome.cs">
       <SubType>Form</SubType>
     </Compile>
