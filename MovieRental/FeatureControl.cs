@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace MovieRental
 {
@@ -34,12 +35,13 @@ namespace MovieRental
         private void FeatureControl_Load(object sender, EventArgs e)
         {
             FillData();
+            CompareDates();
         }
 
         private void FillData()
         {
             string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
-            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            SqlConnection connection = new SqlConnection(TestForm.connectionString);
             connection.Open();
             SqlDataAdapter a = new SqlDataAdapter("SELECT MovieName, Director, MovieType, ReleaseDate, AddDate FROM Movie WHERE " +
                 "ReleaseDate like '" + "2017%" + "'" + "or ReleaseDate like '" + "2018%'", connection);
@@ -66,6 +68,27 @@ namespace MovieRental
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate);
 
             }
+            connection.Close();
+        }
+
+        private void CompareDates()
+        {
+            DateTime localDate = DateTime.Now;
+            String[] cultureNames = { "en-US", "en-GB", "fr-FR",
+                                "de-DE", "ru-RU" };
+
+            foreach (var cultureName in cultureNames)
+            {
+                var culture = new CultureInfo(cultureName);
+                Console.WriteLine("{0}: {1}", cultureName,
+                                  localDate.ToString(culture));
+            }
+
+            SqlConnection connection = new SqlConnection(TestForm.connectionString);
+            connection.Open();
+            SqlCommand a = new SqlCommand("SELECT AccountCreationDate FROM Customer WHERE AccountNumber = '748792'", connection);
+            Console.WriteLine("date from DB: " + a.ExecuteScalar().ToString());
+            connection.Close();
         }
 
         private void MoviePanel_Paint(object sender, PaintEventArgs e)
