@@ -91,9 +91,25 @@ namespace MovieRental
                 text.Top = i * 30 + 25;
                 groupBox.Controls.Add(text);
 
-            }
+            }  
+        }
 
-            
+        public void SetChooseMovieButton(GroupBox groupBox, string name)
+        {
+            Button button = new Button();
+            button.Location = new Point(280, 175);
+            button.Text = name;
+            button.Font = new Font("Segoe UI", 9);
+            button.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
+            groupBox.Controls.Add(button);
+            button.Click += new EventHandler(AddMovieToWishList);
+        }
+
+        public void AddMovieToWishList(object sender, EventArgs e)
+        {
+            IEnumerable<TextBox> collection = groupBox.Controls.OfType<TextBox>();
+            TextBox[] newtext = collection.ToArray();
+            MessageBox.Show(newtext[0].Text);
         }
     }
 }

@@ -40,9 +40,9 @@ namespace MovieRental
             else
                 Ranking.Instance.BringToFront();
 
-            if (!YourMoviePanel.Controls.Contains(YourMovieControl.Instance))
+            if (!YourMovie.Controls.Contains(YourMovieControl.Instance))
             {
-                YourMoviePanel.Controls.Add(YourMovieControl.Instance);
+                YourMovie.Controls.Add(YourMovieControl.Instance);
                 YourMovieControl.Instance.Dock = DockStyle.Fill;
                 YourMovieControl.Instance.BringToFront();
             }
@@ -59,23 +59,10 @@ namespace MovieRental
                 YourMovieControl.Instance.BringToFront();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
-            for (int i = 1; i < 5; i++)
-            {
-                MovieGroupBox newGroupBox = new MovieGroupBox();
-                //newGroupBox.setGroupBox(YourMoviePanel, i);
-                newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
-                newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03");
-            }
-            
-        }
-
         private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.WriteLine(Form2Tab1.SelectedTab);
-            if (Form2Tab1.SelectedTab == Form2Tab1.TabPages["Suggestion"])
+            Console.WriteLine(YourMovieTab.SelectedTab);
+            if (YourMovieTab.SelectedTab == YourMovieTab.TabPages["Suggestion"])
             {
                 MessageBox.Show("Suggestion");
             }
@@ -84,6 +71,11 @@ namespace MovieRental
         private void Suggestion_Click(object sender, EventArgs e)
         {
             MessageBox.Show("SUGGESTIONS");
+        }
+
+        private void YourMovie_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Your Movie");
         }
     }
 }

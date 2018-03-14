@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Form2Tab1 = new System.Windows.Forms.TabControl();
+            this.YourMovieTab = new System.Windows.Forms.TabControl();
             this.Features = new System.Windows.Forms.TabPage();
             this.FeaturePanel = new System.Windows.Forms.Panel();
             this.Suggestion = new System.Windows.Forms.TabPage();
@@ -41,24 +41,24 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.YourMoviePanel = new System.Windows.Forms.Panel();
-            this.Form2Tab1.SuspendLayout();
+            this.YourMovieTab.SuspendLayout();
             this.Features.SuspendLayout();
             this.Suggestion.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // Form2Tab1
+            // YourMovieTab
             // 
-            this.Form2Tab1.Controls.Add(this.Features);
-            this.Form2Tab1.Controls.Add(this.Suggestion);
-            this.Form2Tab1.Controls.Add(this.YourMovie);
-            this.Form2Tab1.Location = new System.Drawing.Point(0, 63);
-            this.Form2Tab1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.Form2Tab1.Name = "Form2Tab1";
-            this.Form2Tab1.SelectedIndex = 0;
-            this.Form2Tab1.Size = new System.Drawing.Size(1478, 931);
-            this.Form2Tab1.TabIndex = 0;
+
+            this.YourMovieTab.Controls.Add(this.Features);
+            this.YourMovieTab.Controls.Add(this.Suggestion);
+            this.YourMovieTab.Controls.Add(this.YourMovie);
+            this.YourMovieTab.Location = new System.Drawing.Point(0, 30);
+            this.YourMovieTab.Name = "YourMovieTab";
+            this.YourMovieTab.SelectedIndex = 0;
+            this.YourMovieTab.Size = new System.Drawing.Size(739, 447);
+            this.YourMovieTab.TabIndex = 0;
             // 
             // Features
             // 
@@ -75,7 +75,7 @@
             this.Features.Location = new System.Drawing.Point(4, 22);
             this.Features.Name = "Features";
             this.Features.Padding = new System.Windows.Forms.Padding(3);
-            this.Features.Size = new System.Drawing.Size(731, 458);
+            this.Features.Size = new System.Drawing.Size(731, 421);
             this.Features.TabIndex = 0;
             this.Features.Text = "Feature";
             this.Features.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             // 
             this.FeaturePanel.Location = new System.Drawing.Point(6, 4);
             this.FeaturePanel.Name = "FeaturePanel";
-            this.FeaturePanel.Size = new System.Drawing.Size(722, 448);
+            this.FeaturePanel.Size = new System.Drawing.Size(722, 414);
             this.FeaturePanel.TabIndex = 0;
             // 
             // Suggestion
@@ -141,7 +141,7 @@
             this.Suggestion.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Suggestion.Size = new System.Drawing.Size(1462, 884);
             this.Suggestion.Padding = new System.Windows.Forms.Padding(3);
-            this.Suggestion.Size = new System.Drawing.Size(731, 458);
+            this.Suggestion.Size = new System.Drawing.Size(731, 421);
             this.Suggestion.TabIndex = 1;
             this.Suggestion.Text = "Suggestion";
             this.Suggestion.UseVisualStyleBackColor = true;
@@ -182,10 +182,11 @@
             this.YourMovie.UseVisualStyleBackColor = true;
             //this.YourMovie.Click += new System.EventHandler(this.tabPage3_Click);
             this.YourMovie.Padding = new System.Windows.Forms.Padding(3);
-            this.YourMovie.Size = new System.Drawing.Size(731, 458);
-            this.YourMovie.TabIndex = 2;
+            this.YourMovie.Size = new System.Drawing.Size(731, 421);
+            this.YourMovie.TabIndex = 0;
             this.YourMovie.Text = "Your Movie";
             this.YourMovie.UseVisualStyleBackColor = true;
+            this.YourMovie.Click += new System.EventHandler(this.YourMovie_Click);
             // 
             // panel1
             // 
@@ -246,21 +247,18 @@
             this.YourMoviePanel.Location = new System.Drawing.Point(9, 10);
             this.YourMoviePanel.Name = "YourMoviePanel";
             this.YourMoviePanel.Size = new System.Drawing.Size(862, 483);
-            this.YourMoviePanel.TabIndex = 3;
-            //this.YourMoviePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-
+            this.YourMoviePanel.TabIndex = 2;
             // 
             // UC2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.Form2Tab1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Controls.Add(this.YourMovieTab);
             this.Name = "UC2";
-            this.Size = new System.Drawing.Size(1504, 1019);
+            this.Size = new System.Drawing.Size(752, 489);
             this.Load += new System.EventHandler(this.UC2_Load);
-            this.Form2Tab1.ResumeLayout(false);
+            this.YourMovieTab.ResumeLayout(false);
             this.Features.ResumeLayout(false);
             this.Suggestion.ResumeLayout(false);
             this.Suggestion.PerformLayout();
@@ -273,7 +271,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl Form2Tab1;
+        private System.Windows.Forms.TabControl YourMovieTab;
         private System.Windows.Forms.TabPage Features;
         private System.Windows.Forms.TabPage Suggestion;
         private System.Windows.Forms.TabPage YourMovie;
