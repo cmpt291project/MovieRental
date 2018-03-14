@@ -134,11 +134,11 @@ namespace MovieRental
                 var texbox = c as TextBox;
                 var comboBox = c as ComboBox;
                 var dateTimePicker = c as DateTimePicker;
-
+                
                 if (texbox != null)
                     texbox.Clear();
                 if (comboBox != null)
-                    comboBox.SelectedIndex = -1;
+                    //comboBox.Controls.Remove()
                 if (dateTimePicker != null)
                 {
                     dateTimePicker.Format = DateTimePickerFormat.Short;
@@ -149,6 +149,15 @@ namespace MovieRental
             }
         }
 
+        private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(Form2Tab1.SelectedTab);
+            if (Form2Tab1.SelectedTab == Form2Tab1.TabPages["Suggestion"])
+            {
+                MessageBox.Show("Suggestion");
+            }
+        }
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -156,12 +165,12 @@ namespace MovieRental
 
         private void button6_Click(object sender, EventArgs e)
         {
-            ClearAll(panel2);
+            panel2.Controls.Clear();
         }
 
         private void Suggestion_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("SUGGESTIONS");
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
