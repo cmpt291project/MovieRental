@@ -100,12 +100,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
+<<<<<<< HEAD
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(33, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 31);
+=======
             this.label1.Location = new System.Drawing.Point(16, 12);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
+>>>>>>> a0ae57dae235b9f401a4f0749e0aaf2fc4449627
             this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.label1.Text = "Ranking";
             // 
             // rank
             // 
