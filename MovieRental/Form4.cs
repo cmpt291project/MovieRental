@@ -80,12 +80,7 @@ namespace MovieRental
             connectionString = ConfigurationManager.
                 ConnectionStrings["MovieRental.Properties." +
                 "Settings.MovieRentalConnectionString"].ConnectionString;
-            Console.WriteLine(connectionString);
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
+            //Console.WriteLine(connectionString);
 
         }
     }

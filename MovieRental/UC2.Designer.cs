@@ -30,9 +30,7 @@
         {
             this.Form2Tab1 = new System.Windows.Forms.TabControl();
             this.Features = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.FeaturePanel = new System.Windows.Forms.Panel();
             this.Suggestion = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.rank = new System.Windows.Forms.Panel();
@@ -65,21 +63,26 @@
             // Features
             // 
             this.Features.AutoScroll = true;
-            this.Features.Controls.Add(this.comboBox1);
-            this.Features.Controls.Add(this.button6);
-            this.Features.Controls.Add(this.panel2);
+ //           this.Features.Controls.Add(this.comboBox1);
+ //           this.Features.Controls.Add(this.button6);
+  //          this.Features.Controls.Add(this.panel2);
             this.Features.Location = new System.Drawing.Point(8, 39);
             this.Features.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Features.Name = "Features";
             this.Features.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Features.Size = new System.Drawing.Size(1462, 884);
+            this.Features.Controls.Add(this.FeaturePanel);
+            this.Features.Location = new System.Drawing.Point(4, 22);
+            this.Features.Name = "Features";
+            this.Features.Padding = new System.Windows.Forms.Padding(3);
+            this.Features.Size = new System.Drawing.Size(731, 458);
             this.Features.TabIndex = 0;
             this.Features.Text = "Feature";
             this.Features.UseVisualStyleBackColor = true;
             // 
             // comboBox1
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            /*this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Action",
@@ -119,7 +122,13 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1306, 862);
             this.panel2.TabIndex = 0;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);*/
+            // FeaturePanel
+            // 
+            this.FeaturePanel.Location = new System.Drawing.Point(6, 4);
+            this.FeaturePanel.Name = "FeaturePanel";
+            this.FeaturePanel.Size = new System.Drawing.Size(722, 448);
+            this.FeaturePanel.TabIndex = 0;
             // 
             // Suggestion
             // 
@@ -131,6 +140,8 @@
             this.Suggestion.Name = "Suggestion";
             this.Suggestion.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Suggestion.Size = new System.Drawing.Size(1462, 884);
+            this.Suggestion.Padding = new System.Windows.Forms.Padding(3);
+            this.Suggestion.Size = new System.Drawing.Size(731, 458);
             this.Suggestion.TabIndex = 1;
             this.Suggestion.Text = "Suggestion";
             this.Suggestion.UseVisualStyleBackColor = true;
@@ -144,6 +155,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 31);
+            this.label1.Size = new System.Drawing.Size(60, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Ranking";
             // 
@@ -151,6 +163,8 @@
             // 
             this.rank.Location = new System.Drawing.Point(22, 83);
             this.rank.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rank.Location = new System.Drawing.Point(11, 43);
+            this.rank.Margin = new System.Windows.Forms.Padding(2);
             this.rank.Name = "rank";
             this.rank.Size = new System.Drawing.Size(1410, 591);
             this.rank.TabIndex = 0;
@@ -166,7 +180,12 @@
             this.YourMovie.TabIndex = 2;
             this.YourMovie.Text = "Your Movie";
             this.YourMovie.UseVisualStyleBackColor = true;
-            this.YourMovie.Click += new System.EventHandler(this.tabPage3_Click);
+            //this.YourMovie.Click += new System.EventHandler(this.tabPage3_Click);
+            this.YourMovie.Padding = new System.Windows.Forms.Padding(3);
+            this.YourMovie.Size = new System.Drawing.Size(731, 458);
+            this.YourMovie.TabIndex = 2;
+            this.YourMovie.Text = "Your Movie";
+            this.YourMovie.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -176,6 +195,7 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(782, 63);
             this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Location = new System.Drawing.Point(391, 33);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(400, 44);
             this.panel1.TabIndex = 2;
@@ -184,6 +204,7 @@
             // 
             this.button2.Location = new System.Drawing.Point(302, 2);
             this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button2.Location = new System.Drawing.Point(151, 1);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(66, 40);
             this.button2.TabIndex = 3;
@@ -204,6 +225,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(0, 6);
             this.textBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox1.Location = new System.Drawing.Point(0, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(136, 31);
             this.textBox1.TabIndex = 1;
@@ -225,7 +247,8 @@
             this.YourMoviePanel.Name = "YourMoviePanel";
             this.YourMoviePanel.Size = new System.Drawing.Size(862, 483);
             this.YourMoviePanel.TabIndex = 3;
-            this.YourMoviePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            //this.YourMoviePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+
             // 
             // UC2
             // 
@@ -259,9 +282,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel FeaturePanel;
         private System.Windows.Forms.Panel rank;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel YourMoviePanel;

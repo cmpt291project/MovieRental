@@ -1,6 +1,6 @@
 ﻿namespace MovieRental
 {
-    partial class Ranking
+    partial class FeatureControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,39 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelInRanking = new System.Windows.Forms.Panel();
+            this.MoviePanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panelInRanking
+            // MoviePanel
             // 
-            this.panelInRanking.AutoScroll = true;
-            this.panelInRanking.Location = new System.Drawing.Point(0, 0);
-            this.panelInRanking.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-
-            this.panelInRanking.Location = new System.Drawing.Point(3, 3);
-
-            this.panelInRanking.Name = "panelInRanking";
-            this.panelInRanking.Size = new System.Drawing.Size(1410, 591);
-            this.panelInRanking.TabIndex = 0;
+            this.MoviePanel.AutoScroll = true;
+            this.MoviePanel.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.MoviePanel.Location = new System.Drawing.Point(95, 0);
+            this.MoviePanel.Name = "MoviePanel";
+            this.MoviePanel.Size = new System.Drawing.Size(611, 391);
+            this.MoviePanel.TabIndex = 0;
+            this.MoviePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MoviePanel_Paint);
             // 
-            // Ranking
+            // FeatureControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
-
-            this.Controls.Add(this.panelInRanking);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "Ranking";
-            this.Size = new System.Drawing.Size(1410, 591);
-
-            this.Load += new System.EventHandler(this.Ranking_Load);
+            this.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.Controls.Add(this.MoviePanel);
+            this.Name = "FeatureControl";
+            this.Size = new System.Drawing.Size(722, 448);
+            this.Load += new System.EventHandler(this.FeatureControl_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelInRanking;
+        private System.Windows.Forms.Panel MoviePanel;
     }
 }

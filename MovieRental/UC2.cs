@@ -13,8 +13,6 @@ namespace MovieRental
 {
     public partial class UC2 : UserControl
     {
-        private string[] movieInfo = new string[5];
-        private int x = 0;
         private static UC2 _instance;
         public static UC2 Instance
         {
@@ -28,12 +26,11 @@ namespace MovieRental
         public UC2()
         {
             InitializeComponent();
-            FillData();
         }
 
         private void UC2_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(UC1.info);
+            //MessageBox.Show(UC1.info);
             if (!rank.Controls.Contains(Ranking.Instance))
             {
                 rank.Controls.Add(Ranking.Instance);
@@ -51,28 +48,15 @@ namespace MovieRental
             }
             else
                 YourMovieControl.Instance.BringToFront();
-        }
 
-        
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
+            if (!FeaturePanel.Controls.Contains(FeatureControl.Instance))
+            {
+                FeaturePanel.Controls.Add(FeatureControl.Instance);
+                FeatureControl.Instance.Dock = DockStyle.Fill;
+                FeatureControl.Instance.BringToFront();
+            }
+            else
+                YourMovieControl.Instance.BringToFront();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -88,67 +72,6 @@ namespace MovieRental
             
         }
 
-        private void FillData()
-        {
-            string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
-            SqlConnection connection = new SqlConnection(Form4.connectionString);
-            connection.Open();
-            SqlDataAdapter a = new SqlDataAdapter("SELECT MovieName, Director, MovieType, ReleaseDate, AddDate FROM Movie WHERE " +
-                "ReleaseDate like '" + "2017%" + "'" + "or ReleaseDate like '" + "2018%'", connection);
-            DataTable t = new DataTable();
-            a.Fill(t);
-            int i = 1;
-            foreach (DataRow row in t.Rows)
-            {
-                foreach (DataColumn column in t.Columns)
-                {
-                    movieInfo[x] = row[column].ToString(); 
-                    x++;
-                    //Console.WriteLine(row[column]);
-                }
-                x = 0;
-                //Console.Write("row data: " + movieInfo.Length);
-                MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(panel2, i);
-                i++;
-                Console.WriteLine(movieInfo[3].Trim());
-                var releaseDate = movieInfo[3].Substring(0, movieInfo[3].IndexOf(' '));
-                var addDate = movieInfo[4].Substring(0, movieInfo[4].IndexOf(' '));
-                newGroupBox.setImage(newGroupBox.groupBox, filename[1]);
-                newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate);
-                
-            }
-            /*for (int i = 1; i < 5; i++)
-            {
-                MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(Features, i);
-                newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
-                newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03");
-            }*/
-        }
-
-        public static void ClearAll(Control control)
-        {
-            foreach (Control c in control.Controls)
-            {
-                var texbox = c as TextBox;
-                var comboBox = c as ComboBox;
-                var dateTimePicker = c as DateTimePicker;
-                
-                if (texbox != null)
-                    texbox.Clear();
-                if (comboBox != null)
-                    //comboBox.Controls.Remove()
-                if (dateTimePicker != null)
-                {
-                    dateTimePicker.Format = DateTimePickerFormat.Short;
-                    dateTimePicker.CustomFormat = " ";
-                }
-                if (c.HasChildren)
-                    ClearAll(c);
-            }
-        }
-
         private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Console.WriteLine(Form2Tab1.SelectedTab);
@@ -158,24 +81,9 @@ namespace MovieRental
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            panel2.Controls.Clear();
-        }
-
         private void Suggestion_Click(object sender, EventArgs e)
         {
             MessageBox.Show("SUGGESTIONS");
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
