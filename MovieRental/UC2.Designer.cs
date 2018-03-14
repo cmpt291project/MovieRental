@@ -41,8 +41,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.YourMoviePanel = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
             this.Form2Tab1.SuspendLayout();
             this.Features.SuspendLayout();
             this.Suggestion.SuspendLayout();
@@ -64,8 +62,6 @@
             // Features
             // 
             this.Features.AutoScroll = true;
-            this.Features.Controls.Add(this.comboBox1);
-            this.Features.Controls.Add(this.button6);
             this.Features.Controls.Add(this.panel2);
             this.Features.Location = new System.Drawing.Point(4, 22);
             this.Features.Name = "Features";
@@ -78,11 +74,10 @@
             // panel2
             // 
             this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(72, 4);
+            this.panel2.Location = new System.Drawing.Point(6, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(653, 448);
+            this.panel2.Size = new System.Drawing.Size(722, 448);
             this.panel2.TabIndex = 0;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // Suggestion
             // 
@@ -100,11 +95,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(33, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 31);
+            this.label1.Size = new System.Drawing.Size(60, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Ranking";
             // 
@@ -126,7 +120,6 @@
             this.YourMovie.TabIndex = 2;
             this.YourMovie.Text = "Your Movie";
             this.YourMovie.UseVisualStyleBackColor = true;
-            this.YourMovie.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // panel1
             // 
@@ -180,39 +173,6 @@
             this.YourMoviePanel.Name = "YourMoviePanel";
             this.YourMoviePanel.Size = new System.Drawing.Size(862, 483);
             this.YourMoviePanel.TabIndex = 3;
-            this.YourMoviePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Action",
-            "Adventure",
-            "Comedy",
-            "Drama",
-            "Horror",
-            "Thriller",
-            "Action",
-            "Adventure",
-            "Comedy",
-            "Drama",
-            "Horror",
-            "Thriller"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 39);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(64, 21);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(3, 10);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(63, 23);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // UC2
             // 
@@ -249,7 +209,5 @@
         private System.Windows.Forms.Panel rank;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel YourMoviePanel;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button6;
     }
 }

@@ -53,28 +53,6 @@ namespace MovieRental
                 YourMovieControl.Instance.BringToFront();
         }
 
-        
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
@@ -118,35 +96,7 @@ namespace MovieRental
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate);
                 
             }
-            /*for (int i = 1; i < 5; i++)
-            {
-                MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(Features, i);
-                newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
-                newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03");
-            }*/
-        }
-
-        public static void ClearAll(Control control)
-        {
-            foreach (Control c in control.Controls)
-            {
-                var texbox = c as TextBox;
-                var comboBox = c as ComboBox;
-                var dateTimePicker = c as DateTimePicker;
-                
-                if (texbox != null)
-                    texbox.Clear();
-                if (comboBox != null)
-                    //comboBox.Controls.Remove()
-                if (dateTimePicker != null)
-                {
-                    dateTimePicker.Format = DateTimePickerFormat.Short;
-                    dateTimePicker.CustomFormat = " ";
-                }
-                if (c.HasChildren)
-                    ClearAll(c);
-            }
+           
         }
 
         private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
@@ -158,24 +108,9 @@ namespace MovieRental
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            panel2.Controls.Clear();
-        }
-
         private void Suggestion_Click(object sender, EventArgs e)
         {
             MessageBox.Show("SUGGESTIONS");
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
