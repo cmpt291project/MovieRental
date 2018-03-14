@@ -74,7 +74,7 @@ namespace MovieRental
                     info = scmd2.ExecuteScalar().ToString();
                     /*var customerForm = new Form2();
                     customerForm.Show();
-                    this.Owner = customerForm;*/
+                    this.Owner = customerForm;
                     Console.WriteLine("CUSTOMER");
                     this.Hide();
                     */

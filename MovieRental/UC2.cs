@@ -139,6 +139,15 @@ namespace MovieRental
             }
         }
 
+        private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(Form2Tab1.SelectedTab);
+            if (Form2Tab1.SelectedTab == Form2Tab1.TabPages["Suggestion"])
+            {
+                MessageBox.Show("Suggestion");
+            }
+        }
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -146,7 +155,7 @@ namespace MovieRental
 
         private void button6_Click(object sender, EventArgs e)
         {
-            ClearAll(panel2);
+            panel2.Controls.Clear();
         }
 
         private void Suggestion_Click(object sender, EventArgs e)
