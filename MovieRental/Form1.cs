@@ -88,6 +88,8 @@ namespace MovieRental
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //var newForm = new Form2();
+            //newForm.Show();
             /*var newForm = new Form2();
             newForm.Show();*/
         }

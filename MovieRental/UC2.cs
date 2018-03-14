@@ -42,6 +42,15 @@ namespace MovieRental
             }
             else
                 Ranking.Instance.BringToFront();
+
+            if (!YourMoviePanel.Controls.Contains(YourMovieControl.Instance))
+            {
+                YourMoviePanel.Controls.Add(YourMovieControl.Instance);
+                YourMovieControl.Instance.Dock = DockStyle.Fill;
+                YourMovieControl.Instance.BringToFront();
+            }
+            else
+                YourMovieControl.Instance.BringToFront();
         }
 
         
@@ -72,10 +81,11 @@ namespace MovieRental
             for (int i = 1; i < 5; i++)
             {
                 MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(YourMovie, i);
+                //newGroupBox.setGroupBox(YourMoviePanel, i);
                 newGroupBox.setImage(newGroupBox.groupBox, filename[i]);
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, "God", "Nick", "Bento Box", "2018-02-11", "2018-05-03");
             }
+            
         }
 
         private void FillData()
@@ -154,6 +164,9 @@ namespace MovieRental
 
         }
 
-        
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
