@@ -32,13 +32,12 @@ namespace MovieRental
 
         private void UC3_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(UC1.info);
-            SqlConnection scn = new SqlConnection();
+            //MessageBox.Show(UC1.info);
+           /* SqlConnection scn = new SqlConnection();
             scn.ConnectionString = Form4.connectionString;
             scn.Open();
-
             SqlCommand scmd = new SqlCommand("select count (*) as cnt from Password where EmailAddress=@email and Password=@pwd", scn);
-            
+            scn.Close();*/
         }
     }
 }
