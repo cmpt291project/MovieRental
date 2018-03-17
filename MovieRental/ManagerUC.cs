@@ -12,62 +12,51 @@ using System.Globalization;
 
 namespace MovieRental
 {
-    public partial class FeatureControl : UserControl
+    public partial class ManagerUC : UserControl
     {
-        private string[] movieInfo = new string[5];
-        private int x = 0;
-        private static FeatureControl _instance;
-
-        public static FeatureControl Instance
+        private static ManagerUC _instance;
+        public static ManagerUC Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new FeatureControl();
+                    _instance = new ManagerUC();
                 return _instance;
             }
         }
-        public FeatureControl()
+
+        public ManagerUC()
         {
             InitializeComponent();
         }
 
-        private void FeatureControl_Load(object sender, EventArgs e)
+        private void ManagerUC_Load(object sender, EventArgs e)
         {
-            FillData();
-            CompareDates();
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "MM/yyyy";
+            dateTimePicker1.ShowUpDown = true;
         }
 
-        private void FillData()
+        private void GetRevenue_Click(object sender, EventArgs e)
         {
-            string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
+            GetSubRevenue();
+        }
+
+        private void GetSubRevenue()
+        {
+            Console.WriteLine(dateTimePicker1.Text);
+            char[] delimiterChars = { '/' };
+            string[] dateStrings = dateTimePicker1.Text.Split(delimiterChars);
+            Console.WriteLine(dateStrings[0] + " " + dateStrings[1]);
+            string queryDate = dateStrings[1] + "-01-" + dateStrings[0];
+            Console.WriteLine(queryDate);
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter a = new SqlDataAdapter("SELECT MovieName, Director, MovieType, ReleaseDate, AddDate FROM Movie WHERE " +
-                "ReleaseDate like '" + "2017%" + "'" + "or ReleaseDate like '" + "2018%'", connection);
+            SqlDataAdapter a = new SqlDataAdapter("SELECT sum(MonthlyFee) as Revenue from (select C.AccountType, R.MonthlyFee from Customer as C, RentalPlan as R where AccountCreationDate <='" + queryDate + "' and C.AccountType = R.AccountType) as Fees", connection);
             DataTable t = new DataTable();
             a.Fill(t);
-            int i = 1;
+            DataGridView.DataSource = t;
 
-            foreach (DataRow row in t.Rows)
-            {
-                foreach (DataColumn column in t.Columns)
-                {
-                    movieInfo[x] = row[column].ToString();
-                    x++;
-                    //Console.WriteLine(row[column]);
-                }
-                x = 0;
-                MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(MoviePanel, i);
-                i++;
-                //Console.WriteLine(movieInfo[3].Trim());
-                var releaseDate = movieInfo[3].Substring(0, movieInfo[3].IndexOf(' '));
-                var addDate = movieInfo[4].Substring(0, movieInfo[4].IndexOf(' '));
-                newGroupBox.setImage(newGroupBox.groupBox, filename[1]);
-                newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate);
-
-            }
             connection.Close();
         }
 
@@ -93,25 +82,31 @@ namespace MovieRental
             string currentDate = localDate.ToString(culture);
             Console.WriteLine("date from DB: " + joinDate + " current date: " + currentDate);
 
-            char[] delimiterChars = { ' ', '/'};
+            char[] delimiterChars = { ' ', '/' };
             string[] joinDateStrings = joinDate.Split(delimiterChars);
             string[] currentDateStrings = currentDate.Split(delimiterChars);
             if (currentDate[0] - joinDate[0] == 1)
                 Console.WriteLine("TIME TO PAY UP");
-            
-
-            
-            /*foreach (string word in joinDateStrings)
-            {
-                Console.WriteLine(word);
-            }*/
 
             connection.Close();
         }
 
-        private void MoviePanel_Paint(object sender, PaintEventArgs e)
+        private void GetMovies_Click(object sender, EventArgs e)
         {
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter a = new SqlDataAdapter("SELECT * from Movie", connection);
+            DataTable t = new DataTable();
+            a.Fill(t);
+            DataGridView.DataSource = t;
 
+            connection.Close();
+        }
+
+
+        private void DataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("HELLO");
         }
     }
 }

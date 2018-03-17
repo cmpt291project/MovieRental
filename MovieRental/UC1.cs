@@ -14,7 +14,8 @@ namespace MovieRental
 {
     public partial class UC1 : UserControl
     {
-        public static string info;
+        public static string email;
+        public static string id;
         private static UC1 _instance;
         public static UC1 Instance
         {
@@ -72,10 +73,16 @@ namespace MovieRental
                 scmd2.Parameters.AddWithValue("@pwd", textBox2.Text);
                 //Console.WriteLine(scmd2.ExecuteScalar().ToString().Length);
                 bool result = scmd2.ExecuteScalar().ToString().Trim().Equals("c");
+
                 //Console.WriteLine(result);
                 if (result)
-                {
-                    info = textBox1.Text;
+                {               
+                    SqlCommand scmd3 = new SqlCommand("select CID from Customer where EmailAddress=@email", scn);
+                    scmd3.Parameters.Clear();
+                    scmd3.Parameters.AddWithValue("@email", textBox1.Text);
+                    id = scmd3.ExecuteScalar().ToString().Trim();
+                    email = textBox1.Text;
+                    Console.WriteLine(id + " " + email);
                     if (!pnl.Controls.Contains(UC2.Instance))
                     {
                         pnl.Controls.Add(UC2.Instance);
@@ -87,7 +94,7 @@ namespace MovieRental
                 }
                 else
                 {
-                    info = textBox1.Text;
+                    email = textBox1.Text;
                     if (!pnl.Controls.Contains(UC3.Instance))
                     {
                         pnl.Controls.Add(UC3.Instance);

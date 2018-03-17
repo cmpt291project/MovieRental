@@ -83,5 +83,17 @@ namespace MovieRental
             //Console.WriteLine(connectionString);
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (!panel1.Controls.Contains(ManagerUC.Instance))
+            {
+                panel1.Controls.Add(ManagerUC.Instance);
+                ManagerUC.Instance.Dock = DockStyle.Fill;
+                ManagerUC.Instance.BringToFront();
+            }
+            else
+                ManagerUC.Instance.BringToFront();
+        }
     }
 }
