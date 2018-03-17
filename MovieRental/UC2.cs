@@ -31,7 +31,7 @@ namespace MovieRental
 
         private void UC2_Load(object sender, EventArgs e)
         {
-            //MessageBox.Show(UC1.info);
+            
             if (!rank.Controls.Contains(Ranking.Instance))
             {
                 rank.Controls.Add(Ranking.Instance);
