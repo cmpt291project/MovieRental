@@ -33,7 +33,7 @@ namespace MovieRental
         {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select top 5 O.MID, M.MovieType, M.MID as mm, M.MovieName, T.rate from[Order] as O, Movie as M, (Select AVG(Rating) as rate, MID from MovieRating Group by MID) as T where CID = '" + UC1.id + "' and O.MID = M.MID and M.MID = T.MID", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select distinct top 5 O.MID, M.MovieType, M.MID as mm, M.MovieName, T.rate from[Order] as O, Movie as M, (Select AVG(Rating) as rate, MID from MovieRating Group by MID) as T where CID = '" + UC1.id + "' and O.MID = M.MID and M.MID = T.MID", connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             int i = 0;
