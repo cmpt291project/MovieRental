@@ -1,6 +1,6 @@
 ﻿namespace MovieRental
 {
-    partial class Ranking
+    partial class Like
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,34 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelInRanking = new System.Windows.Forms.Panel();
+            this.panelinlike = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panelInRanking
+            // panelinlike
             // 
-            this.panelInRanking.AutoScroll = true;
-            this.panelInRanking.Location = new System.Drawing.Point(0, 0);
-            this.panelInRanking.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.panelInRanking.Name = "panelInRanking";
-            this.panelInRanking.Size = new System.Drawing.Size(1410, 590);
-            this.panelInRanking.TabIndex = 0;
-            this.panelInRanking.Paint += new System.Windows.Forms.PaintEventHandler(this.panelInRanking_Paint);
+            this.panelinlike.AutoScroll = true;
+            this.panelinlike.Location = new System.Drawing.Point(0, 0);
+            this.panelinlike.Name = "panelinlike";
+            this.panelinlike.Size = new System.Drawing.Size(1410, 590);
+            this.panelinlike.TabIndex = 0;
             // 
-            // Ranking
+            // Like
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panelInRanking);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "Ranking";
+            this.Controls.Add(this.panelinlike);
+            this.Name = "Like";
             this.Size = new System.Drawing.Size(1410, 590);
-            this.Load += new System.EventHandler(this.Ranking_Load);
+            this.Load += new System.EventHandler(this.Like_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelInRanking;
+        private System.Windows.Forms.Panel panelinlike;
     }
 }
