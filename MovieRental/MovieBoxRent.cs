@@ -102,7 +102,16 @@ namespace MovieRental
             wishlist.Size = new Size(75, 35);
             wishlist.Top = 270;
             wishlist.Left = 120;
-            wishlist.Text = "Add To Wishlist";
+            if (CheckMovieWishlist(MID))
+            {
+                wishlist.Text = "Added";
+                wishlist.Enabled = false;
+            }
+            else
+            {
+                wishlist.Text = "Add To Wishlist";
+                wishlist.Click += new EventHandler(Wish_Click);
+            }            
             gb.Controls.Add(wishlist);
             
         }
@@ -113,32 +122,13 @@ namespace MovieRental
             //btn.Enabled = false;
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT * from Movie M where M.MID = " + MID , connection);
-            DataTable dataTable = new DataTable();
-            dataAdapter.Fill(dataTable);
-            int num = Convert.ToInt32(dataTable.Rows[0]["CurrentNum"]);
+            SqlDataAdapter selectMovie = new SqlDataAdapter("SELECT * from Movie M where M.MID = " + MID , connection);
+            DataTable movieRow = new DataTable();
+            selectMovie.Fill(movieRow);
+            int num = Convert.ToInt32(movieRow.Rows[0]["CurrentNum"]);
             if (num > 0)
             {
-                //SqlCommand sq = new SqlCommand("UPDATE dbo.Movie SET CurrentNum = @curNum WHERE MID = @MID GO ", connection);
-                dataTable.Rows[0].BeginEdit();
-                dataTable.Rows[0]["CurrentNum"] = num-1;
-                dataTable.Rows[0].EndEdit();
-                SqlCommandBuilder sb = new SqlCommandBuilder(dataAdapter);
-                dataAdapter.Update(dataTable);
-                SqlCommand sq = new SqlCommand("INSERT dbo.Order SET CurrentNum = @curNum WHERE MID = @MID GO ", connection);
-                MessageBox.Show("rent");
-
-                string insert = "INSERT dbo.[Order](OID, MID, CID, EID, OrderDate, ReturnDate)  VALUES((Select MAX(OID)+1 from [Order]), @mid, @cid, @eid, @date, @return)";
-                SqlCommand sc = new SqlCommand(insert, connection);
-                sc.Parameters.AddWithValue("@oid", "006");
-                sc.Parameters.AddWithValue("@mid", MID);
-                sc.Parameters.AddWithValue("@cid", UC1.id);
-                sc.Parameters.AddWithValue("@eid", "001");
-                sc.Parameters.AddWithValue("@date", "2018-01-01");
-                sc.Parameters.AddWithValue("@return", "2018-01-01");
-                //sc.Parameters.AddWithValue("@actual", null);
-                sc.ExecuteNonQuery();
-
+                CheckUserRentStatus(connection, num, movieRow,selectMovie);
             }
             else
             {
@@ -174,6 +164,106 @@ namespace MovieRental
             return true;
         }
 
+        private bool CheckMovieWishlist(string mid) {
+            SqlConnection con = new SqlConnection(Form4.connectionString);
+            con.Open();
+            SqlDataAdapter checkWish = new SqlDataAdapter("select * from MoveiQueue mq where mq.CID = '"+ UC1.id +"' and mq.MID = '"+ mid+"'",con);
+            DataTable record = new DataTable();
+            checkWish.Fill(record);
+            if (record.Rows.Count > 0)
+            {
+                con.Close();
+                return true;               
+            }
+            con.Close();
+            return false;
+        }
+
+        private void RentMovie(SqlConnection connection, int num, DataTable movie, SqlDataAdapter selectMovie) {
+            //SqlCommand sq = new SqlCommand("UPDATE dbo.Movie SET CurrentNum = @curNum WHERE MID = @MID GO ", connection);
+            movie.Rows[0].BeginEdit();
+            movie.Rows[0]["CurrentNum"] = num - 1;
+            movie.Rows[0].EndEdit();
+            SqlCommandBuilder sb = new SqlCommandBuilder(selectMovie);
+            selectMovie.Update(movie);
+            //SqlCommand sq = new SqlCommand("INSERT dbo.Order SET CurrentNum = @curNum WHERE MID = @MID GO ", connection);
+            //MessageBox.Show("rent");
+
+            string insert = "INSERT dbo.[Order](OID, MID, CID, EID, OrderDate, ReturnDate)  VALUES((Select MAX(OID)+1 from [Order]), @mid, @cid, @eid, @date, @return)";
+            SqlCommand sc = new SqlCommand(insert, connection);
+            //sc.Parameters.AddWithValue("@oid", "006");
+            DateTime date = DateTime.Today;
+            DateTime ret = new DateTime(date.Year, date.Month+1, date.Day);
+            if (date.Month == 12)
+            {
+                ret = new DateTime(date.Year+1, 1, date.Day);
+            }
+                        
+            sc.Parameters.AddWithValue("@mid", MID);
+            sc.Parameters.AddWithValue("@cid", UC1.id);
+            sc.Parameters.AddWithValue("@eid", "001");
+            sc.Parameters.AddWithValue("@date", date.Date.ToString("d"));
+            sc.Parameters.AddWithValue("@return", ret);
+            //sc.Parameters.AddWithValue("@actual", null);
+            sc.ExecuteNonQuery();
+        }
+
+        private void CheckUserRentStatus(SqlConnection con, int num, DataTable movie, SqlDataAdapter select) {
+            SqlDataAdapter checkUserRent = new SqlDataAdapter("select COUNT(OID) cur,O.CID from[Order] O where O.CID = '" + UC1.id + "' and  ActualReturnDate IS NULL group by O.CID", con);
+            DataTable userStatus = new DataTable();
+            checkUserRent.Fill(userStatus);
+            SqlDataAdapter checkUserMonthRent = new SqlDataAdapter("select COUNT(OID) curMon from(select MONTH(OrderDate) as m, MONTH(GETDATE()) as tm, YEAR(OrderDate) as y, Year(GETDATE()) as ty, OID from[Order] O where O.CID = '" + UC1.id + "') D where m = tm and ty = y",con);
+            DataTable userMonth = new DataTable();
+            checkUserMonthRent.Fill(userMonth);
+
+            SqlDataAdapter plan = new SqlDataAdapter("select NumberATime, NumberEachMonth from[Plan] p, Customer c where c.AccountType = p.[Plan] and c.CID = '" + UC1.id + "'", con);
+            DataTable p = new DataTable();
+            plan.Fill(p);
+            if (userStatus.Rows.Count == 0 && userMonth.Rows.Count ==0)
+            {
+                MessageBox.Show("rent successfull");
+                RentMovie(con, num, movie, select);
+                rent.Text = "Rented";
+                rent.Enabled = false;
+
+            }
+            else if (userStatus.Rows.Count != 0 && userStatus.Rows[0]["cur"].ToString() == p.Rows[0]["NumberATime"].ToString())
+            {
+                MessageBox.Show("You already rent" + userStatus.Rows[0]["cur"] + "movies. Limit each time reached. Please return your current rental first. ");
+            }
+            else if (userMonth.Rows.Count != 0 && userMonth.Rows[0]["curMon"].ToString() == p.Rows[0]["NumberEachMonth"].ToString())
+            {
+                MessageBox.Show("You already rent" + userMonth.Rows[0]["curMon"] + "movies. Monthly limit reached.  Please return your current rental first.");
+            }
+            else
+            {
+                DateTime d = DateTime.Today;
+                MessageBox.Show("rent successfull" + d.Date.ToString("d"));                
+               //MessageBox.Show(userStatus.Rows[0]["cur"]);
+                RentMovie(con, num, movie, select);
+                rent.Text = "Rented";
+                rent.Enabled = false;
+            }
+            //MessageBox.Show("not null");
+        }
+
+        public void Wish_Click(object sender, EventArgs e) {
+            Button btn = (Button)sender;
+            MessageBox.Show("add to wishlist");
+            SqlConnection con = new SqlConnection(Form4.connectionString);
+            con.Open();
+            string insert = "INSERT dbo.[MoveiQueue](CID, MID, Sequence)  VALUES(@cid, @mid, (Select MAX(Sequence) + 1 from MoveiQueue mq where mq.CID = '"+ UC1.id+"'))";
+            SqlCommand sc = new SqlCommand(insert, con);
+            //sc.Parameters.AddWithValue("@oid", "006");
+           
+            sc.Parameters.AddWithValue("@mid", MID);
+            sc.Parameters.AddWithValue("@cid", UC1.id);
+            //sc.Parameters.AddWithValue("@actual", null);
+            sc.ExecuteNonQuery();
+            con.Close();
+            wishlist.Text = "Added";
+            wishlist.Enabled = false;
+        }
 
     }
 }
