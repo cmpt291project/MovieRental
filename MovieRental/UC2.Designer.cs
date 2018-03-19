@@ -145,7 +145,7 @@
             this.YourMovie.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.YourMovie.Name = "YourMovie";
             this.YourMovie.Padding = new System.Windows.Forms.Padding(6);
-            this.YourMovie.Size = new System.Drawing.Size(1462, 884);
+            this.YourMovie.Size = new System.Drawing.Size(1462, 903);
             this.YourMovie.TabIndex = 0;
             this.YourMovie.Text = "Your Movie";
             this.YourMovie.UseVisualStyleBackColor = true;
@@ -157,7 +157,7 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(678, 13);
+            this.panel1.Location = new System.Drawing.Point(670, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 92);
@@ -182,6 +182,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Account";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 

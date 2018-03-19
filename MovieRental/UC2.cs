@@ -91,6 +91,11 @@ namespace MovieRental
             MessageBox.Show("Your Movie");
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("user info");
+            UserForm userForm = new UserForm();
+            userForm.Show();
+        }
     }
 }
