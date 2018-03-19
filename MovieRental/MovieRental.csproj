@@ -86,6 +86,12 @@
     <Compile Include="ManagerUC.Designer.cs">
       <DependentUpon>ManagerUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagerUC2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagerUC2.Designer.cs">
+      <DependentUpon>ManagerUC2.cs</DependentUpon>
+    </Compile>
     <Compile Include="MovieBoxRent.cs" />
     <Compile Include="EmployeeHome.cs">
       <SubType>Form</SubType>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerUC.resx">
       <DependentUpon>ManagerUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagerUC2.resx">
+      <DependentUpon>ManagerUC2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
