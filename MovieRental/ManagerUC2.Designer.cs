@@ -53,15 +53,15 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 210);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 183);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(656, 220);
+            this.dataGridView1.Size = new System.Drawing.Size(508, 163);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             // 
             // Insert
             // 
-            this.Insert.Location = new System.Drawing.Point(57, 181);
+            this.Insert.Location = new System.Drawing.Point(34, 154);
             this.Insert.Name = "Insert";
             this.Insert.Size = new System.Drawing.Size(75, 23);
             this.Insert.TabIndex = 1;
@@ -71,7 +71,7 @@
             // 
             // Update
             // 
-            this.Update.Location = new System.Drawing.Point(149, 181);
+            this.Update.Location = new System.Drawing.Point(137, 154);
             this.Update.Name = "Update";
             this.Update.Size = new System.Drawing.Size(75, 23);
             this.Update.TabIndex = 2;
@@ -231,7 +231,7 @@
             this.Controls.Add(this.Insert);
             this.Controls.Add(this.dataGridView1);
             this.Name = "ManagerUC2";
-            this.Size = new System.Drawing.Size(734, 456);
+            this.Size = new System.Drawing.Size(579, 349);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

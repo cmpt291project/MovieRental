@@ -95,5 +95,19 @@ namespace MovieRental
             else
                 ManagerUC2.Instance.BringToFront();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (!panel1.Controls.Contains(ManagerUC2.Instance))
+            {
+                panel1.Controls.Add(ManagerUC2.Instance);
+                ManagerUC2.Instance.Dock = DockStyle.Fill;
+                ManagerUC2.Instance.BringToFront();
+            }
+            else
+                ManagerUC2.Instance.BringToFront();
+        }
+
+    
     }
 }
