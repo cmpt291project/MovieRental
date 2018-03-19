@@ -46,6 +46,8 @@ namespace MovieRental {
         
         private PlanDataTable tablePlan;
         
+        private RentalPlanDataTable tableRentalPlan;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -106,6 +108,9 @@ namespace MovieRental {
                 }
                 if ((ds.Tables["Plan"] != null)) {
                     base.Tables.Add(new PlanDataTable(ds.Tables["Plan"]));
+                }
+                if ((ds.Tables["RentalPlan"] != null)) {
+                    base.Tables.Add(new RentalPlanDataTable(ds.Tables["RentalPlan"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -237,6 +242,16 @@ namespace MovieRental {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public RentalPlanDataTable RentalPlan {
+            get {
+                return this.tableRentalPlan;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -334,6 +349,9 @@ namespace MovieRental {
                 }
                 if ((ds.Tables["Plan"] != null)) {
                     base.Tables.Add(new PlanDataTable(ds.Tables["Plan"]));
+                }
+                if ((ds.Tables["RentalPlan"] != null)) {
+                    base.Tables.Add(new RentalPlanDataTable(ds.Tables["RentalPlan"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -434,6 +452,12 @@ namespace MovieRental {
                     this.tablePlan.InitVars();
                 }
             }
+            this.tableRentalPlan = ((RentalPlanDataTable)(base.Tables["RentalPlan"]));
+            if ((initTable == true)) {
+                if ((this.tableRentalPlan != null)) {
+                    this.tableRentalPlan.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -466,6 +490,8 @@ namespace MovieRental {
             base.Tables.Add(this.tablePassword);
             this.tablePlan = new PlanDataTable();
             base.Tables.Add(this.tablePlan);
+            this.tableRentalPlan = new RentalPlanDataTable();
+            base.Tables.Add(this.tableRentalPlan);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -531,6 +557,12 @@ namespace MovieRental {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializePlan() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeRentalPlan() {
             return false;
         }
         
@@ -621,6 +653,9 @@ namespace MovieRental {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void PlanRowChangeEventHandler(object sender, PlanRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void RentalPlanRowChangeEventHandler(object sender, RentalPlanRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2731,6 +2766,8 @@ namespace MovieRental {
             
             private global::System.Data.DataColumn columnDirector;
             
+            private global::System.Data.DataColumn columnCurrentNum;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public MovieDataTable() {
@@ -2830,6 +2867,14 @@ namespace MovieRental {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CurrentNumColumn {
+                get {
+                    return this.columnCurrentNum;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2865,7 +2910,7 @@ namespace MovieRental {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MovieRow AddMovieRow(string MID, string MovieName, string MovieType, double DistribututionFee, int NumberOfCopies, System.DateTime ReleaseDate, System.DateTime AddDate, string Director) {
+            public MovieRow AddMovieRow(string MID, string MovieName, string MovieType, double DistribututionFee, int NumberOfCopies, System.DateTime ReleaseDate, System.DateTime AddDate, string Director, int CurrentNum) {
                 MovieRow rowMovieRow = ((MovieRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MID,
@@ -2875,7 +2920,8 @@ namespace MovieRental {
                         NumberOfCopies,
                         ReleaseDate,
                         AddDate,
-                        Director};
+                        Director,
+                        CurrentNum};
                 rowMovieRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMovieRow);
                 return rowMovieRow;
@@ -2913,6 +2959,7 @@ namespace MovieRental {
                 this.columnReleaseDate = base.Columns["ReleaseDate"];
                 this.columnAddDate = base.Columns["AddDate"];
                 this.columnDirector = base.Columns["Director"];
+                this.columnCurrentNum = base.Columns["CurrentNum"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2934,6 +2981,8 @@ namespace MovieRental {
                 base.Columns.Add(this.columnAddDate);
                 this.columnDirector = new global::System.Data.DataColumn("Director", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDirector);
+                this.columnCurrentNum = new global::System.Data.DataColumn("CurrentNum", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCurrentNum);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMID}, true));
                 this.columnMID.AllowDBNull = false;
@@ -3898,7 +3947,7 @@ namespace MovieRental {
                 this.columnEID.MaxLength = 20;
                 this.columnCID.MaxLength = 20;
                 this.columnUserType.AllowDBNull = false;
-                this.columnUserType.MaxLength = 10;
+                this.columnUserType.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4288,6 +4337,307 @@ namespace MovieRental {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "PlanDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class RentalPlanDataTable : global::System.Data.TypedTableBase<RentalPlanRow> {
+            
+            private global::System.Data.DataColumn columnAccountType;
+            
+            private global::System.Data.DataColumn columnMonthlyFee;
+            
+            private global::System.Data.DataColumn columnNumberAtATime;
+            
+            private global::System.Data.DataColumn columnNumberEachMonth;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RentalPlanDataTable() {
+                this.TableName = "RentalPlan";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal RentalPlanDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected RentalPlanDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AccountTypeColumn {
+                get {
+                    return this.columnAccountType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn MonthlyFeeColumn {
+                get {
+                    return this.columnMonthlyFee;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NumberAtATimeColumn {
+                get {
+                    return this.columnNumberAtATime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NumberEachMonthColumn {
+                get {
+                    return this.columnNumberEachMonth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RentalPlanRow this[int index] {
+                get {
+                    return ((RentalPlanRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event RentalPlanRowChangeEventHandler RentalPlanRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event RentalPlanRowChangeEventHandler RentalPlanRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event RentalPlanRowChangeEventHandler RentalPlanRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event RentalPlanRowChangeEventHandler RentalPlanRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddRentalPlanRow(RentalPlanRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RentalPlanRow AddRentalPlanRow(string AccountType, int MonthlyFee, int NumberAtATime, int NumberEachMonth) {
+                RentalPlanRow rowRentalPlanRow = ((RentalPlanRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        AccountType,
+                        MonthlyFee,
+                        NumberAtATime,
+                        NumberEachMonth};
+                rowRentalPlanRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRentalPlanRow);
+                return rowRentalPlanRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RentalPlanRow FindByAccountType(string AccountType) {
+                return ((RentalPlanRow)(this.Rows.Find(new object[] {
+                            AccountType})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                RentalPlanDataTable cln = ((RentalPlanDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new RentalPlanDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnAccountType = base.Columns["AccountType"];
+                this.columnMonthlyFee = base.Columns["MonthlyFee"];
+                this.columnNumberAtATime = base.Columns["NumberAtATime"];
+                this.columnNumberEachMonth = base.Columns["NumberEachMonth"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnAccountType = new global::System.Data.DataColumn("AccountType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAccountType);
+                this.columnMonthlyFee = new global::System.Data.DataColumn("MonthlyFee", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMonthlyFee);
+                this.columnNumberAtATime = new global::System.Data.DataColumn("NumberAtATime", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNumberAtATime);
+                this.columnNumberEachMonth = new global::System.Data.DataColumn("NumberEachMonth", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNumberEachMonth);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnAccountType}, true));
+                this.columnAccountType.AllowDBNull = false;
+                this.columnAccountType.Unique = true;
+                this.columnAccountType.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RentalPlanRow NewRentalPlanRow() {
+                return ((RentalPlanRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new RentalPlanRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(RentalPlanRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.RentalPlanRowChanged != null)) {
+                    this.RentalPlanRowChanged(this, new RentalPlanRowChangeEvent(((RentalPlanRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.RentalPlanRowChanging != null)) {
+                    this.RentalPlanRowChanging(this, new RentalPlanRowChangeEvent(((RentalPlanRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.RentalPlanRowDeleted != null)) {
+                    this.RentalPlanRowDeleted(this, new RentalPlanRowChangeEvent(((RentalPlanRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.RentalPlanRowDeleting != null)) {
+                    this.RentalPlanRowDeleting(this, new RentalPlanRowChangeEvent(((RentalPlanRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveRentalPlanRow(RentalPlanRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MovieRentalDataSet ds = new MovieRentalDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "RentalPlanDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -5167,6 +5517,22 @@ namespace MovieRental {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int CurrentNum {
+                get {
+                    try {
+                        return ((int)(this[this.tableMovie.CurrentNumColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CurrentNum\' in table \'Movie\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMovie.CurrentNumColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsMovieNameNull() {
                 return this.IsNull(this.tableMovie.MovieNameColumn);
             }
@@ -5247,6 +5613,18 @@ namespace MovieRental {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetDirectorNull() {
                 this[this.tableMovie.DirectorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCurrentNumNull() {
+                return this.IsNull(this.tableMovie.CurrentNumColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCurrentNumNull() {
+                this[this.tableMovie.CurrentNumColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5690,6 +6068,116 @@ namespace MovieRental {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class RentalPlanRow : global::System.Data.DataRow {
+            
+            private RentalPlanDataTable tableRentalPlan;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal RentalPlanRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableRentalPlan = ((RentalPlanDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AccountType {
+                get {
+                    return ((string)(this[this.tableRentalPlan.AccountTypeColumn]));
+                }
+                set {
+                    this[this.tableRentalPlan.AccountTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int MonthlyFee {
+                get {
+                    try {
+                        return ((int)(this[this.tableRentalPlan.MonthlyFeeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MonthlyFee\' in table \'RentalPlan\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRentalPlan.MonthlyFeeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int NumberAtATime {
+                get {
+                    try {
+                        return ((int)(this[this.tableRentalPlan.NumberAtATimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NumberAtATime\' in table \'RentalPlan\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRentalPlan.NumberAtATimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int NumberEachMonth {
+                get {
+                    try {
+                        return ((int)(this[this.tableRentalPlan.NumberEachMonthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NumberEachMonth\' in table \'RentalPlan\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRentalPlan.NumberEachMonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsMonthlyFeeNull() {
+                return this.IsNull(this.tableRentalPlan.MonthlyFeeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetMonthlyFeeNull() {
+                this[this.tableRentalPlan.MonthlyFeeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNumberAtATimeNull() {
+                return this.IsNull(this.tableRentalPlan.NumberAtATimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNumberAtATimeNull() {
+                this[this.tableRentalPlan.NumberAtATimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNumberEachMonthNull() {
+                return this.IsNull(this.tableRentalPlan.NumberEachMonthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNumberEachMonthNull() {
+                this[this.tableRentalPlan.NumberEachMonthColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -6049,6 +6537,40 @@ namespace MovieRental {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public PlanRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class RentalPlanRowChangeEvent : global::System.EventArgs {
+            
+            private RentalPlanRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RentalPlanRowChangeEvent(RentalPlanRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public RentalPlanRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -9132,10 +9654,11 @@ SELECT MID, CID, Sequence FROM MoveiQueue WHERE (CID = @CID) AND (MID = @MID)";
             tableMapping.ColumnMappings.Add("ReleaseDate", "ReleaseDate");
             tableMapping.ColumnMappings.Add("AddDate", "AddDate");
             tableMapping.ColumnMappings.Add("Director", "Director");
+            tableMapping.ColumnMappings.Add("CurrentNum", "CurrentNum");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Movie] WHERE (([MID] = @Original_MID) AND ((@IsNull_MovieName = 1 AND [MovieName] IS NULL) OR ([MovieName] = @Original_MovieName)) AND ((@IsNull_MovieType = 1 AND [MovieType] IS NULL) OR ([MovieType] = @Original_MovieType)) AND ((@IsNull_DistribututionFee = 1 AND [DistribututionFee] IS NULL) OR ([DistribututionFee] = @Original_DistribututionFee)) AND ((@IsNull_NumberOfCopies = 1 AND [NumberOfCopies] IS NULL) OR ([NumberOfCopies] = @Original_NumberOfCopies)) AND ((@IsNull_ReleaseDate = 1 AND [ReleaseDate] IS NULL) OR ([ReleaseDate] = @Original_ReleaseDate)) AND ((@IsNull_AddDate = 1 AND [AddDate] IS NULL) OR ([AddDate] = @Original_AddDate)) AND ((@IsNull_Director = 1 AND [Director] IS NULL) OR ([Director] = @Original_Director)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Movie] WHERE (([MID] = @Original_MID) AND ((@IsNull_MovieName = 1 AND [MovieName] IS NULL) OR ([MovieName] = @Original_MovieName)) AND ((@IsNull_MovieType = 1 AND [MovieType] IS NULL) OR ([MovieType] = @Original_MovieType)) AND ((@IsNull_DistribututionFee = 1 AND [DistribututionFee] IS NULL) OR ([DistribututionFee] = @Original_DistribututionFee)) AND ((@IsNull_NumberOfCopies = 1 AND [NumberOfCopies] IS NULL) OR ([NumberOfCopies] = @Original_NumberOfCopies)) AND ((@IsNull_ReleaseDate = 1 AND [ReleaseDate] IS NULL) OR ([ReleaseDate] = @Original_ReleaseDate)) AND ((@IsNull_AddDate = 1 AND [AddDate] IS NULL) OR ([AddDate] = @Original_AddDate)) AND ((@IsNull_Director = 1 AND [Director] IS NULL) OR ([Director] = @Original_Director)) AND ((@IsNull_CurrentNum = 1 AND [CurrentNum] IS NULL) OR ([CurrentNum] = @Original_CurrentNum)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MovieName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MovieName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -9152,10 +9675,12 @@ SELECT MID, CID, Sequence FROM MoveiQueue WHERE (CID = @CID) AND (MID = @MID)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AddDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AddDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Director", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Director", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Director", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Director", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CurrentNum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentNum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CurrentNum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentNum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Movie] ([MID], [MovieName], [MovieType], [DistribututionFee], [NumberOfCopies], [ReleaseDate], [AddDate], [Director]) VALUES (@MID, @MovieName, @MovieType, @DistribututionFee, @NumberOfCopies, @ReleaseDate, @AddDate, @Director);
-SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate, AddDate, Director FROM Movie WHERE (MID = @MID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Movie] ([MID], [MovieName], [MovieType], [DistribututionFee], [NumberOfCopies], [ReleaseDate], [AddDate], [Director], [CurrentNum]) VALUES (@MID, @MovieName, @MovieType, @DistribututionFee, @NumberOfCopies, @ReleaseDate, @AddDate, @Director, @CurrentNum);
+SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate, AddDate, Director, CurrentNum FROM Movie WHERE (MID = @MID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MovieName", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MovieName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -9165,10 +9690,11 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReleaseDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReleaseDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AddDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AddDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Director", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Director", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CurrentNum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentNum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Movie] SET [MID] = @MID, [MovieName] = @MovieName, [MovieType] = @MovieType, [DistribututionFee] = @DistribututionFee, [NumberOfCopies] = @NumberOfCopies, [ReleaseDate] = @ReleaseDate, [AddDate] = @AddDate, [Director] = @Director WHERE (([MID] = @Original_MID) AND ((@IsNull_MovieName = 1 AND [MovieName] IS NULL) OR ([MovieName] = @Original_MovieName)) AND ((@IsNull_MovieType = 1 AND [MovieType] IS NULL) OR ([MovieType] = @Original_MovieType)) AND ((@IsNull_DistribututionFee = 1 AND [DistribututionFee] IS NULL) OR ([DistribututionFee] = @Original_DistribututionFee)) AND ((@IsNull_NumberOfCopies = 1 AND [NumberOfCopies] IS NULL) OR ([NumberOfCopies] = @Original_NumberOfCopies)) AND ((@IsNull_ReleaseDate = 1 AND [ReleaseDate] IS NULL) OR ([ReleaseDate] = @Original_ReleaseDate)) AND ((@IsNull_AddDate = 1 AND [AddDate] IS NULL) OR ([AddDate] = @Original_AddDate)) AND ((@IsNull_Director = 1 AND [Director] IS NULL) OR ([Director] = @Original_Director)));
-SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate, AddDate, Director FROM Movie WHERE (MID = @MID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Movie] SET [MID] = @MID, [MovieName] = @MovieName, [MovieType] = @MovieType, [DistribututionFee] = @DistribututionFee, [NumberOfCopies] = @NumberOfCopies, [ReleaseDate] = @ReleaseDate, [AddDate] = @AddDate, [Director] = @Director, [CurrentNum] = @CurrentNum WHERE (([MID] = @Original_MID) AND ((@IsNull_MovieName = 1 AND [MovieName] IS NULL) OR ([MovieName] = @Original_MovieName)) AND ((@IsNull_MovieType = 1 AND [MovieType] IS NULL) OR ([MovieType] = @Original_MovieType)) AND ((@IsNull_DistribututionFee = 1 AND [DistribututionFee] IS NULL) OR ([DistribututionFee] = @Original_DistribututionFee)) AND ((@IsNull_NumberOfCopies = 1 AND [NumberOfCopies] IS NULL) OR ([NumberOfCopies] = @Original_NumberOfCopies)) AND ((@IsNull_ReleaseDate = 1 AND [ReleaseDate] IS NULL) OR ([ReleaseDate] = @Original_ReleaseDate)) AND ((@IsNull_AddDate = 1 AND [AddDate] IS NULL) OR ([AddDate] = @Original_AddDate)) AND ((@IsNull_Director = 1 AND [Director] IS NULL) OR ([Director] = @Original_Director)) AND ((@IsNull_CurrentNum = 1 AND [CurrentNum] IS NULL) OR ([CurrentNum] = @Original_CurrentNum)));
+SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate, AddDate, Director, CurrentNum FROM Movie WHERE (MID = @MID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MovieName", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MovieName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -9178,6 +9704,7 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReleaseDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReleaseDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AddDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AddDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Director", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Director", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CurrentNum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentNum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MovieName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MovieName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MovieName", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MovieName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -9193,6 +9720,8 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AddDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AddDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Director", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Director", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Director", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Director", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CurrentNum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentNum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CurrentNum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CurrentNum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9209,7 +9738,7 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate," +
-                " AddDate, Director FROM dbo.Movie";
+                " AddDate, Director, CurrentNum FROM dbo.Movie";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -9270,7 +9799,7 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_MID, string Original_MovieName, string Original_MovieType, global::System.Nullable<double> Original_DistribututionFee, global::System.Nullable<int> Original_NumberOfCopies, global::System.Nullable<global::System.DateTime> Original_ReleaseDate, global::System.Nullable<global::System.DateTime> Original_AddDate, string Original_Director) {
+        public virtual int Delete(string Original_MID, string Original_MovieName, string Original_MovieType, global::System.Nullable<double> Original_DistribututionFee, global::System.Nullable<int> Original_NumberOfCopies, global::System.Nullable<global::System.DateTime> Original_ReleaseDate, global::System.Nullable<global::System.DateTime> Original_AddDate, string Original_Director, global::System.Nullable<int> Original_CurrentNum) {
             if ((Original_MID == null)) {
                 throw new global::System.ArgumentNullException("Original_MID");
             }
@@ -9333,6 +9862,14 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_Director));
             }
+            if ((Original_CurrentNum.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((int)(Original_CurrentNum.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9353,7 +9890,7 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string MID, string MovieName, string MovieType, global::System.Nullable<double> DistribututionFee, global::System.Nullable<int> NumberOfCopies, global::System.Nullable<global::System.DateTime> ReleaseDate, global::System.Nullable<global::System.DateTime> AddDate, string Director) {
+        public virtual int Insert(string MID, string MovieName, string MovieType, global::System.Nullable<double> DistribututionFee, global::System.Nullable<int> NumberOfCopies, global::System.Nullable<global::System.DateTime> ReleaseDate, global::System.Nullable<global::System.DateTime> AddDate, string Director, global::System.Nullable<int> CurrentNum) {
             if ((MID == null)) {
                 throw new global::System.ArgumentNullException("MID");
             }
@@ -9402,6 +9939,12 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Director));
             }
+            if ((CurrentNum.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((int)(CurrentNum.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9431,6 +9974,7 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
                     global::System.Nullable<global::System.DateTime> ReleaseDate, 
                     global::System.Nullable<global::System.DateTime> AddDate, 
                     string Director, 
+                    global::System.Nullable<int> CurrentNum, 
                     string Original_MID, 
                     string Original_MovieName, 
                     string Original_MovieType, 
@@ -9438,7 +9982,8 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
                     global::System.Nullable<int> Original_NumberOfCopies, 
                     global::System.Nullable<global::System.DateTime> Original_ReleaseDate, 
                     global::System.Nullable<global::System.DateTime> Original_AddDate, 
-                    string Original_Director) {
+                    string Original_Director, 
+                    global::System.Nullable<int> Original_CurrentNum) {
             if ((MID == null)) {
                 throw new global::System.ArgumentNullException("MID");
             }
@@ -9487,67 +10032,81 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Director));
             }
+            if ((CurrentNum.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(CurrentNum.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             if ((Original_MID == null)) {
                 throw new global::System.ArgumentNullException("Original_MID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_MID));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_MID));
             }
             if ((Original_MovieName == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_MovieName));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_MovieName));
             }
             if ((Original_MovieType == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_MovieType));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_MovieType));
             }
             if ((Original_DistribututionFee.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((double)(Original_DistribututionFee.Value));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((double)(Original_DistribututionFee.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             if ((Original_NumberOfCopies.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_NumberOfCopies.Value));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_NumberOfCopies.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             if ((Original_ReleaseDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_ReleaseDate.Value));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((System.DateTime)(Original_ReleaseDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             if ((Original_AddDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((System.DateTime)(Original_AddDate.Value));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((System.DateTime)(Original_AddDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             if ((Original_Director == null)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Director));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_Director));
+            }
+            if ((Original_CurrentNum.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_CurrentNum.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -9569,8 +10128,25 @@ SELECT MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string MovieName, string MovieType, global::System.Nullable<double> DistribututionFee, global::System.Nullable<int> NumberOfCopies, global::System.Nullable<global::System.DateTime> ReleaseDate, global::System.Nullable<global::System.DateTime> AddDate, string Director, string Original_MID, string Original_MovieName, string Original_MovieType, global::System.Nullable<double> Original_DistribututionFee, global::System.Nullable<int> Original_NumberOfCopies, global::System.Nullable<global::System.DateTime> Original_ReleaseDate, global::System.Nullable<global::System.DateTime> Original_AddDate, string Original_Director) {
-            return this.Update(Original_MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate, AddDate, Director, Original_MID, Original_MovieName, Original_MovieType, Original_DistribututionFee, Original_NumberOfCopies, Original_ReleaseDate, Original_AddDate, Original_Director);
+        public virtual int Update(
+                    string MovieName, 
+                    string MovieType, 
+                    global::System.Nullable<double> DistribututionFee, 
+                    global::System.Nullable<int> NumberOfCopies, 
+                    global::System.Nullable<global::System.DateTime> ReleaseDate, 
+                    global::System.Nullable<global::System.DateTime> AddDate, 
+                    string Director, 
+                    global::System.Nullable<int> CurrentNum, 
+                    string Original_MID, 
+                    string Original_MovieName, 
+                    string Original_MovieType, 
+                    global::System.Nullable<double> Original_DistribututionFee, 
+                    global::System.Nullable<int> Original_NumberOfCopies, 
+                    global::System.Nullable<global::System.DateTime> Original_ReleaseDate, 
+                    global::System.Nullable<global::System.DateTime> Original_AddDate, 
+                    string Original_Director, 
+                    global::System.Nullable<int> Original_CurrentNum) {
+            return this.Update(Original_MID, MovieName, MovieType, DistribututionFee, NumberOfCopies, ReleaseDate, AddDate, Director, CurrentNum, Original_MID, Original_MovieName, Original_MovieType, Original_DistribututionFee, Original_NumberOfCopies, Original_ReleaseDate, Original_AddDate, Original_Director, Original_CurrentNum);
         }
     }
     
@@ -10607,7 +11183,7 @@ SELECT OID, MID, CID, EID, OrderDate, ReturnDate, ActualReturnDate FROM [Order] 
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserType", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Password] ([EmailAddress], [Password], [EID], [CID], [UserType" +
@@ -10619,7 +11195,7 @@ SELECT OID, MID, CID, EID, OrderDate, ReturnDate, ActualReturnDate FROM [Order] 
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserType", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Password] SET [EmailAddress] = @EmailAddress, [Password] = @Password, [EID] = @EID, [CID] = @CID, [UserType] = @UserType WHERE (([EmailAddress] = @Original_EmailAddress) AND ([Password] = @Original_Password) AND ((@IsNull_EID = 1 AND [EID] IS NULL) OR ([EID] = @Original_EID)) AND ((@IsNull_CID = 1 AND [CID] IS NULL) OR ([CID] = @Original_CID)) AND ([UserType] = @Original_UserType));
@@ -10629,14 +11205,14 @@ SELECT EmailAddress, Password, EID, CID, UserType FROM Password WHERE (EmailAddr
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserType", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmailAddress", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailAddress", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Password", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserType", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11273,6 +11849,576 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class RentalPlanTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public RentalPlanTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "RentalPlan";
+            tableMapping.ColumnMappings.Add("AccountType", "AccountType");
+            tableMapping.ColumnMappings.Add("MonthlyFee", "MonthlyFee");
+            tableMapping.ColumnMappings.Add("NumberAtATime", "NumberAtATime");
+            tableMapping.ColumnMappings.Add("NumberEachMonth", "NumberEachMonth");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[RentalPlan] WHERE (([AccountType] = @Original_AccountType) AND ((@IsNull_MonthlyFee = 1 AND [MonthlyFee] IS NULL) OR ([MonthlyFee] = @Original_MonthlyFee)) AND ((@IsNull_NumberAtATime = 1 AND [NumberAtATime] IS NULL) OR ([NumberAtATime] = @Original_NumberAtATime)) AND ((@IsNull_NumberEachMonth = 1 AND [NumberEachMonth] IS NULL) OR ([NumberEachMonth] = @Original_NumberEachMonth)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountType", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MonthlyFee", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MonthlyFee", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MonthlyFee", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MonthlyFee", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NumberAtATime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberAtATime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NumberAtATime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberAtATime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NumberEachMonth", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberEachMonth", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NumberEachMonth", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberEachMonth", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[RentalPlan] ([AccountType], [MonthlyFee], [NumberAtATime], [NumberEachMonth]) VALUES (@AccountType, @MonthlyFee, @NumberAtATime, @NumberEachMonth);
+SELECT AccountType, MonthlyFee, NumberAtATime, NumberEachMonth FROM RentalPlan WHERE (AccountType = @AccountType)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountType", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MonthlyFee", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MonthlyFee", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumberAtATime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberAtATime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumberEachMonth", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberEachMonth", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[RentalPlan] SET [AccountType] = @AccountType, [MonthlyFee] = @MonthlyFee, [NumberAtATime] = @NumberAtATime, [NumberEachMonth] = @NumberEachMonth WHERE (([AccountType] = @Original_AccountType) AND ((@IsNull_MonthlyFee = 1 AND [MonthlyFee] IS NULL) OR ([MonthlyFee] = @Original_MonthlyFee)) AND ((@IsNull_NumberAtATime = 1 AND [NumberAtATime] IS NULL) OR ([NumberAtATime] = @Original_NumberAtATime)) AND ((@IsNull_NumberEachMonth = 1 AND [NumberEachMonth] IS NULL) OR ([NumberEachMonth] = @Original_NumberEachMonth)));
+SELECT AccountType, MonthlyFee, NumberAtATime, NumberEachMonth FROM RentalPlan WHERE (AccountType = @AccountType)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AccountType", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MonthlyFee", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MonthlyFee", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumberAtATime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberAtATime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumberEachMonth", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberEachMonth", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AccountType", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AccountType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MonthlyFee", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MonthlyFee", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MonthlyFee", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MonthlyFee", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NumberAtATime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberAtATime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NumberAtATime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberAtATime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NumberEachMonth", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberEachMonth", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NumberEachMonth", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumberEachMonth", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::MovieRental.Properties.Settings.Default.MovieRentalConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT AccountType, MonthlyFee, NumberAtATime, NumberEachMonth FROM dbo.RentalPla" +
+                "n";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(MovieRentalDataSet.RentalPlanDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual MovieRentalDataSet.RentalPlanDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            MovieRentalDataSet.RentalPlanDataTable dataTable = new MovieRentalDataSet.RentalPlanDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MovieRentalDataSet.RentalPlanDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MovieRentalDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "RentalPlan");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(string Original_AccountType, global::System.Nullable<int> Original_MonthlyFee, global::System.Nullable<int> Original_NumberAtATime, global::System.Nullable<int> Original_NumberEachMonth) {
+            if ((Original_AccountType == null)) {
+                throw new global::System.ArgumentNullException("Original_AccountType");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_AccountType));
+            }
+            if ((Original_MonthlyFee.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_MonthlyFee.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Original_NumberAtATime.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_NumberAtATime.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_NumberEachMonth.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_NumberEachMonth.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string AccountType, global::System.Nullable<int> MonthlyFee, global::System.Nullable<int> NumberAtATime, global::System.Nullable<int> NumberEachMonth) {
+            if ((AccountType == null)) {
+                throw new global::System.ArgumentNullException("AccountType");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(AccountType));
+            }
+            if ((MonthlyFee.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(MonthlyFee.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((NumberAtATime.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(NumberAtATime.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((NumberEachMonth.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(NumberEachMonth.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string AccountType, global::System.Nullable<int> MonthlyFee, global::System.Nullable<int> NumberAtATime, global::System.Nullable<int> NumberEachMonth, string Original_AccountType, global::System.Nullable<int> Original_MonthlyFee, global::System.Nullable<int> Original_NumberAtATime, global::System.Nullable<int> Original_NumberEachMonth) {
+            if ((AccountType == null)) {
+                throw new global::System.ArgumentNullException("AccountType");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(AccountType));
+            }
+            if ((MonthlyFee.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(MonthlyFee.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((NumberAtATime.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(NumberAtATime.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((NumberEachMonth.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(NumberEachMonth.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Original_AccountType == null)) {
+                throw new global::System.ArgumentNullException("Original_AccountType");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_AccountType));
+            }
+            if ((Original_MonthlyFee.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_MonthlyFee.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Original_NumberAtATime.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_NumberAtATime.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((Original_NumberEachMonth.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_NumberEachMonth.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<int> MonthlyFee, global::System.Nullable<int> NumberAtATime, global::System.Nullable<int> NumberEachMonth, string Original_AccountType, global::System.Nullable<int> Original_MonthlyFee, global::System.Nullable<int> Original_NumberAtATime, global::System.Nullable<int> Original_NumberEachMonth) {
+            return this.Update(Original_AccountType, MonthlyFee, NumberAtATime, NumberEachMonth, Original_AccountType, Original_MonthlyFee, Original_NumberAtATime, Original_NumberEachMonth);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class QueriesTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.IDbCommand[] _commandCollection;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.IDbCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.IDbCommand[2];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::MovieRental.Properties.Settings.Default.MovieRentalConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "dbo.MovieAddOrEdit";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.StoredProcedure;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MovieName", global::System.Data.SqlDbType.Char, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MovieType", global::System.Data.SqlDbType.Char, 20, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DistributionFee", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 53, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumberOfCopies", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReleaseDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AddDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Director", global::System.Data.SqlDbType.Char, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CurrentNum", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Connection = new global::System.Data.SqlClient.SqlConnection(global::MovieRental.Properties.Settings.Default.MovieRentalConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).CommandText = "dbo.MovieDeleteByID";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).CommandType = global::System.Data.CommandType.StoredProcedure;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int MovieAddOrEdit(global::System.Nullable<int> MID, string MovieName, string MovieType, global::System.Nullable<double> DistributionFee, global::System.Nullable<int> NumberOfCopies, global::System.Nullable<global::System.DateTime> ReleaseDate, global::System.Nullable<global::System.DateTime> AddDate, string Director, global::System.Nullable<int> CurrentNum) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[0]));
+            if ((MID.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(MID.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((MovieName == null)) {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[2].Value = ((string)(MovieName));
+            }
+            if ((MovieType == null)) {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[3].Value = ((string)(MovieType));
+            }
+            if ((DistributionFee.HasValue == true)) {
+                command.Parameters[4].Value = ((double)(DistributionFee.Value));
+            }
+            else {
+                command.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((NumberOfCopies.HasValue == true)) {
+                command.Parameters[5].Value = ((int)(NumberOfCopies.Value));
+            }
+            else {
+                command.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((ReleaseDate.HasValue == true)) {
+                command.Parameters[6].Value = ((System.DateTime)(ReleaseDate.Value));
+            }
+            else {
+                command.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((AddDate.HasValue == true)) {
+                command.Parameters[7].Value = ((System.DateTime)(AddDate.Value));
+            }
+            else {
+                command.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Director == null)) {
+                command.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[8].Value = ((string)(Director));
+            }
+            if ((CurrentNum.HasValue == true)) {
+                command.Parameters[9].Value = ((int)(CurrentNum.Value));
+            }
+            else {
+                command.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int MovieDeleteByID(global::System.Nullable<int> MID) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[1]));
+            if ((MID.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(MID.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -11305,6 +12451,8 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
         private PasswordTableAdapter _passwordTableAdapter;
         
         private PlanTableAdapter _planTableAdapter;
+        
+        private RentalPlanTableAdapter _rentalPlanTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -11477,6 +12625,20 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public RentalPlanTableAdapter RentalPlanTableAdapter {
+            get {
+                return this._rentalPlanTableAdapter;
+            }
+            set {
+                this._rentalPlanTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -11538,6 +12700,10 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
                             && (this._planTableAdapter.Connection != null))) {
                     return this._planTableAdapter.Connection;
                 }
+                if (((this._rentalPlanTableAdapter != null) 
+                            && (this._rentalPlanTableAdapter.Connection != null))) {
+                    return this._rentalPlanTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -11582,6 +12748,9 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
                     count = (count + 1);
                 }
                 if ((this._planTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._rentalPlanTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -11694,6 +12863,15 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._rentalPlanTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.RentalPlan.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._rentalPlanTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -11792,6 +12970,14 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._rentalPlanTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.RentalPlan.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._rentalPlanTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -11802,6 +12988,14 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(MovieRentalDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._rentalPlanTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.RentalPlan.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._rentalPlanTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._planTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Plan.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -11984,6 +13178,11 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._rentalPlanTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._rentalPlanTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -12115,6 +13314,15 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
                         adaptersWithAcceptChangesDuringUpdate.Add(this._planTableAdapter.Adapter);
                     }
                 }
+                if ((this._rentalPlanTableAdapter != null)) {
+                    revertConnections.Add(this._rentalPlanTableAdapter, this._rentalPlanTableAdapter.Connection);
+                    this._rentalPlanTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._rentalPlanTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._rentalPlanTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._rentalPlanTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._rentalPlanTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -12216,6 +13424,10 @@ SELECT [Plan], MonthlyFee, NumberATime, NumberEachMonth FROM [Plan] WHERE ([Plan
                 if ((this._planTableAdapter != null)) {
                     this._planTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._planTableAdapter]));
                     this._planTableAdapter.Transaction = null;
+                }
+                if ((this._rentalPlanTableAdapter != null)) {
+                    this._rentalPlanTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._rentalPlanTableAdapter]));
+                    this._rentalPlanTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

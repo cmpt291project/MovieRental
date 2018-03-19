@@ -8,7 +8,7 @@ namespace MovieRental
 {
     static class Program
     {
-        public static bool OpenDetailFormOnClose { get; set; }
+        //public static bool OpenDetailFormOnClose { get; set; }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -18,7 +18,7 @@ namespace MovieRental
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            OpenDetailFormOnClose = false;
+            //OpenDetailFormOnClose = false;
 
             Application.Run(new Form4());
 
