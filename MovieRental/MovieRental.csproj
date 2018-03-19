@@ -74,6 +74,12 @@
     <Compile Include="FeatureControl.Designer.cs">
       <DependentUpon>FeatureControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="like.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="like.Designer.cs">
+      <DependentUpon>like.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagerUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -150,6 +156,18 @@
     <Compile Include="UC3.Designer.cs">
       <DependentUpon>UC3.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserForm.Designer.cs">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInfo.Designer.cs">
+      <DependentUpon>UserInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="YourMovieControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -170,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="like.resx">
+      <DependentUpon>like.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerUC.resx">
       <DependentUpon>ManagerUC.cs</DependentUpon>
@@ -202,6 +223,12 @@
     <EmbeddedResource Include="UC3.resx">
       <DependentUpon>UC3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserForm.resx">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInfo.resx">
+      <DependentUpon>UserInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="YourMovieControl.resx">
       <DependentUpon>YourMovieControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +260,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons8-Ios7-Very-Basic-Search.ico" />
+    <Content Include="Resources\001.jpg" />
+    <Content Include="Resources\002.jpeg" />
+    <Content Include="Resources\003.jpg" />
+    <Content Include="Resources\004.jpg" />
+    <Content Include="Resources\005.jpg" />
+    <Content Include="Resources\006.png" />
+    <Content Include="Resources\007.jpg" />
+    <Content Include="Resources\008.jpg" />
+    <Content Include="Resources\009.jpg" />
+    <Content Include="Resources\010.jpg" />
+    <Content Include="Resources\011.jpg" />
     <None Include="Resources\The love witch.jpg" />
     <None Include="Resources\north by northwest.jpg" />
     <None Include="Resources\mary and max.jpg" />

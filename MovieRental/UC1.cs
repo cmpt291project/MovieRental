@@ -15,7 +15,7 @@ namespace MovieRental
     public partial class UC1 : UserControl
     {
         public static string email;
-        public static string id;
+        public static string id = "003";
         private static UC1 _instance;
         public static UC1 Instance
         {

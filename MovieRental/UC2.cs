@@ -59,6 +59,16 @@ namespace MovieRental
             else
                 YourMovieControl.Instance.BringToFront();
 
+            //like panel in suggest
+            if (!like.Controls.Contains(Like.Instance))
+            {
+                like.Controls.Add(Like.Instance);
+                Like.Instance.Dock = DockStyle.Fill;
+                Like.Instance.BringToFront();
+            }
+            else
+                Like.Instance.BringToFront();
+
         }
 
         private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,6 +89,13 @@ namespace MovieRental
         private void YourMovie_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Your Movie");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("user info");
+            UserForm userForm = new UserForm();
+            userForm.Show();
         }
     }
 }
