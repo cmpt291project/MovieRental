@@ -27,6 +27,8 @@ namespace MovieRental
 
         private string newMID;
         private string MID;
+        private string EID;
+        private string newAID;
         SqlConnection con = new SqlConnection(Form4.connectionString);
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapt;
@@ -36,10 +38,58 @@ namespace MovieRental
             InitializeComponent();
             Controls.Add(panel1);
             Controls.Add(panel2);
+            Controls.Add(panel3);
             panel1.BringToFront();
-
+            dataGridView1.BringToFront();
             DisplayData();
            
+        }
+
+        private void btnInsertCasting_Click(object sender, EventArgs e)
+        {
+            using (cmd = new SqlCommand("insert into Casting(MID,AID) values(@MID,@AID)", con))
+            {
+
+                con.Open();
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@AID", AIDtxt.Text);
+                cmd.Parameters.AddWithValue("@MID", MIDtxt.Text);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
+        }
+
+        private void btnInsertActor_Click(object sender, EventArgs e)
+        {
+            using (cmd = new SqlCommand("select MAX(CAST(AID as int))+1 from Actor", con))
+            {
+                con.Open();
+                //Console.WriteLine(cmd.ExecuteScalar().ToString());
+                newAID = cmd.ExecuteScalar().ToString();
+                //Console.WriteLine(newMID);
+                //int test = Convert.ToInt32(maxID);
+                //Console.WriteLine(test);
+                con.Close();
+
+            }
+            
+            cmd = new SqlCommand("insert into Actor(AID,LastName,FirstName,Gender,DateOfBirth) " +
+                    "values(@AID,@lname,@fname,@gender,@dob)", con);
+            con.Open();
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@AID", newAID);
+            cmd.Parameters.AddWithValue("@lname", LastNameTxt.Text);
+            cmd.Parameters.AddWithValue("@fname", BirthdateTxt.Text);
+            cmd.Parameters.AddWithValue("@gender", FirstNameTxt.Text);
+            cmd.Parameters.AddWithValue("@dob", GenderTxt.Text);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            DisplayActors();
+
+               
+
+            
         }
 
         private void Insert_Click(object sender, EventArgs e)
@@ -61,6 +111,7 @@ namespace MovieRental
                     "ReleaseDate,AddDate,Director,CurrentNum) values(@MID,@name,@type,@distFee,@numCopies,@releaseDate" +
                     ",@addDate,@director,@currNum)", con);
                 con.Open();
+                cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@MID", newMID);
                 cmd.Parameters.AddWithValue("@name", MovieNameTxt.Text);
                 cmd.Parameters.AddWithValue("@type", MovieTypeTxt.Text);
@@ -82,6 +133,48 @@ namespace MovieRental
             }
 
         }
+        private void btnInsertEmployee_Click(object sender, EventArgs e)
+        {
+            using (cmd = new SqlCommand("select MAX(CAST(EID as int))+1 from Employee", con))
+            {
+                con.Open();
+                Console.WriteLine(cmd.ExecuteScalar().ToString());
+                newMID = cmd.ExecuteScalar().ToString();
+                Console.WriteLine(newMID);
+                //int test = Convert.ToInt32(maxID);
+                //Console.WriteLine(test);
+                con.Close();
+
+            }
+        }
+
+        private void btnUpdateEmployee_Click(object sender, EventArgs e)
+        {
+            cmd = new SqlCommand("update Employee set SocialSecurityNumber=@socialsec, LastName=@lastname, FirstName=@firstname," +
+                "Street=@street, City=@city, State=@state, ZipCode=@zipcode, Telephone=@phone, StartDate=@startdate," +
+                "HourlyRate=@hrate, EmployeeType=@type, EmailAddress=@email where EID=@eid", con);
+            con.Open();
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@eid", EID);
+            cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text);
+            cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text);
+            cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text);
+            cmd.Parameters.AddWithValue("@street", StreetTxt.Text);
+            cmd.Parameters.AddWithValue("@city", CityTxt.Text);
+            cmd.Parameters.AddWithValue("@state", StateTxt.Text);
+            cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text);
+            cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text);
+            cmd.Parameters.AddWithValue("@startdate", StartDateTxt.Text);
+            cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text);
+            cmd.Parameters.AddWithValue("@type", TypeTxt.Text);
+            cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            DisplayEmployees();
+
+
+        }
+
 
         private void Update_Click(object sender, EventArgs e)
         {
@@ -131,6 +224,37 @@ namespace MovieRental
                 row.Cells[5].Value = DateTime.Now.ToShortDateString();
                 row.Cells[6].Value = DateTime.Now.ToShortDateString();
             }*/
+        }
+
+        private void DisplayEmployees()
+        {
+            con.Open();
+            DataTable dt4 = new DataTable();
+            adapt = new SqlDataAdapter("SELECT * from Employee", con);
+            adapt.Fill(dt4);
+            dataGridView4.DataSource = dt4;
+            con.Close();
+
+        }
+
+        private void DisplayActors()
+        {
+            con.Open();
+            DataTable dt2 = new DataTable();
+            adapt = new SqlDataAdapter("SELECT * from Actor", con);
+            adapt.Fill(dt2);
+            dataGridView2.DataSource = dt2;
+            con.Close();
+            
+        }
+        private void DisplayRecentMovies()
+        {
+            con.Open();
+            DataTable dt3 = new DataTable();
+            adapt = new SqlDataAdapter("SELECT TOP 5 * from Movie order by AddDate DESC", con);
+            adapt.Fill(dt3);
+            dataGridView3.DataSource = dt3;
+            con.Close();
 
         }
 
@@ -162,6 +286,26 @@ namespace MovieRental
             AddDateTxt.Text = addDateStrings[0];
             DirectorTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
             CurrentNumTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+
+        }
+
+        private void dataGridView4_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            EID = dataGridView4.Rows[e.RowIndex].Cells[0].Value.ToString();
+            SocialSecurityTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[1].Value.ToString();
+            eLastNameTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[2].Value.ToString();
+            eFirstNameTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[3].Value.ToString();
+            StreetTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[4].Value.ToString();
+            CityTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[5].Value.ToString();
+            StateTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[6].Value.ToString();
+            ZipCodeTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[7].Value.ToString();
+            TelephoneTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[8].Value.ToString();
+            char[] delimiterChars = { ' ' };
+            string[] startDateStrings = dataGridView4.Rows[e.RowIndex].Cells[9].Value.ToString().Split(delimiterChars);
+            StartDateTxt.Text = startDateStrings[0];
+            HourlyRateTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[10].Value.ToString();
+            TypeTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[11].Value.ToString();
+            EmailTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[12].Value.ToString();
 
         }
 
@@ -201,14 +345,51 @@ namespace MovieRental
             }
         }
 
-        private void btnMovies_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            panel1.BringToFront();
+            dataGridView2.BringToFront();
+
         }
 
-        private void btnActors_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            panel2.BringToFront();
+            dataGridView3.BringToFront();
+            DisplayRecentMovies();
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(comboBox1.SelectedIndex);
+            switch(comboBox1.SelectedIndex)
+            {
+                case 0:
+                    panel1.BringToFront();
+                    dataGridView1.BringToFront();
+                    break;
+
+                case 1:
+                    panel2.BringToFront();
+                    dataGridView2.BringToFront();
+                    DisplayActors();
+                    break;
+                case 2:
+                    Console.WriteLine("Employees");
+                    panel3.BringToFront();
+                    DisplayEmployees();
+                    dataGridView4.BringToFront();
+                    break;
+
+                case 3:
+                    Console.WriteLine("Rentals");
+                    break;
+
+                default:
+                    Console.WriteLine("DEFAULT");
+                    break;
+            }
+        }
+
+       
     }
 }
