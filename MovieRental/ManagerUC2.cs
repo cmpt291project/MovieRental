@@ -522,10 +522,55 @@ namespace MovieRental
         private void searchBtn_Click(object sender, EventArgs e)
         {
             Console.WriteLine(searchTxt.Text);
+            string searchString = searchTxt.Text.Trim();
+            
             // movie name
+            con.Open();
+            DataTable dt5 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Movie where MovieName like @search and MID in (select MID from [Order])", con);
+            adapt.SelectCommand.Parameters.AddWithValue("@search", searchString + "%");
+            adapt.Fill(dt5);
+            con.Close();
+            if (dt5.Rows.Count > 0)
+                dataGridView5.DataSource = dt5;
+            else
+            {
+                dt5.Clear();
+                Console.WriteLine("NO RESULTS");
+                con.Open();
+                DataTable dt6 = new DataTable();
+                adapt = new SqlDataAdapter("select * from [Order] where CID in (select CID from Customer where EmailAddress like @search)", con);
+                adapt.SelectCommand.Parameters.Clear();
+                adapt.SelectCommand.Parameters.AddWithValue("@search", searchString + "%");
+                adapt.Fill(dt6);
+                if (dt6.Rows.Count > 0)
+                    dataGridView5.DataSource = dt6;
+                else
+                    Console.WriteLine("NO RESULTS AGAIN");
+                con.Close();
+            }
+            
             // movie type
             // customer email or CID
 
+        }
+
+        private void MovieTypeCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt7 = new DataTable();
+            Console.WriteLine(MovieTypeCB.Text);
+            switch (MovieTypeCB.SelectedIndex)
+            {
+                default:
+                    adapt = new SqlDataAdapter("select * from [Order] where MID in (select MID from Movie where MovieType = @type)", con);
+                    adapt.SelectCommand.Parameters.Clear();
+                    adapt.SelectCommand.Parameters.AddWithValue("@type", MovieTypeCB.Text);
+                    adapt.Fill(dt7);
+                    dataGridView5.DataSource = dt7;
+                    break;
+
+               
+            }
         }
     }
 }
