@@ -29,6 +29,7 @@ namespace MovieRental
         private string MID;
         private string EID;
         private string newAID;
+        private string newEID;
         SqlConnection con = new SqlConnection(Form4.connectionString);
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapt;
@@ -39,6 +40,7 @@ namespace MovieRental
             Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(panel3);
+            Controls.Add(panel4);
             panel1.BringToFront();
             dataGridView1.BringToFront();
             DisplayData();
@@ -138,14 +140,47 @@ namespace MovieRental
             using (cmd = new SqlCommand("select MAX(CAST(EID as int))+1 from Employee", con))
             {
                 con.Open();
-                Console.WriteLine(cmd.ExecuteScalar().ToString());
-                newMID = cmd.ExecuteScalar().ToString();
-                Console.WriteLine(newMID);
+                //Console.WriteLine(cmd.ExecuteScalar().ToString());
+                newEID = cmd.ExecuteScalar().ToString();
+                Console.WriteLine(newEID);
                 //int test = Convert.ToInt32(maxID);
                 //Console.WriteLine(test);
                 con.Close();
 
             }
+            cmd = new SqlCommand("insert into Employee(EID,SocialSecurityNumber,LastName,FirstName,Street,City,State," +
+                "ZipCode,Telephone,StartDate,HourlyRate,EmployeeType,EmailAddress) values(@EID,@socialsec,@lastname," +
+                "@firstname,@street,@city,@state,@zipcode,@phone,@startdate,@hrate,@type,@email)", con);
+            con.Open();
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@EID", newEID);
+            cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text);
+            cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text);
+            cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text);
+            cmd.Parameters.AddWithValue("@street", StreetTxt.Text);
+            cmd.Parameters.AddWithValue("@city", CityTxt.Text);
+            cmd.Parameters.AddWithValue("@state", StateTxt.Text);
+            cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text);
+            cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text);
+            cmd.Parameters.AddWithValue("@startdate", StartDateTxt.Text);
+            cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text);
+            cmd.Parameters.AddWithValue("@type", TypeTxt.Text);
+            cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
+            cmd.ExecuteNonQuery();
+            con.Close();
+           
+
+            cmd = new SqlCommand("insert into Password(EmailAddress,Password,EID,CID,UserType) values(@email,@password,@EID,@CID,@type)", con);
+            con.Open();
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
+            cmd.Parameters.AddWithValue("@password", PasswordTxt.Text);
+            cmd.Parameters.AddWithValue("@EID", newEID);
+            cmd.Parameters.AddWithValue("@CID", DBNull.Value);
+            cmd.Parameters.AddWithValue("@type", "e");
+            cmd.ExecuteNonQuery();
+            con.Close();
+            DisplayEmployees();
         }
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
@@ -171,8 +206,6 @@ namespace MovieRental
             cmd.ExecuteNonQuery();
             con.Close();
             DisplayEmployees();
-
-
         }
 
 
@@ -255,6 +288,43 @@ namespace MovieRental
             adapt.Fill(dt3);
             dataGridView3.DataSource = dt3;
             con.Close();
+        }
+
+        private void ActiveEmployees()
+        {
+            con.Open();
+            DataTable dt5 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Employee as E, (select top 1 EID, count(*) as numOrder from [Order]" +
+                "group by EID) as most where E.EID = most.EID", con);
+            adapt.Fill(dt5);
+            dataGridView5.DataSource = dt5;
+            dataGridView5.Columns["EID1"].Visible = false;
+            con.Close();
+        }
+
+        private void ActiveCustomers()
+        {
+
+            con.Open();
+            DataTable dt5 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Customer as C, (select top 3 CID, count(*) as numOrder from [Order]" +
+                "group by CID) as Active where C.CID = Active.CID", con);
+            adapt.Fill(dt5);
+            dataGridView5.DataSource = dt5;
+            dataGridView5.Columns["CID1"].Visible = false;
+            con.Close();
+        }
+
+        private void ActiveRentals()
+        {
+            con.Open();
+            DataTable dt5 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Movie as M, (select top 3 MID, count(*) as numRentals from [Order] " +
+                "group by MID) as Active where M.MID = Active.MID", con);
+            adapt.Fill(dt5);
+            dataGridView5.DataSource = dt5;
+            dataGridView5.Columns["MID1"].Visible = false;
+            con.Close();
 
         }
 
@@ -308,6 +378,44 @@ namespace MovieRental
             EmailTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[12].Value.ToString();
 
         }
+
+        private void dataGridView4_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (dataGridView4.CurrentRow.Cells["EID"].Value != DBNull.Value)
+            {
+                if (MessageBox.Show("Delete this Record?", "DataGridView", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    using (SqlConnection sqlCon = new SqlConnection(Form4.connectionString))
+                    {
+                        sqlCon.Open();
+                        SqlCommand sqlCmd = new SqlCommand("EmployeeDeleteByID", sqlCon);
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
+                        sqlCmd.Parameters.AddWithValue("@EID", dataGridView4.CurrentRow.Cells["EID"].Value.ToString());
+                        sqlCmd.ExecuteNonQuery();
+                        sqlCon.Close();
+                    }
+                    using (SqlConnection sqlCon = new SqlConnection(Form4.connectionString))
+                    {
+                        sqlCon.Open();
+                        SqlCommand sqlCmd = new SqlCommand("Delete from Password Where EID=@EID", sqlCon);
+                        sqlCmd.Parameters.AddWithValue("EID", dataGridView4.CurrentRow.Cells["EID"].Value.ToString());
+                        sqlCmd.ExecuteNonQuery();
+                        sqlCon.Close();
+
+                    }
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+
+        }
+
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
@@ -370,8 +478,9 @@ namespace MovieRental
 
                 case 1:
                     panel2.BringToFront();
-                    dataGridView2.BringToFront();
                     DisplayActors();
+                    dataGridView2.BringToFront();
+                    
                     break;
                 case 2:
                     Console.WriteLine("Employees");
@@ -382,6 +491,8 @@ namespace MovieRental
 
                 case 3:
                     Console.WriteLine("Rentals");
+                    panel4.BringToFront();
+                    dataGridView5.BringToFront();
                     break;
 
                 default:
@@ -390,6 +501,31 @@ namespace MovieRental
             }
         }
 
-       
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(comboBox2.SelectedIndex)
+            {
+                case 0:
+                    ActiveEmployees();
+                    break;
+
+                case 1:
+                    ActiveCustomers();
+                    break;
+
+                case 2:
+                    ActiveRentals();
+                    break;
+            }
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(searchTxt.Text);
+            // movie name
+            // movie type
+            // customer email or CID
+
+        }
     }
 }
