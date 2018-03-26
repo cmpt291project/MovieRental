@@ -167,7 +167,7 @@ namespace MovieRental
         private bool CheckMovieWishlist(string mid) {
             SqlConnection con = new SqlConnection(Form4.connectionString);
             con.Open();
-            SqlDataAdapter checkWish = new SqlDataAdapter("select * from MovieQueue mq where mq.CID = '"+ UC1.id +"' and mq.MID = '"+ mid+"'",con);
+            SqlDataAdapter checkWish = new SqlDataAdapter("select * from MoveiQueue mq where mq.CID = '"+ UC1.id +"' and mq.MID = '"+ mid+"'",con);
             DataTable record = new DataTable();
             checkWish.Fill(record);
             if (record.Rows.Count > 0)

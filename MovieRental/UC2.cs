@@ -108,6 +108,25 @@ namespace MovieRental
             userForm.Show();
         }
 
-        
+        private void YourMovieTab_TabIndexChanged(object sender, EventArgs e)
+        {
+           // Console.WriteLine(YourMovieTab.SelectedTab);
+        }
+
+        private void YourMovieTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(YourMovieTab.SelectedIndex);
+            if (YourMovieTab.SelectedIndex == 0)
+                Console.WriteLine("Features");
+            else if ((YourMovieTab.SelectedIndex == 1))
+            {
+                Console.WriteLine("Suggestions");
+
+            }
+                
+            else
+                Console.WriteLine("Your Movies");
+            //if (YourMovieTab.SelectedTab == )
+        }
     }
 }
