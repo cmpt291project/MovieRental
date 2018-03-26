@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.YourMovieTab = new System.Windows.Forms.TabControl();
             this.Features = new System.Windows.Forms.TabPage();
-            this.FeaturePanel = new System.Windows.Forms.Panel();
             this.Suggestion = new System.Windows.Forms.TabPage();
             this.like = new System.Windows.Forms.Panel();
             this.youmayalsolike = new System.Windows.Forms.Label();
@@ -43,6 +43,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.YourMoviePanel = new System.Windows.Forms.Panel();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.newRelease = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panelGenre = new System.Windows.Forms.Panel();
             this.YourMovieTab.SuspendLayout();
             this.Features.SuspendLayout();
             this.Suggestion.SuspendLayout();
@@ -59,29 +64,25 @@
             this.YourMovieTab.Margin = new System.Windows.Forms.Padding(6);
             this.YourMovieTab.Name = "YourMovieTab";
             this.YourMovieTab.SelectedIndex = 0;
-            this.YourMovieTab.Size = new System.Drawing.Size(1478, 950);
+            this.YourMovieTab.Size = new System.Drawing.Size(1409, 1200);
             this.YourMovieTab.TabIndex = 0;
             // 
             // Features
             // 
             this.Features.AutoScroll = true;
-            this.Features.Controls.Add(this.FeaturePanel);
+            this.Features.Controls.Add(this.panelGenre);
+            this.Features.Controls.Add(this.label3);
+            this.Features.Controls.Add(this.newRelease);
+            this.Features.Controls.Add(this.label2);
+            this.Features.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Features.Location = new System.Drawing.Point(8, 39);
             this.Features.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.Features.Name = "Features";
             this.Features.Padding = new System.Windows.Forms.Padding(6);
-            this.Features.Size = new System.Drawing.Size(1462, 903);
+            this.Features.Size = new System.Drawing.Size(1393, 1153);
             this.Features.TabIndex = 0;
             this.Features.Text = "Feature";
             this.Features.UseVisualStyleBackColor = true;
-            // 
-            // FeaturePanel
-            // 
-            this.FeaturePanel.Location = new System.Drawing.Point(12, 8);
-            this.FeaturePanel.Margin = new System.Windows.Forms.Padding(6);
-            this.FeaturePanel.Name = "FeaturePanel";
-            this.FeaturePanel.Size = new System.Drawing.Size(1444, 863);
-            this.FeaturePanel.TabIndex = 0;
             // 
             // Suggestion
             // 
@@ -94,7 +95,7 @@
             this.Suggestion.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.Suggestion.Name = "Suggestion";
             this.Suggestion.Padding = new System.Windows.Forms.Padding(6);
-            this.Suggestion.Size = new System.Drawing.Size(1462, 903);
+            this.Suggestion.Size = new System.Drawing.Size(1393, 1153);
             this.Suggestion.TabIndex = 1;
             this.Suggestion.Text = "Suggestion";
             this.Suggestion.UseVisualStyleBackColor = true;
@@ -102,7 +103,7 @@
             // 
             // like
             // 
-            this.like.Location = new System.Drawing.Point(22, 788);
+            this.like.Location = new System.Drawing.Point(22, 811);
             this.like.Margin = new System.Windows.Forms.Padding(4);
             this.like.Name = "like";
             this.like.Size = new System.Drawing.Size(1410, 590);
@@ -112,7 +113,7 @@
             // 
             this.youmayalsolike.AutoSize = true;
             this.youmayalsolike.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.youmayalsolike.Location = new System.Drawing.Point(18, 729);
+            this.youmayalsolike.Location = new System.Drawing.Point(16, 765);
             this.youmayalsolike.Margin = new System.Windows.Forms.Padding(12, 0, 12, 0);
             this.youmayalsolike.Name = "youmayalsolike";
             this.youmayalsolike.Size = new System.Drawing.Size(237, 31);
@@ -135,7 +136,7 @@
             this.rank.Location = new System.Drawing.Point(22, 90);
             this.rank.Margin = new System.Windows.Forms.Padding(4);
             this.rank.Name = "rank";
-            this.rank.Size = new System.Drawing.Size(1410, 590);
+            this.rank.Size = new System.Drawing.Size(1410, 638);
             this.rank.TabIndex = 0;
             // 
             // YourMovie
@@ -145,7 +146,7 @@
             this.YourMovie.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.YourMovie.Name = "YourMovie";
             this.YourMovie.Padding = new System.Windows.Forms.Padding(6);
-            this.YourMovie.Size = new System.Drawing.Size(1462, 903);
+            this.YourMovie.Size = new System.Drawing.Size(1393, 934);
             this.YourMovie.TabIndex = 0;
             this.YourMovie.Text = "Your Movie";
             this.YourMovie.UseVisualStyleBackColor = true;
@@ -160,7 +161,7 @@
             this.panel1.Location = new System.Drawing.Point(670, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 92);
+            this.panel1.Size = new System.Drawing.Size(739, 92);
             this.panel1.TabIndex = 2;
             // 
             // button2
@@ -210,6 +211,46 @@
             this.YourMoviePanel.Size = new System.Drawing.Size(862, 483);
             this.YourMoviePanel.TabIndex = 2;
             // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(22, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(191, 31);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "New Released";
+            // 
+            // newRelease
+            // 
+            this.newRelease.Location = new System.Drawing.Point(28, 86);
+            this.newRelease.Name = "newRelease";
+            this.newRelease.Size = new System.Drawing.Size(1410, 638);
+            this.newRelease.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(28, 756);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(360, 31);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Choose Your Favorite Genre";
+            // 
+            // panelGenre
+            // 
+            this.panelGenre.Location = new System.Drawing.Point(28, 807);
+            this.panelGenre.Name = "panelGenre";
+            this.panelGenre.Size = new System.Drawing.Size(1410, 691);
+            this.panelGenre.TabIndex = 4;
+            // 
             // UC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -218,10 +259,11 @@
             this.Controls.Add(this.YourMovieTab);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "UC2";
-            this.Size = new System.Drawing.Size(1504, 1019);
+            this.Size = new System.Drawing.Size(1418, 1050);
             this.Load += new System.EventHandler(this.UC2_Load);
             this.YourMovieTab.ResumeLayout(false);
             this.Features.ResumeLayout(false);
+            this.Features.PerformLayout();
             this.Suggestion.ResumeLayout(false);
             this.Suggestion.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -242,11 +284,15 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel FeaturePanel;
         private System.Windows.Forms.Panel rank;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel YourMoviePanel;
         private System.Windows.Forms.Panel like;
         private System.Windows.Forms.Label youmayalsolike;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Panel newRelease;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panelGenre;
+        private System.Windows.Forms.Label label3;
     }
 }

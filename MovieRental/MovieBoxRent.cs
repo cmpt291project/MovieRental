@@ -81,7 +81,7 @@ namespace MovieRental
         public void CreateButtonRent()
         {
             rent.Name = "rent";
-            rent.Size = new Size(75, 35);
+            rent.Size = new Size(75, 40);
             rent.Top = 270;
             rent.Left = 3;
             if (CheckMovieRent(MID) == false)
@@ -99,7 +99,7 @@ namespace MovieRental
             gb.Controls.Add(rent);
 
             wishlist.Name = "wishlist";
-            wishlist.Size = new Size(75, 35);
+            wishlist.Size = new Size(75, 40);
             wishlist.Top = 270;
             wishlist.Left = 120;
             if (CheckMovieWishlist(MID))

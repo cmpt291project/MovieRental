@@ -34,9 +34,10 @@
             // panelinlike
             // 
             this.panelinlike.AutoScroll = true;
+            this.panelinlike.BackColor = System.Drawing.SystemColors.Control;
             this.panelinlike.Location = new System.Drawing.Point(0, 0);
             this.panelinlike.Name = "panelinlike";
-            this.panelinlike.Size = new System.Drawing.Size(1410, 590);
+            this.panelinlike.Size = new System.Drawing.Size(1397, 584);
             this.panelinlike.TabIndex = 0;
             // 
             // Like
@@ -45,7 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelinlike);
             this.Name = "Like";
-            this.Size = new System.Drawing.Size(1410, 590);
+            this.Size = new System.Drawing.Size(1410, 641);
             this.Load += new System.EventHandler(this.Like_Load);
             this.ResumeLayout(false);
 

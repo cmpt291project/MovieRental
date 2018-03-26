@@ -49,15 +49,25 @@ namespace MovieRental
             }
             else
                 YourMovieControl.Instance.BringToFront();
-
-            if (!FeaturePanel.Controls.Contains(FeatureControl.Instance))
+            //new release in feature
+            if (!newRelease.Controls.Contains(FeatureControl.Instance))
             {
-                FeaturePanel.Controls.Add(FeatureControl.Instance);
+                newRelease.Controls.Add(FeatureControl.Instance);
                 FeatureControl.Instance.Dock = DockStyle.Fill;
                 FeatureControl.Instance.BringToFront();
             }
             else
-                YourMovieControl.Instance.BringToFront();
+                FeatureControl.Instance.BringToFront();
+            
+            //genre in feature
+            if (!panelGenre.Controls.Contains(GenreControl.Instance))
+            {
+                panelGenre.Controls.Add(GenreControl.Instance);
+                GenreControl.Instance.Dock = DockStyle.Fill;
+                GenreControl.Instance.BringToFront();
+            }
+            else
+                GenreControl.Instance.BringToFront();
 
             //like panel in suggest
             if (!like.Controls.Contains(Like.Instance))
@@ -97,5 +107,7 @@ namespace MovieRental
             UserForm userForm = new UserForm();
             userForm.Show();
         }
+
+        
     }
 }
