@@ -108,6 +108,11 @@ namespace MovieRental
             userForm.Show();
         }
 
-        
+ 
+
+        private void refresh_Click_1(object sender, EventArgs e)
+        {
+            Ranking.Instance.update();
+        }
     }
 }

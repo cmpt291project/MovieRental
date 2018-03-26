@@ -31,6 +31,13 @@ namespace MovieRental
 
         private void Ranking_Load(object sender, EventArgs e)
         {
+
+            update();                   
+        }
+
+        public void update() {
+            panelInRanking.Controls.Clear();
+            //MessageBox.Show("update");
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT top 5 MovieName, M.MID, rate from(Select AVG(Rating) as rate, MID FROM MovieRating group by MID) as T , Movie M where T.MID = M.MID Order by rate DESC", connection);
@@ -54,15 +61,6 @@ namespace MovieRental
                 //}
             }
             connection.Close();
-            
-
-            
-            
-        }
-
-        private void panelInRanking_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
