@@ -60,9 +60,6 @@ namespace MovieRental
             
         }
 
-        private void panelInRanking_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
     }
 }

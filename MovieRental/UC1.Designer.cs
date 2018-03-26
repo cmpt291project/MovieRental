@@ -33,7 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.Create = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -82,15 +82,16 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Password";
             // 
-            // linkLabel1
+            // Create
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(283, 303);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
-            this.linkLabel1.TabIndex = 5;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
+            this.Create.AutoSize = true;
+            this.Create.Location = new System.Drawing.Point(283, 303);
+            this.Create.Name = "Create";
+            this.Create.Size = new System.Drawing.Size(83, 13);
+            this.Create.TabIndex = 5;
+            this.Create.TabStop = true;
+            this.Create.Text = "Create account.";
+            this.Create.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Create_LinkClicked);
             // 
             // linkLabel2
             // 
@@ -118,7 +119,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.Create);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -139,7 +140,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel Create;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label3;
     }

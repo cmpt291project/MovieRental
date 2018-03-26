@@ -39,7 +39,6 @@
             this.panelInRanking.Name = "panelInRanking";
             this.panelInRanking.Size = new System.Drawing.Size(1410, 632);
             this.panelInRanking.TabIndex = 0;
-            this.panelInRanking.Paint += new System.Windows.Forms.PaintEventHandler(this.panelInRanking_Paint);
             // 
             // Ranking
             // 
