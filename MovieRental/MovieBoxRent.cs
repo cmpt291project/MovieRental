@@ -167,7 +167,7 @@ namespace MovieRental
         private bool CheckMovieWishlist(string mid) {
             SqlConnection con = new SqlConnection(Form4.connectionString);
             con.Open();
-            SqlDataAdapter checkWish = new SqlDataAdapter("select * from MoveiQueue mq where mq.CID = '"+ UC1.id +"' and mq.MID = '"+ mid+"'",con);
+            SqlDataAdapter checkWish = new SqlDataAdapter("select * from MovieQueue mq where mq.CID = '"+ UC1.id +"' and mq.MID = '"+ mid+"'",con);
             DataTable record = new DataTable();
             checkWish.Fill(record);
             if (record.Rows.Count > 0)
@@ -252,7 +252,7 @@ namespace MovieRental
             MessageBox.Show("add to wishlist");
             SqlConnection con = new SqlConnection(Form4.connectionString);
             con.Open();
-            string insert = "INSERT dbo.[MoveiQueue](CID, MID, Sequence)  VALUES(@cid, @mid, (Select MAX(Sequence) + 1 from MoveiQueue mq where mq.CID = '"+ UC1.id+"'))";
+            string insert = "INSERT dbo.[MovieQueue](CID, MID, Sequence)  VALUES(@cid, @mid, (Select MAX(Sequence) + 1 from MovieQueue mq where mq.CID = '"+ UC1.id+"'))";
             SqlCommand sc = new SqlCommand(insert, con);
             //sc.Parameters.AddWithValue("@oid", "006");
            
