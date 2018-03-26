@@ -94,15 +94,36 @@ namespace MovieRental
                 }
                 else
                 {
+                    SqlCommand scmd4 = new SqlCommand("Select EmployeeType from Employee where EmailAddress=@email", scn);
+                    scmd4.Parameters.Clear();
+                    scmd4.Parameters.AddWithValue("@email", textBox1.Text);
+                    string empType = scmd4.ExecuteScalar().ToString().Trim();
                     email = textBox1.Text;
-                    if (!pnl.Controls.Contains(UC3.Instance))
+                    if (empType == "manager")
                     {
-                        pnl.Controls.Add(UC3.Instance);
-                        UC3.Instance.Dock = DockStyle.Fill;
-                        UC3.Instance.BringToFront();
+                        if (!pnl.Controls.Contains(ManagerUC2.Instance))
+                        {
+                            pnl.Controls.Add(ManagerUC2.Instance);
+                            ManagerUC2.Instance.Dock = DockStyle.Fill;
+                            ManagerUC2.Instance.BringToFront();
+                        }
+                        else
+                            ManagerUC2.Instance.BringToFront();
                     }
+                      
                     else
-                        UC3.Instance.BringToFront();
+                    {
+                        if (!pnl.Controls.Contains(UC3.Instance))
+                        {
+                            pnl.Controls.Add(UC3.Instance);
+                            UC3.Instance.Dock = DockStyle.Fill;
+                            UC3.Instance.BringToFront();
+                        }
+                        else
+                            UC3.Instance.BringToFront();
+
+                    }
+                        
                 }
 
             }
