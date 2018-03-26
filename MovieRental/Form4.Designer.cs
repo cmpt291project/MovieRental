@@ -38,10 +38,11 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(10, 2);
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(4, 4);
             this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1429, 1500);
+            this.panel1.Size = new System.Drawing.Size(1428, 1244);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -91,7 +92,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(1480, 259);
+            this.button5.Location = new System.Drawing.Point(1480, 260);
             this.button5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(150, 44);
@@ -104,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1648, 898);
+            this.ClientSize = new System.Drawing.Size(1656, 1173);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);

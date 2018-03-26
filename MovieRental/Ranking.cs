@@ -61,6 +61,8 @@ namespace MovieRental
                 //}
             }
             connection.Close();
+
         }
+
     }
 }
