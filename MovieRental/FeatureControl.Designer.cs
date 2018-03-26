@@ -28,34 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MoviePanel = new System.Windows.Forms.Panel();
+            this.components = new System.ComponentModel.Container();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.panelFeature = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // MoviePanel
+            // imageList1
             // 
-            this.MoviePanel.AutoScroll = true;
-            this.MoviePanel.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.MoviePanel.Location = new System.Drawing.Point(95, 0);
-            this.MoviePanel.Name = "MoviePanel";
-            this.MoviePanel.Size = new System.Drawing.Size(611, 391);
-            this.MoviePanel.TabIndex = 0;
-            this.MoviePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MoviePanel_Paint);
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // panelFeature
+            // 
+            this.panelFeature.BackColor = System.Drawing.SystemColors.Control;
+            this.panelFeature.Location = new System.Drawing.Point(3, 3);
+            this.panelFeature.Name = "panelFeature";
+            this.panelFeature.Size = new System.Drawing.Size(1397, 584);
+            this.panelFeature.TabIndex = 0;
             // 
             // FeatureControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.Controls.Add(this.MoviePanel);
+            this.AutoScroll = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.panelFeature);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FeatureControl";
-            this.Size = new System.Drawing.Size(722, 448);
+            this.Size = new System.Drawing.Size(1410, 640);
             this.Load += new System.EventHandler(this.FeatureControl_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel MoviePanel;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Panel panelFeature;
     }
 }

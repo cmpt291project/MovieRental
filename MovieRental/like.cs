@@ -49,11 +49,13 @@ namespace MovieRental
                 //MessageBox.Show(row["MovieName"].ToString());
                 movieBoxRent.CreateScore(row["rate"].ToString());
                 movieBoxRent.CreateButtonRent();
-                Console.WriteLine(row["MovieName"]);
+                //Console.WriteLine(row["MovieName"]);
                 i++;
                 //}
             }
             connection.Close();
         }
+
+        
     }
 }

@@ -14,8 +14,6 @@ namespace MovieRental
 {
     public partial class FeatureControl : UserControl
     {
-        private string[] movieInfo = new string[5];
-        private int x = 0;
         private static FeatureControl _instance;
 
         public static FeatureControl Instance
@@ -34,84 +32,33 @@ namespace MovieRental
 
         private void FeatureControl_Load(object sender, EventArgs e)
         {
-            FillData();
-            CompareDates();
-        }
-
-        private void FillData()
-        {
-            string[] filename = { "", "god father", "mad max", "mary and max", "The love witch" };
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter a = new SqlDataAdapter("SELECT MovieName, Director, MovieType, ReleaseDate, AddDate FROM Movie WHERE " +
-                "ReleaseDate like '" + "2017%" + "'" + "or ReleaseDate like '" + "2018%'", connection);
-            DataTable t = new DataTable();
-            a.Fill(t);
-            int i = 1;
-
-            foreach (DataRow row in t.Rows)
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select top 5 MovieName, M.MID, rate from(Select AVG(Rating) as rate, MID from MovieRating Group by MID) as T, Movie M where T.MID = M.MID Order by  M.ReleaseDate DESC", connection);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            int i = 0;
+            foreach (DataRow row in dataTable.Rows)
             {
-                foreach (DataColumn column in t.Columns)
-                {
-                    movieInfo[x] = row[column].ToString();
-                    x++;
-                    //Console.WriteLine(row[column]);
-                }
-                x = 0;
-                MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(MoviePanel, i);
+                //foreach (DataColumn column in dataTable.Columns)
+                //{
+                MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
+                movieBoxRent.createNewBox(panelFeature, i);
+                //MessageBox.Show(row["MID"].ToString().Trim());
+                movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
+                movieBoxRent.CreateName(row["MovieName"].ToString());
+                //MessageBox.Show(row["MovieName"].ToString());
+                movieBoxRent.CreateScore(row["rate"].ToString());
+                movieBoxRent.CreateButtonRent();
+                //Console.WriteLine(row["MovieName"]);
                 i++;
-                //Console.WriteLine(movieInfo[3].Trim());
-                var releaseDate = movieInfo[3].Substring(0, movieInfo[3].IndexOf(' '));
-                var addDate = movieInfo[4].Substring(0, movieInfo[4].IndexOf(' '));
-                newGroupBox.setImage(newGroupBox.groupBox, filename[1]);
-                newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate);
-
+                //}
             }
             connection.Close();
         }
 
-        private void CompareDates()
-        {
-            DateTime localDate = DateTime.Now;
-            String[] cultureNames = { "en-US", "en-GB", "fr-FR",
-                                "de-DE", "ru-RU" };
+        
 
-            /*foreach (var cultureName in cultureNames)
-            {
-                var culture = new CultureInfo(cultureName);
-                Console.WriteLine("{0}: {1}", cultureName,
-                                  localDate.ToString(culture));
-            }*/
-            var culture = new CultureInfo("en-US");
-            //Console.WriteLine("Local date/time: " + localDate.ToString(culture));
-
-            SqlConnection connection = new SqlConnection(Form4.connectionString);
-            connection.Open();
-            SqlCommand a = new SqlCommand("SELECT AccountCreationDate FROM Customer WHERE AccountNumber = '748792'", connection);
-            string joinDate = a.ExecuteScalar().ToString();
-            string currentDate = localDate.ToString(culture);
-            Console.WriteLine("date from DB: " + joinDate + " current date: " + currentDate);
-
-            char[] delimiterChars = { ' ', '/'};
-            string[] joinDateStrings = joinDate.Split(delimiterChars);
-            string[] currentDateStrings = currentDate.Split(delimiterChars);
-            if (currentDate[0] - joinDate[0] == 1)
-                Console.WriteLine("TIME TO PAY UP");
-            
-
-            
-            /*foreach (string word in joinDateStrings)
-            {
-                Console.WriteLine(word);
-            }*/
-
-            connection.Close();
-        }
-
-        private void MoviePanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
     }
 }
