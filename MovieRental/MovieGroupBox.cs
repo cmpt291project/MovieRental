@@ -17,6 +17,7 @@ namespace MovieRental
         public GroupBox groupBox;
         public PictureBox pictureBox;
         public TextBox textBox;
+        public string MID;
         public string[] defaultString = { "Name:", "Director:", "Actor:", "Rent Date:", "Return Date:" };
         public MovieGroupBox()
         {
@@ -51,8 +52,9 @@ namespace MovieRental
             groupBox.Controls.Add(image);
         }
         
-        public void setMovieInfo(GroupBox groupBox, string name, string director, string actor, string date, string returndate)
+        public void setMovieInfo(GroupBox groupBox, string name, string director, string actor, string date, string returndate, string mid)
         {
+            MID = mid;
             for (int i = 0; i < 5; i++)
             {
                 Label label = new Label();
@@ -97,19 +99,127 @@ namespace MovieRental
         public void SetChooseMovieButton(GroupBox groupBox, string name)
         {
             Button button = new Button();
-            button.Location = new Point(280, 175);
+            button.Location = new Point(220, 175);
             button.Text = name;
             button.Font = new Font("Segoe UI", 9);
             button.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
             groupBox.Controls.Add(button);
-            button.Click += new EventHandler(AddMovieToWishList);
+            button.Click += new EventHandler(AddMovieToRentList);
         }
 
-        public void AddMovieToWishList(object sender, EventArgs e)
+        public void SetReturnButton(GroupBox groupBox, string name)
         {
-            IEnumerable<TextBox> collection = groupBox.Controls.OfType<TextBox>();
-            TextBox[] newtext = collection.ToArray();
-            MessageBox.Show(newtext[0].Text);
+            Button button = new Button();
+            button.Location = new Point(220, 175);
+            button.Text = name;
+            button.Font = new Font("Segoe UI", 9);
+            button.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
+            groupBox.Controls.Add(button);
+            button.Click += new EventHandler(returnMovieFromCurrent);
+        }
+
+        public void returnMovieFromCurrent(object sender, EventArgs e)
+        {
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select ActualReturnDate, OID from [Order] as O where O.CID ='" + UC1.id +"' and ActualReturnDate is null", connection);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            dataTable.Rows[0].BeginEdit();
+            DateTime date = DateTime.Today;
+            dataTable.Rows[0]["ActualReturnDate"] = date.Date.ToString("d");
+            dataTable.Rows[0].EndEdit();
+            SqlCommandBuilder sb = new SqlCommandBuilder(dataAdapter);
+            dataAdapter.Update(dataTable);
+            connection.Close();
+        }
+
+        public void DeleteMovieFromListButton(GroupBox groupBox, string name)
+        {
+            Button button = new Button();
+            button.Location = new Point(320, 175);
+            button.Text = name;
+            button.Font = new Font("Segoe UI", 9);
+            button.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
+            groupBox.Controls.Add(button);
+            button.Click += new EventHandler(DeleteFromWishList);
+        }
+
+        public void DeleteFromWishList(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(Form4.connectionString);
+            con.Open();
+            SqlCommand delete = new SqlCommand("DELETE FROM MovieQueue WHERE MID = '" + MID + "'");
+            delete.Connection = con;
+            delete.ExecuteNonQuery();
+            con.Close();
+
+
+        }
+        public void AddMovieToRentList(object sender, EventArgs e)
+        {
+
+                if (CheckMovieRent("Order") == true)
+                {
+                    rent("Order");
+                    MessageBox.Show("Rent Successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("You can only rent a limited number of movie at a time.");
+                }
+
+            
+
+
+        }
+
+        private bool CheckMovieRent(string name)
+        {
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select ActualReturnDate, O.MID, M.CurrentNum from["+ name + "] O, Movie M where O.CID =" + UC1.id, connection);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                //MessageBox.Show(row["ActualReturnDate"].ToString());
+                if (row["ActualReturnDate"].ToString() == "")
+                {
+                    return false;
+                }
+            }
+            //MessageBox.Show(dataTable.Rows.Count.ToString());
+            connection.Close();
+            return true;
+        }
+
+        private void rent(string name)
+        {
+            DataTable movie = new DataTable();
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter selectMovie = new SqlDataAdapter("SELECT * from Movie M where M.MID = " + MID, connection);
+
+            SqlCommandBuilder sb = new SqlCommandBuilder(selectMovie);
+            selectMovie.Update(movie);
+
+            string insert = "INSERT dbo.[" + name + "](OID, MID, CID, EID, OrderDate, ReturnDate)  VALUES((Select MAX(OID)+1 from [Order]), @mid, @cid, @eid, @date, @return)";
+            SqlCommand sc = new SqlCommand(insert, connection);
+            DateTime date = DateTime.Today;
+            DateTime ret = new DateTime(date.Year, date.Month + 1, date.Day);
+            if (date.Month == 12)
+            {
+                ret = new DateTime(date.Year + 1, 1, date.Day);
+            }
+
+            sc.Parameters.AddWithValue("@mid", MID);
+            sc.Parameters.AddWithValue("@cid", UC1.id);
+            sc.Parameters.AddWithValue("@eid", "001");
+            sc.Parameters.AddWithValue("@date", date.Date.ToString("d"));
+            sc.Parameters.AddWithValue("@return", ret);
+            //sc.Parameters.AddWithValue("@actual", null);
+            sc.ExecuteNonQuery();
         }
     }
 }
