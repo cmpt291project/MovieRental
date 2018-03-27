@@ -28,44 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.WishListButton = new System.Windows.Forms.Button();
+            this.RentalHistory = new System.Windows.Forms.Button();
+            this.CurrentRental = new System.Windows.Forms.Button();
             this.YourMoviePanel2 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // button5
+            // WishListButton
             // 
-            this.button5.Location = new System.Drawing.Point(6, 102);
-            this.button5.Margin = new System.Windows.Forms.Padding(6);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(96, 33);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Wish List";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.WishListButton.Location = new System.Drawing.Point(6, 102);
+            this.WishListButton.Margin = new System.Windows.Forms.Padding(6);
+            this.WishListButton.Name = "WishListButton";
+            this.WishListButton.Size = new System.Drawing.Size(96, 33);
+            this.WishListButton.TabIndex = 11;
+            this.WishListButton.Text = "Wish List";
+            this.WishListButton.UseVisualStyleBackColor = true;
+            this.WishListButton.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button4
+            // RentalHistory
             // 
-            this.button4.Location = new System.Drawing.Point(6, 57);
-            this.button4.Margin = new System.Windows.Forms.Padding(6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(96, 33);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Rental History";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.RentalHistory.Location = new System.Drawing.Point(6, 57);
+            this.RentalHistory.Margin = new System.Windows.Forms.Padding(6);
+            this.RentalHistory.Name = "RentalHistory";
+            this.RentalHistory.Size = new System.Drawing.Size(96, 33);
+            this.RentalHistory.TabIndex = 10;
+            this.RentalHistory.Text = "Rental History";
+            this.RentalHistory.UseVisualStyleBackColor = true;
+            this.RentalHistory.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
+            // CurrentRental
             // 
-            this.button3.Location = new System.Drawing.Point(6, 12);
-            this.button3.Margin = new System.Windows.Forms.Padding(6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 33);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Current Rental";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.CurrentRental.Location = new System.Drawing.Point(6, 12);
+            this.CurrentRental.Margin = new System.Windows.Forms.Padding(6);
+            this.CurrentRental.Name = "CurrentRental";
+            this.CurrentRental.Size = new System.Drawing.Size(96, 33);
+            this.CurrentRental.TabIndex = 9;
+            this.CurrentRental.Text = "Current Rental";
+            this.CurrentRental.UseVisualStyleBackColor = true;
+            this.CurrentRental.Click += new System.EventHandler(this.button3_Click);
             // 
             // YourMoviePanel2
             // 
@@ -80,9 +80,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.YourMoviePanel2);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.WishListButton);
+            this.Controls.Add(this.RentalHistory);
+            this.Controls.Add(this.CurrentRental);
             this.Name = "YourMovieControl";
             this.Size = new System.Drawing.Size(777, 392);
             this.Load += new System.EventHandler(this.YourMovieControl_Load);
@@ -92,9 +92,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button WishListButton;
+        private System.Windows.Forms.Button RentalHistory;
+        private System.Windows.Forms.Button CurrentRental;
         private System.Windows.Forms.Panel YourMoviePanel2;
     }
 }

@@ -123,6 +123,16 @@ namespace MovieRental
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter dataAdapter = new SqlDataAdapter("select ActualReturnDate, OID from [Order] as O where O.CID ='" + UC1.id +"' and ActualReturnDate is null", connection);
+            SqlDataAdapter selectMovie = new SqlDataAdapter("SELECT CurrentNum, MID from Movie M where M.MID = " + MID, connection);
+            DataTable movieRow = new DataTable();
+            selectMovie.Fill(movieRow);
+            int num = Convert.ToInt32(movieRow.Rows[0]["CurrentNum"]);
+            movieRow.Rows[0].BeginEdit();
+            movieRow.Rows[0]["CurrentNum"] = num + 1;
+            movieRow.Rows[0].EndEdit();
+            SqlCommandBuilder sd = new SqlCommandBuilder(selectMovie);
+            selectMovie.Update(movieRow);
+
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             dataTable.Rows[0].BeginEdit();
@@ -132,6 +142,8 @@ namespace MovieRental
             SqlCommandBuilder sb = new SqlCommandBuilder(dataAdapter);
             dataAdapter.Update(dataTable);
             connection.Close();
+            MessageBox.Show("Return Successfully!");
+            YourMovieControl.Instance.createCurrentRental();
         }
 
         public void DeleteMovieFromListButton(GroupBox groupBox, string name)
@@ -200,8 +212,13 @@ namespace MovieRental
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter selectMovie = new SqlDataAdapter("SELECT * from Movie M where M.MID = " + MID, connection);
-
+            selectMovie.Fill(movie);
             SqlCommandBuilder sb = new SqlCommandBuilder(selectMovie);
+            int num = Convert.ToInt32(movie.Rows[0]["CurrentNum"]);
+            movie.Rows[0].BeginEdit();
+            movie.Rows[0]["CurrentNum"] = num - 1;
+            movie.Rows[0].EndEdit();
+
             selectMovie.Update(movie);
 
             string insert = "INSERT dbo.[" + name + "](OID, MID, CID, EID, OrderDate, ReturnDate)  VALUES((Select MAX(OID)+1 from [Order]), @mid, @cid, @eid, @date, @return)";
@@ -220,6 +237,8 @@ namespace MovieRental
             sc.Parameters.AddWithValue("@return", ret);
             //sc.Parameters.AddWithValue("@actual", null);
             sc.ExecuteNonQuery();
+            connection.Close();
+            EventHandler e = new EventHandler(DeleteFromWishList);
         }
     }
 }
