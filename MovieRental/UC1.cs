@@ -138,5 +138,10 @@ namespace MovieRental
             }
             scn.Close();
         }
+
+        private void Create_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }

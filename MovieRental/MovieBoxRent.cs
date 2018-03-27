@@ -189,7 +189,7 @@ namespace MovieRental
             //SqlCommand sq = new SqlCommand("INSERT dbo.Order SET CurrentNum = @curNum WHERE MID = @MID GO ", connection);
             //MessageBox.Show("rent");
 
-            string insert = "INSERT dbo.[Order](OID, MID, CID, EID, OrderDate, ReturnDate)  VALUES((Select MAX(OID)+1 from [Order]), @mid, @cid, @eid, @date, @return)";
+            string insert = "INSERT dbo.[Order](OID, MID, CID, EID, OrderDate, ReturnDate)  VALUES((Select MAX(CAST(OID as int))+1 from [Order]), @mid, @cid, @eid, @date, @return)";
             SqlCommand sc = new SqlCommand(insert, connection);
             //sc.Parameters.AddWithValue("@oid", "006");
             DateTime date = DateTime.Today;

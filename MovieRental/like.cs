@@ -31,6 +31,7 @@ namespace MovieRental
 
         private void Like_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show("like");
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter dataAdapter = new SqlDataAdapter("select top 5 M.MID, M.MovieName, (select AVG(rating) from MovieRating mr where mr.MID = M.MID ) rate from (select MovieType, O.MID from[Order] O, Movie M where CID = '" + UC1.id +"' and O.MID = M.MID) T, Movie M where M.MovieType = T.MovieType and T.MID != M.MID Order by NEWID()", connection);
