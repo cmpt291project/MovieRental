@@ -108,6 +108,13 @@ namespace MovieRental
             userForm.Show();
         }
 
+
+
+
+        private void refresh_Click_1(object sender, EventArgs e)
+        {
+            Ranking.Instance.update();
+        }
         private void YourMovieTab_TabIndexChanged(object sender, EventArgs e)
         {
            // Console.WriteLine(YourMovieTab.SelectedTab);
@@ -122,12 +129,13 @@ namespace MovieRental
             else if ((YourMovieTab.SelectedIndex == 1))
             {
                 Console.WriteLine("Suggestions");
-
+                Ranking.Instance.update();
             }
                 
             else
                 Console.WriteLine("Your Movies");
             
+
         }
     }
 }
