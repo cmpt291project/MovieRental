@@ -303,6 +303,8 @@
     <Content Include="Resources\009.jpg" />
     <Content Include="Resources\010.jpg" />
     <Content Include="Resources\011.jpg" />
+    <None Include="Resources\no-image.gif" />
+    <None Include="Resources\NoImage.gif" />
     <None Include="Resources\The love witch.jpg" />
     <None Include="Resources\north by northwest.jpg" />
     <None Include="Resources\mary and max.jpg" />
