@@ -44,7 +44,13 @@ namespace MovieRental
             panel1.BringToFront();
             dataGridView1.BringToFront();
             DisplayData();
-           
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "MM-yyyy";
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "MM/dd/yyyy";
+            dateTimePicker3.Format = DateTimePickerFormat.Custom;
+            dateTimePicker3.CustomFormat = "MM/dd/yyyy";
+
         }
 
         private void btnInsertCasting_Click(object sender, EventArgs e)
@@ -119,8 +125,11 @@ namespace MovieRental
                 cmd.Parameters.AddWithValue("@type", MovieTypeTxt.Text);
                 cmd.Parameters.AddWithValue("@distFee", DistFeeTxt.Text);
                 cmd.Parameters.AddWithValue("@numCopies", NumCopiesTxt.Text);
-                cmd.Parameters.AddWithValue("@releaseDate", ReleaseDateTxt.Text);
-                cmd.Parameters.AddWithValue("@addDate", AddDateTxt.Text);
+                //cmd.Parameters.AddWithValue("@releaseDate", ReleaseDateTxt.Text);
+                cmd.Parameters.AddWithValue("@releaseDate", Convert.ToDateTime(dateTimePicker2.Text));
+                cmd.Parameters.AddWithValue("@addDate", Convert.ToDateTime(dateTimePicker3.Text));
+
+                //cmd.Parameters.AddWithValue("@addDate", AddDateTxt.Text);
                 cmd.Parameters.AddWithValue("@director", DirectorTxt.Text);
                 cmd.Parameters.AddWithValue("@currNum", CurrentNumTxt.Text);
                 cmd.ExecuteNonQuery();
@@ -212,8 +221,14 @@ namespace MovieRental
         private void Update_Click(object sender, EventArgs e)
         {
             if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "" && DistFeeTxt.Text != "" && NumCopiesTxt.Text != ""
-                && ReleaseDateTxt.Text != "" && AddDateTxt.Text != "" && DirectorTxt.Text != "" && CurrentNumTxt.Text != "")
+                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "")
             {
+                if (!ValidateMovieForm())
+                {
+                    MessageBox.Show("Please fix error.");
+                    return;
+                }
+                    
                 
                 //using (SqlConnection con = new SqlConnection(Form4.connectionString))
                 cmd = new SqlCommand("update Movie set MovieName=@name, MovieType=@type, DistribututionFee=@distfee, " +
@@ -227,8 +242,9 @@ namespace MovieRental
                 cmd.Parameters.AddWithValue("@type", MovieTypeTxt.Text);
                 cmd.Parameters.AddWithValue("@distFee", DistFeeTxt.Text);
                 cmd.Parameters.AddWithValue("@numCopies", NumCopiesTxt.Text);
-                cmd.Parameters.AddWithValue("@releaseDate", ReleaseDateTxt.Text);
-                cmd.Parameters.AddWithValue("@addDate", AddDateTxt.Text);
+                //cmd.Parameters.AddWithValue("@releaseDate", ReleaseDateTxt.Text);
+                cmd.Parameters.AddWithValue("@releaseDate", Convert.ToDateTime(dateTimePicker2.Text));
+                cmd.Parameters.AddWithValue("@addDate", Convert.ToDateTime(dateTimePicker3.Text));
                 cmd.Parameters.AddWithValue("@director", DirectorTxt.Text);
                 cmd.Parameters.AddWithValue("@currNum", CurrentNumTxt.Text);
                 cmd.ExecuteNonQuery();
@@ -334,8 +350,6 @@ namespace MovieRental
             MovieTypeTxt.Clear();
             DistFeeTxt.Clear();
             NumCopiesTxt.Clear();
-            ReleaseDateTxt.Clear();
-            AddDateTxt.Clear();
             DirectorTxt.Clear();
             CurrentNumTxt.Clear();
         }
@@ -349,13 +363,15 @@ namespace MovieRental
             //movieType = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
             DistFeeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             NumCopiesTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-            char[] delimiterChars = {' '};
+            /*char[] delimiterChars = {' '};
             string[] releaseDateStrings = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString().Split(delimiterChars);
             string[] addDateStrings = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString().Split(delimiterChars);
             ReleaseDateTxt.Text = releaseDateStrings[0];
-            AddDateTxt.Text = addDateStrings[0];
+            AddDateTxt.Text = addDateStrings[0];*/
             DirectorTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
             CurrentNumTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+            dateTimePicker2.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+            dateTimePicker3.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
 
         }
 
@@ -559,17 +575,242 @@ namespace MovieRental
         {
             DataTable dt7 = new DataTable();
             Console.WriteLine(MovieTypeCB.Text);
-            switch (MovieTypeCB.SelectedIndex)
-            {
-                default:
-                    adapt = new SqlDataAdapter("select * from [Order] where MID in (select MID from Movie where MovieType = @type)", con);
-                    adapt.SelectCommand.Parameters.Clear();
-                    adapt.SelectCommand.Parameters.AddWithValue("@type", MovieTypeCB.Text);
-                    adapt.Fill(dt7);
-                    dataGridView5.DataSource = dt7;
-                    break;
+            
+            adapt = new SqlDataAdapter("select * from [Order] where MID in (select MID from Movie where MovieType = @type)", con);
+            adapt.SelectCommand.Parameters.Clear();
+            adapt.SelectCommand.Parameters.AddWithValue("@type", MovieTypeCB.Text);
+            adapt.Fill(dt7);
+            dataGridView5.DataSource = dt7;
+                    
 
                
+            
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(Convert.ToDateTime(dateTimePicker1.Value.ToString()));
+
+            using (SqlConnection sqlCon = new SqlConnection(Form4.connectionString))
+            {
+                sqlCon.Open();
+                SqlCommand sqlCmd = new SqlCommand("select OrderDate from [Order] where OID = '1'", sqlCon);
+                Console.WriteLine(sqlCmd.ExecuteScalar().ToString());
+                sqlCon.Close();
+            }
+
+            char[] delimiterChars = { ' ', '/' };
+            string[] dateStrings = dateTimePicker1.Value.ToString().Split(delimiterChars);
+            Console.WriteLine(dateStrings[2]);
+
+            DataTable dt7 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Customer as C, (select count(*) as numOrders, CID from [Order] " +
+                "where OrderDate like @date group by CID) as orderCount " +
+                "where C.CID = orderCount.CID", con);
+            adapt.SelectCommand.Parameters.Clear();
+            adapt.SelectCommand.Parameters.AddWithValue("@date", dateStrings[2] + "%");
+            adapt.Fill(dt7);
+            dataGridView5.DataSource = dt7;
+
+            DataTable dt8 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Customer as C, (select count(*) as numOrders, CID from [Order] " +
+               "where OrderDate like @date group by CID) as orderCount " +
+               "where C.CID = orderCount.CID", con);
+            adapt.SelectCommand.Parameters.Clear();
+            adapt.SelectCommand.Parameters.AddWithValue("@date", dateStrings[2] + "-" + dateStrings[0] + "%");
+            adapt.Fill(dt8);
+            dataGridView6.DataSource = dt8;
+        }
+
+        private void searchByYear_Click(object sender, EventArgs e)
+        {
+            dataGridView5.BringToFront();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView6.BringToFront();
+        }
+
+        private void MovieNameTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void NumCopiesTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void CurrentNumTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void DistFeeTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void MovieTypeTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void NumCopiesTxt_TextChanged(object sender, EventArgs e)
+        {
+            //Console.WriteLine("TEXT CHANGED");
+            string text = NumCopiesTxt.Text;
+            bool hasLetter = false;
+            foreach(char c in text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    hasLetter = true;
+                    break;
+                }
+            }
+            if (hasLetter)
+            {
+                errorProvider1.SetError(NumCopiesTxt, "Only digits allowed");
+                
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private bool ValidateMovieForm()
+        {
+            bool valid = false;
+            int counter = 0;
+            if (errorProvider1.GetError(NumCopiesTxt) == "")
+                counter++;
+
+            if (errorProvider1.GetError(CurrentNumTxt) == "")
+                counter++;
+
+            if (errorProvider1.GetError(DistFeeTxt) == "")
+                counter++;
+
+            if (errorProvider1.GetError(MovieTypeTxt) == "")
+                counter++;
+
+            if (counter == 4)
+                valid = true;
+
+            return valid;
+        }
+
+        private void CurrentNumTxt_TextChanged(object sender, EventArgs e)
+        {
+            string text = CurrentNumTxt.Text;
+            bool hasLetter = false;
+            foreach (char letter in text)
+            {
+                if (!char.IsDigit(letter))
+                {
+                    hasLetter = true;
+                    break;
+                }
+            }
+            if (hasLetter)
+            {
+                errorProvider1.SetError(CurrentNumTxt, "Only digits allowed");
+
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private void DistFeeTxt_TextChanged(object sender, EventArgs e)
+        {
+            string text = DistFeeTxt.Text;
+            bool hasLetter = false;
+            int numDecimal = 0;
+
+            foreach (char c in text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    if (c == '.' && numDecimal < 1)
+                    {
+                        numDecimal++;
+                        continue;
+                    }
+                        
+                        
+                    hasLetter = true;
+                    break;
+                }
+            }
+            if (hasLetter)
+            {
+                errorProvider1.SetError(DistFeeTxt, "Only digits with one decimal is allowed");
+
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private void MovieTypeTxt_TextChanged(object sender, EventArgs e)
+        {
+            string text = MovieTypeTxt.Text;
+            bool hasNonLetter = false;
+
+            foreach (char c in text)
+            {
+                if (!char.IsLetter(c))
+                {
+                    hasNonLetter = true;
+                    break;
+                }
+            }
+            if (hasNonLetter)
+            {
+                errorProvider1.SetError(MovieTypeTxt, "Only letters allowed");
+
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private void UploadBtn_Click(object sender, EventArgs e)
+        {
+            string imageLocation = "";
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*|*.*";
+
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    imageLocation = dialog.FileName;
+                    //image1.ImageLocation = imageLocation;
+                    Console.WriteLine(imageLocation);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
