@@ -13,11 +13,12 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+              if (disposing && (components != null))
+              {
+                  components.Dispose();
+              }
+              base.Dispose(disposing);
+            
         }
 
         #region Windows Form Designer generated code
@@ -40,16 +41,16 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(4, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1428, 1244);
+            this.panel1.Size = new System.Drawing.Size(1464, 1506);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(1480, 23);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 44);
             this.button1.TabIndex = 1;
@@ -60,7 +61,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(1480, 83);
-            this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button2.Margin = new System.Windows.Forms.Padding(6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 44);
             this.button2.TabIndex = 2;
@@ -71,7 +72,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(1480, 138);
-            this.button3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button3.Margin = new System.Windows.Forms.Padding(6);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 44);
             this.button3.TabIndex = 3;
@@ -82,7 +83,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(1480, 194);
-            this.button4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button4.Margin = new System.Windows.Forms.Padding(6);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(150, 44);
             this.button4.TabIndex = 4;
@@ -93,7 +94,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(1480, 260);
-            this.button5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button5.Margin = new System.Windows.Forms.Padding(6);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(150, 44);
             this.button5.TabIndex = 5;
@@ -105,6 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1656, 1173);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -112,7 +114,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form4";
             this.Text = "Form4";
             this.Load += new System.EventHandler(this.Form4_Load);
