@@ -73,6 +73,10 @@ namespace MovieRental
         }
         public void CreateScore(string s) {
             score.Name = "score";
+            if (s == "")
+            {
+                s = "0";
+            }
             score.Text = s;
             score.Font = new Font("Serif", 10);
             score.Location = new Point(8, 429);

@@ -33,7 +33,7 @@ namespace MovieRental
             gb.Size = new Size(500, 60);
             gb.Top = 3 + i* 60;
             gb.Left = 3;
-            gb.Text = "Actor";
+            gb.Text = "Star";
             gb.FlatStyle = FlatStyle.Standard;
 
             p.Controls.Add(gb);

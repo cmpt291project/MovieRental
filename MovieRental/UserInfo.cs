@@ -76,7 +76,8 @@ namespace MovieRental
                 CreditCardNumber.Text = dataTable.Rows[0]["CreditCardNumber"].ToString();
                 DateTime dt = (DateTime)dataTable.Rows[0]["AccountCreationDate"];
                 AccountCreationDate.Text = dt.ToString("d");
-                
+                accountno.Text = dataTable.Rows[0]["AccountNumber"].ToString();
+
             }
         }
 
@@ -104,7 +105,7 @@ namespace MovieRental
         {
             if (inputValid(FirstName.Text) && inputValid(LastName.Text)&& inputValid(Street.Text)&& inputValid(City.Text) && inputValid(State.Text) && inputValid(ZipCode.Text)&& inputValid(Telephone.Text) && checkEmail(EmailAddress.Text) && inputValid(CreditCardNumber.Text))
             {
-                MessageBox.Show("valid");
+                MessageBox.Show("New information saved.");
                 SqlConnection connection = new SqlConnection(Form4.connectionString);
                 connection.Open();
                 SqlDataAdapter dataAdapter = new SqlDataAdapter("Select * from Customer C Where C.CID = '" + UC1.id + "'", connection);
