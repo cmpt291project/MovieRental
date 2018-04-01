@@ -34,19 +34,19 @@
             // panelinlike
             // 
             this.panelinlike.AutoScroll = true;
-            this.panelinlike.BackColor = System.Drawing.SystemColors.Control;
             this.panelinlike.Location = new System.Drawing.Point(0, 0);
             this.panelinlike.Name = "panelinlike";
-            this.panelinlike.Size = new System.Drawing.Size(1397, 584);
+            this.panelinlike.Size = new System.Drawing.Size(1410, 638);
             this.panelinlike.TabIndex = 0;
             // 
             // Like
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.Controls.Add(this.panelinlike);
             this.Name = "Like";
-            this.Size = new System.Drawing.Size(1410, 641);
+            this.Size = new System.Drawing.Size(1413, 712);
             this.Load += new System.EventHandler(this.Like_Load);
             this.ResumeLayout(false);
 
