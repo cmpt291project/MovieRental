@@ -123,13 +123,10 @@ namespace MovieRental
             if (YourMovieTab.SelectedIndex == 0)
             {
                 Console.WriteLine("Features");
-<<<<<<< HEAD
                 FeatureControl.Instance.update();
                 GenreControl.Instance.initialDisplay();
             }
-=======
 
->>>>>>> e9bddeff304495a939e8f9ba406e8a4a3b292230
             else if ((YourMovieTab.SelectedIndex == 1))
             {
                 Console.WriteLine("Suggestions");
