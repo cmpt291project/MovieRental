@@ -125,6 +125,7 @@ namespace MovieRental
             Console.WriteLine(YourMovieTab.SelectedIndex);
             if (YourMovieTab.SelectedIndex == 0)
                 Console.WriteLine("Features");
+
             else if ((YourMovieTab.SelectedIndex == 1))
             {
                 Console.WriteLine("Suggestions");
@@ -133,7 +134,7 @@ namespace MovieRental
                 
             else
                 Console.WriteLine("Your Movies");
-            //if (YourMovieTab.SelectedTab == )
+            
 
         }
     }
