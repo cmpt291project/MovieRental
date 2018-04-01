@@ -58,14 +58,14 @@
             this.st = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.Label();
             this.plan = new System.Windows.Forms.TabPage();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.gb = new System.Windows.Forms.GroupBox();
             this.limited = new System.Windows.Forms.RadioButton();
             this.unlimited3 = new System.Windows.Forms.RadioButton();
             this.unlimited2 = new System.Windows.Forms.RadioButton();
             this.unlimited1 = new System.Windows.Forms.RadioButton();
-            this.modify = new System.Windows.Forms.Button();
             this.confirm = new System.Windows.Forms.Button();
-            this.gb = new System.Windows.Forms.GroupBox();
+            this.modify = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.user.SuspendLayout();
             this.info.SuspendLayout();
@@ -366,11 +366,19 @@
             this.plan.Text = "ManageYourPlan";
             this.plan.UseVisualStyleBackColor = true;
             // 
-            // contextMenuStrip1
+            // gb
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.gb.Controls.Add(this.limited);
+            this.gb.Controls.Add(this.unlimited3);
+            this.gb.Controls.Add(this.unlimited2);
+            this.gb.Controls.Add(this.unlimited1);
+            this.gb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gb.Location = new System.Drawing.Point(355, 42);
+            this.gb.Name = "gb";
+            this.gb.Size = new System.Drawing.Size(355, 337);
+            this.gb.TabIndex = 8;
+            this.gb.TabStop = false;
+            this.gb.Text = "Your Current Plan";
             // 
             // limited
             // 
@@ -422,17 +430,6 @@
             this.unlimited1.Text = "unlimited1";
             this.unlimited1.UseVisualStyleBackColor = true;
             // 
-            // modify
-            // 
-            this.modify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.modify.Location = new System.Drawing.Point(202, 603);
-            this.modify.Name = "modify";
-            this.modify.Size = new System.Drawing.Size(285, 60);
-            this.modify.TabIndex = 6;
-            this.modify.Text = "Modify Your Plan";
-            this.modify.UseVisualStyleBackColor = true;
-            this.modify.Click += new System.EventHandler(this.modify_Click);
-            // 
             // confirm
             // 
             this.confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -444,18 +441,22 @@
             this.confirm.UseVisualStyleBackColor = true;
             this.confirm.Click += new System.EventHandler(this.confirm_Click);
             // 
-            // gb
+            // modify
             // 
-            this.gb.Controls.Add(this.limited);
-            this.gb.Controls.Add(this.unlimited3);
-            this.gb.Controls.Add(this.unlimited2);
-            this.gb.Controls.Add(this.unlimited1);
-            this.gb.Location = new System.Drawing.Point(355, 42);
-            this.gb.Name = "gb";
-            this.gb.Size = new System.Drawing.Size(355, 337);
-            this.gb.TabIndex = 8;
-            this.gb.TabStop = false;
-            this.gb.Text = "groupBox1";
+            this.modify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.modify.Location = new System.Drawing.Point(202, 603);
+            this.modify.Name = "modify";
+            this.modify.Size = new System.Drawing.Size(285, 60);
+            this.modify.TabIndex = 6;
+            this.modify.Text = "Modify Your Plan";
+            this.modify.UseVisualStyleBackColor = true;
+            this.modify.Click += new System.EventHandler(this.modify_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // UserInfo
             // 
