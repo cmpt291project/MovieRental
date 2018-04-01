@@ -111,13 +111,13 @@ namespace MovieRental
 
         private void button5_Click(object sender, EventArgs e)
         {
-            YourMoviePanel2.Controls.Clear();
-            list.Clear();
             createWishList();
         }
 
-        private void createWishList()
+        public void createWishList()
         {
+            YourMoviePanel2.Controls.Clear();
+            list.Clear();
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter a = new SqlDataAdapter("SELECT distinct (MovieName), Director, MovieType, ReleaseDate, AddDate, M.MID FROM MovieQueue as MQ, Movie as M WHERE M.MID = MQ.MID and MQ.CID ='" + UC1.id + "'", connection);

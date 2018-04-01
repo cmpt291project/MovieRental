@@ -144,6 +144,7 @@ namespace MovieRental
             connection.Close();
             MessageBox.Show("Return Successfully!");
             YourMovieControl.Instance.createCurrentRental();
+            updateall();
         }
 
         public void DeleteMovieFromListButton(GroupBox groupBox, string name)
@@ -159,15 +160,20 @@ namespace MovieRental
 
         public void DeleteFromWishList(object sender, EventArgs e)
         {
+            DeleteMovieInWishList();
+        }
+
+        public void DeleteMovieInWishList()
+        {
             SqlConnection con = new SqlConnection(Form4.connectionString);
             con.Open();
             SqlCommand delete = new SqlCommand("DELETE FROM MovieQueue WHERE MID = '" + MID + "'");
             delete.Connection = con;
             delete.ExecuteNonQuery();
             con.Close();
-
-
+            updateall();
         }
+
         public void AddMovieToRentList(object sender, EventArgs e)
         {
 
@@ -175,10 +181,11 @@ namespace MovieRental
                 {
                     rent("Order");
                     MessageBox.Show("Rent Successfully!");
+                    updateall();
                 }
                 else
                 {
-                    MessageBox.Show("You can only rent a limited number of movie at a time.");
+                    MessageBox.Show("You can only rent a limited number of movies at a time.");
                 }
 
             
@@ -229,7 +236,7 @@ namespace MovieRental
             {
                 ret = new DateTime(date.Year + 1, 1, date.Day);
             }
-
+            
             sc.Parameters.AddWithValue("@mid", MID);
             sc.Parameters.AddWithValue("@cid", UC1.id);
             sc.Parameters.AddWithValue("@eid", "001");
@@ -238,7 +245,15 @@ namespace MovieRental
             //sc.Parameters.AddWithValue("@actual", null);
             sc.ExecuteNonQuery();
             connection.Close();
-            EventHandler e = new EventHandler(DeleteFromWishList);
+            DeleteMovieInWishList();
+            YourMovieControl.Instance.createWishList();
+        }
+
+
+        private void updateall()
+        {
+            Ranking.Instance.update();
+
         }
     }
 }
