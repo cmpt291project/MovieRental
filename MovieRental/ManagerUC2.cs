@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 
 namespace MovieRental
 {
@@ -33,6 +34,9 @@ namespace MovieRental
         SqlConnection con = new SqlConnection(Form4.connectionString);
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapt;
+        string strFilePath = "";
+        Image DefaultImage;
+        Byte[] ImageByteArray;
 
         public ManagerUC2()
         {
@@ -50,6 +54,8 @@ namespace MovieRental
             dateTimePicker2.CustomFormat = "MM/dd/yyyy";
             dateTimePicker3.Format = DateTimePickerFormat.Custom;
             dateTimePicker3.CustomFormat = "MM/dd/yyyy";
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
 
         }
 
@@ -102,8 +108,23 @@ namespace MovieRental
 
         private void Insert_Click(object sender, EventArgs e)
         {
-            if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "")
+            if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "" && picNameTxt.Text.Trim() != "")
             {
+                if (strFilePath == "")
+                {
+                    if (ImageByteArray.Length != 0)
+                    {
+                        ImageByteArray = new byte[] { };
+                    }
+                }
+                else
+                {
+                    Image temp = new Bitmap(strFilePath);
+                    MemoryStream strm = new MemoryStream();
+                    temp.Save(strm, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    ImageByteArray = strm.ToArray();
+                }
+
                 using(cmd = new SqlCommand("select MAX(CAST(MID as int))+1 from Movie", con))
                 {
                     con.Open();
@@ -116,8 +137,8 @@ namespace MovieRental
 
                 }
                 cmd = new SqlCommand("insert into Movie(MID,MovieName,MovieType,DistribututionFee,NumberOfCopies," +
-                    "ReleaseDate,AddDate,Director,CurrentNum) values(@MID,@name,@type,@distFee,@numCopies,@releaseDate" +
-                    ",@addDate,@director,@currNum)", con);
+                    "ReleaseDate,AddDate,Director,CurrentNum,Poster,PosterTitle) values(@MID,@name,@type,@distFee,@numCopies,@releaseDate" +
+                    ",@addDate,@director,@currNum,@poster,@posterTitle)", con);
                 con.Open();
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@MID", newMID);
@@ -132,6 +153,8 @@ namespace MovieRental
                 //cmd.Parameters.AddWithValue("@addDate", AddDateTxt.Text);
                 cmd.Parameters.AddWithValue("@director", DirectorTxt.Text);
                 cmd.Parameters.AddWithValue("@currNum", CurrentNumTxt.Text);
+                cmd.Parameters.AddWithValue("@poster", ImageByteArray);
+                cmd.Parameters.AddWithValue("@posterTitle", picNameTxt.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
                 MessageBox.Show("Record Inserted Successfully");
@@ -221,19 +244,33 @@ namespace MovieRental
         private void Update_Click(object sender, EventArgs e)
         {
             if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "" && DistFeeTxt.Text != "" && NumCopiesTxt.Text != ""
-                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "")
+                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "" && picNameTxt.Text.Trim() != "")
             {
                 if (!ValidateMovieForm())
                 {
                     MessageBox.Show("Please fix error.");
                     return;
                 }
-                    
-                
+                if (strFilePath == "")
+                {
+                    if (ImageByteArray.Length != 0)
+                    {
+                        ImageByteArray = new byte[] { };
+                    }
+                }
+                else
+                {
+                    Image temp = new Bitmap(strFilePath);
+                    MemoryStream strm = new MemoryStream();
+                    temp.Save(strm, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    ImageByteArray = strm.ToArray();
+                }
+
+
                 //using (SqlConnection con = new SqlConnection(Form4.connectionString))
                 cmd = new SqlCommand("update Movie set MovieName=@name, MovieType=@type, DistribututionFee=@distfee, " +
                     "NumberOfCopies=@numCopies, ReleaseDate=@releaseDate, AddDate=@addDate, Director=@director, " +
-                    "CurrentNum=@currNum where MID=@id", con);
+                    "CurrentNum=@currNum, Poster=@poster, PosterTitle=@posterTitle where MID=@id", con);
                 con.Open();
 
                 cmd.Parameters.Clear();
@@ -247,6 +284,8 @@ namespace MovieRental
                 cmd.Parameters.AddWithValue("@addDate", Convert.ToDateTime(dateTimePicker3.Text));
                 cmd.Parameters.AddWithValue("@director", DirectorTxt.Text);
                 cmd.Parameters.AddWithValue("@currNum", CurrentNumTxt.Text);
+                cmd.Parameters.AddWithValue("@poster", ImageByteArray);
+                cmd.Parameters.AddWithValue("@posterTitle", picNameTxt.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
                 DisplayData();
@@ -352,6 +391,8 @@ namespace MovieRental
             NumCopiesTxt.Clear();
             DirectorTxt.Clear();
             CurrentNumTxt.Clear();
+            picNameTxt.Clear();
+            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -372,6 +413,18 @@ namespace MovieRental
             CurrentNumTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
             dateTimePicker2.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
             dateTimePicker3.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            if (dataGridView1.Rows[e.RowIndex].Cells[9].Value == DBNull.Value)
+            {
+                pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
+            }
+            else
+            {
+                byte[] ImageArray = (byte[])dataGridView1.Rows[e.RowIndex].Cells[9].Value;
+                ImageByteArray = ImageArray;
+                pictureBox1.Image = Image.FromStream(new MemoryStream(ImageArray));
+            }
+            picNameTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
+            //pictureBox1.Image = dataGridView1.Rows[e.RowIndex].Cells[9].Value;
 
         }
 
@@ -467,6 +520,8 @@ namespace MovieRental
             {
                 e.Cancel = true;
             }
+
+            ClearData();
         }
 
 
@@ -795,23 +850,21 @@ namespace MovieRental
 
         private void UploadBtn_Click(object sender, EventArgs e)
         {
-            string imageLocation = "";
-            try
+            //ImageUpload form = new ImageUpload();
+            //form.Show();
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Images(.jpg,.png)|*.png;*.jpg";
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*|*.*";
+                strFilePath = ofd.FileName;
+                pictureBox1.Image = new Bitmap(strFilePath);
+                if (picNameTxt.Text.Trim().Length == 0)
+                    picNameTxt.Text = System.IO.Path.GetFileName(strFilePath);
 
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    imageLocation = dialog.FileName;
-                    //image1.ImageLocation = imageLocation;
-                    Console.WriteLine(imageLocation);
-                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
         }
+
+
     }
 }
