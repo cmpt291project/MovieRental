@@ -50,6 +50,7 @@ namespace MovieRental
             dateTimePicker2.CustomFormat = "MM/dd/yyyy";
             dateTimePicker3.Format = DateTimePickerFormat.Custom;
             dateTimePicker3.CustomFormat = "MM/dd/yyyy";
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
         }
 
@@ -793,25 +794,25 @@ namespace MovieRental
                 errorProvider1.Clear();
         }
 
+        string strFilePath = "";
+        Image DefaultImage;
+        Byte[] ImageByteArray;
+
         private void UploadBtn_Click(object sender, EventArgs e)
         {
-            string imageLocation = "";
-            try
+            //ImageUpload form = new ImageUpload();
+            //form.Show();
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Images(.jpg,.png)|*.png;*.jpg";
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*|*.*";
+                strFilePath = ofd.FileName;
+                pictureBox1.Image = new Bitmap(strFilePath);
+                if (picNameTxt.Text.Trim().Length == 0)
+                    picNameTxt.Text = System.IO.Path.GetFileName(strFilePath);
 
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    imageLocation = dialog.FileName;
-                    //image1.ImageLocation = imageLocation;
-                    Console.WriteLine(imageLocation);
-                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
         }
     }
 }
