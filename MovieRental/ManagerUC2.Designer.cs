@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Insert = new System.Windows.Forms.Button();
             this.Update = new System.Windows.Forms.Button();
@@ -42,8 +43,6 @@
             this.MovieTypeTxt = new System.Windows.Forms.TextBox();
             this.DistFeeTxt = new System.Windows.Forms.TextBox();
             this.NumCopiesTxt = new System.Windows.Forms.TextBox();
-            this.ReleaseDateTxt = new System.Windows.Forms.TextBox();
-            this.AddDateTxt = new System.Windows.Forms.TextBox();
             this.DirectorTxt = new System.Windows.Forms.TextBox();
             this.CurrentNumTxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -68,12 +67,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.MovieTypeCB = new System.Windows.Forms.ComboBox();
-            this.searchBtn = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.searchTxt = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.PasswordTxt = new System.Windows.Forms.TextBox();
             this.EmailTxt = new System.Windows.Forms.TextBox();
@@ -102,11 +95,26 @@
             this.btnInsertEmployee = new System.Windows.Forms.Button();
             this.SocialSecurityTxt = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.searchByYear = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.MovieTypeCB = new System.Windows.Forms.ComboBox();
+            this.searchBtn = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.searchTxt = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.UploadBtn = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -116,6 +124,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -169,7 +179,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 79);
+            this.label3.Location = new System.Drawing.Point(3, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 13);
             this.label3.TabIndex = 5;
@@ -178,7 +188,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 110);
+            this.label4.Location = new System.Drawing.Point(3, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 13);
             this.label4.TabIndex = 6;
@@ -187,7 +197,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(277, 15);
+            this.label5.Location = new System.Drawing.Point(236, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 13);
             this.label5.TabIndex = 7;
@@ -196,7 +206,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(285, 51);
+            this.label6.Location = new System.Drawing.Point(256, 48);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 8;
@@ -205,7 +215,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(285, 83);
+            this.label7.Location = new System.Drawing.Point(259, 83);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 13);
             this.label7.TabIndex = 9;
@@ -213,64 +223,59 @@
             // 
             // MovieNameTxt
             // 
-            this.MovieNameTxt.Location = new System.Drawing.Point(108, 8);
+            this.MovieNameTxt.Location = new System.Drawing.Point(94, 8);
             this.MovieNameTxt.Name = "MovieNameTxt";
             this.MovieNameTxt.Size = new System.Drawing.Size(138, 20);
             this.MovieNameTxt.TabIndex = 10;
+            this.MovieNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MovieNameTxt_KeyPress);
             // 
             // MovieTypeTxt
             // 
-            this.MovieTypeTxt.Location = new System.Drawing.Point(108, 40);
+            this.MovieTypeTxt.Location = new System.Drawing.Point(94, 40);
             this.MovieTypeTxt.Name = "MovieTypeTxt";
             this.MovieTypeTxt.Size = new System.Drawing.Size(100, 20);
             this.MovieTypeTxt.TabIndex = 11;
+            this.MovieTypeTxt.TextChanged += new System.EventHandler(this.MovieTypeTxt_TextChanged);
+            this.MovieTypeTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MovieTypeTxt_KeyPress);
             // 
             // DistFeeTxt
             // 
-            this.DistFeeTxt.Location = new System.Drawing.Point(108, 72);
+            this.DistFeeTxt.Location = new System.Drawing.Point(94, 72);
             this.DistFeeTxt.Name = "DistFeeTxt";
             this.DistFeeTxt.Size = new System.Drawing.Size(100, 20);
             this.DistFeeTxt.TabIndex = 12;
+            this.DistFeeTxt.TextChanged += new System.EventHandler(this.DistFeeTxt_TextChanged);
+            this.DistFeeTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DistFeeTxt_KeyPress);
             // 
             // NumCopiesTxt
             // 
-            this.NumCopiesTxt.Location = new System.Drawing.Point(108, 107);
+            this.NumCopiesTxt.Location = new System.Drawing.Point(96, 107);
             this.NumCopiesTxt.Name = "NumCopiesTxt";
             this.NumCopiesTxt.Size = new System.Drawing.Size(100, 20);
             this.NumCopiesTxt.TabIndex = 13;
-            // 
-            // ReleaseDateTxt
-            // 
-            this.ReleaseDateTxt.Location = new System.Drawing.Point(358, 8);
-            this.ReleaseDateTxt.Name = "ReleaseDateTxt";
-            this.ReleaseDateTxt.Size = new System.Drawing.Size(100, 20);
-            this.ReleaseDateTxt.TabIndex = 14;
-            // 
-            // AddDateTxt
-            // 
-            this.AddDateTxt.Location = new System.Drawing.Point(358, 44);
-            this.AddDateTxt.Name = "AddDateTxt";
-            this.AddDateTxt.Size = new System.Drawing.Size(100, 20);
-            this.AddDateTxt.TabIndex = 15;
+            this.NumCopiesTxt.TextChanged += new System.EventHandler(this.NumCopiesTxt_TextChanged);
+            this.NumCopiesTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumCopiesTxt_KeyPress);
             // 
             // DirectorTxt
             // 
-            this.DirectorTxt.Location = new System.Drawing.Point(358, 76);
+            this.DirectorTxt.Location = new System.Drawing.Point(335, 76);
             this.DirectorTxt.Name = "DirectorTxt";
             this.DirectorTxt.Size = new System.Drawing.Size(100, 20);
             this.DirectorTxt.TabIndex = 16;
             // 
             // CurrentNumTxt
             // 
-            this.CurrentNumTxt.Location = new System.Drawing.Point(358, 107);
+            this.CurrentNumTxt.Location = new System.Drawing.Point(335, 107);
             this.CurrentNumTxt.Name = "CurrentNumTxt";
             this.CurrentNumTxt.Size = new System.Drawing.Size(100, 20);
             this.CurrentNumTxt.TabIndex = 17;
+            this.CurrentNumTxt.TextChanged += new System.EventHandler(this.CurrentNumTxt_TextChanged);
+            this.CurrentNumTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CurrentNumTxt_KeyPress);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(256, 114);
+            this.label8.Location = new System.Drawing.Point(245, 114);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(84, 13);
             this.label8.TabIndex = 18;
@@ -278,9 +283,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label31);
+            this.panel1.Controls.Add(this.UploadBtn);
+            this.panel1.Controls.Add(this.dateTimePicker3);
+            this.panel1.Controls.Add(this.dateTimePicker2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.ReleaseDateTxt);
-            this.panel1.Controls.Add(this.AddDateTxt);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.DirectorTxt);
             this.panel1.Controls.Add(this.Update);
@@ -296,7 +303,7 @@
             this.panel1.Controls.Add(this.MovieTypeTxt);
             this.panel1.Controls.Add(this.NumCopiesTxt);
             this.panel1.Controls.Add(this.DistFeeTxt);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(471, 174);
             this.panel1.TabIndex = 19;
@@ -321,7 +328,7 @@
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(9, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(471, 174);
             this.panel2.TabIndex = 23;
@@ -482,7 +489,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.panel1);
             this.panel3.Controls.Add(this.label29);
             this.panel3.Controls.Add(this.PasswordTxt);
             this.panel3.Controls.Add(this.EmailTxt);
@@ -511,79 +518,10 @@
             this.panel3.Controls.Add(this.btnInsertEmployee);
             this.panel3.Controls.Add(this.SocialSecurityTxt);
             this.panel3.Controls.Add(this.label17);
-            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Location = new System.Drawing.Point(9, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(471, 174);
             this.panel3.TabIndex = 28;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.MovieTypeCB);
-            this.panel4.Controls.Add(this.searchBtn);
-            this.panel4.Controls.Add(this.comboBox2);
-            this.panel4.Controls.Add(this.searchTxt);
-            this.panel4.Controls.Add(this.label30);
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(471, 174);
-            this.panel4.TabIndex = 28;
-            // 
-            // MovieTypeCB
-            // 
-            this.MovieTypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MovieTypeCB.FormattingEnabled = true;
-            this.MovieTypeCB.Items.AddRange(new object[] {
-            "Action",
-            "Adventure",
-            "Comedy",
-            "Drama",
-            "Horror",
-            "Thriller"});
-            this.MovieTypeCB.Location = new System.Drawing.Point(37, 55);
-            this.MovieTypeCB.Name = "MovieTypeCB";
-            this.MovieTypeCB.Size = new System.Drawing.Size(121, 21);
-            this.MovieTypeCB.TabIndex = 4;
-            this.MovieTypeCB.SelectedIndexChanged += new System.EventHandler(this.MovieTypeCB_SelectedIndexChanged);
-            // 
-            // searchBtn
-            // 
-            this.searchBtn.Location = new System.Drawing.Point(143, 130);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(75, 19);
-            this.searchBtn.TabIndex = 3;
-            this.searchBtn.Text = "GO";
-            this.searchBtn.UseVisualStyleBackColor = true;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Rental transactions",
-            "Active Customers",
-            "Most Rented Movies"});
-            this.comboBox2.Location = new System.Drawing.Point(288, 34);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // searchTxt
-            // 
-            this.searchTxt.Location = new System.Drawing.Point(37, 129);
-            this.searchTxt.Name = "searchTxt";
-            this.searchTxt.Size = new System.Drawing.Size(100, 20);
-            this.searchTxt.TabIndex = 1;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(38, 27);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(78, 13);
-            this.label30.TabIndex = 0;
-            this.label30.Text = "Search rentals:";
             // 
             // label29
             // 
@@ -813,6 +751,106 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "Social Security:";
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.searchByYear);
+            this.panel4.Controls.Add(this.dateTimePicker1);
+            this.panel4.Controls.Add(this.MovieTypeCB);
+            this.panel4.Controls.Add(this.searchBtn);
+            this.panel4.Controls.Add(this.comboBox2);
+            this.panel4.Controls.Add(this.searchTxt);
+            this.panel4.Controls.Add(this.label30);
+            this.panel4.Location = new System.Drawing.Point(9, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(471, 174);
+            this.panel4.TabIndex = 28;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(338, 142);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(31, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "M";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // searchByYear
+            // 
+            this.searchByYear.Location = new System.Drawing.Point(302, 142);
+            this.searchByYear.Name = "searchByYear";
+            this.searchByYear.Size = new System.Drawing.Size(30, 23);
+            this.searchByYear.TabIndex = 6;
+            this.searchByYear.Text = "Y";
+            this.searchByYear.UseVisualStyleBackColor = true;
+            this.searchByYear.Click += new System.EventHandler(this.searchByYear_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(268, 110);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(190, 20);
+            this.dateTimePicker1.TabIndex = 5;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // MovieTypeCB
+            // 
+            this.MovieTypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MovieTypeCB.FormattingEnabled = true;
+            this.MovieTypeCB.Items.AddRange(new object[] {
+            "Action",
+            "Adventure",
+            "Comedy",
+            "Drama",
+            "Horror",
+            "Thriller"});
+            this.MovieTypeCB.Location = new System.Drawing.Point(37, 55);
+            this.MovieTypeCB.Name = "MovieTypeCB";
+            this.MovieTypeCB.Size = new System.Drawing.Size(121, 21);
+            this.MovieTypeCB.TabIndex = 4;
+            this.MovieTypeCB.SelectedIndexChanged += new System.EventHandler(this.MovieTypeCB_SelectedIndexChanged);
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Location = new System.Drawing.Point(143, 130);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(75, 19);
+            this.searchBtn.TabIndex = 3;
+            this.searchBtn.Text = "GO";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Rental transactions",
+            "Active Customers",
+            "Most Rented Movies"});
+            this.comboBox2.Location = new System.Drawing.Point(273, 19);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 2;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // searchTxt
+            // 
+            this.searchTxt.Location = new System.Drawing.Point(37, 129);
+            this.searchTxt.Name = "searchTxt";
+            this.searchTxt.Size = new System.Drawing.Size(100, 20);
+            this.searchTxt.TabIndex = 1;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(38, 27);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(78, 13);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "Search rentals:";
+            // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -838,7 +876,7 @@
             "Actors",
             "Employees",
             "Rentals"});
-            this.comboBox1.Location = new System.Drawing.Point(480, 19);
+            this.comboBox1.Location = new System.Drawing.Point(486, 15);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(96, 21);
             this.comboBox1.TabIndex = 26;
@@ -862,21 +900,67 @@
             this.dataGridView5.Size = new System.Drawing.Size(508, 159);
             this.dataGridView5.TabIndex = 3;
             // 
+            // dataGridView6
+            // 
+            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView6.Location = new System.Drawing.Point(9, 183);
+            this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.Size = new System.Drawing.Size(508, 159);
+            this.dataGridView6.TabIndex = 29;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(317, 12);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(151, 20);
+            this.dateTimePicker2.TabIndex = 19;
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Location = new System.Drawing.Point(317, 43);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(151, 20);
+            this.dateTimePicker3.TabIndex = 30;
+            // 
+            // UploadBtn
+            // 
+            this.UploadBtn.Location = new System.Drawing.Point(335, 139);
+            this.UploadBtn.Name = "UploadBtn";
+            this.UploadBtn.Size = new System.Drawing.Size(75, 23);
+            this.UploadBtn.TabIndex = 31;
+            this.UploadBtn.Text = "Upload";
+            this.UploadBtn.UseVisualStyleBackColor = true;
+            this.UploadBtn.Click += new System.EventHandler(this.UploadBtn_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(248, 145);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(76, 13);
+            this.label31.TabIndex = 32;
+            this.label31.Text = "Upload Image:";
+            // 
             // ManagerUC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dataGridView6);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.dataGridView5);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.panel4);
             this.Name = "ManagerUC2";
-            this.Size = new System.Drawing.Size(579, 370);
+            this.Size = new System.Drawing.Size(614, 370);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -890,6 +974,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -910,8 +996,6 @@
         private System.Windows.Forms.TextBox MovieTypeTxt;
         private System.Windows.Forms.TextBox DistFeeTxt;
         private System.Windows.Forms.TextBox NumCopiesTxt;
-        private System.Windows.Forms.TextBox ReleaseDateTxt;
-        private System.Windows.Forms.TextBox AddDateTxt;
         private System.Windows.Forms.TextBox DirectorTxt;
         private System.Windows.Forms.TextBox CurrentNumTxt;
         private System.Windows.Forms.Label label8;
@@ -975,5 +1059,14 @@
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.ComboBox MovieTypeCB;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button searchByYear;
+        private System.Windows.Forms.DataGridView dataGridView6;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Button UploadBtn;
     }
 }
