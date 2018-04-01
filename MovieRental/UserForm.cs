@@ -21,6 +21,7 @@ namespace MovieRental
         {
             if (!userPanel.Controls.Contains(UserInfo.Instance))
             {
+                
                 userPanel.Controls.Add(UserInfo.Instance);
                 UserInfo.Instance.Dock = DockStyle.Fill;
                 UserInfo.Instance.BringToFront();
@@ -28,5 +29,10 @@ namespace MovieRental
             else
                 UserInfo.Instance.BringToFront();
         }
+
+        
+
+
+
     }
 }

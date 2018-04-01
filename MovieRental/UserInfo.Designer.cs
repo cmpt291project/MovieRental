@@ -13,11 +13,13 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            /*if (disposing && (components != null))
             {
                 components.Dispose();
+                //this.SendToBack();
             }
-            base.Dispose(disposing);
+            base.Dispose(disposing);*/
+            this.SendToBack();            
         }
 
         #region Component Designer generated code
@@ -28,33 +30,47 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Title = new System.Windows.Forms.Label();
             this.movieTableAdapter1 = new MovieRental.MovieRentalDataSetTableAdapters.MovieTableAdapter();
             this.FirstName = new System.Windows.Forms.TextBox();
             this.user = new System.Windows.Forms.TabControl();
             this.info = new System.Windows.Forms.TabPage();
+            this.save = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.edit = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.AccountCreationDate = new System.Windows.Forms.TextBox();
+            this.CreditCardNumber = new System.Windows.Forms.TextBox();
+            this.EmailAddress = new System.Windows.Forms.TextBox();
+            this.Telephone = new System.Windows.Forms.TextBox();
+            this.ZipCode = new System.Windows.Forms.TextBox();
+            this.State = new System.Windows.Forms.TextBox();
+            this.City = new System.Windows.Forms.TextBox();
+            this.Street = new System.Windows.Forms.TextBox();
             this.LastName = new System.Windows.Forms.TextBox();
             this.st = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.Label();
             this.plan = new System.Windows.Forms.TabPage();
-            this.Street = new System.Windows.Forms.TextBox();
-            this.City = new System.Windows.Forms.TextBox();
-            this.State = new System.Windows.Forms.TextBox();
-            this.ZipCode = new System.Windows.Forms.TextBox();
-            this.Telephone = new System.Windows.Forms.TextBox();
-            this.EmailAddress = new System.Windows.Forms.TextBox();
-            this.CreditCardNumber = new System.Windows.Forms.TextBox();
-            this.AccountCreationDate = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.edit = new System.Windows.Forms.Button();
+            this.gb = new System.Windows.Forms.GroupBox();
+            this.limited = new System.Windows.Forms.RadioButton();
+            this.unlimited3 = new System.Windows.Forms.RadioButton();
+            this.unlimited2 = new System.Windows.Forms.RadioButton();
+            this.unlimited1 = new System.Windows.Forms.RadioButton();
+            this.confirm = new System.Windows.Forms.Button();
+            this.modify = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.user.SuspendLayout();
             this.info.SuspendLayout();
+            this.plan.SuspendLayout();
+            this.gb.SuspendLayout();
             this.SuspendLayout();
             // 
             // Title
@@ -86,7 +102,7 @@
             this.user.Controls.Add(this.info);
             this.user.Controls.Add(this.plan);
             this.user.Cursor = System.Windows.Forms.Cursors.Default;
-            this.user.Location = new System.Drawing.Point(38, 95);
+            this.user.Location = new System.Drawing.Point(35, 72);
             this.user.Name = "user";
             this.user.SelectedIndex = 0;
             this.user.Size = new System.Drawing.Size(1108, 781);
@@ -94,6 +110,8 @@
             // 
             // info
             // 
+            this.info.Controls.Add(this.save);
+            this.info.Controls.Add(this.label9);
             this.info.Controls.Add(this.edit);
             this.info.Controls.Add(this.label7);
             this.info.Controls.Add(this.label6);
@@ -121,6 +139,189 @@
             this.info.TabIndex = 0;
             this.info.Text = "UserInfo";
             this.info.UseVisualStyleBackColor = true;
+            // 
+            // save
+            // 
+            this.save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.save.Location = new System.Drawing.Point(606, 658);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(205, 60);
+            this.save.TabIndex = 24;
+            this.save.Text = "Save";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(588, 32);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(288, 31);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Account Creation Date";
+            // 
+            // edit
+            // 
+            this.edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.edit.Location = new System.Drawing.Point(286, 658);
+            this.edit.Name = "edit";
+            this.edit.Size = new System.Drawing.Size(205, 60);
+            this.edit.TabIndex = 21;
+            this.edit.Text = "Edit";
+            this.edit.UseVisualStyleBackColor = true;
+            this.edit.Click += new System.EventHandler(this.edit_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Location = new System.Drawing.Point(33, 538);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(239, 31);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "credit card number";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Location = new System.Drawing.Point(33, 400);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 31);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Email";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(33, 270);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(142, 31);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Telephone";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(684, 148);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(117, 31);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "ZipCode";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(463, 148);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 31);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "State";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(246, 148);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 31);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "City";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(280, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 31);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Last Name";
+            // 
+            // AccountCreationDate
+            // 
+            this.AccountCreationDate.Enabled = false;
+            this.AccountCreationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AccountCreationDate.Location = new System.Drawing.Point(594, 86);
+            this.AccountCreationDate.Name = "AccountCreationDate";
+            this.AccountCreationDate.Size = new System.Drawing.Size(168, 38);
+            this.AccountCreationDate.TabIndex = 13;
+            this.AccountCreationDate.Text = "accountcretedate";
+            // 
+            // CreditCardNumber
+            // 
+            this.CreditCardNumber.Enabled = false;
+            this.CreditCardNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CreditCardNumber.Location = new System.Drawing.Point(39, 599);
+            this.CreditCardNumber.Name = "CreditCardNumber";
+            this.CreditCardNumber.Size = new System.Drawing.Size(500, 38);
+            this.CreditCardNumber.TabIndex = 12;
+            this.CreditCardNumber.Text = "creditcard";
+            // 
+            // EmailAddress
+            // 
+            this.EmailAddress.Enabled = false;
+            this.EmailAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.EmailAddress.Location = new System.Drawing.Point(39, 462);
+            this.EmailAddress.Name = "EmailAddress";
+            this.EmailAddress.Size = new System.Drawing.Size(335, 38);
+            this.EmailAddress.TabIndex = 11;
+            this.EmailAddress.Text = "email";
+            // 
+            // Telephone
+            // 
+            this.Telephone.Enabled = false;
+            this.Telephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Telephone.Location = new System.Drawing.Point(39, 328);
+            this.Telephone.Name = "Telephone";
+            this.Telephone.Size = new System.Drawing.Size(335, 38);
+            this.Telephone.TabIndex = 10;
+            this.Telephone.Text = "tel";
+            // 
+            // ZipCode
+            // 
+            this.ZipCode.Enabled = false;
+            this.ZipCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ZipCode.Location = new System.Drawing.Point(690, 202);
+            this.ZipCode.Name = "ZipCode";
+            this.ZipCode.Size = new System.Drawing.Size(157, 38);
+            this.ZipCode.TabIndex = 9;
+            this.ZipCode.Text = "zipcode";
+            // 
+            // State
+            // 
+            this.State.Enabled = false;
+            this.State.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.State.Location = new System.Drawing.Point(469, 202);
+            this.State.Name = "State";
+            this.State.Size = new System.Drawing.Size(157, 38);
+            this.State.TabIndex = 8;
+            this.State.Text = "state";
+            // 
+            // City
+            // 
+            this.City.Enabled = false;
+            this.City.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.City.HideSelection = false;
+            this.City.Location = new System.Drawing.Point(252, 202);
+            this.City.Name = "City";
+            this.City.Size = new System.Drawing.Size(157, 38);
+            this.City.TabIndex = 7;
+            this.City.Text = "city";
+            // 
+            // Street
+            // 
+            this.Street.Enabled = false;
+            this.Street.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Street.Location = new System.Drawing.Point(39, 202);
+            this.Street.Name = "Street";
+            this.Street.Size = new System.Drawing.Size(157, 38);
+            this.Street.TabIndex = 6;
+            this.Street.Text = "st";
             // 
             // LastName
             // 
@@ -154,6 +355,9 @@
             // 
             // plan
             // 
+            this.plan.Controls.Add(this.gb);
+            this.plan.Controls.Add(this.confirm);
+            this.plan.Controls.Add(this.modify);
             this.plan.Location = new System.Drawing.Point(8, 39);
             this.plan.Name = "plan";
             this.plan.Padding = new System.Windows.Forms.Padding(3);
@@ -162,166 +366,97 @@
             this.plan.Text = "ManageYourPlan";
             this.plan.UseVisualStyleBackColor = true;
             // 
-            // Street
+            // gb
             // 
-            this.Street.Enabled = false;
-            this.Street.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Street.Location = new System.Drawing.Point(39, 202);
-            this.Street.Name = "Street";
-            this.Street.Size = new System.Drawing.Size(157, 38);
-            this.Street.TabIndex = 6;
-            this.Street.Text = "st";
+            this.gb.Controls.Add(this.limited);
+            this.gb.Controls.Add(this.unlimited3);
+            this.gb.Controls.Add(this.unlimited2);
+            this.gb.Controls.Add(this.unlimited1);
+            this.gb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gb.Location = new System.Drawing.Point(355, 42);
+            this.gb.Name = "gb";
+            this.gb.Size = new System.Drawing.Size(355, 337);
+            this.gb.TabIndex = 8;
+            this.gb.TabStop = false;
+            this.gb.Text = "Your Current Plan";
             // 
-            // City
+            // limited
             // 
-            this.City.Enabled = false;
-            this.City.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.City.HideSelection = false;
-            this.City.Location = new System.Drawing.Point(252, 202);
-            this.City.Name = "City";
-            this.City.Size = new System.Drawing.Size(157, 38);
-            this.City.TabIndex = 7;
-            this.City.Text = "city";
+            this.limited.AutoSize = true;
+            this.limited.Checked = true;
+            this.limited.Enabled = false;
+            this.limited.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.limited.Location = new System.Drawing.Point(43, 80);
+            this.limited.Name = "limited";
+            this.limited.Size = new System.Drawing.Size(123, 35);
+            this.limited.TabIndex = 2;
+            this.limited.TabStop = true;
+            this.limited.Text = "limited";
+            this.limited.UseVisualStyleBackColor = true;
             // 
-            // State
+            // unlimited3
             // 
-            this.State.Enabled = false;
-            this.State.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.State.Location = new System.Drawing.Point(469, 202);
-            this.State.Name = "State";
-            this.State.Size = new System.Drawing.Size(157, 38);
-            this.State.TabIndex = 8;
-            this.State.Text = "state";
+            this.unlimited3.AutoSize = true;
+            this.unlimited3.Enabled = false;
+            this.unlimited3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.unlimited3.Location = new System.Drawing.Point(43, 138);
+            this.unlimited3.Name = "unlimited3";
+            this.unlimited3.Size = new System.Drawing.Size(168, 35);
+            this.unlimited3.TabIndex = 3;
+            this.unlimited3.Text = "unlimited3";
+            this.unlimited3.UseVisualStyleBackColor = true;
             // 
-            // ZipCode
+            // unlimited2
             // 
-            this.ZipCode.Enabled = false;
-            this.ZipCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ZipCode.Location = new System.Drawing.Point(690, 202);
-            this.ZipCode.Name = "ZipCode";
-            this.ZipCode.Size = new System.Drawing.Size(157, 38);
-            this.ZipCode.TabIndex = 9;
-            this.ZipCode.Text = "zipcode";
+            this.unlimited2.AutoSize = true;
+            this.unlimited2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.unlimited2.Location = new System.Drawing.Point(43, 199);
+            this.unlimited2.Name = "unlimited2";
+            this.unlimited2.Size = new System.Drawing.Size(168, 35);
+            this.unlimited2.TabIndex = 4;
+            this.unlimited2.TabStop = true;
+            this.unlimited2.Text = "unlimited2";
+            this.unlimited2.UseVisualStyleBackColor = true;
             // 
-            // Telephone
+            // unlimited1
             // 
-            this.Telephone.Enabled = false;
-            this.Telephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Telephone.Location = new System.Drawing.Point(39, 328);
-            this.Telephone.Name = "Telephone";
-            this.Telephone.Size = new System.Drawing.Size(335, 38);
-            this.Telephone.TabIndex = 10;
-            this.Telephone.Text = "tel";
+            this.unlimited1.AutoSize = true;
+            this.unlimited1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.unlimited1.Location = new System.Drawing.Point(43, 260);
+            this.unlimited1.Name = "unlimited1";
+            this.unlimited1.Size = new System.Drawing.Size(168, 35);
+            this.unlimited1.TabIndex = 5;
+            this.unlimited1.TabStop = true;
+            this.unlimited1.Text = "unlimited1";
+            this.unlimited1.UseVisualStyleBackColor = true;
             // 
-            // EmailAddress
+            // confirm
             // 
-            this.EmailAddress.Enabled = false;
-            this.EmailAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.EmailAddress.Location = new System.Drawing.Point(39, 462);
-            this.EmailAddress.Name = "EmailAddress";
-            this.EmailAddress.Size = new System.Drawing.Size(335, 38);
-            this.EmailAddress.TabIndex = 11;
-            this.EmailAddress.Text = "email";
+            this.confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.confirm.Location = new System.Drawing.Point(611, 603);
+            this.confirm.Name = "confirm";
+            this.confirm.Size = new System.Drawing.Size(285, 60);
+            this.confirm.TabIndex = 7;
+            this.confirm.Text = "Comfirm";
+            this.confirm.UseVisualStyleBackColor = true;
+            this.confirm.Click += new System.EventHandler(this.confirm_Click);
             // 
-            // CreditCardNumber
+            // modify
             // 
-            this.CreditCardNumber.Enabled = false;
-            this.CreditCardNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CreditCardNumber.Location = new System.Drawing.Point(39, 599);
-            this.CreditCardNumber.Name = "CreditCardNumber";
-            this.CreditCardNumber.Size = new System.Drawing.Size(500, 38);
-            this.CreditCardNumber.TabIndex = 12;
-            this.CreditCardNumber.Text = "creditcard";
+            this.modify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.modify.Location = new System.Drawing.Point(202, 603);
+            this.modify.Name = "modify";
+            this.modify.Size = new System.Drawing.Size(285, 60);
+            this.modify.TabIndex = 6;
+            this.modify.Text = "Modify Your Plan";
+            this.modify.UseVisualStyleBackColor = true;
+            this.modify.Click += new System.EventHandler(this.modify_Click);
             // 
-            // AccountCreationDate
+            // contextMenuStrip1
             // 
-            this.AccountCreationDate.Enabled = false;
-            this.AccountCreationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AccountCreationDate.Location = new System.Drawing.Point(594, 86);
-            this.AccountCreationDate.Name = "AccountCreationDate";
-            this.AccountCreationDate.Size = new System.Drawing.Size(157, 38);
-            this.AccountCreationDate.TabIndex = 13;
-            this.AccountCreationDate.Text = "accountcretedate";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(280, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 31);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Last Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(246, 148);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 31);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "City";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(463, 148);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 31);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "State";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(684, 148);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 31);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "ZipCode";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(33, 270);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(142, 31);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Telephone";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(33, 400);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 31);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Email";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(33, 538);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(239, 31);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "credit card number";
-            // 
-            // edit
-            // 
-            this.edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.edit.Location = new System.Drawing.Point(421, 658);
-            this.edit.Name = "edit";
-            this.edit.Size = new System.Drawing.Size(205, 60);
-            this.edit.TabIndex = 21;
-            this.edit.Text = "Edit";
-            this.edit.UseVisualStyleBackColor = true;
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // UserInfo
             // 
@@ -335,6 +470,9 @@
             this.user.ResumeLayout(false);
             this.info.ResumeLayout(false);
             this.info.PerformLayout();
+            this.plan.ResumeLayout(false);
+            this.gb.ResumeLayout(false);
+            this.gb.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,5 +505,16 @@
         private System.Windows.Forms.TextBox ZipCode;
         private System.Windows.Forms.TextBox State;
         private System.Windows.Forms.Button edit;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.RadioButton unlimited3;
+        private System.Windows.Forms.RadioButton limited;
+        private System.Windows.Forms.Button confirm;
+        private System.Windows.Forms.Button modify;
+        private System.Windows.Forms.RadioButton unlimited1;
+        private System.Windows.Forms.RadioButton unlimited2;
+        private System.Windows.Forms.GroupBox gb;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }

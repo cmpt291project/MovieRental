@@ -66,7 +66,9 @@ namespace MovieRental
             movieName.Left = 3;
             movieName.MaximumSize = new Size(150, 40);
             movieName.AutoSize = true;
-            
+
+            movieName.Click += new EventHandler(moviePage);
+
             gb.Controls.Add(movieName);
         }
         public void CreateScore(string s) {
@@ -265,5 +267,10 @@ namespace MovieRental
             wishlist.Enabled = false;
         }
 
+        private void moviePage(object sender, EventArgs e) {
+            LinkLabel lb = (LinkLabel)sender;
+            MovieForm mv = new MovieForm(MID);
+            mv.Show();
+        }
     }
 }
