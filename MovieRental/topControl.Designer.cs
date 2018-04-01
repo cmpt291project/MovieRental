@@ -1,6 +1,6 @@
 ﻿namespace MovieRental
 {
-    partial class Like
+    partial class topControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,32 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelinlike = new System.Windows.Forms.Panel();
+            this.panelintop = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panelinlike
+            // panelintop
             // 
-            this.panelinlike.Location = new System.Drawing.Point(0, 0);
-            this.panelinlike.Name = "panelinlike";
-            this.panelinlike.Size = new System.Drawing.Size(1410, 638);
-            this.panelinlike.TabIndex = 0;
+            this.panelintop.AutoSize = true;
+            this.panelintop.Location = new System.Drawing.Point(3, 3);
+            this.panelintop.Name = "panelintop";
+            this.panelintop.Size = new System.Drawing.Size(1410, 638);
+            this.panelintop.TabIndex = 1;
             // 
-            // Like
+            // topControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSize = true;
-            this.Controls.Add(this.panelinlike);
-            this.Name = "Like";
-            this.Size = new System.Drawing.Size(1413, 712);
-            this.Load += new System.EventHandler(this.Like_Load);
+            this.Controls.Add(this.panelintop);
+            this.Name = "topControl";
+            this.Size = new System.Drawing.Size(1400, 666);
+            this.Load += new System.EventHandler(this.topControl_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelinlike;
+        private System.Windows.Forms.Panel panelintop;
     }
 }

@@ -79,6 +79,15 @@ namespace MovieRental
             else
                 Like.Instance.BringToFront();
 
+            if (!top.Controls.Contains(topControl.Instance))
+            {
+                top.Controls.Add(topControl.Instance);
+                topControl.Instance.Dock = DockStyle.Fill;
+                topControl.Instance.BringToFront();
+            }
+            else
+                topControl.Instance.BringToFront();
+
         }
 
         private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,6 +141,7 @@ namespace MovieRental
                 Console.WriteLine("Suggestions");
                 Ranking.Instance.update();
                 Like.Instance.update();
+                topControl.Instance.update();
             }
 
             else

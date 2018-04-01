@@ -161,6 +161,12 @@
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="topControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="topControl.Designer.cs">
+      <DependentUpon>topControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="topControl.resx">
+      <DependentUpon>topControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC1.resx">
       <DependentUpon>UC1.cs</DependentUpon>
