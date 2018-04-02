@@ -143,5 +143,11 @@ namespace MovieRental
         {
 
         }
+
+        private void help_Click(object sender, EventArgs e)
+        {
+            HelpForm hp = new HelpForm();
+            hp.Show();
+        }
     }
 }

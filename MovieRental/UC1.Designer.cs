@@ -36,12 +36,13 @@
             this.Create = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
+            this.help = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(572, 267);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(426, 31);
             this.textBox1.TabIndex = 0;
@@ -49,7 +50,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(572, 408);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(6);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(426, 31);
             this.textBox2.TabIndex = 1;
@@ -57,7 +58,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(572, 502);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(188, 52);
             this.button1.TabIndex = 2;
@@ -121,10 +122,21 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Movie Rental";
             // 
+            // help
+            // 
+            this.help.Location = new System.Drawing.Point(810, 502);
+            this.help.Name = "help";
+            this.help.Size = new System.Drawing.Size(188, 52);
+            this.help.TabIndex = 8;
+            this.help.Text = "Help";
+            this.help.UseVisualStyleBackColor = true;
+            this.help.Click += new System.EventHandler(this.help_Click);
+            // 
             // UC1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.help);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.Create);
@@ -133,7 +145,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "UC1";
             this.Size = new System.Drawing.Size(1399, 867);
             this.Load += new System.EventHandler(this.UC1_Load);
@@ -152,5 +164,6 @@
         private System.Windows.Forms.LinkLabel Create;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button help;
     }
 }
