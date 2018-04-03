@@ -57,6 +57,10 @@ namespace MovieRental
             panel2.Visible = false;
             add.Visible = false;
             save.Visible = true;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            update.Enabled = false;
+            button6.Enabled = false;
         }
 
 
@@ -156,13 +160,43 @@ namespace MovieRental
         {
             panel2.Visible = false;
             dataGridView2.Enabled = true;
+            suggestion();
+        }
+
+        private void suggestion()
+        {
+            //MessageBox.Show("update");
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT top 5 MovieName, M.MID, rate from(Select AVG(Rating) as rate, MID FROM MovieRating group by MID) as T , Movie M where T.MID = M.MID Order by rate DESC", connection);
+            //SqlDataAdapter dataAdapter2 = new SqlDataAdapter("SELECT M.MovieName from Movie M, MovieQueue MQ where M.MID = MQ.MID and connection);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            
+            int i = 0;
+            foreach (DataRow row in dataTable.Rows)
+            {
+                //foreach (DataColumn column in dataTable.Columns)
+                //{
+                MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
+                movieBoxRent.createNewBox(suggest, i);
+                //MessageBox.Show(row["MID"].ToString().Trim());
+                movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
+                movieBoxRent.CreateName(row["MovieName"].ToString());
+                //MessageBox.Show(row["MovieName"].ToString());
+                movieBoxRent.CreateScore(row["rate"].ToString());
+                i++;
+                //}
+            }
+            connection.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             panel2.Visible = false;
             dataGridView2.Enabled = true;
-
+            label10.Text = FirstName.Text.Trim()+ ", " + LastName.Text.Trim();
+            label12.Text = Street.Text.Trim() + "Street " + City.Text.Trim() + ", " + State.Text.Trim() + " " + ZipCode.Text.Trim();
         }
 
         private void sendSaveQuery()
@@ -276,9 +310,11 @@ namespace MovieRental
                 AccountCreationDate.Text = dataGridView2.Rows[e.RowIndex].Cells[11].Value.ToString();
                 CreditCardNumber.Text = dataGridView2.Rows[e.RowIndex].Cells[12].Value.ToString();
                 rateTextbox.Text = dataGridView2.Rows[e.RowIndex].Cells[13].Value.ToString();
-
             }
-
+            button2.Enabled = true;
+            button3.Enabled = true;
+            update.Enabled = true;
+            button6.Enabled = true;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -336,6 +372,17 @@ namespace MovieRental
         private void add_Click(object sender, EventArgs e)
         {
             sendAddQuery();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            SqlCommand sqlCmd = new SqlCommand("Delete from Customer Where CID=@CID", con);
+            sqlCmd.Parameters.AddWithValue("CID", dataGridView2.CurrentRow.Cells["CID"].Value.ToString());
+            sqlCmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Delete User Successfully!");
+            DisplayData();
         }
     }
 }
