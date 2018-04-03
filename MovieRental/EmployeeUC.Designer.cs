@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel4 = new System.Windows.Forms.Panel();
+            this.Allcustomer = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.update = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -39,9 +40,12 @@
             this.searchTxt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.add = new System.Windows.Forms.Button();
             this.cidtext = new System.Windows.Forms.TextBox();
             this.CID = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.rateTextbox = new System.Windows.Forms.TextBox();
+            this.ratelabel = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.Atype = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -71,10 +75,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.Allcustomer = new System.Windows.Forms.Button();
-            this.add = new System.Windows.Forms.Button();
-            this.ratelabel = new System.Windows.Forms.Label();
-            this.rateTextbox = new System.Windows.Forms.TextBox();
+            this.suggest = new System.Windows.Forms.Panel();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -84,6 +85,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.panel2);
             this.panel4.Controls.Add(this.Allcustomer);
             this.panel4.Controls.Add(this.button6);
             this.panel4.Controls.Add(this.update);
@@ -96,8 +98,18 @@
             this.panel4.Controls.Add(this.panel1);
             this.panel4.Location = new System.Drawing.Point(48, 17);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(737, 615);
+            this.panel4.Size = new System.Drawing.Size(747, 700);
             this.panel4.TabIndex = 29;
+            // 
+            // Allcustomer
+            // 
+            this.Allcustomer.Location = new System.Drawing.Point(15, 3);
+            this.Allcustomer.Name = "Allcustomer";
+            this.Allcustomer.Size = new System.Drawing.Size(88, 36);
+            this.Allcustomer.TabIndex = 33;
+            this.Allcustomer.Text = "All Customer";
+            this.Allcustomer.UseVisualStyleBackColor = true;
+            this.Allcustomer.Click += new System.EventHandler(this.Allcustomer_Click);
             // 
             // button6
             // 
@@ -107,6 +119,7 @@
             this.button6.TabIndex = 32;
             this.button6.Text = "Delete";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // update
             // 
@@ -177,16 +190,16 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Location = new System.Drawing.Point(3, 273);
+            this.panel1.Controls.Add(this.suggest);
+            this.panel1.Location = new System.Drawing.Point(15, 286);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(674, 340);
+            this.panel1.Size = new System.Drawing.Size(731, 411);
             this.panel1.TabIndex = 8;
             // 
             // panel2
@@ -195,7 +208,6 @@
             this.panel2.Controls.Add(this.cidtext);
             this.panel2.Controls.Add(this.CID);
             this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.save);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
@@ -204,10 +216,21 @@
             this.panel2.Controls.Add(this.st);
             this.panel2.Controls.Add(this.name);
             this.panel2.Controls.Add(this.FirstName);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Location = new System.Drawing.Point(15, 286);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(674, 342);
+            this.panel2.Size = new System.Drawing.Size(732, 414);
             this.panel2.TabIndex = 47;
+            // 
+            // add
+            // 
+            this.add.Location = new System.Drawing.Point(180, 306);
+            this.add.Name = "add";
+            this.add.Size = new System.Drawing.Size(101, 28);
+            this.add.TabIndex = 50;
+            this.add.Text = "Add";
+            this.add.UseVisualStyleBackColor = true;
+            this.add.Visible = false;
+            this.add.Click += new System.EventHandler(this.add_Click);
             // 
             // cidtext
             // 
@@ -233,6 +256,7 @@
             this.panel3.Controls.Add(this.ratelabel);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.Atype);
+            this.panel3.Controls.Add(this.save);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label5);
@@ -247,8 +271,25 @@
             this.panel3.Controls.Add(this.Street);
             this.panel3.Location = new System.Drawing.Point(29, 81);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(511, 221);
+            this.panel3.Size = new System.Drawing.Size(543, 284);
             this.panel3.TabIndex = 47;
+            // 
+            // rateTextbox
+            // 
+            this.rateTextbox.Location = new System.Drawing.Point(342, 196);
+            this.rateTextbox.Name = "rateTextbox";
+            this.rateTextbox.Size = new System.Drawing.Size(126, 21);
+            this.rateTextbox.TabIndex = 49;
+            // 
+            // ratelabel
+            // 
+            this.ratelabel.AutoSize = true;
+            this.ratelabel.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ratelabel.Location = new System.Drawing.Point(344, 169);
+            this.ratelabel.Name = "ratelabel";
+            this.ratelabel.Size = new System.Drawing.Size(40, 16);
+            this.ratelabel.TabIndex = 48;
+            this.ratelabel.Text = "Rate";
             // 
             // label13
             // 
@@ -402,7 +443,7 @@
             // save
             // 
             this.save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.save.Location = new System.Drawing.Point(376, 306);
+            this.save.Location = new System.Drawing.Point(305, 224);
             this.save.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(102, 29);
@@ -557,43 +598,13 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // Allcustomer
+            // suggest
             // 
-            this.Allcustomer.Location = new System.Drawing.Point(15, 3);
-            this.Allcustomer.Name = "Allcustomer";
-            this.Allcustomer.Size = new System.Drawing.Size(88, 36);
-            this.Allcustomer.TabIndex = 33;
-            this.Allcustomer.Text = "All Customer";
-            this.Allcustomer.UseVisualStyleBackColor = true;
-            this.Allcustomer.Click += new System.EventHandler(this.Allcustomer_Click);
-            // 
-            // add
-            // 
-            this.add.Location = new System.Drawing.Point(180, 306);
-            this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(101, 28);
-            this.add.TabIndex = 50;
-            this.add.Text = "Add";
-            this.add.UseVisualStyleBackColor = true;
-            this.add.Visible = false;
-            this.add.Click += new System.EventHandler(this.add_Click);
-            // 
-            // ratelabel
-            // 
-            this.ratelabel.AutoSize = true;
-            this.ratelabel.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ratelabel.Location = new System.Drawing.Point(344, 169);
-            this.ratelabel.Name = "ratelabel";
-            this.ratelabel.Size = new System.Drawing.Size(40, 16);
-            this.ratelabel.TabIndex = 48;
-            this.ratelabel.Text = "Rate";
-            // 
-            // rateTextbox
-            // 
-            this.rateTextbox.Location = new System.Drawing.Point(342, 196);
-            this.rateTextbox.Name = "rateTextbox";
-            this.rateTextbox.Size = new System.Drawing.Size(126, 21);
-            this.rateTextbox.TabIndex = 49;
+            this.suggest.AutoScroll = true;
+            this.suggest.Location = new System.Drawing.Point(15, 71);
+            this.suggest.Name = "suggest";
+            this.suggest.Size = new System.Drawing.Size(654, 326);
+            this.suggest.TabIndex = 52;
             // 
             // EmployeeUC
             // 
@@ -602,7 +613,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.panel4);
             this.Name = "EmployeeUC";
-            this.Size = new System.Drawing.Size(862, 656);
+            this.Size = new System.Drawing.Size(862, 720);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -665,5 +676,6 @@
         private System.Windows.Forms.Button add;
         private System.Windows.Forms.TextBox rateTextbox;
         private System.Windows.Forms.Label ratelabel;
+        private System.Windows.Forms.Panel suggest;
     }
 }
