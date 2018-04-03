@@ -103,6 +103,11 @@
             this.SocialSecurityTxt = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.Search2Txt = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.searchByYear = new System.Windows.Forms.Button();
@@ -120,11 +125,6 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -860,6 +860,51 @@
             this.panel4.Size = new System.Drawing.Size(603, 283);
             this.panel4.TabIndex = 28;
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(317, 135);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(142, 13);
+            this.label37.TabIndex = 13;
+            this.label37.Text = "Search active users by date:";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(353, 34);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(41, 13);
+            this.label36.TabIndex = 12;
+            this.label36.Text = "Activity";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(9, 170);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(81, 13);
+            this.label35.TabIndex = 11;
+            this.label35.Text = "Customer email:";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(22, 132);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(68, 13);
+            this.label34.TabIndex = 10;
+            this.label34.Text = "Movie name:";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(43, 92);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(39, 13);
+            this.label33.TabIndex = 9;
+            this.label33.Text = "Genre:";
+            // 
             // Search2Txt
             // 
             this.Search2Txt.Location = new System.Drawing.Point(97, 163);
@@ -1008,51 +1053,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(43, 92);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(39, 13);
-            this.label33.TabIndex = 9;
-            this.label33.Text = "Genre:";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(22, 132);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(68, 13);
-            this.label34.TabIndex = 10;
-            this.label34.Text = "Movie name:";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(9, 170);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(81, 13);
-            this.label35.TabIndex = 11;
-            this.label35.Text = "Customer email:";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(353, 34);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(41, 13);
-            this.label36.TabIndex = 12;
-            this.label36.Text = "Activity";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(317, 135);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(142, 13);
-            this.label37.TabIndex = 13;
-            this.label37.Text = "Search active users by date:";
             // 
             // ManagerUC2
             // 
