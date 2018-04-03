@@ -16,6 +16,7 @@ namespace MovieRental
         private static YourMovieControl _instance;
         private string[] movieInfo = new string[6];
         private List<MovieGroupBox> list = new List<MovieGroupBox>();
+
         public static YourMovieControl Instance
         {
             get
@@ -32,11 +33,15 @@ namespace MovieRental
 
         private void YourMovieControl_Load(object sender, EventArgs e)
         {
-            Label label = new Label();
-
+            createWishList();
         }
 
         private void button3_Click(object sender, EventArgs e)
+        {
+            createCurrentRental();
+        }
+
+        public void createCurrentRental()
         {
             YourMoviePanel2.Controls.Clear();
             list.Clear();
@@ -53,7 +58,7 @@ namespace MovieRental
                 {
                     movieInfo[x] = row[column].ToString();
                     x++;
-                    //Console.WriteLine(row[column]);
+
                 }
                 x = 0;
                 MovieGroupBox newGroupBox = new MovieGroupBox();
@@ -66,13 +71,17 @@ namespace MovieRental
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
                 list.Add(newGroupBox);
             }
-
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             YourMoviePanel2.Controls.Clear();
             list.Clear();
+            createRentalHistory();
+        }
+
+        private void createRentalHistory()
+        {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter a = new SqlDataAdapter("SELECT MovieName, Director, MovieType, ReleaseDate, AddDate, M.MID FROM [Order] O, Movie as M WHERE M.MID = O.MID and O.CID ='" + UC1.id + "'", connection);
@@ -86,7 +95,6 @@ namespace MovieRental
                 {
                     movieInfo[x] = row[column].ToString();
                     x++;
-                    //Console.WriteLine(row[column]);
                 }
                 x = 0;
                 MovieGroupBox newGroupBox = new MovieGroupBox();
@@ -103,6 +111,11 @@ namespace MovieRental
 
         private void button5_Click(object sender, EventArgs e)
         {
+            createWishList();
+        }
+
+        public void createWishList()
+        {
             YourMoviePanel2.Controls.Clear();
             list.Clear();
             SqlConnection connection = new SqlConnection(Form4.connectionString);
@@ -118,7 +131,6 @@ namespace MovieRental
                 {
                     movieInfo[x] = row[column].ToString();
                     x++;
-                    //Console.WriteLine(row[column]);
                 }
                 x = 0;
                 MovieGroupBox newGroupBox = new MovieGroupBox();
@@ -131,9 +143,8 @@ namespace MovieRental
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
                 newGroupBox.SetChooseMovieButton(newGroupBox.groupBox, "Rent");
                 newGroupBox.DeleteMovieFromListButton(newGroupBox.groupBox, "Delete");
-                list.Add(newGroupBox);
+
             }
-            
         }
     }
 }

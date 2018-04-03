@@ -94,14 +94,14 @@ namespace MovieRental
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (!panel1.Controls.Contains(ManagerUC2.Instance))
+            if (!panel1.Controls.Contains(EmployeeUC.Instance))
             {
-                panel1.Controls.Add(ManagerUC2.Instance);
-                ManagerUC2.Instance.Dock = DockStyle.Fill;
-                ManagerUC2.Instance.BringToFront();
+                panel1.Controls.Add(EmployeeUC.Instance);
+                EmployeeUC.Instance.Dock = DockStyle.Fill;
+                EmployeeUC.Instance.BringToFront();
             }
             else
-                ManagerUC2.Instance.BringToFront();
+                EmployeeUC.Instance.BringToFront();
         }
 
     
