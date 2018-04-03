@@ -73,6 +73,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorInfo.cs" />
+    <Compile Include="EmployeeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EmployeeUC.Designer.cs">
+      <DependentUpon>EmployeeUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="FeatureControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </Compile>
     <EmbeddedResource Include="EmployeeHome.resx">
       <DependentUpon>EmployeeHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeUC.resx">
+      <DependentUpon>EmployeeUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FeatureControl.resx">
       <DependentUpon>FeatureControl.cs</DependentUpon>

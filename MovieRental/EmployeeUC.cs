@@ -17,6 +17,7 @@ namespace MovieRental
         SqlConnection con = new SqlConnection(Form4.connectionString);
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapt;
+        DataGridViewCellMouseEventArgs e;
 
         public static EmployeeUC Instance
         {
@@ -46,6 +47,7 @@ namespace MovieRental
 
         private void DisplayData()
         {
+            dataGridView2.Enabled = true;
             con.Open();
             DataTable dt = new DataTable();
             adapt = new SqlDataAdapter("SELECT * from Customer", con);
@@ -53,6 +55,8 @@ namespace MovieRental
             dataGridView2.DataSource = dt;
             con.Close();
             panel2.Visible = false;
+            add.Visible = false;
+            save.Visible = true;
         }
 
 
@@ -77,15 +81,16 @@ namespace MovieRental
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DisplayData();
+            DisplayData();   
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            add.Visible = true;
+            save.Visible = false;
             panel2.Visible = true;
             dataGridView2.Enabled = false;
             changeFieldState(true);
-            edit.Enabled = false;
             clearTable();
         }
 
@@ -133,17 +138,16 @@ namespace MovieRental
         {
             changeFieldState(true);
             save.Enabled = true;
-            edit.Enabled = false;
         }
 
         private void save_Click_1(object sender, EventArgs e)
         {
             changeFieldState(false);
             save.Enabled = false;
-            edit.Enabled = true;
             panel4.BringToFront();
             dataGridView2.Enabled = true;
             panel2.Visible = false;
+            sendSaveQuery();
             MessageBox.Show("Save successfully!");
             save.Enabled = true;
         }
@@ -161,17 +165,44 @@ namespace MovieRental
 
         }
 
-        private bool CheckCustomer(string name)
+        private void sendSaveQuery()
+        {
+            if (cidtext.Text == "")
+            {
+                sendAddQuery();
+                return;
+            }
+            DateTimeOffset localDate = DateTimeOffset.Now;
+            cmd = new SqlCommand("update Customer set LastName=@lastname, FirstName=@firstname," +
+                    "Street=@street, City=@city, State=@state, ZipCode=@zipcode, Telephone=@phone, CreditCardNumber=@creditcard," +
+                    "Rating=@hrate, AccountType=@type, EmailAddress=@email where CID=@cid", con);
+            con.Open();
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@cid", cidtext.Text);
+            cmd.Parameters.AddWithValue("@lastname", LastName.Text);
+            cmd.Parameters.AddWithValue("@firstname", FirstName.Text);
+            cmd.Parameters.AddWithValue("@street", Street.Text);
+            cmd.Parameters.AddWithValue("@city", City.Text);
+            cmd.Parameters.AddWithValue("@state", State.Text);
+            cmd.Parameters.AddWithValue("@zipcode", ZipCode.Text);
+            cmd.Parameters.AddWithValue("@phone", Telephone.Text);
+            cmd.Parameters.AddWithValue("@creditcard", CreditCardNumber.Text);
+            cmd.Parameters.AddWithValue("@hrate", rateTextbox.Text);
+            cmd.Parameters.AddWithValue("@type", Atype.Text);
+            cmd.Parameters.AddWithValue("@email", EmailAddress.Text);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        private bool CheckCustomer()
         {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select ActualReturnDate, O.MID, M.CurrentNum from[" + name + "] O, Movie M where O.CID =" + UC1.id, connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select CID from Customer C where C.CID =" + UC1.id, connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             foreach (DataRow row in dataTable.Rows)
             {
-                //MessageBox.Show(row["ActualReturnDate"].ToString());
-                if (row["ActualReturnDate"].ToString() == "")
+                if (row["CID"].ToString() == "")
                 {
                     return false;
                 }
@@ -181,63 +212,130 @@ namespace MovieRental
             return true;
         }
 
-        private void sendSaveQuery()
+        private void sendAddQuery()
         {
-            //CheckCustomer()
-            string newMID;
-            using (cmd = new SqlCommand("select MAX(Customer(CID as int))+1 from Customer", con))
-            {
-                con.Open();
-                newMID = cmd.ExecuteScalar().ToString();
-                con.Close();
+                string newMID;
+                using (cmd = new SqlCommand("select MAX(CID)+1 from Customer", con))
+                {
+                    con.Open();
+                    newMID = cmd.ExecuteScalar().ToString();
+                    con.Close();
 
-            }
-            using (cmd = new SqlCommand("insert into Customer(CID, LastName, FirstName, Street, City, State, ZipCode, Telephone, EmailAddress, AccountNumber, AccountType," +
-                "AccountCreationDate, CreditCardNumber) values(@CID,@FN,@SN,@Street,@City,@State,@ZipCode,@Telephone,@Email,@ANumber,@AType,@ADate,@CCN)", con))
-            {
+                }
+                using (cmd = new SqlCommand("insert into Customer(CID, LastName, FirstName, Street, City, State, ZipCode, Telephone, EmailAddress, AccountNumber, AccountType," +
+                    "AccountCreationDate, CreditCardNumber) values(@CID,@FN,@SN,@Street,@City,@State,@ZipCode,@Telephone,@Email,@ANumber,@AType,@ADate,@CCN)", con))
+                {
 
-                con.Open();
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@CID", newMID);
-                cmd.Parameters.AddWithValue("@FN", FirstName.Text);
-                cmd.Parameters.AddWithValue("@SN", LastName.Text);
-                cmd.Parameters.AddWithValue("@Street", Street.Text);
-                cmd.Parameters.AddWithValue("@City", City.Text);
-                cmd.Parameters.AddWithValue("@State", State.Text);
-                cmd.Parameters.AddWithValue("@ZipCode", ZipCode.Text);
-                cmd.Parameters.AddWithValue("@Telephone", Telephone.Text);
-                cmd.Parameters.AddWithValue("@Email", EmailAddress.Text);
-                cmd.Parameters.AddWithValue("@ANumber", newMID);
-                cmd.Parameters.AddWithValue("@AType", Atype.Text);
-                cmd.Parameters.AddWithValue("@ADate", AccountCreationDate.Text);
-                cmd.Parameters.AddWithValue("@CCN", CreditCardNumber.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                    con.Open();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@CID", newMID);
+                    cmd.Parameters.AddWithValue("@FN", FirstName.Text);
+                    cmd.Parameters.AddWithValue("@SN", LastName.Text);
+                    cmd.Parameters.AddWithValue("@Street", Street.Text);
+                    cmd.Parameters.AddWithValue("@City", City.Text);
+                    cmd.Parameters.AddWithValue("@State", State.Text);
+                    cmd.Parameters.AddWithValue("@ZipCode", ZipCode.Text);
+                    cmd.Parameters.AddWithValue("@Telephone", Telephone.Text);
+                    cmd.Parameters.AddWithValue("@Email", EmailAddress.Text);
+                    cmd.Parameters.AddWithValue("@ANumber", newMID);
+                    cmd.Parameters.AddWithValue("@AType", Atype.Text);
+                    cmd.Parameters.AddWithValue("@ADate", AccountCreationDate.Text);
+                    cmd.Parameters.AddWithValue("@CCN", CreditCardNumber.Text);
+                if (checkBlank())
+                {
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    DisplayData();
+                    add.Visible = false;
+                }
+                else
+                {
+                    con.Close();
+                    MessageBox.Show("Please fill in all blanks");
+                }
+                
 
-            }
+                }
         }
 
         private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cidtext.Text = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString();
-            FirstName.Text = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
-            LastName.Text = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
-            Street.Text = dataGridView2.Rows[e.RowIndex].Cells[3].Value.ToString();
-            City.Text = dataGridView2.Rows[e.RowIndex].Cells[4].Value.ToString();
-            State.Text = dataGridView2.Rows[e.RowIndex].Cells[5].Value.ToString();
-            ZipCode.Text = dataGridView2.Rows[e.RowIndex].Cells[6].Value.ToString();
-            Telephone.Text = dataGridView2.Rows[e.RowIndex].Cells[7].Value.ToString();
-            EmailAddress.Text = dataGridView2.Rows[e.RowIndex].Cells[8].Value.ToString();
-            Atype.Text = dataGridView2.Rows[e.RowIndex].Cells[10].Value.ToString();
-            AccountCreationDate.Text = dataGridView2.Rows[e.RowIndex].Cells[11].Value.ToString();
-            CreditCardNumber.Text = dataGridView2.Rows[e.RowIndex].Cells[12].Value.ToString();
-            Atype.Text = dataGridView2.Rows[e.RowIndex].Cells[10].Value.ToString();
+            this.e = e;
+            if (dataGridView2.Rows[e.RowIndex].Cells.Count >= 10)
+            {
+                cidtext.Text = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString();
+                FirstName.Text = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
+                LastName.Text = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
+                Street.Text = dataGridView2.Rows[e.RowIndex].Cells[3].Value.ToString();
+                City.Text = dataGridView2.Rows[e.RowIndex].Cells[4].Value.ToString();
+                State.Text = dataGridView2.Rows[e.RowIndex].Cells[5].Value.ToString();
+                ZipCode.Text = dataGridView2.Rows[e.RowIndex].Cells[6].Value.ToString();
+                Telephone.Text = dataGridView2.Rows[e.RowIndex].Cells[7].Value.ToString();
+                EmailAddress.Text = dataGridView2.Rows[e.RowIndex].Cells[8].Value.ToString();
+                Atype.Text = dataGridView2.Rows[e.RowIndex].Cells[10].Value.ToString();
+                AccountCreationDate.Text = dataGridView2.Rows[e.RowIndex].Cells[11].Value.ToString();
+                CreditCardNumber.Text = dataGridView2.Rows[e.RowIndex].Cells[12].Value.ToString();
+                rateTextbox.Text = dataGridView2.Rows[e.RowIndex].Cells[13].Value.ToString();
+
+            }
 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Allcustomer_Click(object sender, EventArgs e)
+        {
+            DisplayData();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            dataGridView2.Enabled = true;
+            con.Open();
+            DataTable dt = new DataTable();
+            adapt = new SqlDataAdapter("select concat(C.FirstName, C.LastName) as Fullname, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID", con);
+            adapt.Fill(dt);
+            dataGridView2.DataSource = dt;
+            con.Close();
+            panel2.Visible = false;
+        }
+
+        private bool checkChooseRow()
+        {
+            if (e == null)
+            {
+                return false;
+            }
+            return dataGridView2.Rows[e.RowIndex].Cells.Count > 0;
+        }
+
+        private void update_Click(object sender, EventArgs e)
+        {
+            if (checkChooseRow())
+            {
+                panel2.Visible = true;
+                dataGridView2.Enabled = false;
+                changeFieldState(true);
+            }
+            else
+                MessageBox.Show("Please choose a Customer to Edit.");
+        }
+
+        private bool checkBlank()
+        {
+            if (FirstName.Text != "" && LastName.Text != "" && Street.Text != "" && City.Text != "" && 
+                State.Text != "" && ZipCode.Text != "" && Telephone.Text != "" && EmailAddress.Text != "" && CreditCardNumber.Text != "" && rateTextbox.Text != "")
+            {
+                return true;
+            }
+            return false;
+        }
+        private void add_Click(object sender, EventArgs e)
+        {
+            sendAddQuery();
         }
     }
 }
