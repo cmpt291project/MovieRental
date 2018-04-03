@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 
 namespace MovieRental
 {
@@ -33,6 +34,9 @@ namespace MovieRental
         SqlConnection con = new SqlConnection(Form4.connectionString);
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapt;
+        string strFilePath = "";
+        Image DefaultImage;
+        Byte[] ImageByteArray;
 
         public ManagerUC2()
         {
@@ -50,60 +54,117 @@ namespace MovieRental
             dateTimePicker2.CustomFormat = "MM/dd/yyyy";
             dateTimePicker3.Format = DateTimePickerFormat.Custom;
             dateTimePicker3.CustomFormat = "MM/dd/yyyy";
+            dateTimePicker4.Format = DateTimePickerFormat.Custom;
+            dateTimePicker4.CustomFormat = "MM/dd/yyyy";
+            dateTimePicker5.Format = DateTimePickerFormat.Custom;
+            dateTimePicker5.CustomFormat = "MM/dd/yyyy";
+
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
 
         }
 
         private void btnInsertCasting_Click(object sender, EventArgs e)
         {
-            using (cmd = new SqlCommand("insert into Casting(MID,AID) values(@MID,@AID)", con))
+            if (MIDtxt.Text != "" && AIDtxt.Text != "")
             {
+                if (!ValidateCastingForm())
+                {
+                    MessageBox.Show("Please fix error.");
+                    return;
+                }
+                using (cmd = new SqlCommand("select top 1 * from Casting as C where C.AID=@AID and C.MID=@MID", con))
+                {
+                    con.Open();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@AID", AIDtxt.Text.Trim());
+                    cmd.Parameters.AddWithValue("@MID", MIDtxt.Text.Trim());
+                    string test = (string)cmd.ExecuteScalar();
 
-                con.Open();
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@AID", AIDtxt.Text);
-                cmd.Parameters.AddWithValue("@MID", MIDtxt.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                    con.Close();
+                    if (test != null)
+                    {
+                        MessageBox.Show("Record already exists.");
+                        return;
+                    }
+                }
+                using (cmd = new SqlCommand("insert into Casting(MID,AID) values(@MID,@AID)", con))
+                {
 
+                    con.Open();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@AID", AIDtxt.Text);
+                    cmd.Parameters.AddWithValue("@MID", MIDtxt.Text);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    ClearCastingData();
+
+                }
             }
+            else
+                MessageBox.Show("Please fill out Casting fields.");
         }
 
         private void btnInsertActor_Click(object sender, EventArgs e)
         {
-            using (cmd = new SqlCommand("select MAX(CAST(AID as int))+1 from Actor", con))
+            if (LastNameTxt.Text != "" && FirstNameTxt.Text != "" && genderCB.Text != "")
             {
+                using (cmd = new SqlCommand("select MAX(CAST(AID as int))+1 from Actor", con))
+                {
+                    con.Open();
+                    //Console.WriteLine(cmd.ExecuteScalar().ToString());
+                    newAID = cmd.ExecuteScalar().ToString();
+                    //Console.WriteLine(newMID);
+                    //int test = Convert.ToInt32(maxID);
+                    //Console.WriteLine(test);
+                    con.Close();
+
+                }
+
+
+                cmd = new SqlCommand("insert into Actor(AID,LastName,FirstName,Gender,DateOfBirth) " +
+                        "values(@AID,@lname,@fname,@gender,@dob)", con);
                 con.Open();
-                //Console.WriteLine(cmd.ExecuteScalar().ToString());
-                newAID = cmd.ExecuteScalar().ToString();
-                //Console.WriteLine(newMID);
-                //int test = Convert.ToInt32(maxID);
-                //Console.WriteLine(test);
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@AID", newAID);
+                cmd.Parameters.AddWithValue("@lname", LastNameTxt.Text);
+                cmd.Parameters.AddWithValue("@fname", FirstNameTxt.Text);
+                //cmd.Parameters.AddWithValue("@gender", GenderTxt.Text);
+                cmd.Parameters.AddWithValue("@gender", genderCB.Text);
+                //cmd.Parameters.AddWithValue("@dob", BirthdateTxt.Text);
+                cmd.Parameters.AddWithValue("@dob", Convert.ToDateTime(dateTimePicker4.Text));
+                cmd.ExecuteNonQuery();
                 con.Close();
+                DisplayActors();
+                ClearActorData();
 
             }
-            
-            cmd = new SqlCommand("insert into Actor(AID,LastName,FirstName,Gender,DateOfBirth) " +
-                    "values(@AID,@lname,@fname,@gender,@dob)", con);
-            con.Open();
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@AID", newAID);
-            cmd.Parameters.AddWithValue("@lname", LastNameTxt.Text);
-            cmd.Parameters.AddWithValue("@fname", BirthdateTxt.Text);
-            cmd.Parameters.AddWithValue("@gender", FirstNameTxt.Text);
-            cmd.Parameters.AddWithValue("@dob", GenderTxt.Text);
-            cmd.ExecuteNonQuery();
-            con.Close();
-            DisplayActors();
-
-               
+            else
+                MessageBox.Show("Please fill out Actor fields.");
 
             
         }
 
         private void Insert_Click(object sender, EventArgs e)
         {
-            if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "")
+            if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "" && DistFeeTxt.Text != "" && NumCopiesTxt.Text != ""
+                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "" && picNameTxt.Text.Trim() != "")
             {
+                if (strFilePath == "")
+                {
+                    if (ImageByteArray.Length != 0)
+                    {
+                        ImageByteArray = new byte[] { };
+                    }
+                }
+                else
+                {
+                    Image temp = new Bitmap(strFilePath);
+                    MemoryStream strm = new MemoryStream();
+                    temp.Save(strm, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    ImageByteArray = strm.ToArray();
+                }
+
                 using(cmd = new SqlCommand("select MAX(CAST(MID as int))+1 from Movie", con))
                 {
                     con.Open();
@@ -116,8 +177,8 @@ namespace MovieRental
 
                 }
                 cmd = new SqlCommand("insert into Movie(MID,MovieName,MovieType,DistribututionFee,NumberOfCopies," +
-                    "ReleaseDate,AddDate,Director,CurrentNum) values(@MID,@name,@type,@distFee,@numCopies,@releaseDate" +
-                    ",@addDate,@director,@currNum)", con);
+                    "ReleaseDate,AddDate,Director,CurrentNum,Poster,PosterTitle) values(@MID,@name,@type,@distFee,@numCopies,@releaseDate" +
+                    ",@addDate,@director,@currNum,@poster,@posterTitle)", con);
                 con.Open();
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@MID", newMID);
@@ -132,6 +193,8 @@ namespace MovieRental
                 //cmd.Parameters.AddWithValue("@addDate", AddDateTxt.Text);
                 cmd.Parameters.AddWithValue("@director", DirectorTxt.Text);
                 cmd.Parameters.AddWithValue("@currNum", CurrentNumTxt.Text);
+                cmd.Parameters.AddWithValue("@poster", ImageByteArray);
+                cmd.Parameters.AddWithValue("@posterTitle", picNameTxt.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
                 MessageBox.Show("Record Inserted Successfully");
@@ -146,94 +209,161 @@ namespace MovieRental
         }
         private void btnInsertEmployee_Click(object sender, EventArgs e)
         {
-            using (cmd = new SqlCommand("select MAX(CAST(EID as int))+1 from Employee", con))
+            if (eLastNameTxt.Text != "" && eFirstNameTxt.Text != "" && StreetTxt.Text != "" && CityTxt.Text != ""
+                && StateTxt.Text != "" && ZipCodeTxt.Text != "" && TelephoneTxt.Text != "" && HourlyRateTxt.Text != ""
+                && TypeTxt.Text != "" && SocialSecurityTxt.Text != "" && EmailTxt.Text != "" && PasswordTxt.Text != "")
             {
+                if (!ValidateEmployeeForm())
+                {
+                    MessageBox.Show("Please fix errors.");
+                    return;
+                }
+
+                using (cmd = new SqlCommand("select top 1 * from Password where EmailAddress=@email", con))
+                {
+                    con.Open();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
+                    string test = (string)cmd.ExecuteScalar();
+
+                    con.Close();
+                    if (test != null)
+                    {
+                        MessageBox.Show("Email Already Exists.");
+                        return;
+                    }
+                }
+
+                using (cmd = new SqlCommand("select MAX(CAST(EID as int))+1 from Employee", con))
+                {
+                    con.Open();
+                    //Console.WriteLine(cmd.ExecuteScalar().ToString());
+                    newEID = cmd.ExecuteScalar().ToString();
+                    Console.WriteLine(newEID);
+                    //int test = Convert.ToInt32(maxID);
+                    //Console.WriteLine(test);
+                    con.Close();
+
+                }
+                cmd = new SqlCommand("insert into Employee(EID,SocialSecurityNumber,LastName,FirstName,Street,City,State," +
+                    "ZipCode,Telephone,StartDate,HourlyRate,EmployeeType,EmailAddress) values(@EID,@socialsec,@lastname," +
+                    "@firstname,@street,@city,@state,@zipcode,@phone,@startdate,@hrate,@type,@email)", con);
                 con.Open();
-                //Console.WriteLine(cmd.ExecuteScalar().ToString());
-                newEID = cmd.ExecuteScalar().ToString();
-                Console.WriteLine(newEID);
-                //int test = Convert.ToInt32(maxID);
-                //Console.WriteLine(test);
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@EID", newEID);
+                cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text);
+                cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text);
+                cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text);
+                cmd.Parameters.AddWithValue("@street", StreetTxt.Text);
+                cmd.Parameters.AddWithValue("@city", CityTxt.Text);
+                cmd.Parameters.AddWithValue("@state", StateTxt.Text);
+                cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text);
+                cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text);
+                cmd.Parameters.AddWithValue("@startdate", Convert.ToDateTime(dateTimePicker5.Text));
+                cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text);
+                cmd.Parameters.AddWithValue("@type", TypeTxt.Text);
+                cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
+                cmd.ExecuteNonQuery();
                 con.Close();
 
+                cmd = new SqlCommand("insert into Password(EmailAddress,Password,EID,CID,UserType) values(@email,@password,@EID,@CID,@type)", con);
+                con.Open();
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
+                cmd.Parameters.AddWithValue("@password", PasswordTxt.Text);
+                cmd.Parameters.AddWithValue("@EID", newEID);
+                cmd.Parameters.AddWithValue("@CID", DBNull.Value);
+                cmd.Parameters.AddWithValue("@type", "e");
+                cmd.ExecuteNonQuery();
+                con.Close();
+                DisplayEmployees();
             }
-            cmd = new SqlCommand("insert into Employee(EID,SocialSecurityNumber,LastName,FirstName,Street,City,State," +
-                "ZipCode,Telephone,StartDate,HourlyRate,EmployeeType,EmailAddress) values(@EID,@socialsec,@lastname," +
-                "@firstname,@street,@city,@state,@zipcode,@phone,@startdate,@hrate,@type,@email)", con);
-            con.Open();
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@EID", newEID);
-            cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text);
-            cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text);
-            cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text);
-            cmd.Parameters.AddWithValue("@street", StreetTxt.Text);
-            cmd.Parameters.AddWithValue("@city", CityTxt.Text);
-            cmd.Parameters.AddWithValue("@state", StateTxt.Text);
-            cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text);
-            cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text);
-            cmd.Parameters.AddWithValue("@startdate", StartDateTxt.Text);
-            cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text);
-            cmd.Parameters.AddWithValue("@type", TypeTxt.Text);
-            cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
-            cmd.ExecuteNonQuery();
-            con.Close();
-           
-
-            cmd = new SqlCommand("insert into Password(EmailAddress,Password,EID,CID,UserType) values(@email,@password,@EID,@CID,@type)", con);
-            con.Open();
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
-            cmd.Parameters.AddWithValue("@password", PasswordTxt.Text);
-            cmd.Parameters.AddWithValue("@EID", newEID);
-            cmd.Parameters.AddWithValue("@CID", DBNull.Value);
-            cmd.Parameters.AddWithValue("@type", "e");
-            cmd.ExecuteNonQuery();
-            con.Close();
-            DisplayEmployees();
+            else
+                MessageBox.Show("Please fill out the fields.");
         }
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-            cmd = new SqlCommand("update Employee set SocialSecurityNumber=@socialsec, LastName=@lastname, FirstName=@firstname," +
-                "Street=@street, City=@city, State=@state, ZipCode=@zipcode, Telephone=@phone, StartDate=@startdate," +
-                "HourlyRate=@hrate, EmployeeType=@type, EmailAddress=@email where EID=@eid", con);
-            con.Open();
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@eid", EID);
-            cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text);
-            cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text);
-            cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text);
-            cmd.Parameters.AddWithValue("@street", StreetTxt.Text);
-            cmd.Parameters.AddWithValue("@city", CityTxt.Text);
-            cmd.Parameters.AddWithValue("@state", StateTxt.Text);
-            cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text);
-            cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text);
-            cmd.Parameters.AddWithValue("@startdate", StartDateTxt.Text);
-            cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text);
-            cmd.Parameters.AddWithValue("@type", TypeTxt.Text);
-            cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
-            cmd.ExecuteNonQuery();
-            con.Close();
-            DisplayEmployees();
+            if (eLastNameTxt.Text != "" && eFirstNameTxt.Text != "" && StreetTxt.Text != "" && CityTxt.Text != ""
+                && StateTxt.Text != "" && ZipCodeTxt.Text != "" && TelephoneTxt.Text != "" && HourlyRateTxt.Text != ""
+                && TypeTxt.Text != "" && SocialSecurityTxt.Text != "" && EmailTxt.Text != "")
+            {
+                if (!ValidateEmployeeForm())
+                {
+                    MessageBox.Show("Please fix errors.");
+                    return;
+                }
+                cmd = new SqlCommand("update Employee set SocialSecurityNumber=@socialsec, LastName=@lastname, FirstName=@firstname," +
+                    "Street=@street, City=@city, State=@state, ZipCode=@zipcode, Telephone=@phone, StartDate=@startdate," +
+                    "HourlyRate=@hrate, EmployeeType=@type, EmailAddress=@email where EID=@eid", con);
+                con.Open();
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@eid", EID);
+                cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text);
+                cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text);
+                cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text);
+                cmd.Parameters.AddWithValue("@street", StreetTxt.Text);
+                cmd.Parameters.AddWithValue("@city", CityTxt.Text);
+                cmd.Parameters.AddWithValue("@state", StateTxt.Text);
+                cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text);
+                cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text);
+                cmd.Parameters.AddWithValue("@startdate", Convert.ToDateTime(dateTimePicker5.Text));
+                cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text);
+                cmd.Parameters.AddWithValue("@type", TypeTxt.Text);
+                cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                if (PasswordTxt.Text.Trim() != "")
+                {
+                    cmd = new SqlCommand("update Password set EmailAddress=@email, Password=@password, EID=@EID, CID=@CID,UserType=@type where EID=@EID", con);
+                    con.Open();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
+                    cmd.Parameters.AddWithValue("@password", PasswordTxt.Text);
+                    cmd.Parameters.AddWithValue("@EID", EID);
+                    cmd.Parameters.AddWithValue("@CID", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@type", "e");
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                DisplayEmployees();
+            }
+            else
+                MessageBox.Show("Please fill out the fields.");
         }
 
 
         private void Update_Click(object sender, EventArgs e)
         {
             if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "" && DistFeeTxt.Text != "" && NumCopiesTxt.Text != ""
-                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "")
+                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "" && picNameTxt.Text.Trim() != "")
             {
                 if (!ValidateMovieForm())
                 {
                     MessageBox.Show("Please fix error.");
                     return;
                 }
-                    
-                
+                if (strFilePath == "")
+                {
+                    if (ImageByteArray.Length != 0)
+                    {
+                        ImageByteArray = new byte[] { };
+                    }
+                }
+                else
+                {
+                    Image temp = new Bitmap(strFilePath);
+                    MemoryStream strm = new MemoryStream();
+                    temp.Save(strm, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    ImageByteArray = strm.ToArray();
+                }
+
+
                 //using (SqlConnection con = new SqlConnection(Form4.connectionString))
                 cmd = new SqlCommand("update Movie set MovieName=@name, MovieType=@type, DistribututionFee=@distfee, " +
                     "NumberOfCopies=@numCopies, ReleaseDate=@releaseDate, AddDate=@addDate, Director=@director, " +
-                    "CurrentNum=@currNum where MID=@id", con);
+                    "CurrentNum=@currNum, Poster=@poster, PosterTitle=@posterTitle where MID=@id", con);
                 con.Open();
 
                 cmd.Parameters.Clear();
@@ -247,6 +377,8 @@ namespace MovieRental
                 cmd.Parameters.AddWithValue("@addDate", Convert.ToDateTime(dateTimePicker3.Text));
                 cmd.Parameters.AddWithValue("@director", DirectorTxt.Text);
                 cmd.Parameters.AddWithValue("@currNum", CurrentNumTxt.Text);
+                cmd.Parameters.AddWithValue("@poster", ImageByteArray);
+                cmd.Parameters.AddWithValue("@posterTitle", picNameTxt.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
                 DisplayData();
@@ -255,6 +387,24 @@ namespace MovieRental
             else
             {
                 Console.WriteLine("Please Try Again");
+                MessageBox.Show("Please fill out all the fields.");
+            }
+
+        }
+
+        private void UploadBtn_Click(object sender, EventArgs e)
+        {
+            //ImageUpload form = new ImageUpload();
+            //form.Show();
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Images(.jpg,.png)|*.png;*.jpg";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                strFilePath = ofd.FileName;
+                pictureBox1.Image = new Bitmap(strFilePath);
+                if (picNameTxt.Text.Trim().Length == 0)
+                    picNameTxt.Text = System.IO.Path.GetFileName(strFilePath);
+
             }
 
         }
@@ -352,6 +502,21 @@ namespace MovieRental
             NumCopiesTxt.Clear();
             DirectorTxt.Clear();
             CurrentNumTxt.Clear();
+            picNameTxt.Clear();
+            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
+        }
+
+        private void ClearActorData()
+        {
+            LastNameTxt.Clear();
+            FirstNameTxt.Clear();
+            genderCB.Items.Clear();
+
+        }
+        private void ClearCastingData()
+        {
+            MIDtxt.Clear();
+            AIDtxt.Clear();
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -372,6 +537,18 @@ namespace MovieRental
             CurrentNumTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
             dateTimePicker2.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
             dateTimePicker3.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            if (dataGridView1.Rows[e.RowIndex].Cells[9].Value == DBNull.Value)
+            {
+                pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
+            }
+            else
+            {
+                byte[] ImageArray = (byte[])dataGridView1.Rows[e.RowIndex].Cells[9].Value;
+                ImageByteArray = ImageArray;
+                pictureBox1.Image = Image.FromStream(new MemoryStream(ImageArray));
+            }
+            picNameTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
+            //pictureBox1.Image = dataGridView1.Rows[e.RowIndex].Cells[9].Value;
 
         }
 
@@ -386,9 +563,7 @@ namespace MovieRental
             StateTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[6].Value.ToString();
             ZipCodeTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[7].Value.ToString();
             TelephoneTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[8].Value.ToString();
-            char[] delimiterChars = { ' ' };
-            string[] startDateStrings = dataGridView4.Rows[e.RowIndex].Cells[9].Value.ToString().Split(delimiterChars);
-            StartDateTxt.Text = startDateStrings[0];
+            dateTimePicker5.Text = dataGridView4.Rows[e.RowIndex].Cells[9].Value.ToString();
             HourlyRateTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[10].Value.ToString();
             TypeTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[11].Value.ToString();
             EmailTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[12].Value.ToString();
@@ -467,6 +642,8 @@ namespace MovieRental
             {
                 e.Cancel = true;
             }
+
+            ClearData();
         }
 
 
@@ -535,11 +712,13 @@ namespace MovieRental
             }
         }
 
-        private void searchBtn_Click(object sender, EventArgs e)
+       
+
+        private void searchTxt_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine(searchTxt.Text);
+            Search2Txt.Clear();
             string searchString = searchTxt.Text.Trim();
-            
+
             // movie name
             con.Open();
             DataTable dt5 = new DataTable();
@@ -547,29 +726,29 @@ namespace MovieRental
             adapt.SelectCommand.Parameters.AddWithValue("@search", searchString + "%");
             adapt.Fill(dt5);
             con.Close();
-            if (dt5.Rows.Count > 0)
+            if (dt5.Rows.Count > 0) 
                 dataGridView5.DataSource = dt5;
-            else
-            {
-                dt5.Clear();
-                Console.WriteLine("NO RESULTS");
-                con.Open();
-                DataTable dt6 = new DataTable();
-                adapt = new SqlDataAdapter("select * from [Order] where CID in (select CID from Customer where EmailAddress like @search)", con);
-                adapt.SelectCommand.Parameters.Clear();
-                adapt.SelectCommand.Parameters.AddWithValue("@search", searchString + "%");
-                adapt.Fill(dt6);
-                if (dt6.Rows.Count > 0)
-                    dataGridView5.DataSource = dt6;
-                else
-                    Console.WriteLine("NO RESULTS AGAIN");
-                con.Close();
-            }
-            
-            // movie type
-            // customer email or CID
-
+            con.Close();
         }
+
+        private void Search2Txt_TextChanged(object sender, EventArgs e)
+        {
+            searchTxt.Clear();
+            string searchString = Search2Txt.Text.Trim();
+            con.Open();
+            DataTable dt6 = new DataTable();
+            adapt = new SqlDataAdapter("select * from [Order] where CID in (select CID from Customer where EmailAddress like @search)", con);
+            adapt.SelectCommand.Parameters.Clear();
+            adapt.SelectCommand.Parameters.AddWithValue("@search", searchString + "%");
+            adapt.Fill(dt6);
+            if (dt6.Rows.Count > 0)
+                dataGridView5.DataSource = dt6;
+            else
+                Console.WriteLine("NO RESULTS AGAIN");
+            con.Close();
+        }
+
+
 
         private void MovieTypeCB_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -676,6 +855,22 @@ namespace MovieRental
             }
         }
 
+        private void MIDtxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void AIDtxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void NumCopiesTxt_TextChanged(object sender, EventArgs e)
         {
             //Console.WriteLine("TEXT CHANGED");
@@ -696,6 +891,22 @@ namespace MovieRental
             }
             else
                 errorProvider1.Clear();
+        }
+
+        private bool ValidateCastingForm()
+        {
+            bool valid = false;
+            int counter = 0;
+            if (errorProvider1.GetError(MIDtxt) == "")
+                counter++;
+
+            if (errorProvider1.GetError(AIDtxt) == "")
+                counter++;
+
+            if (counter == 2)
+                valid = true;
+
+            return valid;
         }
 
         private bool ValidateMovieForm()
@@ -720,6 +931,28 @@ namespace MovieRental
             return valid;
         }
 
+        private bool ValidateEmployeeForm()
+        {
+            bool valid = false;
+            int counter = 0;
+            if (errorProvider1.GetError(ZipCodeTxt) == "")
+                counter++;
+
+            if (errorProvider1.GetError(TelephoneTxt) == "")
+                counter++;
+
+            if (errorProvider1.GetError(HourlyRateTxt) == "")
+                counter++;
+
+            if (errorProvider1.GetError(SocialSecurityTxt) == "")
+                counter++;
+
+            if (counter == 4)
+                valid = true;
+
+            return valid;
+        }
+
         private void CurrentNumTxt_TextChanged(object sender, EventArgs e)
         {
             string text = CurrentNumTxt.Text;
@@ -735,6 +968,48 @@ namespace MovieRental
             if (hasLetter)
             {
                 errorProvider1.SetError(CurrentNumTxt, "Only digits allowed");
+
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private void MIDtxt_TextChanged(object sender, EventArgs e)
+        {
+            string text = MIDtxt.Text;
+            bool hasLetter = false;
+            foreach (char letter in text)
+            {
+                if (!char.IsDigit(letter))
+                {
+                    hasLetter = true;
+                    break;
+                }
+            }
+            if (hasLetter)
+            {
+                errorProvider1.SetError(MIDtxt, "Only digits allowed");
+
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private void AIDtxt_TextChanged(object sender, EventArgs e)
+        {
+            string text = AIDtxt.Text;
+            bool hasLetter = false;
+            foreach (char letter in text)
+            {
+                if (!char.IsDigit(letter))
+                {
+                    hasLetter = true;
+                    break;
+                }
+            }
+            if (hasLetter)
+            {
+                errorProvider1.SetError(AIDtxt, "Only digits allowed");
 
             }
             else
@@ -793,25 +1068,139 @@ namespace MovieRental
                 errorProvider1.Clear();
         }
 
-        private void UploadBtn_Click(object sender, EventArgs e)
+        private void ZipCodeTxt_TextChanged(object sender, EventArgs e)
         {
-            string imageLocation = "";
-            try
+            Console.WriteLine("ZIPCODETXT CHANGED");
+            string text = ZipCodeTxt.Text;
+            bool nonAlphaNumeric = false;
+            foreach (char c in text)
             {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*|*.*";
-
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (!char.IsDigit(c) && !char.IsLetter(c))
                 {
-                    imageLocation = dialog.FileName;
-                    //image1.ImageLocation = imageLocation;
-                    Console.WriteLine(imageLocation);
+                    nonAlphaNumeric = true;
+                    break;
                 }
             }
-            catch (Exception)
+            if (nonAlphaNumeric)
             {
-                MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorProvider1.SetError(ZipCodeTxt, "Only alphanumeric characters allowed");
+
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private void TelephoneTxt_TextChanged(object sender, EventArgs e)
+        {
+            string text = TelephoneTxt.Text;
+            bool hasLetter = false;
+            foreach (char letter in text)
+            {
+                if (!char.IsDigit(letter))
+                {
+                    hasLetter = true;
+                    break;
+                }
+            }
+            if (hasLetter)
+            {
+                errorProvider1.SetError(TelephoneTxt, "Only digits allowed");
+
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private void HourlyRateTxt_TextChanged(object sender, EventArgs e)
+        {
+            string text = HourlyRateTxt.Text;
+            bool hasLetter = false;
+            int numDecimal = 0;
+
+            foreach (char c in text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    if (c == '.' && numDecimal < 1)
+                    {
+                        numDecimal++;
+                        continue;
+                    }
+
+
+                    hasLetter = true;
+                    break;
+                }
+            }
+            if (hasLetter)
+            {
+                errorProvider1.SetError(HourlyRateTxt, "Only digits with one decimal is allowed");
+
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private void SocialSecurityTxt_TextChanged(object sender, EventArgs e)
+        {
+            string text = SocialSecurityTxt.Text;
+            bool hasLetter = false;
+            foreach (char letter in text)
+            {
+                if (!char.IsDigit(letter))
+                {
+                    hasLetter = true;
+                    break;
+                }
+            }
+            if (hasLetter)
+            {
+                errorProvider1.SetError(SocialSecurityTxt, "Only digits allowed");
+
+            }
+            else
+                errorProvider1.Clear();
+        }
+
+        private void ZipCodeTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
+
+        private void TelephoneTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void HourlyRateTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void SocialSecurityTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+       
     }
 }

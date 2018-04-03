@@ -34,6 +34,7 @@
             // panelInRanking
             // 
             this.panelInRanking.AutoScroll = true;
+            this.panelInRanking.AutoSize = true;
             this.panelInRanking.Location = new System.Drawing.Point(0, 0);
             this.panelInRanking.Margin = new System.Windows.Forms.Padding(6);
             this.panelInRanking.Name = "panelInRanking";
@@ -44,12 +45,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.Controls.Add(this.panelInRanking);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Ranking";
             this.Size = new System.Drawing.Size(1410, 681);
             this.Load += new System.EventHandler(this.Ranking_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

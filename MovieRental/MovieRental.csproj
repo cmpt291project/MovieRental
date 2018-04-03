@@ -85,6 +85,18 @@
     <Compile Include="GenreControl.Designer.cs">
       <DependentUpon>GenreControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageUpload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageUpload.Designer.cs">
+      <DependentUpon>ImageUpload.cs</DependentUpon>
+    </Compile>
     <Compile Include="like.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +167,12 @@
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="topControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="topControl.Designer.cs">
+      <DependentUpon>topControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -209,6 +227,12 @@
     <EmbeddedResource Include="GenreControl.resx">
       <DependentUpon>GenreControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageUpload.resx">
+      <DependentUpon>ImageUpload.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="like.resx">
       <DependentUpon>like.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="topControl.resx">
+      <DependentUpon>topControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC1.resx">
       <DependentUpon>UC1.cs</DependentUpon>
@@ -294,6 +321,8 @@
     <Content Include="Resources\009.jpg" />
     <Content Include="Resources\010.jpg" />
     <Content Include="Resources\011.jpg" />
+    <None Include="Resources\no-image.gif" />
+    <None Include="Resources\NoImage.gif" />
     <None Include="Resources\The love witch.jpg" />
     <None Include="Resources\north by northwest.jpg" />
     <None Include="Resources\mary and max.jpg" />

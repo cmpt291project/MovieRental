@@ -223,6 +223,16 @@ namespace MovieRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap no_image {
+            get {
+                object obj = ResourceManager.GetObject("no_image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap north_by_northwest {
             get {
                 object obj = ResourceManager.GetObject("north by northwest", resourceCulture);
