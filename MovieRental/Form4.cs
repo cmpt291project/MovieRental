@@ -104,6 +104,10 @@ namespace MovieRental
                 EmployeeUC.Instance.BringToFront();
         }
 
-    
+        private void button6_Click(object sender, EventArgs e)
+        {
+            RateForm rf = new RateForm();
+            rf.Show();
+        }
     }
 }

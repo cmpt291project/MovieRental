@@ -159,13 +159,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MovieRentalDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="NewUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUserForm.Designer.cs">
+      <DependentUpon>NewUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Ranking.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Ranking.Designer.cs">
       <DependentUpon>Ranking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RateBox.cs" />
+    <Compile Include="RateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RateForm.Designer.cs">
+      <DependentUpon>RateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SearchUC.cs">
       <SubType>UserControl</SubType>
@@ -260,18 +278,19 @@
     <EmbeddedResource Include="MovieForm.resx">
       <DependentUpon>MovieForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewUserForm.resx">
+      <DependentUpon>NewUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Ranking.resx">
       <DependentUpon>Ranking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RateForm.resx">
+      <DependentUpon>RateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchUC.resx">
       <DependentUpon>SearchUC.cs</DependentUpon>
@@ -328,7 +347,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons8-Ios7-Very-Basic-Search.ico" />
-    <Content Include="Resources\001.jpg" />
     <Content Include="Resources\002.jpeg" />
     <Content Include="Resources\003.jpg" />
     <Content Include="Resources\004.jpg" />
