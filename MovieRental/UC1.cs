@@ -15,7 +15,7 @@ namespace MovieRental
     public partial class UC1 : UserControl
     {
         public static string email;
-        public static string id = "003";
+        public static string id = "3";
         private static UC1 _instance;
         public static UC1 Instance
         {
@@ -141,7 +141,8 @@ namespace MovieRental
 
         private void Create_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            NewUserForm usf = new NewUserForm();
+            usf.Show();
         }
 
         private void help_Click(object sender, EventArgs e)
