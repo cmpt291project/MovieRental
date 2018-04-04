@@ -995,7 +995,7 @@ namespace MovieRental
                 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(NumCopiesTxt, "");
         }
 
         private bool ValidateCastingForm()
@@ -1076,7 +1076,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(CurrentNumTxt, "");
         }
 
         private void MIDtxt_TextChanged(object sender, EventArgs e)
@@ -1097,7 +1097,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(MIDtxt, "");
         }
 
         private void AIDtxt_TextChanged(object sender, EventArgs e)
@@ -1118,7 +1118,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(AIDtxt, "");
         }
 
         private void DistFeeTxt_TextChanged(object sender, EventArgs e)
@@ -1148,9 +1148,9 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(DistFeeTxt, "");
         }
-
+        
         private void MovieTypeTxt_TextChanged(object sender, EventArgs e)
         {
             string text = MovieTypeTxt.Text;
@@ -1170,7 +1170,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(MovieTypeTxt, "");
         }
 
         private void ZipCodeTxt_TextChanged(object sender, EventArgs e)
@@ -1192,7 +1192,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(ZipCodeTxt, "");
         }
 
         private void TelephoneTxt_TextChanged(object sender, EventArgs e)
@@ -1213,7 +1213,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(TelephoneTxt, "");
         }
 
         private void HourlyRateTxt_TextChanged(object sender, EventArgs e)
@@ -1243,7 +1243,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(HourlyRateTxt, "");
         }
 
         private void SocialSecurityTxt_TextChanged(object sender, EventArgs e)
@@ -1264,7 +1264,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(SocialSecurityTxt, "");
         }
 
         private void ZipCodeTxt_KeyPress(object sender, KeyPressEventArgs e)
