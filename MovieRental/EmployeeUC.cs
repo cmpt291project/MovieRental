@@ -18,7 +18,7 @@ namespace MovieRental
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapt;
         DataGridViewCellMouseEventArgs e;
-
+        bool fn = false, ln = false, strt = false, stat = false, zip = false, citys = false, tele = false, emai = false, credit = false, plan = false, Null = false;
         public static EmployeeUC Instance
         {
             get
@@ -112,7 +112,6 @@ namespace MovieRental
             Atype.Text = "";
             AccountCreationDate.Text = "";
             CreditCardNumber.Text = "";
-            Atype.Text = "";
         }
         private void save_Click(object sender, EventArgs e)
         {
@@ -209,7 +208,7 @@ namespace MovieRental
             DateTimeOffset localDate = DateTimeOffset.Now;
             cmd = new SqlCommand("update Customer set LastName=@lastname, FirstName=@firstname," +
                     "Street=@street, City=@city, State=@state, ZipCode=@zipcode, Telephone=@phone, CreditCardNumber=@creditcard," +
-                    "Rating=@hrate, AccountType=@type, EmailAddress=@email where CID=@cid", con);
+                    "AccountType=@type, EmailAddress=@email where CID=@cid", con);
             con.Open();
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@cid", cidtext.Text);
@@ -221,7 +220,6 @@ namespace MovieRental
             cmd.Parameters.AddWithValue("@zipcode", ZipCode.Text);
             cmd.Parameters.AddWithValue("@phone", Telephone.Text);
             cmd.Parameters.AddWithValue("@creditcard", CreditCardNumber.Text);
-            cmd.Parameters.AddWithValue("@hrate", rateTextbox.Text);
             cmd.Parameters.AddWithValue("@type", Atype.Text);
             cmd.Parameters.AddWithValue("@email", EmailAddress.Text);
             cmd.ExecuteNonQuery();
@@ -245,10 +243,18 @@ namespace MovieRental
             connection.Close();
             return true;
         }
-
+        private bool checkallbool()
+        {
+            if (fn == false && ln == false && strt == false && stat == false && zip == false && citys == false && tele == false && emai == false && credit == false && plan == false && Null == false)
+                return true;
+            return false;
+        }
         private void sendAddQuery()
         {
+            if (checkallbool()) {
                 string newMID;
+                Random generator = new Random();
+                int r = generator.Next(0, 999999);
                 using (cmd = new SqlCommand("select MAX(CID)+1 from Customer", con))
                 {
                     con.Open();
@@ -271,25 +277,29 @@ namespace MovieRental
                     cmd.Parameters.AddWithValue("@ZipCode", ZipCode.Text);
                     cmd.Parameters.AddWithValue("@Telephone", Telephone.Text);
                     cmd.Parameters.AddWithValue("@Email", EmailAddress.Text);
-                    cmd.Parameters.AddWithValue("@ANumber", newMID);
+                    cmd.Parameters.AddWithValue("@ANumber", r);
                     cmd.Parameters.AddWithValue("@AType", Atype.Text);
                     cmd.Parameters.AddWithValue("@ADate", AccountCreationDate.Text);
                     cmd.Parameters.AddWithValue("@CCN", CreditCardNumber.Text);
-                if (checkBlank())
-                {
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    DisplayData();
-                    add.Visible = false;
-                }
-                else
-                {
-                    con.Close();
-                    MessageBox.Show("Please fill in all blanks");
-                }
-                
+                    if (checkBlank())
+                    {
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        DisplayData();
+                        add.Visible = false;
+                    }
+                    else
+                    {
+                        con.Close();
+                        MessageBox.Show("Please fill in all blanks");
+                    }
 
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please fix the error before add!");
+            }
         }
 
         private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -309,7 +319,6 @@ namespace MovieRental
                 Atype.Text = dataGridView2.Rows[e.RowIndex].Cells[10].Value.ToString();
                 AccountCreationDate.Text = dataGridView2.Rows[e.RowIndex].Cells[11].Value.ToString();
                 CreditCardNumber.Text = dataGridView2.Rows[e.RowIndex].Cells[12].Value.ToString();
-                rateTextbox.Text = dataGridView2.Rows[e.RowIndex].Cells[13].Value.ToString();
             }
             button2.Enabled = true;
             button3.Enabled = true;
@@ -317,14 +326,49 @@ namespace MovieRental
             button6.Enabled = true;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Allcustomer_Click(object sender, EventArgs e)
+        {
+            DisplayData();
+        }
+
+        private void Street_TextChanged(object sender, EventArgs e)
+        {
+            checkTextBox(Street, strt, 2);
+        }
+
+        private void City_TextChanged(object sender, EventArgs e)
+        {
+            checkTextBox(City, citys, 0);
+        }
+
+        private void State_TextChanged(object sender, EventArgs e)
+        {
+            checkTextBox(State, stat, 0);
+        }
+
+        private void ZipCode_TextChanged(object sender, EventArgs e)
+        {
+            checkTextBox(ZipCode, zip, 2);
+        }
+
+        private void Telephone_TextChanged(object sender, EventArgs e)
+        {
+            checkTextBox(Telephone, tele, 1);
+        }
+
+        private void EmailAddress_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void Allcustomer_Click(object sender, EventArgs e)
+        private void CreditCardNumber_TextChanged(object sender, EventArgs e)
         {
-            DisplayData();
+            checkTextBox(CreditCardNumber, credit, 1);
+        }
+
+        private void Atype_MouseClick(object sender, MouseEventArgs e)
+        {
+            Atype.DroppedDown = true;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -363,7 +407,7 @@ namespace MovieRental
         private bool checkBlank()
         {
             if (FirstName.Text != "" && LastName.Text != "" && Street.Text != "" && City.Text != "" && 
-                State.Text != "" && ZipCode.Text != "" && Telephone.Text != "" && EmailAddress.Text != "" && CreditCardNumber.Text != "" && rateTextbox.Text != "")
+                State.Text != "" && ZipCode.Text != "" && Telephone.Text != "" && EmailAddress.Text != "" && CreditCardNumber.Text != "")
             {
                 return true;
             }
@@ -383,6 +427,94 @@ namespace MovieRental
             con.Close();
             MessageBox.Show("Delete User Successfully!");
             DisplayData();
+        }
+
+        private void FirstName_TextChanged(object sender, EventArgs e)
+        {
+            checkTextBox(FirstName, fn, 0);
+        }
+
+        private void LastName_TextChanged(object sender, EventArgs e)
+        {
+            checkTextBox(LastName, ln, 0);
+        }
+
+
+
+        private void checkTextBox(TextBox box, bool value, int k)
+        {
+            string text = box.Text;
+            value = false;
+            string str = "";
+            switch (k)
+            {
+                case 0: //name
+                    foreach (char c in text)
+                    {
+                        if (!char.IsLetter(c))
+                        {
+                            value = true;
+                            break;
+                        }
+                    }
+                    str = "Only letters allowed";
+                    break;
+                case 1: //number
+                    foreach (char letter in text)
+                    {
+                        if (!char.IsDigit(letter))
+                        {
+                            value = true;
+                            break;
+                        }
+                    }
+                    str = "Only numbers allowed";
+                    break;
+                case 2: //Zipcode
+                    foreach (char c in text)
+                    {
+                        if (!char.IsDigit(c) && !char.IsLetter(c))
+                        {
+                            value = true;
+                            break;
+                        }
+                    }
+                    str = "Only alphanumeric characters allowed";
+                    break;
+                case 3: // decimal number
+                    int numDecimal = 0;
+
+                    foreach (char c in text)
+                    {
+                        if (!char.IsDigit(c))
+                        {
+                            if (c == '.' && numDecimal < 1)
+                            {
+                                numDecimal++;
+                                continue;
+                            }
+
+
+                            value = true;
+                            break;
+                        }
+                    }
+                    str = "only one decimal point allowed";
+                    break;
+                default:
+                    break;
+            }
+            string tmp = box.Text.ToUpper();
+            if (tmp == "NULL") {
+                str = "The value cannot be NULL";
+                value = true;
+            }
+            if (value)
+            {
+                errorProvider1.SetError(box, str);
+            }
+            else
+                errorProvider1.Clear();
         }
     }
 }
