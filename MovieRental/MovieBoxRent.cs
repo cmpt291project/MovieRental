@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
 
 namespace MovieRental
 {
@@ -46,17 +47,34 @@ namespace MovieRental
             p.Controls.Add(gb);
 
         }
-        public void CreatePicture(string filename) {
+     /*   public void CreatePicture(MemoryStream ms) {
             moviePic.Name = "pic";
             moviePic.Location = new Point(6, 18);
             moviePic.Size = new Size(180, 210);
             moviePic.Top = 10;
             moviePic.Left = 5;
             moviePic.BackColor = Color.White;
-            moviePic.Image = (Image)Properties.Resources.ResourceManager.GetObject(filename);
+
+            movieName.Image = Image.FromStream(ms);
+            //moviePic.Image = (Image)Properties.Resources.ResourceManager.GetObject(filename);
+            moviePic.SizeMode = PictureBoxSizeMode.StretchImage;
+            gb.Controls.Add(moviePic);
+        }*/
+        public void CreatePictureImage(Image ms)
+        {
+            moviePic.Name = "pic";
+            moviePic.Location = new Point(6, 18);
+            moviePic.Size = new Size(180, 210);
+            moviePic.Top = 10;
+            moviePic.Left = 5;
+            moviePic.BackColor = Color.White;
+
+            //movieName.Image = new Bitmap(ms);
+            moviePic.Image = ms;
             moviePic.SizeMode = PictureBoxSizeMode.Zoom;
             gb.Controls.Add(moviePic);
         }
+
         public void CreateName(string name) {
             movieName.Name = "movieName";
             movieName.Text = name;
