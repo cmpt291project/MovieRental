@@ -698,6 +698,8 @@ namespace MovieRental
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             Console.WriteLine(comboBox2.SelectedIndex);
+            dataGridView5.BringToFront();
+
             switch(comboBox2.SelectedIndex)
             {
                 case 0:
@@ -731,6 +733,7 @@ namespace MovieRental
             if (dt5.Rows.Count > 0) 
                 dataGridView5.DataSource = dt5;
             con.Close();
+            dataGridView5.BringToFront();
         }
 
         private void Search2Txt_TextChanged(object sender, EventArgs e)
@@ -748,6 +751,7 @@ namespace MovieRental
             else
                 Console.WriteLine("NO RESULTS AGAIN");
             con.Close();
+            dataGridView5.BringToFront();
         }
 
 
@@ -756,16 +760,17 @@ namespace MovieRental
         {
             DataTable dt7 = new DataTable();
             Console.WriteLine(MovieTypeCB.Text);
-            
+            con.Open();
             adapt = new SqlDataAdapter("select * from [Order] where MID in (select MID from Movie where MovieType = @type)", con);
             adapt.SelectCommand.Parameters.Clear();
             adapt.SelectCommand.Parameters.AddWithValue("@type", MovieTypeCB.Text);
             adapt.Fill(dt7);
             dataGridView5.DataSource = dt7;
-                    
+            dataGridView5.BringToFront();
+            con.Close();
 
-               
-            
+
+
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -778,7 +783,7 @@ namespace MovieRental
                 DataTable dt7 = new DataTable();
                 char[] delimiterChars = { ' ', '/' };
                 string[] dateStrings = dateTimePicker1.Value.ToString().Split(delimiterChars);
-                Console.WriteLine(dateStrings[2] + "-" + dateStrings[0] + "%");
+                //Console.WriteLine(dateStrings[2] + "-" + dateStrings[0] + "%");
                 int month = Convert.ToInt32(dateStrings[0]);
 
                 adapt = new SqlDataAdapter("select * from Employee as E, (select EID, count(*) as numOrder from [Order] " +
@@ -807,7 +812,7 @@ namespace MovieRental
                 con.Open();
                 char[] delimiterChars = { ' ', '/' };
                 string[] dateStrings = dateTimePicker1.Value.ToString().Split(delimiterChars);
-                Console.WriteLine(dateStrings[0]);
+                //Console.WriteLine(dateStrings[0]);
                 int month = Convert.ToInt32(dateStrings[0]);
 
                 DataTable dt7 = new DataTable();
@@ -834,18 +839,33 @@ namespace MovieRental
             } 
             else if (comboBox2.SelectedIndex == 2)
             {
+
                 char[] delimiterChars = { ' ', '/' };
                 string[] dateStrings = dateTimePicker1.Value.ToString().Split(delimiterChars);
-                Console.WriteLine(dateStrings[2]);
-                /*Console.WriteLine("INDEX 2");
+                //Console.WriteLine(dateStrings[2]);
+                int month = Convert.ToInt32(dateStrings[0]);
                 con.Open();
-                DataTable dt5 = new DataTable();
-                adapt = new SqlDataAdapter("select * from Movie as M, (select top 3 MID, count(*) as numRentals from [Order] " +
-                    "group by MID) as Active where M.MID = Active.MID", con);
-                adapt.Fill(dt5);
-                dataGridView5.DataSource = dt5;
+                DataTable dt7 = new DataTable();
+                adapt = new SqlDataAdapter("select * from Movie as M, (select MID, count(*) as numRentals from [Order] " +
+                    "where OrderDate like @date group by MID) as Active where M.MID = Active.MID", con);
+                adapt.SelectCommand.Parameters.Clear();
+                adapt.SelectCommand.Parameters.AddWithValue("@date", dateStrings[2] + "%");
+                adapt.Fill(dt7);
+                dataGridView5.DataSource = dt7;
                 dataGridView5.Columns["MID1"].Visible = false;
-                con.Close();*/
+
+
+                DataTable dt8 = new DataTable();
+                adapt = new SqlDataAdapter("select * from Movie as M, (select MID, count(*) as numRentals from [Order] " +
+                    "where OrderDate like @date group by MID) as Active where M.MID = Active.MID", con);
+                adapt.SelectCommand.Parameters.Clear();
+                if (month < 10)
+                    adapt.SelectCommand.Parameters.AddWithValue("@date", dateStrings[2] + "-0" + dateStrings[0] + "%");
+                else
+                    adapt.SelectCommand.Parameters.AddWithValue("@date", dateStrings[2] + "-" + dateStrings[0] + "%");
+                adapt.Fill(dt8);
+                dataGridView6.DataSource = dt8;
+                con.Close();
             }
         }
 
