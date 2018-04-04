@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace MovieRental
 {
@@ -47,7 +48,20 @@ namespace MovieRental
                 MovieBoxRent movieBoxRent = new MovieBoxRent(dataTable.Rows[i]["MID"].ToString());
                 movieBoxRent.createNewBox(panelintop, i);
                 //MessageBox.Show(row["MID"].ToString().Trim());
-                movieBoxRent.CreatePicture(dataTable.Rows[i]["MID"].ToString().Trim());
+                if (dataTable.Rows[i]["Poster"] == DBNull.Value)
+                {
+                    //MessageBox.Show("image null");
+                    //MemoryStream ms = new MemoryStream((byte[])Properties.Resources.ResourceManager.GetObject("001"));
+                    movieBoxRent.CreatePictureImage((Image)Properties.Resources.ResourceManager.GetObject("Noimage"));
+                }
+                else
+                {
+                    byte[] ImageArray = (byte[])dataTable.Rows[i]["Poster"];
+                    Image image = Image.FromStream(new MemoryStream(ImageArray));
+
+                    movieBoxRent.CreatePictureImage(image);
+                }
+                //movieBoxRent.CreatePicture(dataTable.Rows[i]["MID"].ToString().Trim());
                 movieBoxRent.CreateName(dataTable.Rows[i]["MovieName"].ToString());
                 //MessageBox.Show(row["MovieName"].ToString());
                 movieBoxRent.CreateScore(dataTable.Rows[i]["rate"].ToString());

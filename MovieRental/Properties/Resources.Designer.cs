@@ -213,9 +213,9 @@ namespace MovieRental.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap no_image {
+        internal static System.Drawing.Bitmap Noimage {
             get {
-                object obj = ResourceManager.GetObject("no_image", resourceCulture);
+                object obj = ResourceManager.GetObject("Noimage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

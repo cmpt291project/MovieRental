@@ -35,6 +35,7 @@ namespace MovieRental
             
             gb.Location = new Point(3, 3);
             gb.Size = new Size(500, 70);
+            gb.Name = "gb" + i.ToString();
             gb.Top = 3 + i * 60;
             gb.Left = 3;
             gb.Text = "Rate";
