@@ -18,7 +18,7 @@ namespace MovieRental
         public PictureBox pictureBox;
         public TextBox textBox;
         public string MID;
-        public string[] defaultString = { "Name:", "Director:", "Actor:", "Rent Date:", "Return Date:" };
+        public string[] defaultString = { "Name:", "Director:", "Type:", "Release Date:", "Return Date:" };
         public MovieGroupBox()
         {
             groupBox = new GroupBox();
@@ -38,6 +38,15 @@ namespace MovieRental
             groupBox.Font = new Font("Segoe UI", 15);
             groupBox.FlatStyle = FlatStyle.Standard;
             tabpage.Controls.Add(groupBox);
+        }
+
+        public void setLabel(GroupBox groupBox, string labelname)
+        {
+            Label label1 = new Label();
+            label1.Location = new Point(-50, 0);
+            label1.Size = new Size(50, 10);
+            label1.Text = labelname;
+            groupBox.Controls.Add(label1);
         }
 
         public void setImage(GroupBox groupBox, string filename)

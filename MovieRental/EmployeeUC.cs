@@ -18,6 +18,7 @@ namespace MovieRental
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapt;
         DataGridViewCellMouseEventArgs e;
+        private string[] movieInfo = new string[10];
         bool fn = false, ln = false, strt = false, stat = false, zip = false, citys = false, tele = false, emai = false, credit = false, plan = false, Null = false;
         public static EmployeeUC Instance
         {
@@ -366,6 +367,51 @@ namespace MovieRental
             checkTextBox(CreditCardNumber, credit, 1);
         }
 
+        private void reportbutton_Click(object sender, EventArgs e)
+        {
+            reportPanel.Visible = true;
+        }
+
+        private void mostcustomer_Click(object sender, EventArgs e)
+        {
+            createMostActiveCustomer();
+            ReportLabel.Text = "Most Active Customer";
+        }
+
+        public void createMostActiveCustomer()
+        {
+            Reporting.Controls.Clear();
+            //list.Clear();
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter a = new SqlDataAdapter("SELECT M.MovieName, M.Director, M.MovieType, M.ReleaseDate, M.AddDate, O.MID, count(O.MID) from [Order] O, Movie M where O.MID = M.MID group by M.MovieName, M.Director, M.MovieType, M.ReleaseDate, M.AddDate, O.MID" + 
+                            " order by cast(O.MID as int) ASC", connection);
+            DataTable t = new DataTable();
+            a.Fill(t);
+            int i = 1;
+            int x = 0;
+            foreach (DataRow row in t.Rows)
+            {
+                foreach (DataColumn column in t.Columns)
+                {
+                    movieInfo[x] = row[column].ToString();
+                    x++;
+                }
+                x = 0;
+                MovieGroupBox newGroupBox = new MovieGroupBox();
+                newGroupBox.setGroupBox(Reporting, i);
+                i++;
+                var releaseDate = movieInfo[3].Substring(0, movieInfo[3].IndexOf(' '));
+                var addDate = movieInfo[4].Substring(0, movieInfo[4].IndexOf(' '));
+
+                newGroupBox.setImage(newGroupBox.groupBox, movieInfo[5].ToString().Trim());
+                newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
+                newGroupBox.setLabel(newGroupBox.groupBox, "Number of copies sold: " + movieInfo[6]);
+                //newGroupBox.SetChooseMovieButton(newGroupBox.groupBox, "Rent");
+                //newGroupBox.DeleteMovieFromListButton(newGroupBox.groupBox, "Delete");
+
+            }
+        }
         private void Atype_MouseClick(object sender, MouseEventArgs e)
         {
             Atype.DroppedDown = true;
