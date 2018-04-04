@@ -347,7 +347,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons8-Ios7-Very-Basic-Search.ico" />
-    <Content Include="Resources\002.jpeg" />
+    <None Include="Resources\002.jpeg" />
     <Content Include="Resources\003.jpg" />
     <Content Include="Resources\004.jpg" />
     <Content Include="Resources\005.jpg" />

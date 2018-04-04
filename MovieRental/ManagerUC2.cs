@@ -559,7 +559,7 @@ namespace MovieRental
             MID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             MovieNameTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             //movieName = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
-            MovieTypeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            MovieTypeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString().Trim();
             //movieType = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
             DistFeeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             NumCopiesTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
