@@ -43,20 +43,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.rank = new System.Windows.Forms.Panel();
             this.YourMovie = new System.Windows.Forms.TabPage();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.SearchPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.YourMoviePanel = new System.Windows.Forms.Panel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.SearchPanel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.YourMovieTab.SuspendLayout();
             this.Features.SuspendLayout();
             this.Suggestion.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,7 +85,7 @@
             this.Features.Location = new System.Drawing.Point(4, 22);
             this.Features.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Features.Name = "Features";
-            this.Features.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Features.Padding = new System.Windows.Forms.Padding(3);
             this.Features.Size = new System.Drawing.Size(725, 746);
             this.Features.TabIndex = 0;
             this.Features.Text = "Feature";
@@ -138,7 +138,7 @@
             this.Suggestion.Location = new System.Drawing.Point(4, 22);
             this.Suggestion.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Suggestion.Name = "Suggestion";
-            this.Suggestion.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Suggestion.Padding = new System.Windows.Forms.Padding(3);
             this.Suggestion.Size = new System.Drawing.Size(725, 746);
             this.Suggestion.TabIndex = 1;
             this.Suggestion.Text = "Suggestion";
@@ -159,7 +159,7 @@
             // top
             // 
             this.top.Location = new System.Drawing.Point(11, 794);
-            this.top.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.top.Margin = new System.Windows.Forms.Padding(2);
             this.top.Name = "top";
             this.top.Size = new System.Drawing.Size(705, 307);
             this.top.TabIndex = 4;
@@ -167,7 +167,7 @@
             // like
             // 
             this.like.Location = new System.Drawing.Point(11, 422);
-            this.like.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.like.Margin = new System.Windows.Forms.Padding(2);
             this.like.Name = "like";
             this.like.Size = new System.Drawing.Size(705, 332);
             this.like.TabIndex = 3;
@@ -197,7 +197,7 @@
             // rank
             // 
             this.rank.Location = new System.Drawing.Point(11, 47);
-            this.rank.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rank.Margin = new System.Windows.Forms.Padding(2);
             this.rank.Name = "rank";
             this.rank.Size = new System.Drawing.Size(700, 332);
             this.rank.TabIndex = 0;
@@ -208,12 +208,30 @@
             this.YourMovie.Location = new System.Drawing.Point(4, 22);
             this.YourMovie.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.YourMovie.Name = "YourMovie";
-            this.YourMovie.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.YourMovie.Padding = new System.Windows.Forms.Padding(6);
             this.YourMovie.Size = new System.Drawing.Size(725, 746);
             this.YourMovie.TabIndex = 0;
             this.YourMovie.Text = "Your Movie";
             this.YourMovie.UseVisualStyleBackColor = true;
             this.YourMovie.Click += new System.EventHandler(this.YourMovie_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.SearchPanel);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(725, 746);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Search";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // SearchPanel
+            // 
+            this.SearchPanel.Location = new System.Drawing.Point(0, 0);
+            this.SearchPanel.Name = "SearchPanel";
+            this.SearchPanel.Size = new System.Drawing.Size(725, 746);
+            this.SearchPanel.TabIndex = 0;
             // 
             // panel1
             // 
@@ -257,6 +275,18 @@
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MovieRental.Properties.Resources.Icons8_Ios7_Very_Basic_Search;
+            this.pictureBox1.Location = new System.Drawing.Point(136, 22);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // YourMoviePanel
             // 
             this.YourMoviePanel.Location = new System.Drawing.Point(9, 10);
@@ -269,36 +299,6 @@
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.SearchPanel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(725, 746);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Search";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // SearchPanel
-            // 
-            this.SearchPanel.Location = new System.Drawing.Point(0, 0);
-            this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(725, 746);
-            this.SearchPanel.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::MovieRental.Properties.Resources.Icons8_Ios7_Very_Basic_Search;
-            this.pictureBox1.Location = new System.Drawing.Point(136, 22);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // UC2
             // 
@@ -315,9 +315,9 @@
             this.Features.PerformLayout();
             this.Suggestion.ResumeLayout(false);
             this.Suggestion.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
