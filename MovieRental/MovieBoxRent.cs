@@ -207,7 +207,7 @@ namespace MovieRental
                         
             sc.Parameters.AddWithValue("@mid", MID);
             sc.Parameters.AddWithValue("@cid", UC1.id);
-            sc.Parameters.AddWithValue("@eid", "001");
+            sc.Parameters.AddWithValue("@eid", "1");
             sc.Parameters.AddWithValue("@date", date.Date.ToString("d"));
             sc.Parameters.AddWithValue("@return", ret);
             //sc.Parameters.AddWithValue("@actual", null);
