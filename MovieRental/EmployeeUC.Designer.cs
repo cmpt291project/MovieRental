@@ -77,6 +77,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.suggest = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.reportPanel = new System.Windows.Forms.Panel();
+            this.Reporting = new System.Windows.Forms.Panel();
+            this.mostcustomer = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.ReportLabel = new System.Windows.Forms.Label();
+            this.reportbutton = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -84,10 +90,13 @@
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.reportPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.reportbutton);
+            this.panel4.Controls.Add(this.reportPanel);
             this.panel4.Controls.Add(this.panel2);
             this.panel4.Controls.Add(this.Allcustomer);
             this.panel4.Controls.Add(this.button6);
@@ -101,7 +110,7 @@
             this.panel4.Controls.Add(this.panel1);
             this.panel4.Location = new System.Drawing.Point(48, 17);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(747, 700);
+            this.panel4.Size = new System.Drawing.Size(698, 700);
             this.panel4.TabIndex = 29;
             // 
             // panel2
@@ -476,7 +485,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(95, 36);
             this.button5.TabIndex = 8;
-            this.button5.Text = "Today\'s Order";
+            this.button5.Text = "All Order";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -613,6 +622,68 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // reportPanel
+            // 
+            this.reportPanel.Controls.Add(this.ReportLabel);
+            this.reportPanel.Controls.Add(this.Reporting);
+            this.reportPanel.Controls.Add(this.button7);
+            this.reportPanel.Controls.Add(this.mostcustomer);
+            this.reportPanel.Location = new System.Drawing.Point(1, 45);
+            this.reportPanel.Name = "reportPanel";
+            this.reportPanel.Size = new System.Drawing.Size(696, 637);
+            this.reportPanel.TabIndex = 48;
+            this.reportPanel.Visible = false;
+            // 
+            // Reporting
+            // 
+            this.Reporting.AutoScroll = true;
+            this.Reporting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Reporting.Location = new System.Drawing.Point(29, 68);
+            this.Reporting.Name = "Reporting";
+            this.Reporting.Size = new System.Drawing.Size(512, 538);
+            this.Reporting.TabIndex = 0;
+            // 
+            // mostcustomer
+            // 
+            this.mostcustomer.Font = new System.Drawing.Font("SimSun", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mostcustomer.Location = new System.Drawing.Point(561, 36);
+            this.mostcustomer.Name = "mostcustomer";
+            this.mostcustomer.Size = new System.Drawing.Size(124, 39);
+            this.mostcustomer.TabIndex = 1;
+            this.mostcustomer.Text = "Most Active Customer";
+            this.mostcustomer.UseVisualStyleBackColor = true;
+            this.mostcustomer.Click += new System.EventHandler(this.mostcustomer_Click);
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("SimSun", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button7.Location = new System.Drawing.Point(561, 89);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(124, 39);
+            this.button7.TabIndex = 2;
+            this.button7.Text = "Best Selling Movie";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // ReportLabel
+            // 
+            this.ReportLabel.AutoSize = true;
+            this.ReportLabel.Font = new System.Drawing.Font("SimSun", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ReportLabel.Location = new System.Drawing.Point(209, 13);
+            this.ReportLabel.Name = "ReportLabel";
+            this.ReportLabel.Size = new System.Drawing.Size(109, 29);
+            this.ReportLabel.TabIndex = 3;
+            this.ReportLabel.Text = "Report";
+            // 
+            // reportbutton
+            // 
+            this.reportbutton.Location = new System.Drawing.Point(209, 4);
+            this.reportbutton.Name = "reportbutton";
+            this.reportbutton.Size = new System.Drawing.Size(114, 34);
+            this.reportbutton.TabIndex = 49;
+            this.reportbutton.Text = "Report Summary";
+            this.reportbutton.UseVisualStyleBackColor = true;
+            this.reportbutton.Click += new System.EventHandler(this.reportbutton_Click);
+            // 
             // EmployeeUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -632,6 +703,8 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.reportPanel.ResumeLayout(false);
+            this.reportPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -686,5 +759,11 @@
         private System.Windows.Forms.Panel suggest;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button reportbutton;
+        private System.Windows.Forms.Panel reportPanel;
+        private System.Windows.Forms.Label ReportLabel;
+        private System.Windows.Forms.Panel Reporting;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button mostcustomer;
     }
 }
