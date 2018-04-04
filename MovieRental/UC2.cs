@@ -88,6 +88,15 @@ namespace MovieRental
             else
                 topControl.Instance.BringToFront();
 
+            if (!SearchPanel.Controls.Contains(SearchUC.Instance))
+            {
+                SearchPanel.Controls.Add(SearchUC.Instance);
+                SearchUC.Instance.Dock = DockStyle.Fill;
+                SearchUC.Instance.BringToFront();
+            }
+            else
+                SearchUC.Instance.BringToFront();
+
         }
 
         private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
@@ -144,10 +153,23 @@ namespace MovieRental
                 topControl.Instance.update();
             }
 
-            else
+            else if (YourMovieTab.SelectedIndex == 2)
                 Console.WriteLine("Your Movies");
-            
 
+            else
+                Console.WriteLine("Search");
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            YourMovieTab.SelectedIndex = 3;
+            SearchUC.Instance.GetSearchParameter(textBox1.Text);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            SearchUC.Instance.GetSearchParameter(textBox1.Text);
         }
     }
 }
