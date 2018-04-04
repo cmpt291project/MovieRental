@@ -49,14 +49,14 @@ namespace MovieRental
             groupBox.Controls.Add(label1);
         }
 
-        public void setImage(GroupBox groupBox, string filename)
+        public void setImage(GroupBox groupBox, Image ximage)
         {
             PictureBox image = new PictureBox();
             image.Location = new Point(0, 0);
             image.Size = new Size(180, 180);
             image.Top = 10;
             image.Left = -20;
-            image.Image = (Bitmap)Properties.Resources.ResourceManager.GetObject(filename);
+            image.Image = ximage;
             image.SizeMode = PictureBoxSizeMode.Zoom;
             groupBox.Controls.Add(image);
         }
