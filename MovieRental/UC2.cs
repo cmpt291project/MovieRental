@@ -160,5 +160,7 @@ namespace MovieRental
         {
             SearchUC.Instance.GetSearchParameter(textBox1.Text);
         }
+
+        
     }
 }

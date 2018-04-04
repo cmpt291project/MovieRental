@@ -47,9 +47,9 @@
             this.CurrentNumTxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.clearDataBtn = new System.Windows.Forms.Button();
             this.picNameTxt = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.UploadBtn = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
@@ -103,6 +103,7 @@
             this.SocialSecurityTxt = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -125,9 +126,10 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -137,6 +139,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -144,6 +147,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 292);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(603, 264);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
@@ -151,9 +155,9 @@
             // 
             // Insert
             // 
-            this.Insert.Location = new System.Drawing.Point(44, 257);
+            this.Insert.Location = new System.Drawing.Point(18, 257);
             this.Insert.Name = "Insert";
-            this.Insert.Size = new System.Drawing.Size(75, 23);
+            this.Insert.Size = new System.Drawing.Size(56, 23);
             this.Insert.TabIndex = 1;
             this.Insert.Text = "Insert";
             this.Insert.UseVisualStyleBackColor = true;
@@ -161,9 +165,9 @@
             // 
             // Update
             // 
-            this.Update.Location = new System.Drawing.Point(127, 257);
+            this.Update.Location = new System.Drawing.Point(80, 257);
             this.Update.Name = "Update";
-            this.Update.Size = new System.Drawing.Size(75, 23);
+            this.Update.Size = new System.Drawing.Size(56, 23);
             this.Update.TabIndex = 2;
             this.Update.Text = "Update";
             this.Update.UseVisualStyleBackColor = true;
@@ -226,7 +230,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(43, 233);
+            this.label7.Location = new System.Drawing.Point(43, 226);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 13);
             this.label7.TabIndex = 9;
@@ -269,9 +273,9 @@
             // 
             // DirectorTxt
             // 
-            this.DirectorTxt.Location = new System.Drawing.Point(102, 226);
+            this.DirectorTxt.Location = new System.Drawing.Point(102, 223);
             this.DirectorTxt.Name = "DirectorTxt";
-            this.DirectorTxt.Size = new System.Drawing.Size(100, 20);
+            this.DirectorTxt.Size = new System.Drawing.Size(138, 20);
             this.DirectorTxt.TabIndex = 16;
             // 
             // CurrentNumTxt
@@ -294,6 +298,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.clearDataBtn);
             this.panel1.Controls.Add(this.picNameTxt);
             this.panel1.Controls.Add(this.label31);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -321,6 +327,16 @@
             this.panel1.Size = new System.Drawing.Size(603, 283);
             this.panel1.TabIndex = 19;
             // 
+            // clearDataBtn
+            // 
+            this.clearDataBtn.Location = new System.Drawing.Point(142, 257);
+            this.clearDataBtn.Name = "clearDataBtn";
+            this.clearDataBtn.Size = new System.Drawing.Size(56, 23);
+            this.clearDataBtn.TabIndex = 35;
+            this.clearDataBtn.Text = "Clear";
+            this.clearDataBtn.UseVisualStyleBackColor = true;
+            this.clearDataBtn.Click += new System.EventHandler(this.clearDataBtn_Click);
+            // 
             // picNameTxt
             // 
             this.picNameTxt.Location = new System.Drawing.Point(393, 246);
@@ -337,14 +353,6 @@
             this.label31.TabIndex = 32;
             this.label31.Text = "Upload Image:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(393, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(204, 235);
-            this.pictureBox1.TabIndex = 33;
-            this.pictureBox1.TabStop = false;
-            // 
             // UploadBtn
             // 
             this.UploadBtn.Location = new System.Drawing.Point(304, 44);
@@ -359,14 +367,14 @@
             // 
             this.dateTimePicker2.Location = new System.Drawing.Point(102, 166);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(151, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(100, 20);
             this.dateTimePicker2.TabIndex = 19;
             // 
             // dateTimePicker3
             // 
             this.dateTimePicker3.Location = new System.Drawing.Point(102, 192);
             this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(151, 20);
+            this.dateTimePicker3.Size = new System.Drawing.Size(100, 20);
             this.dateTimePicker3.TabIndex = 30;
             // 
             // panel2
@@ -842,6 +850,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label38);
             this.panel4.Controls.Add(this.label37);
             this.panel4.Controls.Add(this.label36);
             this.panel4.Controls.Add(this.label35);
@@ -860,14 +869,23 @@
             this.panel4.Size = new System.Drawing.Size(603, 283);
             this.panel4.TabIndex = 28;
             // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(248, 143);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(79, 13);
+            this.label38.TabIndex = 14;
+            this.label38.Text = "Refine by date:";
+            // 
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(317, 135);
+            this.label37.Location = new System.Drawing.Point(256, 87);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(142, 13);
+            this.label37.Size = new System.Drawing.Size(71, 13);
             this.label37.TabIndex = 13;
-            this.label37.Text = "Search active users by date:";
+            this.label37.Text = "Activity Type:";
             // 
             // label36
             // 
@@ -915,7 +933,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(356, 189);
+            this.button3.Location = new System.Drawing.Point(372, 173);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(31, 23);
             this.button3.TabIndex = 7;
@@ -925,7 +943,7 @@
             // 
             // searchByYear
             // 
-            this.searchByYear.Location = new System.Drawing.Point(320, 189);
+            this.searchByYear.Location = new System.Drawing.Point(336, 173);
             this.searchByYear.Name = "searchByYear";
             this.searchByYear.Size = new System.Drawing.Size(30, 23);
             this.searchByYear.TabIndex = 6;
@@ -935,7 +953,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(319, 160);
+            this.dateTimePicker1.Location = new System.Drawing.Point(337, 140);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(120, 20);
             this.dateTimePicker1.TabIndex = 5;
@@ -963,10 +981,10 @@
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "Rental transactions",
+            "Employee rental transactions",
             "Active Customers",
             "Most Rented Movies"});
-            this.comboBox2.Location = new System.Drawing.Point(319, 79);
+            this.comboBox2.Location = new System.Drawing.Point(336, 83);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 2;
@@ -994,6 +1012,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(9, 292);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(603, 264);
             this.dataGridView2.TabIndex = 24;
             // 
@@ -1002,6 +1021,7 @@
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(9, 292);
             this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(603, 264);
             this.dataGridView3.TabIndex = 25;
             // 
@@ -1025,6 +1045,7 @@
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(9, 292);
             this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
             this.dataGridView4.Size = new System.Drawing.Size(603, 264);
             this.dataGridView4.TabIndex = 27;
             this.dataGridView4.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView4_RowHeaderMouseClick);
@@ -1035,6 +1056,7 @@
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Location = new System.Drawing.Point(9, 292);
             this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.ReadOnly = true;
             this.dataGridView5.Size = new System.Drawing.Size(603, 264);
             this.dataGridView5.TabIndex = 3;
             // 
@@ -1043,6 +1065,7 @@
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView6.Location = new System.Drawing.Point(9, 292);
             this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.ReadOnly = true;
             this.dataGridView6.Size = new System.Drawing.Size(603, 264);
             this.dataGridView6.TabIndex = 29;
             // 
@@ -1054,27 +1077,41 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(206, 260);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 36;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(393, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(204, 235);
+            this.pictureBox1.TabIndex = 33;
+            this.pictureBox1.TabStop = false;
+            // 
             // ManagerUC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dataGridView6);
             this.Controls.Add(this.dataGridView5);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Name = "ManagerUC2";
             this.Size = new System.Drawing.Size(726, 559);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -1087,6 +1124,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1184,10 +1222,13 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker5;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox Search2Txt;
-        private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Button clearDataBtn;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
