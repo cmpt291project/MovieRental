@@ -143,7 +143,7 @@
             this.Suggestion.TabIndex = 1;
             this.Suggestion.Text = "Suggestion";
             this.Suggestion.UseVisualStyleBackColor = true;
-            this.Suggestion.Click += new System.EventHandler(this.Suggestion_Click);
+            
             // 
             // label4
             // 
@@ -213,7 +213,7 @@
             this.YourMovie.TabIndex = 0;
             this.YourMovie.Text = "Your Movie";
             this.YourMovie.UseVisualStyleBackColor = true;
-            this.YourMovie.Click += new System.EventHandler(this.YourMovie_Click);
+            
             // 
             // panel1
             // 

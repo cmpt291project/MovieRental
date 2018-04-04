@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace MovieRental
 {
@@ -57,7 +58,8 @@ namespace MovieRental
                 MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
                 movieBoxRent.createNewBox(panelInGerneControl, i);
                 //MessageBox.Show(row["MID"].ToString().Trim());
-                movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
+
+                //movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
                 movieBoxRent.CreateName(row["MovieName"].ToString());
                 //MessageBox.Show(row["MovieName"].ToString());
                 movieBoxRent.CreateScore(row["rate"].ToString());
@@ -73,7 +75,7 @@ namespace MovieRental
         public void initialDisplay() {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select top 5 MovieName, M.MID, rate from(Select AVG(Rating) as rate, MID from MovieRating Group by MID) as T, Movie M where T.MID = M.MID Order by NEWID()", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select top 5 MovieName, M.MID, rate, Poster from(Select AVG(Rating) as rate, MID from MovieRating Group by MID) as T, Movie M where T.MID = M.MID Order by NEWID()", connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             int i = 0;
@@ -84,7 +86,20 @@ namespace MovieRental
                 MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
                 movieBoxRent.createNewBox(panelInGerneControl, i);
                 //MessageBox.Show(row["MID"].ToString().Trim());
-                movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
+                if (row["Poster"] == DBNull.Value)
+                {
+                    //MessageBox.Show("image null");
+                    //MemoryStream ms = new MemoryStream((byte[])Properties.Resources.ResourceManager.GetObject("001"));
+                    movieBoxRent.CreatePictureImage((Image)Properties.Resources.ResourceManager.GetObject("Noimage"));
+                }
+                else
+                {
+                    byte[] ImageArray = (byte[])row["Poster"];
+                    Image image = Image.FromStream(new MemoryStream(ImageArray));
+
+                    movieBoxRent.CreatePictureImage(image);
+                }
+                //movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
                 movieBoxRent.CreateName(row["MovieName"].ToString());
                 //MessageBox.Show(row["MovieName"].ToString());
                 movieBoxRent.CreateScore(row["rate"].ToString());
