@@ -19,6 +19,7 @@ namespace MovieRental
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter adapt;
         DataGridViewCellMouseEventArgs e;
+        string currentPage = "";
         private string[] movieInfo = new string[10];
         bool fn = false, ln = false, strt = false, stat = false, zip = false, citys = false, tele = false, emai = false, credit = false, plan = false, Null = false;
         public static EmployeeUC Instance
@@ -50,7 +51,9 @@ namespace MovieRental
         private void DisplayData()
         {
             dataGridView2.Enabled = true;
+            button1.Enabled = true;
             con.Open();
+            currentPage = "Customer";
             DataTable dt = new DataTable();
             adapt = new SqlDataAdapter("SELECT * from Customer", con);
             adapt.Fill(dt);
@@ -75,8 +78,15 @@ namespace MovieRental
             // movie name
             con.Open();
             DataTable dt5 = new DataTable();
-            adapt = new SqlDataAdapter("select * from Customer where LastName like @search or FirstName like @search", con);
-            adapt.SelectCommand.Parameters.AddWithValue("@search", searchString + "%");
+            if (currentPage == "Customer")
+            {
+                adapt = new SqlDataAdapter("select * from Customer where LastName like @search or FirstName like @search or Street like @search or City like @search or State like @search or ZipCode like @search or Telephone like @search or AccountType like @search or Rating like @search or EmailAddress like @search", con);
+            }
+            else
+            {
+                adapt = new SqlDataAdapter("select * from (select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID) A where LastName like @search or FirstName like @search or MovieName like @search or OrderDate like @search", con);
+            }
+            adapt.SelectCommand.Parameters.AddWithValue("@search", "%" + searchString + "%");
             adapt.Fill(dt5);
             con.Close();
             if (dt5.Rows.Count > 0)
@@ -362,6 +372,7 @@ namespace MovieRental
         private void Allcustomer_Click(object sender, EventArgs e)
         {
             DisplayData();
+            currentPage = "Customer";
         }
 
         private void Street_TextChanged(object sender, EventArgs e)
@@ -413,6 +424,11 @@ namespace MovieRental
         public void createMostActiveCustomer()
         {
             //Reporting.Controls.Clear();
+            if (month.Text == "")
+            {
+                MessageBox.Show("Please select a month!");
+                return;
+            }
             con.Open();
             DataTable dt = new DataTable();
             adapt = new SqlDataAdapter("select C.FirstName, C.LastName, count(O.MID) from Customer as C, [Order] as O where C.CID = O.CID and month(O.OrderDate) = '" + MonthToInt(month.SelectedItem.ToString()) + "' group by C.FirstName, C.LastName", con);
@@ -539,6 +555,21 @@ namespace MovieRental
             e.Handled = true;
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if(month.Text == "")
+            {
+                MessageBox.Show("Please select a month!");
+                return;
+            }
+            con.Open();
+            DataTable dt = new DataTable();
+            adapt = new SqlDataAdapter("select M.MovieName, count(O.MID) as NumOfSelling from Movie M, [Order] as O where M.MID = O.MID and month(O.OrderDate) = '" + MonthToInt(month.SelectedItem.ToString()) + "' group by M.MovieName order by NumOfSelling DESC", con);
+            adapt.Fill(dt);
+            dataGridView1.DataSource = dt;
+            con.Close();
+        }
+
         private void Atype_MouseClick(object sender, MouseEventArgs e)
         {
             Atype.DroppedDown = true;
@@ -547,6 +578,8 @@ namespace MovieRental
         private void button5_Click(object sender, EventArgs e)
         {
             dataGridView2.Enabled = true;
+            button1.Enabled = false;
+            currentPage = "[Order]";
             reportPanel.Visible = false;
             panel1.Visible = false;
             con.Open();
