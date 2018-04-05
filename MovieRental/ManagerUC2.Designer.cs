@@ -131,6 +131,8 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.ClearEmployeeBtn = new System.Windows.Forms.Button();
+            this.TypeCB = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -615,6 +617,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.TypeCB);
+            this.panel3.Controls.Add(this.ClearEmployeeBtn);
             this.panel3.Controls.Add(this.dateTimePicker5);
             this.panel3.Controls.Add(this.label32);
             this.panel3.Controls.Add(this.label29);
@@ -860,9 +864,9 @@
             // 
             // btnUpdateEmployee
             // 
-            this.btnUpdateEmployee.Location = new System.Drawing.Point(165, 252);
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(132, 252);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
-            this.btnUpdateEmployee.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateEmployee.Size = new System.Drawing.Size(54, 23);
             this.btnUpdateEmployee.TabIndex = 3;
             this.btnUpdateEmployee.Text = "Update";
             this.btnUpdateEmployee.UseVisualStyleBackColor = true;
@@ -872,7 +876,7 @@
             // 
             this.btnInsertEmployee.Location = new System.Drawing.Point(69, 252);
             this.btnInsertEmployee.Name = "btnInsertEmployee";
-            this.btnInsertEmployee.Size = new System.Drawing.Size(75, 23);
+            this.btnInsertEmployee.Size = new System.Drawing.Size(54, 23);
             this.btnInsertEmployee.TabIndex = 2;
             this.btnInsertEmployee.Text = "Add";
             this.btnInsertEmployee.UseVisualStyleBackColor = true;
@@ -1125,21 +1129,43 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // ClearEmployeeBtn
+            // 
+            this.ClearEmployeeBtn.Location = new System.Drawing.Point(196, 252);
+            this.ClearEmployeeBtn.Name = "ClearEmployeeBtn";
+            this.ClearEmployeeBtn.Size = new System.Drawing.Size(54, 23);
+            this.ClearEmployeeBtn.TabIndex = 30;
+            this.ClearEmployeeBtn.Text = "Clear";
+            this.ClearEmployeeBtn.UseVisualStyleBackColor = true;
+            this.ClearEmployeeBtn.Click += new System.EventHandler(this.ClearEmployeeBtn_Click);
+            // 
+            // TypeCB
+            // 
+            this.TypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TypeCB.FormattingEnabled = true;
+            this.TypeCB.Items.AddRange(new object[] {
+            "regular",
+            "manager"});
+            this.TypeCB.Location = new System.Drawing.Point(278, 222);
+            this.TypeCB.Name = "TypeCB";
+            this.TypeCB.Size = new System.Drawing.Size(101, 21);
+            this.TypeCB.TabIndex = 31;
+            // 
             // ManagerUC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dataGridView6);
             this.Controls.Add(this.dataGridView5);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
             this.Name = "ManagerUC2";
             this.Size = new System.Drawing.Size(726, 559);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -1266,5 +1292,7 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox searchActorTxt;
+        private System.Windows.Forms.Button ClearEmployeeBtn;
+        private System.Windows.Forms.ComboBox TypeCB;
     }
 }
