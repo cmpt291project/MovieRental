@@ -49,14 +49,14 @@ namespace MovieRental
             groupBox.Controls.Add(label1);
         }
 
-        public void setImage(GroupBox groupBox, string filename)
+        public void setImage(GroupBox groupBox, Image ximage)
         {
             PictureBox image = new PictureBox();
             image.Location = new Point(0, 0);
             image.Size = new Size(180, 180);
             image.Top = 10;
             image.Left = -20;
-            image.Image = (Bitmap)Properties.Resources.ResourceManager.GetObject(filename);
+            image.Image = ximage;
             image.SizeMode = PictureBoxSizeMode.Zoom;
             groupBox.Controls.Add(image);
         }
@@ -154,6 +154,9 @@ namespace MovieRental
             MessageBox.Show("Return Successfully!");
             YourMovieControl.Instance.createCurrentRental();
             updateall();
+
+            RateForm rf = new RateForm(MID);
+            rf.Show();
         }
 
         public void DeleteMovieFromListButton(GroupBox groupBox, string name)
@@ -172,6 +175,10 @@ namespace MovieRental
             DeleteMovieInWishList();
         }
 
+        private void updateSequence()
+        {
+
+        }
         public void DeleteMovieInWishList()
         {
             SqlConnection con = new SqlConnection(Form4.connectionString);
@@ -181,6 +188,7 @@ namespace MovieRental
             delete.ExecuteNonQuery();
             con.Close();
             updateall();
+            YourMovieControl.Instance.createWishList();
         }
 
         public void AddMovieToRentList(object sender, EventArgs e)
@@ -237,7 +245,7 @@ namespace MovieRental
 
             selectMovie.Update(movie);
 
-            string insert = "INSERT dbo.[" + name + "](OID, MID, CID, EID, OrderDate, ReturnDate)  VALUES((Select MAX(OID)+1 from [Order]), @mid, @cid, @eid, @date, @return)";
+            string insert = "INSERT dbo.[" + name + "](OID, MID, CID, EID, OrderDate, ReturnDate)  VALUES((Select MAX(cast(OID as int))+1 from [Order]), @mid, @cid, @eid, @date, @return)";
             SqlCommand sc = new SqlCommand(insert, connection);
             DateTime date = DateTime.Today;
             DateTime ret = new DateTime(date.Year, date.Month + 1, date.Day);
@@ -248,7 +256,7 @@ namespace MovieRental
             
             sc.Parameters.AddWithValue("@mid", MID);
             sc.Parameters.AddWithValue("@cid", UC1.id);
-            sc.Parameters.AddWithValue("@eid", "001");
+            sc.Parameters.AddWithValue("@eid", "1");
             sc.Parameters.AddWithValue("@date", date.Date.ToString("d"));
             sc.Parameters.AddWithValue("@return", ret);
             //sc.Parameters.AddWithValue("@actual", null);
@@ -256,6 +264,7 @@ namespace MovieRental
             connection.Close();
             DeleteMovieInWishList();
             YourMovieControl.Instance.createWishList();
+            updateall();
         }
 
 

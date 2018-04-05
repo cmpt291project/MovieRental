@@ -10,7 +10,7 @@ namespace MovieRental
 {
     class RateBox
     {
-        private GroupBox gb;
+        public GroupBox gb;
         private Label label;
         private RadioButton one;
         private RadioButton two;
@@ -31,14 +31,14 @@ namespace MovieRental
 
         }
 
-        public void NewGroupBox(Panel p, int i) {
+        public void NewGroupBox(Panel p, int i, string gbname) {
             
             gb.Location = new Point(3, 3);
-            gb.Size = new Size(500, 70);
-            gb.Name = "gb" + i.ToString();
-            gb.Top = 3 + i * 60;
+            gb.Size = new Size(380 ,70);
+            gb.Name = gbname;
+            gb.Top = 3+ i * 70;
             gb.Left = 3;
-            gb.Text = "Rate";
+            gb.Text = "Rate The Star";
             gb.FlatStyle = FlatStyle.Standard;
 
             p.Controls.Add(gb);
@@ -46,7 +46,8 @@ namespace MovieRental
 
         public void NewLabel(string s) {
             label.Text = s;
-            label.Font = new Font("Serif", 10);
+            label.Font = new Font("Serif", 10, FontStyle.Bold);
+            
             label.Top = 15;
             label.Left = 5;
             label.AutoSize = true;

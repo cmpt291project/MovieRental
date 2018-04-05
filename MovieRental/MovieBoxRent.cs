@@ -34,12 +34,12 @@ namespace MovieRental
             MID = mid;
 
         }
-        public void createNewBox(Panel p, int i)
+        public void createNewBox(Panel p, int i, int j)
         {
             gb.Name = "movie";
             gb.Location = new Point(3, 3);
             gb.Size = new Size(200, 320);
-            gb.Top = 3;
+            gb.Top = 3 + j* 320;
             gb.Left = 3 + i*200;
             gb.Text = "Movie";
             gb.FlatStyle = FlatStyle.Standard;
@@ -271,22 +271,50 @@ namespace MovieRental
             //MessageBox.Show("not null");
         }
 
+        private bool CheckWishList()
+        {
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("Select MAX(Sequence) + 1 as sequence from MovieQueue mq where mq.CID = '" + UC1.id + "'", connection);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                if (row["sequence"].ToString() == "")
+                {
+                    return false;
+                }
+            }
+            //MessageBox.Show(dataTable.Rows.Count.ToString());
+            connection.Close();
+            return true;
+        }
+
         public void Wish_Click(object sender, EventArgs e) {
             Button btn = (Button)sender;
             MessageBox.Show("add to wishlist");
+            string insert = "";
             SqlConnection con = new SqlConnection(Form4.connectionString);
             con.Open();
-            string insert = "INSERT dbo.[MovieQueue](CID, MID, Sequence)  VALUES(@cid, @mid, (Select MAX(Sequence) + 1 from MovieQueue mq where mq.CID = '"+ UC1.id+"'))";
+            if (CheckWishList())
+            {
+                insert = "INSERT dbo.[MovieQueue](CID, MID, Sequence)  VALUES(@cid, @mid, (Select MAX(Sequence) + 1 from MovieQueue mq where mq.CID = '" + UC1.id + "'))";
+            }
+            else
+            {
+                insert = "INSERT dbo.[MovieQueue](CID, MID, Sequence)  VALUES(@cid, @mid, 1)";
+            }
             SqlCommand sc = new SqlCommand(insert, con);
-            //sc.Parameters.AddWithValue("@oid", "006");
-           
+                //sc.Parameters.AddWithValue("@oid", "006");
+
             sc.Parameters.AddWithValue("@mid", MID);
             sc.Parameters.AddWithValue("@cid", UC1.id);
-            //sc.Parameters.AddWithValue("@actual", null);
+                //sc.Parameters.AddWithValue("@actual", null);
             sc.ExecuteNonQuery();
             con.Close();
             wishlist.Text = "Added";
             wishlist.Enabled = false;
+
         }
 
         private void moviePage(object sender, EventArgs e) {

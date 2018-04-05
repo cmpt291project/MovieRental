@@ -66,10 +66,11 @@
             this.YourMovieTab.Controls.Add(this.Suggestion);
             this.YourMovieTab.Controls.Add(this.YourMovie);
             this.YourMovieTab.Controls.Add(this.tabPage1);
-            this.YourMovieTab.Location = new System.Drawing.Point(0, 33);
+            this.YourMovieTab.Location = new System.Drawing.Point(0, 63);
+            this.YourMovieTab.Margin = new System.Windows.Forms.Padding(6);
             this.YourMovieTab.Name = "YourMovieTab";
             this.YourMovieTab.SelectedIndex = 0;
-            this.YourMovieTab.Size = new System.Drawing.Size(733, 772);
+            this.YourMovieTab.Size = new System.Drawing.Size(1466, 1485);
             this.YourMovieTab.TabIndex = 0;
             this.YourMovieTab.SelectedIndexChanged += new System.EventHandler(this.YourMovieTab_SelectedIndexChanged);
             this.YourMovieTab.TabIndexChanged += new System.EventHandler(this.YourMovieTab_TabIndexChanged);
@@ -82,47 +83,51 @@
             this.Features.Controls.Add(this.newRelease);
             this.Features.Controls.Add(this.label2);
             this.Features.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Features.Location = new System.Drawing.Point(4, 22);
-            this.Features.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.Features.Location = new System.Drawing.Point(8, 39);
+            this.Features.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.Features.Name = "Features";
-            this.Features.Padding = new System.Windows.Forms.Padding(3);
-            this.Features.Size = new System.Drawing.Size(725, 746);
+            this.Features.Padding = new System.Windows.Forms.Padding(6);
+            this.Features.Size = new System.Drawing.Size(1450, 1438);
             this.Features.TabIndex = 0;
             this.Features.Text = "Feature";
             this.Features.UseVisualStyleBackColor = true;
             // 
             // panelGenre
             // 
-            this.panelGenre.Location = new System.Drawing.Point(16, 439);
+            this.panelGenre.Location = new System.Drawing.Point(32, 844);
+            this.panelGenre.Margin = new System.Windows.Forms.Padding(6);
             this.panelGenre.Name = "panelGenre";
-            this.panelGenre.Size = new System.Drawing.Size(700, 295);
+            this.panelGenre.Size = new System.Drawing.Size(1400, 792);
             this.panelGenre.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(11, 405);
+            this.label3.Location = new System.Drawing.Point(22, 779);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(189, 17);
+            this.label3.Size = new System.Drawing.Size(360, 31);
             this.label3.TabIndex = 2;
             this.label3.Text = "Choose Your Favorite Genre";
             // 
             // newRelease
             // 
             this.newRelease.AutoSize = true;
-            this.newRelease.Location = new System.Drawing.Point(14, 50);
+            this.newRelease.Location = new System.Drawing.Point(28, 77);
+            this.newRelease.Margin = new System.Windows.Forms.Padding(6);
             this.newRelease.Name = "newRelease";
-            this.newRelease.Size = new System.Drawing.Size(696, 332);
+            this.newRelease.Size = new System.Drawing.Size(1410, 677);
             this.newRelease.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(11, 21);
+            this.label2.Location = new System.Drawing.Point(22, 26);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 17);
+            this.label2.Size = new System.Drawing.Size(191, 31);
             this.label2.TabIndex = 0;
             this.label2.Text = "New Released";
             // 
@@ -135,51 +140,50 @@
             this.Suggestion.Controls.Add(this.youmayalsolike);
             this.Suggestion.Controls.Add(this.label1);
             this.Suggestion.Controls.Add(this.rank);
-            this.Suggestion.Location = new System.Drawing.Point(4, 22);
-            this.Suggestion.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.Suggestion.Location = new System.Drawing.Point(8, 39);
+            this.Suggestion.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.Suggestion.Name = "Suggestion";
-            this.Suggestion.Padding = new System.Windows.Forms.Padding(3);
-            this.Suggestion.Size = new System.Drawing.Size(725, 746);
+            this.Suggestion.Padding = new System.Windows.Forms.Padding(6);
+            this.Suggestion.Size = new System.Drawing.Size(1450, 1438);
             this.Suggestion.TabIndex = 1;
             this.Suggestion.Text = "Suggestion";
             this.Suggestion.UseVisualStyleBackColor = true;
-            
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(8, 769);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(16, 1479);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 17);
+            this.label4.Size = new System.Drawing.Size(156, 31);
             this.label4.TabIndex = 5;
             this.label4.Text = "Top Rented";
             // 
             // top
             // 
-            this.top.Location = new System.Drawing.Point(11, 794);
-            this.top.Margin = new System.Windows.Forms.Padding(2);
+            this.top.Location = new System.Drawing.Point(22, 1527);
+            this.top.Margin = new System.Windows.Forms.Padding(4);
             this.top.Name = "top";
-            this.top.Size = new System.Drawing.Size(705, 307);
+            this.top.Size = new System.Drawing.Size(1410, 715);
             this.top.TabIndex = 4;
             // 
             // like
             // 
-            this.like.Location = new System.Drawing.Point(11, 422);
-            this.like.Margin = new System.Windows.Forms.Padding(2);
+            this.like.Location = new System.Drawing.Point(22, 812);
+            this.like.Margin = new System.Windows.Forms.Padding(4);
             this.like.Name = "like";
-            this.like.Size = new System.Drawing.Size(705, 332);
+            this.like.Size = new System.Drawing.Size(1410, 638);
             this.like.TabIndex = 3;
             // 
             // youmayalsolike
             // 
             this.youmayalsolike.AutoSize = true;
             this.youmayalsolike.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.youmayalsolike.Location = new System.Drawing.Point(8, 398);
-            this.youmayalsolike.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.youmayalsolike.Location = new System.Drawing.Point(16, 765);
+            this.youmayalsolike.Margin = new System.Windows.Forms.Padding(12, 0, 12, 0);
             this.youmayalsolike.Name = "youmayalsolike";
-            this.youmayalsolike.Size = new System.Drawing.Size(124, 17);
+            this.youmayalsolike.Size = new System.Drawing.Size(237, 31);
             this.youmayalsolike.TabIndex = 2;
             this.youmayalsolike.Text = "You May Also Like";
             // 
@@ -187,50 +191,51 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(8, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(16, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(12, 0, 12, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 17);
+            this.label1.Size = new System.Drawing.Size(114, 31);
             this.label1.TabIndex = 1;
             this.label1.Text = "Ranking";
             // 
             // rank
             // 
-            this.rank.Location = new System.Drawing.Point(11, 47);
-            this.rank.Margin = new System.Windows.Forms.Padding(2);
+            this.rank.Location = new System.Drawing.Point(22, 71);
+            this.rank.Margin = new System.Windows.Forms.Padding(4);
             this.rank.Name = "rank";
-            this.rank.Size = new System.Drawing.Size(700, 332);
+            this.rank.Size = new System.Drawing.Size(1410, 662);
             this.rank.TabIndex = 0;
             // 
             // YourMovie
             // 
             this.YourMovie.AutoScroll = true;
-            this.YourMovie.Location = new System.Drawing.Point(4, 22);
-            this.YourMovie.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.YourMovie.Location = new System.Drawing.Point(8, 39);
+            this.YourMovie.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.YourMovie.Name = "YourMovie";
-            this.YourMovie.Padding = new System.Windows.Forms.Padding(6);
-            this.YourMovie.Size = new System.Drawing.Size(725, 746);
+            this.YourMovie.Padding = new System.Windows.Forms.Padding(12);
+            this.YourMovie.Size = new System.Drawing.Size(1450, 1438);
             this.YourMovie.TabIndex = 0;
             this.YourMovie.Text = "Your Movie";
             this.YourMovie.UseVisualStyleBackColor = true;
-            
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.SearchPanel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(8, 39);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(725, 746);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
+            this.tabPage1.Size = new System.Drawing.Size(1450, 1438);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Search";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // SearchPanel
             // 
-            this.SearchPanel.Location = new System.Drawing.Point(0, 0);
+            this.SearchPanel.Location = new System.Drawing.Point(0, 22);
+            this.SearchPanel.Margin = new System.Windows.Forms.Padding(6);
             this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(725, 746);
+            this.SearchPanel.Size = new System.Drawing.Size(1450, 1413);
             this.SearchPanel.TabIndex = 0;
             // 
             // panel1
@@ -239,28 +244,28 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(319, 7);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.panel1.Location = new System.Drawing.Point(627, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(370, 48);
+            this.panel1.Size = new System.Drawing.Size(740, 92);
             this.panel1.TabIndex = 2;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(213, 5);
-            this.button2.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.button2.Location = new System.Drawing.Point(426, 10);
+            this.button2.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(66, 43);
+            this.button2.Size = new System.Drawing.Size(132, 83);
             this.button2.TabIndex = 3;
             this.button2.Text = "Wishlist";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(291, 5);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.button1.Location = new System.Drawing.Point(582, 10);
+            this.button1.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(70, 43);
+            this.button1.Size = new System.Drawing.Size(140, 83);
             this.button1.TabIndex = 2;
             this.button1.Text = "Account";
             this.button1.UseVisualStyleBackColor = true;
@@ -268,20 +273,19 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(0, 25);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.textBox1.Location = new System.Drawing.Point(0, 48);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 20);
+            this.textBox1.Size = new System.Drawing.Size(268, 31);
             this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::MovieRental.Properties.Resources.Icons8_Ios7_Very_Basic_Search;
-            this.pictureBox1.Location = new System.Drawing.Point(136, 22);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.pictureBox1.Location = new System.Drawing.Point(272, 42);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(12, 13, 12, 13);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 23);
+            this.pictureBox1.Size = new System.Drawing.Size(68, 44);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -302,13 +306,14 @@
             // 
             // UC2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.YourMovieTab);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "UC2";
-            this.Size = new System.Drawing.Size(739, 814);
+            this.Size = new System.Drawing.Size(1478, 1565);
             this.Load += new System.EventHandler(this.UC2_Load);
             this.YourMovieTab.ResumeLayout(false);
             this.Features.ResumeLayout(false);

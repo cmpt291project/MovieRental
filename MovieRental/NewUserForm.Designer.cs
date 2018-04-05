@@ -30,6 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.limited = new System.Windows.Forms.RadioButton();
+            this.unlimited3 = new System.Windows.Forms.RadioButton();
+            this.unlimited2 = new System.Windows.Forms.RadioButton();
+            this.unlimited1 = new System.Windows.Forms.RadioButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.submit = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,13 +56,7 @@
             this.name = new System.Windows.Forms.Label();
             this.FirstName = new System.Windows.Forms.TextBox();
             this.firstnameError = new System.Windows.Forms.ErrorProvider(this.components);
-            this.submit = new System.Windows.Forms.Button();
             this.emailerror = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label9 = new System.Windows.Forms.Label();
-            this.limited = new System.Windows.Forms.RadioButton();
-            this.unlimited3 = new System.Windows.Forms.RadioButton();
-            this.unlimited2 = new System.Windows.Forms.RadioButton();
-            this.unlimited1 = new System.Windows.Forms.RadioButton();
             this.planerror = new System.Windows.Forms.ErrorProvider(this.components);
             this.lastnameError = new System.Windows.Forms.ErrorProvider(this.components);
             this.sterror = new System.Windows.Forms.ErrorProvider(this.components);
@@ -109,6 +109,70 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(909, 959);
             this.panel1.TabIndex = 0;
+            // 
+            // limited
+            // 
+            this.limited.AutoSize = true;
+            this.limited.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.limited.Location = new System.Drawing.Point(49, 746);
+            this.limited.Name = "limited";
+            this.limited.Size = new System.Drawing.Size(123, 35);
+            this.limited.TabIndex = 35;
+            this.limited.Text = "limited";
+            this.limited.UseVisualStyleBackColor = true;
+            // 
+            // unlimited3
+            // 
+            this.unlimited3.AutoSize = true;
+            this.unlimited3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.unlimited3.Location = new System.Drawing.Point(210, 746);
+            this.unlimited3.Name = "unlimited3";
+            this.unlimited3.Size = new System.Drawing.Size(168, 35);
+            this.unlimited3.TabIndex = 36;
+            this.unlimited3.Text = "unlimited3";
+            this.unlimited3.UseVisualStyleBackColor = true;
+            // 
+            // unlimited2
+            // 
+            this.unlimited2.AutoSize = true;
+            this.unlimited2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.unlimited2.Location = new System.Drawing.Point(420, 746);
+            this.unlimited2.Name = "unlimited2";
+            this.unlimited2.Size = new System.Drawing.Size(168, 35);
+            this.unlimited2.TabIndex = 37;
+            this.unlimited2.Text = "unlimited2";
+            this.unlimited2.UseVisualStyleBackColor = true;
+            // 
+            // unlimited1
+            // 
+            this.unlimited1.AutoSize = true;
+            this.unlimited1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.unlimited1.Location = new System.Drawing.Point(650, 746);
+            this.unlimited1.Name = "unlimited1";
+            this.unlimited1.Size = new System.Drawing.Size(168, 35);
+            this.unlimited1.TabIndex = 38;
+            this.unlimited1.Text = "unlimited1";
+            this.unlimited1.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(43, 685);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(318, 31);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "Please choose your plan:";
+            // 
+            // submit
+            // 
+            this.submit.Location = new System.Drawing.Point(420, 848);
+            this.submit.Name = "submit";
+            this.submit.Size = new System.Drawing.Size(151, 67);
+            this.submit.TabIndex = 33;
+            this.submit.Text = "Submit";
+            this.submit.UseVisualStyleBackColor = true;
+            this.submit.Click += new System.EventHandler(this.submit_Click);
             // 
             // label8
             // 
@@ -289,73 +353,9 @@
             // 
             this.firstnameError.ContainerControl = this;
             // 
-            // submit
-            // 
-            this.submit.Location = new System.Drawing.Point(420, 848);
-            this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(151, 67);
-            this.submit.TabIndex = 33;
-            this.submit.Text = "Submit";
-            this.submit.UseVisualStyleBackColor = true;
-            this.submit.Click += new System.EventHandler(this.submit_Click);
-            // 
             // emailerror
             // 
             this.emailerror.ContainerControl = this;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(43, 685);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(318, 31);
-            this.label9.TabIndex = 34;
-            this.label9.Text = "Please choose your plan:";
-            // 
-            // limited
-            // 
-            this.limited.AutoSize = true;
-            this.limited.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.limited.Location = new System.Drawing.Point(49, 746);
-            this.limited.Name = "limited";
-            this.limited.Size = new System.Drawing.Size(123, 35);
-            this.limited.TabIndex = 35;
-            this.limited.Text = "limited";
-            this.limited.UseVisualStyleBackColor = true;
-            // 
-            // unlimited3
-            // 
-            this.unlimited3.AutoSize = true;
-            this.unlimited3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.unlimited3.Location = new System.Drawing.Point(210, 746);
-            this.unlimited3.Name = "unlimited3";
-            this.unlimited3.Size = new System.Drawing.Size(168, 35);
-            this.unlimited3.TabIndex = 36;
-            this.unlimited3.Text = "unlimited3";
-            this.unlimited3.UseVisualStyleBackColor = true;
-            // 
-            // unlimited2
-            // 
-            this.unlimited2.AutoSize = true;
-            this.unlimited2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.unlimited2.Location = new System.Drawing.Point(420, 746);
-            this.unlimited2.Name = "unlimited2";
-            this.unlimited2.Size = new System.Drawing.Size(168, 35);
-            this.unlimited2.TabIndex = 37;
-            this.unlimited2.Text = "unlimited2";
-            this.unlimited2.UseVisualStyleBackColor = true;
-            // 
-            // unlimited1
-            // 
-            this.unlimited1.AutoSize = true;
-            this.unlimited1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.unlimited1.Location = new System.Drawing.Point(650, 746);
-            this.unlimited1.Name = "unlimited1";
-            this.unlimited1.Size = new System.Drawing.Size(168, 35);
-            this.unlimited1.TabIndex = 38;
-            this.unlimited1.Text = "unlimited1";
-            this.unlimited1.UseVisualStyleBackColor = true;
             // 
             // planerror
             // 
@@ -398,6 +398,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "NewUserForm";
             this.Text = "NewUserForm";
+            
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameError)).EndInit();
