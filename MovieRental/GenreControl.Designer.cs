@@ -51,9 +51,9 @@
             // 
             this.panelInGerneControl.AutoScroll = true;
             this.panelInGerneControl.AutoSize = true;
-            this.panelInGerneControl.Location = new System.Drawing.Point(0, 72);
+            this.panelInGerneControl.Location = new System.Drawing.Point(3, 64);
             this.panelInGerneControl.Name = "panelInGerneControl";
-            this.panelInGerneControl.Size = new System.Drawing.Size(1455, 587);
+            this.panelInGerneControl.Size = new System.Drawing.Size(1455, 573);
             this.panelInGerneControl.TabIndex = 5;
             // 
             // Thriller
@@ -119,7 +119,7 @@
             this.Controls.Add(this.panelInGerneControl);
             this.Controls.Add(this.Drama);
             this.Name = "GenreControl";
-            this.Size = new System.Drawing.Size(1410, 683);
+            this.Size = new System.Drawing.Size(1410, 665);
             this.Load += new System.EventHandler(this.GenreControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -38,7 +38,7 @@
             this.panelInRanking.Location = new System.Drawing.Point(0, 0);
             this.panelInRanking.Margin = new System.Windows.Forms.Padding(6);
             this.panelInRanking.Name = "panelInRanking";
-            this.panelInRanking.Size = new System.Drawing.Size(1410, 638);
+            this.panelInRanking.Size = new System.Drawing.Size(1410, 573);
             this.panelInRanking.TabIndex = 0;
             // 
             // Ranking
@@ -49,7 +49,7 @@
             this.Controls.Add(this.panelInRanking);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Ranking";
-            this.Size = new System.Drawing.Size(1410, 681);
+            this.Size = new System.Drawing.Size(1413, 712);
             this.Load += new System.EventHandler(this.Ranking_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -16,11 +16,11 @@ namespace MovieRental
     class ActorInfo
     {
         private GroupBox gb;
-        private LinkLabel fullName;
+        private Label fullName;
         private Label dob;
         private Label gender;
         public ActorInfo() {
-            fullName = new LinkLabel();
+            fullName = new Label();
             gb = new GroupBox();
             dob = new Label();
             gender = new Label();
@@ -44,7 +44,7 @@ namespace MovieRental
             fullName.Name = "actorName";
             fullName.Text = name;
             fullName.Location = new Point(10, 10);
-            fullName.Font = new Font("Serif", 10);
+            fullName.Font = new Font("Serif", 10,FontStyle.Bold);
             fullName.Top = 15;
             fullName.Left = 5;
             //fullName.MaximumSize = new Size(150, 40);

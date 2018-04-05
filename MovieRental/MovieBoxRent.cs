@@ -34,12 +34,12 @@ namespace MovieRental
             MID = mid;
 
         }
-        public void createNewBox(Panel p, int i)
+        public void createNewBox(Panel p, int i, int j)
         {
             gb.Name = "movie";
             gb.Location = new Point(3, 3);
             gb.Size = new Size(200, 320);
-            gb.Top = 3;
+            gb.Top = 3 + j* 320;
             gb.Left = 3 + i*200;
             gb.Text = "Movie";
             gb.FlatStyle = FlatStyle.Standard;

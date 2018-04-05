@@ -56,7 +56,7 @@ namespace MovieRental
                 //foreach (DataColumn column in dataTable.Columns)
                 //{
                 MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
-                movieBoxRent.createNewBox(panelInGerneControl, i);
+                movieBoxRent.createNewBox(panelInGerneControl, i,0);
                 //MessageBox.Show(row["MID"].ToString().Trim());
 
                 //movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
@@ -84,7 +84,7 @@ namespace MovieRental
                 //foreach (DataColumn column in dataTable.Columns)
                 //{
                 MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
-                movieBoxRent.createNewBox(panelInGerneControl, i);
+                movieBoxRent.createNewBox(panelInGerneControl, i,0);
                 //MessageBox.Show(row["MID"].ToString().Trim());
                 if (row["Poster"] == DBNull.Value)
                 {

@@ -95,7 +95,7 @@ namespace MovieRental
                 SearchUC.Instance.BringToFront();
             }
             else
-                SearchUC.Instance.BringToFront();
+                SearchUC.Instance.BringToFront();  
 
         }
 
@@ -154,12 +154,11 @@ namespace MovieRental
         {
             YourMovieTab.SelectedIndex = 3;
             SearchUC.Instance.GetSearchParameter(textBox1.Text);
+
+           
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            SearchUC.Instance.GetSearchParameter(textBox1.Text);
-        }
+     
 
         
     }
