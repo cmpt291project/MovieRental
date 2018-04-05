@@ -85,6 +85,7 @@
             this.FirstName = new System.Windows.Forms.TextBox();
             this.suggest = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel4.SuspendLayout();
             this.reportPanel.SuspendLayout();
             this.Reporting.SuspendLayout();
@@ -99,6 +100,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.comboBox1);
             this.panel4.Controls.Add(this.reportbutton);
             this.panel4.Controls.Add(this.reportPanel);
             this.panel4.Controls.Add(this.Allcustomer);
@@ -133,9 +135,9 @@
             this.reportPanel.Controls.Add(this.Reporting);
             this.reportPanel.Controls.Add(this.button7);
             this.reportPanel.Controls.Add(this.mostcustomer);
-            this.reportPanel.Location = new System.Drawing.Point(1, 44);
+            this.reportPanel.Location = new System.Drawing.Point(1, 45);
             this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(680, 659);
+            this.reportPanel.Size = new System.Drawing.Size(680, 658);
             this.reportPanel.TabIndex = 48;
             this.reportPanel.Visible = false;
             // 
@@ -732,6 +734,29 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
+            this.comboBox1.Location = new System.Drawing.Point(553, 188);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(88, 20);
+            this.comboBox1.TabIndex = 50;
+            this.comboBox1.Visible = false;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // EmployeeUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -817,5 +842,6 @@
         private System.Windows.Forms.Button mostcustomer;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox month;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
