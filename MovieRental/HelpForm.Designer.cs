@@ -35,7 +35,7 @@
             // 
             this.infotext.Location = new System.Drawing.Point(35, 23);
             this.infotext.Name = "infotext";
-            this.infotext.Size = new System.Drawing.Size(1056, 341);
+            this.infotext.Size = new System.Drawing.Size(1056, 809);
             this.infotext.TabIndex = 0;
             this.infotext.Text = "";
             // 
