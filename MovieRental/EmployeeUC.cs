@@ -63,6 +63,8 @@ namespace MovieRental
             button3.Enabled = false;
             update.Enabled = false;
             button6.Enabled = false;
+            panel1.Visible = true;
+            reportPanel.Visible = false;
         }
 
 
@@ -246,18 +248,46 @@ namespace MovieRental
             connection.Close();
             return true;
         }
+
         private bool checkallbool()
         {
             if (fn == false && ln == false && strt == false && stat == false && zip == false && citys == false && tele == false && emai == false && credit == false && plan == false && Null == false)
                 return true;
             return false;
         }
+
+        private bool checkemail()
+        {
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("Select EmailAddress from Customer", connection);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                if (row["EmailAddress"].ToString().Trim() == EmailAddress.Text)
+                {
+                    return false;
+                }
+            }
+            //MessageBox.Show(dataTable.Rows.Count.ToString());
+            connection.Close();
+            return true;
+        }
+
         private void sendAddQuery()
         {
             if (checkallbool()) {
+                if (!checkemail())
+                {
+                    MessageBox.Show("The email address has been taken.");
+                    errorProvider1.SetError(EmailAddress, "The email address has been taken.");
+                    return;
+                }
                 string newMID;
                 Random generator = new Random();
                 int r = generator.Next(0, 999999);
+
                 using (cmd = new SqlCommand("select MAX(CID)+1 from Customer", con))
                 {
                     con.Open();
@@ -361,7 +391,7 @@ namespace MovieRental
 
         private void EmailAddress_TextChanged(object sender, EventArgs e)
         {
-
+            errorProvider1.SetError(EmailAddress, "");
         }
 
         private void CreditCardNumber_TextChanged(object sender, EventArgs e)
@@ -440,6 +470,75 @@ namespace MovieRental
 
         }
 
+        private void FirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void LastName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Street_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void City_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void State_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ZipCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Telephone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void CreditCardNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Atype_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
         private void Atype_MouseClick(object sender, MouseEventArgs e)
         {
             Atype.DroppedDown = true;
@@ -448,6 +547,8 @@ namespace MovieRental
         private void button5_Click(object sender, EventArgs e)
         {
             dataGridView2.Enabled = true;
+            reportPanel.Visible = false;
+            panel1.Visible = false;
             con.Open();
             DataTable dt = new DataTable();
             adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID", con);
@@ -583,12 +684,12 @@ namespace MovieRental
                 str = "The value cannot be NULL";
                 value = true;
             }
-            if (value)
+            /*if (value)
             {
                 errorProvider1.SetError(box, str);
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(box, "");*/
         }
     }
 }
