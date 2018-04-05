@@ -69,6 +69,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.la = new System.Windows.Forms.Label();
+            this.pass = new System.Windows.Forms.TextBox();
+            this.passerror = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailerror)).BeginInit();
@@ -80,10 +83,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.ziperror)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.telerror)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crederror)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.passerror)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pass);
+            this.panel1.Controls.Add(this.la);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label11);
@@ -196,7 +202,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(43, 530);
+            this.label7.Location = new System.Drawing.Point(43, 559);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(264, 31);
             this.label7.TabIndex = 31;
@@ -206,7 +212,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(43, 437);
+            this.label6.Location = new System.Drawing.Point(43, 423);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 31);
             this.label6.TabIndex = 30;
@@ -234,7 +240,7 @@
             // EmailAddress
             // 
             this.EmailAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.EmailAddress.Location = new System.Drawing.Point(225, 430);
+            this.EmailAddress.Location = new System.Drawing.Point(225, 416);
             this.EmailAddress.Name = "EmailAddress";
             this.EmailAddress.Size = new System.Drawing.Size(335, 38);
             this.EmailAddress.TabIndex = 27;
@@ -242,7 +248,7 @@
             // Telephone
             // 
             this.Telephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Telephone.Location = new System.Drawing.Point(225, 342);
+            this.Telephone.Location = new System.Drawing.Point(225, 335);
             this.Telephone.Name = "Telephone";
             this.Telephone.Size = new System.Drawing.Size(335, 38);
             this.Telephone.TabIndex = 26;
@@ -433,6 +439,28 @@
             this.label13.TabIndex = 42;
             this.label13.Text = "$25/month";
             // 
+            // la
+            // 
+            this.la.AutoSize = true;
+            this.la.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la.Location = new System.Drawing.Point(43, 498);
+            this.la.Name = "la";
+            this.la.Size = new System.Drawing.Size(142, 31);
+            this.la.TabIndex = 43;
+            this.la.Text = "Password:";
+            // 
+            // pass
+            // 
+            this.pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pass.Location = new System.Drawing.Point(225, 498);
+            this.pass.Name = "pass";
+            this.pass.Size = new System.Drawing.Size(335, 38);
+            this.pass.TabIndex = 44;
+            // 
+            // passerror
+            // 
+            this.passerror.ContainerControl = this;
+            // 
             // NewUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -455,6 +483,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ziperror)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.telerror)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crederror)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.passerror)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -501,5 +530,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox pass;
+        private System.Windows.Forms.Label la;
+        private System.Windows.Forms.ErrorProvider passerror;
     }
 }
