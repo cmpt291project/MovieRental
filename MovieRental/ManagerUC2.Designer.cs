@@ -47,13 +47,18 @@
             this.CurrentNumTxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label39 = new System.Windows.Forms.Label();
+            this.searchMovieTxt = new System.Windows.Forms.TextBox();
             this.clearDataBtn = new System.Windows.Forms.Button();
             this.picNameTxt = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.UploadBtn = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label40 = new System.Windows.Forms.Label();
+            this.searchActorTxt = new System.Windows.Forms.TextBox();
             this.genderCB = new System.Windows.Forms.ComboBox();
             this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
@@ -126,10 +131,9 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -139,7 +143,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -298,7 +301,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label39);
+            this.panel1.Controls.Add(this.searchMovieTxt);
             this.panel1.Controls.Add(this.clearDataBtn);
             this.panel1.Controls.Add(this.picNameTxt);
             this.panel1.Controls.Add(this.label31);
@@ -327,6 +331,23 @@
             this.panel1.Size = new System.Drawing.Size(603, 283);
             this.panel1.TabIndex = 19;
             // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(256, 241);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(104, 13);
+            this.label39.TabIndex = 37;
+            this.label39.Text = "Find movie by name:";
+            // 
+            // searchMovieTxt
+            // 
+            this.searchMovieTxt.Location = new System.Drawing.Point(259, 257);
+            this.searchMovieTxt.Name = "searchMovieTxt";
+            this.searchMovieTxt.Size = new System.Drawing.Size(100, 20);
+            this.searchMovieTxt.TabIndex = 36;
+            this.searchMovieTxt.TextChanged += new System.EventHandler(this.searchMovieTxt_TextChanged);
+            // 
             // clearDataBtn
             // 
             this.clearDataBtn.Location = new System.Drawing.Point(142, 257);
@@ -353,6 +374,14 @@
             this.label31.TabIndex = 32;
             this.label31.Text = "Upload Image:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(393, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(204, 235);
+            this.pictureBox1.TabIndex = 33;
+            this.pictureBox1.TabStop = false;
+            // 
             // UploadBtn
             // 
             this.UploadBtn.Location = new System.Drawing.Point(304, 44);
@@ -372,13 +401,15 @@
             // 
             // dateTimePicker3
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(102, 192);
+            this.dateTimePicker3.Location = new System.Drawing.Point(102, 196);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(100, 20);
             this.dateTimePicker3.TabIndex = 30;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label40);
+            this.panel2.Controls.Add(this.searchActorTxt);
             this.panel2.Controls.Add(this.genderCB);
             this.panel2.Controls.Add(this.dateTimePicker4);
             this.panel2.Controls.Add(this.label16);
@@ -401,6 +432,23 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(603, 283);
             this.panel2.TabIndex = 23;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(97, 241);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(112, 13);
+            this.label40.TabIndex = 22;
+            this.label40.Text = "search actor by name:";
+            // 
+            // searchActorTxt
+            // 
+            this.searchActorTxt.Location = new System.Drawing.Point(102, 257);
+            this.searchActorTxt.Name = "searchActorTxt";
+            this.searchActorTxt.Size = new System.Drawing.Size(100, 20);
+            this.searchActorTxt.TabIndex = 21;
+            this.searchActorTxt.TextChanged += new System.EventHandler(this.searchActorTxt_TextChanged);
             // 
             // genderCB
             // 
@@ -1077,29 +1125,11 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(206, 260);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 36;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(393, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(204, 235);
-            this.pictureBox1.TabIndex = 33;
-            this.pictureBox1.TabStop = false;
-            // 
             // ManagerUC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dataGridView6);
@@ -1107,11 +1137,15 @@
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
             this.Name = "ManagerUC2";
             this.Size = new System.Drawing.Size(726, 559);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -1124,7 +1158,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1229,6 +1262,9 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Button clearDataBtn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox searchMovieTxt;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TextBox searchActorTxt;
     }
 }
