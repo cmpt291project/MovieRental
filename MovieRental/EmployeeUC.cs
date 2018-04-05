@@ -68,6 +68,7 @@ namespace MovieRental
             button6.Enabled = false;
             panel1.Visible = true;
             reportPanel.Visible = false;
+            comboBox1.Visible = false;
         }
 
 
@@ -413,6 +414,7 @@ namespace MovieRental
         private void reportbutton_Click(object sender, EventArgs e)
         {
             reportPanel.Visible = true;
+            comboBox1.Visible = false;
         }
 
         private void mostcustomer_Click(object sender, EventArgs e)
@@ -440,6 +442,7 @@ namespace MovieRental
         public int MonthToInt(string month)
         {
             int num = 1;
+            
             switch (month)
             {
                 case "January":
@@ -570,6 +573,20 @@ namespace MovieRental
             con.Close();
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RecordOrderChange();
+        }
+
+        private void RecordOrderChange()
+        {
+            con.Open();
+            DataTable dt = new DataTable();
+            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID and month(O.OrderDate) = '" + MonthToInt(comboBox1.SelectedItem.ToString()) + "'", con);
+            adapt.Fill(dt);
+            dataGridView2.DataSource = dt;
+            con.Close();
+        }
         private void Atype_MouseClick(object sender, MouseEventArgs e)
         {
             Atype.DroppedDown = true;
@@ -579,12 +596,14 @@ namespace MovieRental
         {
             dataGridView2.Enabled = true;
             button1.Enabled = false;
+            comboBox1.Visible = true;
             currentPage = "[Order]";
             reportPanel.Visible = false;
             panel1.Visible = false;
             con.Open();
             DataTable dt = new DataTable();
-            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID", con);
+            //comboBox1.SelectedItem = "April";
+            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID and month(O.OrderDate) = '4'", con);
             adapt.Fill(dt);
             dataGridView2.DataSource = dt;
             con.Close();
