@@ -102,6 +102,7 @@ namespace MovieRental
                 text.Top = i * 30 + 25;
                 groupBox.Controls.Add(text);
 
+
             }  
         }
 
@@ -277,10 +278,43 @@ namespace MovieRental
             sc.ExecuteNonQuery();
             connection.Close();
             DeleteMovieInWishList();
+            UpdateCustomerRating();
             YourMovieControl.Instance.createWishList();
             updateall();
         }
 
+        private void UpdateCustomerRating()
+        {
+            SqlConnection con = new SqlConnection(Form4.connectionString);
+            con.Open();
+            SqlCommand cmd;
+            if (CheckCustomerRating())
+                cmd = new SqlCommand("update Customer set Rating = Rating + 1 where Rating < 5 and CID = " + UC1.id, con);
+            else
+                cmd = new SqlCommand("update Customer set Rating = 0 where CID = " + UC1.id, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        private bool CheckCustomerRating()
+        {
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select Rating from Customer where CID = " + UC1.id, connection);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                //MessageBox.Show(row["ActualReturnDate"].ToString());
+                if (row["Rating"].ToString() == "")
+                {
+                    return false;
+                }
+            }
+            //MessageBox.Show(dataTable.Rows.Count.ToString());
+            connection.Close();
+            return true;
+        }
 
         private void updateall()
         {

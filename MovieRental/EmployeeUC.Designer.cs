@@ -133,9 +133,9 @@
             this.reportPanel.Controls.Add(this.Reporting);
             this.reportPanel.Controls.Add(this.button7);
             this.reportPanel.Controls.Add(this.mostcustomer);
-            this.reportPanel.Location = new System.Drawing.Point(1, 286);
+            this.reportPanel.Location = new System.Drawing.Point(1, 46);
             this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(680, 414);
+            this.reportPanel.Size = new System.Drawing.Size(680, 654);
             this.reportPanel.TabIndex = 48;
             this.reportPanel.Visible = false;
             // 
@@ -200,6 +200,7 @@
             this.button7.TabIndex = 2;
             this.button7.Text = "Best Selling Movie";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // mostcustomer
             // 
