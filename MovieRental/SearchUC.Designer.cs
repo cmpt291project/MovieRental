@@ -36,7 +36,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(155, 73);
+            this.label1.Location = new System.Drawing.Point(109, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -45,9 +45,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(37, 240);
+            this.dataGridView1.Location = new System.Drawing.Point(73, 111);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(559, 214);
+            this.dataGridView1.Size = new System.Drawing.Size(469, 193);
             this.dataGridView1.TabIndex = 1;
             // 
             // SearchUC

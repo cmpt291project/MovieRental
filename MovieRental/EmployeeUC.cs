@@ -182,7 +182,8 @@ namespace MovieRental
                 MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
                 movieBoxRent.createNewBox(suggest, i);
                 //MessageBox.Show(row["MID"].ToString().Trim());
-                movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
+
+                //movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
                 movieBoxRent.CreateName(row["MovieName"].ToString());
                 //MessageBox.Show(row["MovieName"].ToString());
                 movieBoxRent.CreateScore(row["rate"].ToString());

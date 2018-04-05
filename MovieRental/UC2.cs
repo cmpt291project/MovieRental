@@ -108,17 +108,6 @@ namespace MovieRental
             }
         }
             
-
-        private void Suggestion_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("SUGGESTIONS");
-        }
-
-        private void YourMovie_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Your Movie");
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("user info");
@@ -171,5 +160,7 @@ namespace MovieRental
         {
             SearchUC.Instance.GetSearchParameter(textBox1.Text);
         }
+
+        
     }
 }

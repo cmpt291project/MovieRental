@@ -47,7 +47,7 @@ namespace MovieRental
             Controls.Add(panel4);
             panel1.BringToFront();
             dataGridView1.BringToFront();
-            DisplayData();
+            
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "MM-yyyy";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
@@ -60,8 +60,10 @@ namespace MovieRental
             dateTimePicker5.CustomFormat = "MM/dd/yyyy";
 
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
-           
+            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("Noimage");
+            pictureBox1.Tag = 1;
+            Console.WriteLine(pictureBox1.Tag);
+            DisplayData();
 
         }
 
@@ -149,7 +151,7 @@ namespace MovieRental
         private void Insert_Click(object sender, EventArgs e)
         {
             if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "" && DistFeeTxt.Text != "" && NumCopiesTxt.Text != ""
-                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "" && picNameTxt.Text.Trim() != "")
+                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "" && picNameTxt.Text.Trim() != "" && (int)pictureBox1.Tag != 1)
             {
                 if (strFilePath == "")
                 {
@@ -338,19 +340,41 @@ namespace MovieRental
         private void Update_Click(object sender, EventArgs e)
         {
             if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "" && DistFeeTxt.Text != "" && NumCopiesTxt.Text != ""
-                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "" && picNameTxt.Text.Trim() != "")
+                && DirectorTxt.Text != "" && CurrentNumTxt.Text != "" && picNameTxt.Text.Trim() != "" && (int)pictureBox1.Tag != 1)
             {
                 if (!ValidateMovieForm())
                 {
                     MessageBox.Show("Please fix error.");
                     return;
                 }
+                Console.WriteLine("strFilePath: " + strFilePath);
                 if (strFilePath == "")
                 {
-                    if (ImageByteArray.Length != 0)
+                    cmd = new SqlCommand("update Movie set MovieName=@name, MovieType=@type, DistribututionFee=@distfee, " +
+                     "NumberOfCopies=@numCopies, ReleaseDate=@releaseDate, AddDate=@addDate, Director=@director, " +
+                     "CurrentNum=@currNum, PosterTitle=@posterTitle where MID=@id", con);
+                    con.Open();
+
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", MID);
+                    cmd.Parameters.AddWithValue("@name", MovieNameTxt.Text);
+                    cmd.Parameters.AddWithValue("@type", MovieTypeTxt.Text);
+                    cmd.Parameters.AddWithValue("@distFee", DistFeeTxt.Text);
+                    cmd.Parameters.AddWithValue("@numCopies", NumCopiesTxt.Text);
+                    //cmd.Parameters.AddWithValue("@releaseDate", ReleaseDateTxt.Text);
+                    cmd.Parameters.AddWithValue("@releaseDate", Convert.ToDateTime(dateTimePicker2.Text));
+                    cmd.Parameters.AddWithValue("@addDate", Convert.ToDateTime(dateTimePicker3.Text));
+                    cmd.Parameters.AddWithValue("@director", DirectorTxt.Text);
+                    cmd.Parameters.AddWithValue("@currNum", CurrentNumTxt.Text);
+                    //cmd.Parameters.AddWithValue("@poster", ImageByteArray);
+                    cmd.Parameters.AddWithValue("@posterTitle", picNameTxt.Text.Trim());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    /*if (ImageByteArray.Length != 0)
                     {
                         ImageByteArray = new byte[] { };
-                    }
+                    }*/
                 }
                 else
                 {
@@ -358,30 +382,31 @@ namespace MovieRental
                     MemoryStream strm = new MemoryStream();
                     temp.Save(strm, System.Drawing.Imaging.ImageFormat.Jpeg);
                     ImageByteArray = strm.ToArray();
+
+
+
+                    //using (SqlConnection con = new SqlConnection(Form4.connectionString))
+                    cmd = new SqlCommand("update Movie set MovieName=@name, MovieType=@type, DistribututionFee=@distfee, " +
+                         "NumberOfCopies=@numCopies, ReleaseDate=@releaseDate, AddDate=@addDate, Director=@director, " +
+                         "CurrentNum=@currNum, Poster=@poster, PosterTitle=@posterTitle where MID=@id", con);
+                    con.Open();
+
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@id", MID);
+                    cmd.Parameters.AddWithValue("@name", MovieNameTxt.Text);
+                    cmd.Parameters.AddWithValue("@type", MovieTypeTxt.Text);
+                    cmd.Parameters.AddWithValue("@distFee", DistFeeTxt.Text);
+                    cmd.Parameters.AddWithValue("@numCopies", NumCopiesTxt.Text);
+                    //cmd.Parameters.AddWithValue("@releaseDate", ReleaseDateTxt.Text);
+                    cmd.Parameters.AddWithValue("@releaseDate", Convert.ToDateTime(dateTimePicker2.Text));
+                    cmd.Parameters.AddWithValue("@addDate", Convert.ToDateTime(dateTimePicker3.Text));
+                    cmd.Parameters.AddWithValue("@director", DirectorTxt.Text);
+                    cmd.Parameters.AddWithValue("@currNum", CurrentNumTxt.Text);
+                    cmd.Parameters.AddWithValue("@poster", ImageByteArray);
+                    cmd.Parameters.AddWithValue("@posterTitle", picNameTxt.Text.Trim());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
                 }
-
-
-                //using (SqlConnection con = new SqlConnection(Form4.connectionString))
-                cmd = new SqlCommand("update Movie set MovieName=@name, MovieType=@type, DistribututionFee=@distfee, " +
-                    "NumberOfCopies=@numCopies, ReleaseDate=@releaseDate, AddDate=@addDate, Director=@director, " +
-                    "CurrentNum=@currNum, Poster=@poster, PosterTitle=@posterTitle where MID=@id", con);
-                con.Open();
-
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@id", MID);
-                cmd.Parameters.AddWithValue("@name", MovieNameTxt.Text);
-                cmd.Parameters.AddWithValue("@type", MovieTypeTxt.Text);
-                cmd.Parameters.AddWithValue("@distFee", DistFeeTxt.Text);
-                cmd.Parameters.AddWithValue("@numCopies", NumCopiesTxt.Text);
-                //cmd.Parameters.AddWithValue("@releaseDate", ReleaseDateTxt.Text);
-                cmd.Parameters.AddWithValue("@releaseDate", Convert.ToDateTime(dateTimePicker2.Text));
-                cmd.Parameters.AddWithValue("@addDate", Convert.ToDateTime(dateTimePicker3.Text));
-                cmd.Parameters.AddWithValue("@director", DirectorTxt.Text);
-                cmd.Parameters.AddWithValue("@currNum", CurrentNumTxt.Text);
-                cmd.Parameters.AddWithValue("@poster", ImageByteArray);
-                cmd.Parameters.AddWithValue("@posterTitle", picNameTxt.Text.Trim());
-                cmd.ExecuteNonQuery();
-                con.Close();
                 DisplayData();
                 ClearData();
             }
@@ -402,10 +427,12 @@ namespace MovieRental
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 strFilePath = ofd.FileName;
+                Console.WriteLine("strFilePath" + strFilePath);
                 pictureBox1.Image = new Bitmap(strFilePath);
                 if (picNameTxt.Text.Trim().Length == 0)
                     picNameTxt.Text = System.IO.Path.GetFileName(strFilePath);
 
+                pictureBox1.Tag = 2;
             }
 
         }
@@ -424,6 +451,12 @@ namespace MovieRental
                 row.Cells[5].Value = DateTime.Now.ToShortDateString();
                 row.Cells[6].Value = DateTime.Now.ToShortDateString();
             }*/
+            //pictureBox1.Image = (Image)dt.Rows[0][9];
+
+            //byte[] img = (byte[])dt.Rows[1]["Poster"];
+            /*Console.WriteLine(dt.Rows[0][10]);
+            byte[] ImageArray = (byte[])dt.Rows[0][9];
+            pictureBox1.Image = Image.FromStream(new MemoryStream(ImageArray));*/
         }
 
         private void DisplayEmployees()
@@ -504,7 +537,8 @@ namespace MovieRental
             DirectorTxt.Clear();
             CurrentNumTxt.Clear();
             picNameTxt.Clear();
-            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
+            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("Noimage");
+            pictureBox1.Tag = 1;
         }
 
         private void ClearActorData()
@@ -525,7 +559,7 @@ namespace MovieRental
             MID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             MovieNameTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             //movieName = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
-            MovieTypeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            MovieTypeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString().Trim();
             //movieType = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
             DistFeeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             NumCopiesTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
@@ -540,16 +574,19 @@ namespace MovieRental
             dateTimePicker3.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
             if (dataGridView1.Rows[e.RowIndex].Cells[9].Value == DBNull.Value)
             {
-                pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
+                pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("Noimage");
+                pictureBox1.Tag = 1;
             }
             else
             {
                 byte[] ImageArray = (byte[])dataGridView1.Rows[e.RowIndex].Cells[9].Value;
                 ImageByteArray = ImageArray;
                 pictureBox1.Image = Image.FromStream(new MemoryStream(ImageArray));
+                pictureBox1.Tag = 2;
             }
             picNameTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
             //pictureBox1.Image = dataGridView1.Rows[e.RowIndex].Cells[9].Value;
+            Console.WriteLine("picbox tag: " + (int)pictureBox1.Tag);
 
         }
 
@@ -958,7 +995,7 @@ namespace MovieRental
                 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(NumCopiesTxt, "");
         }
 
         private bool ValidateCastingForm()
@@ -1039,7 +1076,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(CurrentNumTxt, "");
         }
 
         private void MIDtxt_TextChanged(object sender, EventArgs e)
@@ -1060,7 +1097,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(MIDtxt, "");
         }
 
         private void AIDtxt_TextChanged(object sender, EventArgs e)
@@ -1081,7 +1118,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(AIDtxt, "");
         }
 
         private void DistFeeTxt_TextChanged(object sender, EventArgs e)
@@ -1111,9 +1148,9 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(DistFeeTxt, "");
         }
-
+        
         private void MovieTypeTxt_TextChanged(object sender, EventArgs e)
         {
             string text = MovieTypeTxt.Text;
@@ -1133,7 +1170,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(MovieTypeTxt, "");
         }
 
         private void ZipCodeTxt_TextChanged(object sender, EventArgs e)
@@ -1155,7 +1192,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(ZipCodeTxt, "");
         }
 
         private void TelephoneTxt_TextChanged(object sender, EventArgs e)
@@ -1176,7 +1213,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(TelephoneTxt, "");
         }
 
         private void HourlyRateTxt_TextChanged(object sender, EventArgs e)
@@ -1206,7 +1243,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(HourlyRateTxt, "");
         }
 
         private void SocialSecurityTxt_TextChanged(object sender, EventArgs e)
@@ -1227,7 +1264,7 @@ namespace MovieRental
 
             }
             else
-                errorProvider1.Clear();
+                errorProvider1.SetError(SocialSecurityTxt, "");
         }
 
         private void ZipCodeTxt_KeyPress(object sender, KeyPressEventArgs e)
@@ -1269,6 +1306,51 @@ namespace MovieRental
             }
         }
 
-       
+        private void clearDataBtn_Click(object sender, EventArgs e)
+        {
+            ClearData();
+        }
+
+        private void searchMovieTxt_TextChanged(object sender, EventArgs e)
+        {
+            string searchString = searchMovieTxt.Text.Trim();
+            if (searchString == "")
+            {
+                DisplayData();
+                return;
+            }
+            // movie name
+            con.Open();
+            DataTable dt5 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Movie where MovieName like @search", con);
+            adapt.SelectCommand.Parameters.AddWithValue("@search", "%" + searchString + "%");
+            adapt.Fill(dt5);
+            con.Close();
+            if (dt5.Rows.Count > 0)
+                dataGridView1.DataSource = dt5;
+            con.Close();
+            dataGridView1.BringToFront();
+        }
+
+        private void searchActorTxt_TextChanged(object sender, EventArgs e)
+        {
+            string searchString = searchActorTxt.Text.Trim();
+            if (searchString == "")
+            {
+                DisplayActors();
+                return;
+            }
+            // movie name
+            con.Open();
+            DataTable dt5 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Actor where FirstName like @search or LastName like @search", con);
+            adapt.SelectCommand.Parameters.AddWithValue("@search", "%" + searchString + "%");
+            adapt.Fill(dt5);
+            con.Close();
+            if (dt5.Rows.Count > 0)
+                dataGridView2.DataSource = dt5;
+            con.Close();
+            dataGridView2.BringToFront();
+        }
     }
 }

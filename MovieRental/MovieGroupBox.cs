@@ -154,6 +154,9 @@ namespace MovieRental
             MessageBox.Show("Return Successfully!");
             YourMovieControl.Instance.createCurrentRental();
             updateall();
+
+            RateForm rf = new RateForm(MID);
+            rf.Show();
         }
 
         public void DeleteMovieFromListButton(GroupBox groupBox, string name)

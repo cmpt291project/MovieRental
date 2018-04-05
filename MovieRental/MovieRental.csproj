@@ -347,7 +347,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons8-Ios7-Very-Basic-Search.ico" />
-    <Content Include="Resources\002.jpeg" />
+    <None Include="Resources\002.jpeg" />
     <Content Include="Resources\003.jpg" />
     <Content Include="Resources\004.jpg" />
     <Content Include="Resources\005.jpg" />
@@ -357,6 +357,8 @@
     <Content Include="Resources\009.jpg" />
     <Content Include="Resources\010.jpg" />
     <Content Include="Resources\011.jpg" />
+    <None Include="Resources\Noimage.png" />
+    <None Include="Resources\Image1.bmp" />
     <None Include="Resources\no-image.gif" />
     <None Include="Resources\NoImage.gif" />
     <None Include="Resources\The love witch.jpg" />
