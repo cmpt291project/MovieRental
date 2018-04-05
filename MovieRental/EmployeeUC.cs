@@ -180,7 +180,7 @@ namespace MovieRental
                 //foreach (DataColumn column in dataTable.Columns)
                 //{
                 MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
-                movieBoxRent.createNewBox(suggest, i);
+                movieBoxRent.createNewBox(suggest, i,0);
                 //MessageBox.Show(row["MID"].ToString().Trim());
 
                 //movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
