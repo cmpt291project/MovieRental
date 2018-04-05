@@ -106,7 +106,7 @@ namespace MovieRental
 
         private void button6_Click(object sender, EventArgs e)
         {
-            RateForm rf = new RateForm("1");
+            RateForm rf = new RateForm("9");
             rf.Show();
         }
     }
