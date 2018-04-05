@@ -60,7 +60,7 @@ namespace MovieRental
             dateTimePicker5.CustomFormat = "MM/dd/yyyy";
 
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
+            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("Noimage");
             pictureBox1.Tag = 1;
             Console.WriteLine(pictureBox1.Tag);
             DisplayData();
@@ -537,7 +537,7 @@ namespace MovieRental
             DirectorTxt.Clear();
             CurrentNumTxt.Clear();
             picNameTxt.Clear();
-            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
+            pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("Noimage");
             pictureBox1.Tag = 1;
         }
 
@@ -574,7 +574,7 @@ namespace MovieRental
             dateTimePicker3.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
             if (dataGridView1.Rows[e.RowIndex].Cells[9].Value == DBNull.Value)
             {
-                pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("no_image");
+                pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("Noimage");
                 pictureBox1.Tag = 1;
             }
             else
@@ -1309,6 +1309,48 @@ namespace MovieRental
         private void clearDataBtn_Click(object sender, EventArgs e)
         {
             ClearData();
+        }
+
+        private void searchMovieTxt_TextChanged(object sender, EventArgs e)
+        {
+            string searchString = searchMovieTxt.Text.Trim();
+            if (searchString == "")
+            {
+                DisplayData();
+                return;
+            }
+            // movie name
+            con.Open();
+            DataTable dt5 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Movie where MovieName like @search", con);
+            adapt.SelectCommand.Parameters.AddWithValue("@search", "%" + searchString + "%");
+            adapt.Fill(dt5);
+            con.Close();
+            if (dt5.Rows.Count > 0)
+                dataGridView1.DataSource = dt5;
+            con.Close();
+            dataGridView1.BringToFront();
+        }
+
+        private void searchActorTxt_TextChanged(object sender, EventArgs e)
+        {
+            string searchString = searchActorTxt.Text.Trim();
+            if (searchString == "")
+            {
+                DisplayActors();
+                return;
+            }
+            // movie name
+            con.Open();
+            DataTable dt5 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Actor where FirstName like @search or LastName like @search", con);
+            adapt.SelectCommand.Parameters.AddWithValue("@search", "%" + searchString + "%");
+            adapt.Fill(dt5);
+            con.Close();
+            if (dt5.Rows.Count > 0)
+                dataGridView2.DataSource = dt5;
+            con.Close();
+            dataGridView2.BringToFront();
         }
     }
 }
