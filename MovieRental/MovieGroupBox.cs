@@ -17,6 +17,7 @@ namespace MovieRental
         public GroupBox groupBox;
         public PictureBox pictureBox;
         public TextBox textBox;
+        public Button rentb;
         public string MID;
         public string[] defaultString = { "Name:", "Director:", "Type:", "Release Date:", "Return Date:" };
         public MovieGroupBox()
@@ -143,8 +144,10 @@ namespace MovieRental
         {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select ActualReturnDate, OID from [Order] as O where O.CID ='" + UC1.id +"' and ActualReturnDate is null", connection);
+            MessageBox.Show(MID);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select ActualReturnDate, OID from [Order] as O where O.CID ='" + UC1.id + "' and ActualReturnDate is null and O.MID = " + MID, connection);
             SqlDataAdapter selectMovie = new SqlDataAdapter("SELECT CurrentNum, MID from Movie M where M.MID = " + MID, connection);
+
             DataTable movieRow = new DataTable();
             selectMovie.Fill(movieRow);
             int num = Convert.ToInt32(movieRow.Rows[0]["CurrentNum"]);
@@ -153,7 +156,7 @@ namespace MovieRental
             movieRow.Rows[0].EndEdit();
             SqlCommandBuilder sd = new SqlCommandBuilder(selectMovie);
             selectMovie.Update(movieRow);
-
+            MessageBox.Show(MID);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             dataTable.Rows[0].BeginEdit();
@@ -209,21 +212,113 @@ namespace MovieRental
 
         public void AddMovieToRentList(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            //btn.Enabled = false;
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter selectMovie = new SqlDataAdapter("SELECT * from Movie M where M.MID = " + MID, connection);
+            DataTable movieRow = new DataTable();
+            selectMovie.Fill(movieRow);
+            int num = Convert.ToInt32(movieRow.Rows[0]["CurrentNum"]);
+            if (num > 0)
+            {
+                CheckUserRentStatus(connection, num, movieRow, selectMovie);
+            }
+            else
+            {
+                MessageBox.Show("Sorry. No copy available right now.");
+            }
 
-                if (CheckMovieRent("Order") == true)
-                {
-                    rent("Order");
-                    MessageBox.Show("Rent Successfully!");
-                    updateall();
-                }
-                else
-                {
-                    MessageBox.Show("You can only rent a limited number of movies at a time.");
-                }
+            //MessageBox.Show(dataTable.Rows[0]["CurrentNum"].ToString());
+            connection.Close();
+            /*if (CheckMovieRent("Order") == true)
+            {
+                rent("Order");
+                MessageBox.Show("Rent Successfully!");
+                updateall();
+            }
+            else
+            {
+                MessageBox.Show("You can only rent a limited number of movies at a time.");
+            }*/
 
-            
 
 
+
+        }
+
+        private void RentMovie(SqlConnection connection, int num, DataTable movie, SqlDataAdapter selectMovie)
+        {
+            //SqlCommand sq = new SqlCommand("UPDATE dbo.Movie SET CurrentNum = @curNum WHERE MID = @MID GO ", connection);
+            movie.Rows[0].BeginEdit();
+            movie.Rows[0]["CurrentNum"] = num - 1;
+            movie.Rows[0].EndEdit();
+            SqlCommandBuilder sb = new SqlCommandBuilder(selectMovie);
+            selectMovie.Update(movie);
+            //SqlCommand sq = new SqlCommand("INSERT dbo.Order SET CurrentNum = @curNum WHERE MID = @MID GO ", connection);
+            //MessageBox.Show("rent");
+
+            string insert = "INSERT dbo.[Order](OID, MID, CID, EID, OrderDate, ReturnDate)  VALUES((Select MAX(CAST(OID as int))+1 from [Order]), @mid, @cid, @eid, @date, @return)";
+            SqlCommand sc = new SqlCommand(insert, connection);
+            //sc.Parameters.AddWithValue("@oid", "006");
+            DateTime date = DateTime.Today;
+            DateTime ret = new DateTime(date.Year, date.Month + 1, date.Day);
+            if (date.Month == 12)
+            {
+                ret = new DateTime(date.Year + 1, 1, date.Day);
+            }
+
+            sc.Parameters.AddWithValue("@mid", MID);
+            sc.Parameters.AddWithValue("@cid", UC1.id);
+            sc.Parameters.AddWithValue("@eid", "1");
+            sc.Parameters.AddWithValue("@date", date.Date.ToString("d"));
+            sc.Parameters.AddWithValue("@return", ret);
+            //sc.Parameters.AddWithValue("@actual", null);
+            sc.ExecuteNonQuery();
+        }
+
+        private void CheckUserRentStatus(SqlConnection con, int num, DataTable movie, SqlDataAdapter select)
+        {
+            SqlDataAdapter checkUserRent = new SqlDataAdapter("select COUNT(OID) cur,O.CID from[Order] O where O.CID = '" + UC1.id + "' and  ActualReturnDate IS NULL group by O.CID", con);
+            DataTable userStatus = new DataTable();
+            checkUserRent.Fill(userStatus);
+            SqlDataAdapter checkUserMonthRent = new SqlDataAdapter("select COUNT(OID) curMon from(select MONTH(OrderDate) as m, MONTH(GETDATE()) as tm, YEAR(OrderDate) as y, Year(GETDATE()) as ty, OID from[Order] O where O.CID = '" + UC1.id + "') D where m = tm and ty = y", con);
+            DataTable userMonth = new DataTable();
+            checkUserMonthRent.Fill(userMonth);
+
+            SqlDataAdapter plan = new SqlDataAdapter("select NumberATime, NumberEachMonth from[Plan] p, Customer c where c.AccountType = p.[Plan] and c.CID = '" + UC1.id + "'", con);
+            DataTable p = new DataTable();
+            plan.Fill(p);
+            if (userStatus.Rows.Count == 0 && userMonth.Rows.Count == 0)
+            {
+                MessageBox.Show("rent successfull");
+                RentMovie(con, num, movie, select);
+                //rentb.Text = "Rented";
+                //rentb.Enabled = false;
+
+            }
+            else if (userStatus.Rows.Count != 0 && userStatus.Rows[0]["cur"].ToString() == p.Rows[0]["NumberATime"].ToString())
+            {
+                MessageBox.Show("You already rent" + userStatus.Rows[0]["cur"] + "movies. Limit each time reached. Please return your current rental first. ");
+            }
+            else if (userMonth.Rows.Count != 0 && userMonth.Rows[0]["curMon"].ToString() == p.Rows[0]["NumberEachMonth"].ToString())
+            {
+                MessageBox.Show("You already rent" + userMonth.Rows[0]["curMon"] + "movies. Monthly limit reached.  Please return your current rental first.");
+            }
+            else
+            {
+                DateTime d = DateTime.Today;
+                MessageBox.Show("rent successfull" + d.Date.ToString("d"));
+                //MessageBox.Show(userStatus.Rows[0]["cur"]);
+                RentMovie(con, num, movie, select);
+                //rentb.Text = "Rented";
+                //rentb.Enabled = false;
+            }
+            DeleteMovieInWishList();
+            UpdateCustomerRating();
+            YourMovieControl.Instance.createWishList();
+            updateall();
+            //MessageBox.Show("not null");
         }
 
         private bool CheckMovieRent(string name)
