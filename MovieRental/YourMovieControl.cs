@@ -164,6 +164,7 @@ namespace MovieRental
                 newGroupBox.setImage(newGroupBox.groupBox, image);
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
                 newGroupBox.SetChooseMovieButton(newGroupBox.groupBox, "Rent");
+                newGroupBox.SetIndex(newGroupBox.groupBox,i-1);
                 newGroupBox.DeleteMovieFromListButton(newGroupBox.groupBox, "Delete");
                 empty = false;
             }
