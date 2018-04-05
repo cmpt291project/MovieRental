@@ -298,6 +298,36 @@ namespace MovieRental
                     return;
                 }
 
+                using (cmd = new SqlCommand("select EmailAddress from Password where EID=@eid", con))
+                {
+                    con.Open();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@eid", EID);
+                    string test = (string)cmd.ExecuteScalar();
+                    Console.WriteLine(test.Trim() + " " + EmailTxt.Text.Trim());
+                    if (test.Trim() == EmailTxt.Text.Trim())
+                    {
+                        Console.WriteLine("Emails Match");
+                    }
+                    else
+                    {
+                        cmd = new SqlCommand("select EmailAddress from Password where EmailAddress=@email", con);
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@email", EmailTxt.Text.Trim());
+                        string test2 = (string)cmd.ExecuteScalar();
+                        if (test2.Trim() != null)
+                        {
+                            con.Close();
+                            MessageBox.Show("Email Already Exists.");
+                            return;
+
+                        }
+                    }
+                    
+                    con.Close();
+                }
+               
+
 
                 cmd = new SqlCommand("update Employee set SocialSecurityNumber=@socialsec, LastName=@lastname, FirstName=@firstname," +
                     "Street=@street, City=@city, State=@state, ZipCode=@zipcode, Telephone=@phone, StartDate=@startdate," +
@@ -332,7 +362,24 @@ namespace MovieRental
                     cmd.Parameters.AddWithValue("@type", "e");
                     cmd.ExecuteNonQuery();
                     con.Close();
+
+
                 }
+                if (PasswordTxt.Text.Trim() == "")
+                {
+                    cmd = new SqlCommand("update Password set EmailAddress=@email, EID=@EID, CID=@CID,UserType=@type where EID=@EID", con);
+                    con.Open();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@email", EmailTxt.Text.Trim());
+                    cmd.Parameters.AddWithValue("@EID", EID);
+                    cmd.Parameters.AddWithValue("@CID", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@type", "e");
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+
+                }
+
                 DisplayEmployees();
                 ClearEmployeeData();
             }
@@ -578,7 +625,8 @@ namespace MovieRental
             ZipCodeTxt.Clear();
             TelephoneTxt.Clear();
             HourlyRateTxt.Clear();
-            TypeTxt.Clear();
+            //TypeTxt.Clear();
+            TypeCB.Items.Clear();
             SocialSecurityTxt.Clear();
             EmailTxt.Clear();
             PasswordTxt.Clear();
@@ -614,7 +662,7 @@ namespace MovieRental
                 pictureBox1.Image = Image.FromStream(new MemoryStream(ImageArray));
                 pictureBox1.Tag = 2;
             }
-            picNameTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
+            picNameTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString().Trim();
             //pictureBox1.Image = dataGridView1.Rows[e.RowIndex].Cells[9].Value;
             Console.WriteLine("picbox tag: " + (int)pictureBox1.Tag);
 
@@ -1238,7 +1286,7 @@ namespace MovieRental
 
         private void ZipCodeTxt_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("ZIPCODETXT CHANGED");
+            //Console.WriteLine("ZIPCODETXT CHANGED");
             string text = ZipCodeTxt.Text;
             bool nonAlphaNumeric = false;
             foreach (char c in text)

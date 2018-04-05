@@ -22,44 +22,7 @@ namespace MovieRental
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (!panel1.Controls.Contains(UC1.Instance))
-            {
-                panel1.Controls.Add(UC1.Instance);
-                UC1.Instance.Dock = DockStyle.Fill;
-                UC1.Instance.BringToFront();
-            }
-            else
-                UC1.Instance.BringToFront();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (!panel1.Controls.Contains(UC2.Instance))
-            {
-                panel1.Controls.Add(UC2.Instance);
-                UC2.Instance.Dock = DockStyle.Fill;
-                UC2.Instance.BringToFront();
-            }
-            else
-                UC2.Instance.BringToFront();
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (!panel1.Controls.Contains(UC3.Instance))
-            {
-                panel1.Controls.Add(UC3.Instance);
-                UC3.Instance.Dock = DockStyle.Fill;
-                UC3.Instance.BringToFront();
-            }
-            else
-                UC3.Instance.BringToFront();
-
-        }
-
+       
 
         private void Form4_Load(object sender, EventArgs e)
         {
@@ -78,36 +41,6 @@ namespace MovieRental
                 "Settings.MovieRentalConnectionString"].ConnectionString;
             //Console.WriteLine(connectionString);
 
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (!panel1.Controls.Contains(ManagerUC2.Instance))
-            {
-                panel1.Controls.Add(ManagerUC2.Instance);
-                ManagerUC2.Instance.Dock = DockStyle.Fill;
-                ManagerUC2.Instance.BringToFront();
-            }
-            else
-                ManagerUC2.Instance.BringToFront();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if (!panel1.Controls.Contains(EmployeeUC.Instance))
-            {
-                panel1.Controls.Add(EmployeeUC.Instance);
-                EmployeeUC.Instance.Dock = DockStyle.Fill;
-                EmployeeUC.Instance.BringToFront();
-            }
-            else
-                EmployeeUC.Instance.BringToFront();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            RateForm rf = new RateForm("9");
-            rf.Show();
         }
     }
 }
