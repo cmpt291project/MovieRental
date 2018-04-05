@@ -127,6 +127,16 @@ namespace MovieRental
             button.Click += new EventHandler(returnMovieFromCurrent);
         }
 
+        public void SetIndex(GroupBox groupBox, int index)
+        {
+            Label label = new Label();
+            label.Location = new Point(180, 171);
+            label.Text = index.ToString();
+            label.Font = new Font("Segoe UI", 16);
+            label.ForeColor = System.Drawing.Color.FromArgb(255, 128, 128);
+            groupBox.Controls.Add(label);
+        }
+
         public void returnMovieFromCurrent(object sender, EventArgs e)
         {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
@@ -175,18 +185,22 @@ namespace MovieRental
             DeleteMovieInWishList();
         }
 
-        private void updateSequence()
-        {
 
-        }
         public void DeleteMovieInWishList()
         {
             SqlConnection con = new SqlConnection(Form4.connectionString);
+            con.Open();
+            SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where cast([Sequence] as int) > (select [Sequence] from MovieQueue where MID = '" + MID + "')");
+            updateSquence.Connection = con;
+            updateSquence.ExecuteNonQuery();
+            con.Close();
+            con = new SqlConnection(Form4.connectionString);
             con.Open();
             SqlCommand delete = new SqlCommand("DELETE FROM MovieQueue WHERE MID = '" + MID + "'");
             delete.Connection = con;
             delete.ExecuteNonQuery();
             con.Close();
+            
             updateall();
             YourMovieControl.Instance.createWishList();
         }

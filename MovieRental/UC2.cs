@@ -148,6 +148,8 @@ namespace MovieRental
                 Ranking.Instance.update();
                 Like.Instance.update();
                 topControl.Instance.update();
+                FeatureControl.Instance.update();
+                GenreControl.Instance.initialDisplay();
             }
 
             else
@@ -163,8 +165,9 @@ namespace MovieRental
            
         }
 
-     
-
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            YourMovieTab.SelectedIndex = 2;
+        }
     }
 }
