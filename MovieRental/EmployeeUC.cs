@@ -69,6 +69,7 @@ namespace MovieRental
             panel1.Visible = true;
             reportPanel.Visible = false;
             comboBox1.Visible = false;
+            searchBtn.Enabled = true;
         }
 
 
@@ -240,6 +241,7 @@ namespace MovieRental
             cmd.Parameters.AddWithValue("@email", EmailAddress.Text);
             cmd.ExecuteNonQuery();
             con.Close();
+            DisplayData();
         }
         private bool CheckCustomer()
         {
@@ -323,7 +325,8 @@ namespace MovieRental
                     cmd.Parameters.AddWithValue("@Email", EmailAddress.Text);
                     cmd.Parameters.AddWithValue("@ANumber", r);
                     cmd.Parameters.AddWithValue("@AType", Atype.Text);
-                    cmd.Parameters.AddWithValue("@ADate", AccountCreationDate.Text);
+                    DateTime date = DateTime.Today;
+                    cmd.Parameters.AddWithValue("@ADate", date.Date.ToString("d"));
                     cmd.Parameters.AddWithValue("@CCN", CreditCardNumber.Text);
                     if (checkBlank())
                     {
@@ -344,6 +347,7 @@ namespace MovieRental
             {
                 MessageBox.Show("Please fix the error before add!");
             }
+            DisplayData();
         }
 
         private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -415,6 +419,7 @@ namespace MovieRental
         {
             reportPanel.Visible = true;
             comboBox1.Visible = false;
+            searchBtn.Enabled = false;
         }
 
         private void mostcustomer_Click(object sender, EventArgs e)
@@ -595,6 +600,7 @@ namespace MovieRental
         private void button5_Click(object sender, EventArgs e)
         {
             dataGridView2.Enabled = true;
+            searchBtn.Enabled = true;
             button1.Enabled = false;
             comboBox1.Visible = true;
             currentPage = "[Order]";
@@ -602,7 +608,6 @@ namespace MovieRental
             panel1.Visible = false;
             con.Open();
             DataTable dt = new DataTable();
-            //comboBox1.SelectedItem = "April";
             adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID and month(O.OrderDate) = '4'", con);
             adapt.Fill(dt);
             dataGridView2.DataSource = dt;
