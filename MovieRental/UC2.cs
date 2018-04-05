@@ -169,5 +169,11 @@ namespace MovieRental
         {
             YourMovieTab.SelectedIndex = 2;
         }
+
+        private void help_Click(object sender, EventArgs e)
+        {
+            HelpForm hp = new HelpForm();
+            hp.Show();
+        }
     }
 }

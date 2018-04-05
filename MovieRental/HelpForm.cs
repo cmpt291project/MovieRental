@@ -21,7 +21,11 @@ namespace MovieRental
         {
             infotext.Text = "For New Customer: \nPlease choose 'Create account' to create a new user account." +
                 "\nYou must enter your name, address, telephone number, email address and payment information to create a new account." +
-                "\nEach email address can only used once to create new account.";
+                "\nEach email address can only used once to create new account." +
+                "Funcrion:" +
+                "*Click account to check your account info." +
+                "*Seach bar can search both movie name and actor name." +
+                "*Your movie tab contain user's order history and user's wishlist and user's current order.";
         }
     }
 }
