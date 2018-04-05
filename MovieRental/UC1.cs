@@ -96,7 +96,7 @@ namespace MovieRental
                 {
                     SqlCommand scmd4 = new SqlCommand("Select EmployeeType from Employee where EmailAddress=@email", scn);
                     scmd4.Parameters.Clear();
-                    scmd4.Parameters.AddWithValue("@email", textBox1.Text);
+                    scmd4.Parameters.AddWithValue("@email", textBox1.Text.Trim());
                     string empType = scmd4.ExecuteScalar().ToString().Trim();
                     email = textBox1.Text;
                     if (empType == "manager")
@@ -113,14 +113,14 @@ namespace MovieRental
                       
                     else
                     {
-                        if (!pnl.Controls.Contains(UC3.Instance))
+                        if (!pnl.Controls.Contains(EmployeeUC.Instance))
                         {
-                            pnl.Controls.Add(UC3.Instance);
-                            UC3.Instance.Dock = DockStyle.Fill;
-                            UC3.Instance.BringToFront();
+                            pnl.Controls.Add(EmployeeUC.Instance);
+                            EmployeeUC.Instance.Dock = DockStyle.Fill;
+                            EmployeeUC.Instance.BringToFront();
                         }
                         else
-                            UC3.Instance.BringToFront();
+                            EmployeeUC.Instance.BringToFront();
 
                     }
                         
