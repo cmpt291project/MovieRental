@@ -93,7 +93,7 @@ namespace MovieRental
                 && inputValid(City.Text, cterror, City)
                 && inputValid(State.Text, staerror, State) && inputValid(ZipCode.Text, ziperror, ZipCode)
                 && inputValid(Telephone.Text, telerror, Telephone)
-                && checkEmail(EmailAddress.Text) && inputValid(CreditCardNumber.Text, crederror, CreditCardNumber))
+                && checkEmail(EmailAddress.Text) && inputValid(CreditCardNumber.Text, crederror, CreditCardNumber) && inputValid(pass.Text, passerror, pass))
             {
                 //MessageBox.Show("success");
                 SqlConnection connection = new SqlConnection(Form4.connectionString);
@@ -137,7 +137,7 @@ namespace MovieRental
                     "VALUES( @email, @pas, @cid, 'c')";
                 SqlCommand inspass = new SqlCommand(sqlpass, connection);
                 inspass.Parameters.AddWithValue("@email", EmailAddress.Text);
-                inspass.Parameters.AddWithValue("@pas", FirstName.Text);
+                inspass.Parameters.AddWithValue("@pas", pass.Text);
                 inspass.Parameters.AddWithValue("@cid", newcid);
                 //string s = "c";
                 //inspass.Parameters.AddWithValue("@user", s);
