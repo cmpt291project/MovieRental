@@ -69,6 +69,10 @@
             this.modify = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.user.SuspendLayout();
             this.info.SuspendLayout();
             this.plan.SuspendLayout();
@@ -380,9 +384,13 @@
             // 
             // plan
             // 
+            this.plan.Controls.Add(this.label13);
             this.plan.Controls.Add(this.gb);
             this.plan.Controls.Add(this.confirm);
+            this.plan.Controls.Add(this.label12);
             this.plan.Controls.Add(this.modify);
+            this.plan.Controls.Add(this.label10);
+            this.plan.Controls.Add(this.label11);
             this.plan.Location = new System.Drawing.Point(8, 39);
             this.plan.Name = "plan";
             this.plan.Padding = new System.Windows.Forms.Padding(3);
@@ -483,6 +491,42 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(744, 307);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(113, 25);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "$25/month";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(744, 246);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(113, 25);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "$20/month";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(744, 185);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(113, 25);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "$15/month";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(744, 128);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(113, 25);
+            this.label10.TabIndex = 43;
+            this.label10.Text = "$10/month";
+            // 
             // UserInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -496,6 +540,7 @@
             this.info.ResumeLayout(false);
             this.info.PerformLayout();
             this.plan.ResumeLayout(false);
+            this.plan.PerformLayout();
             this.gb.ResumeLayout(false);
             this.gb.PerformLayout();
             this.ResumeLayout(false);
@@ -543,5 +588,9 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.TextBox accountno;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
