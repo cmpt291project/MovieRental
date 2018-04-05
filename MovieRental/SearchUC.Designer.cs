@@ -49,6 +49,7 @@
             this.Name = "SearchUC";
             this.Size = new System.Drawing.Size(1270, 1251);
             this.Load += new System.EventHandler(this.SearchUC_Load);
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
