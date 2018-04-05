@@ -214,7 +214,7 @@ namespace MovieRental
         {
             if (eLastNameTxt.Text != "" && eFirstNameTxt.Text != "" && StreetTxt.Text != "" && CityTxt.Text != ""
                 && StateTxt.Text != "" && ZipCodeTxt.Text != "" && TelephoneTxt.Text != "" && HourlyRateTxt.Text != ""
-                && TypeTxt.Text != "" && SocialSecurityTxt.Text != "" && EmailTxt.Text != "" && PasswordTxt.Text != "")
+                && TypeCB.Text != "" && SocialSecurityTxt.Text != "" && EmailTxt.Text != "" && PasswordTxt.Text != "")
             {
                 if (!ValidateEmployeeForm())
                 {
@@ -254,18 +254,18 @@ namespace MovieRental
                 con.Open();
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@EID", newEID);
-                cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text);
-                cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text);
-                cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text);
-                cmd.Parameters.AddWithValue("@street", StreetTxt.Text);
-                cmd.Parameters.AddWithValue("@city", CityTxt.Text);
-                cmd.Parameters.AddWithValue("@state", StateTxt.Text);
-                cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text);
-                cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text);
+                cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@street", StreetTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@city", CityTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@state", StateTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text.Trim());
                 cmd.Parameters.AddWithValue("@startdate", Convert.ToDateTime(dateTimePicker5.Text));
-                cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text);
-                cmd.Parameters.AddWithValue("@type", TypeTxt.Text);
-                cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
+                cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@type", TypeCB.Text.Trim());
+                cmd.Parameters.AddWithValue("@email", EmailTxt.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
 
@@ -280,6 +280,7 @@ namespace MovieRental
                 cmd.ExecuteNonQuery();
                 con.Close();
                 DisplayEmployees();
+                ClearEmployeeData();
             }
             else
                 MessageBox.Show("Please fill out the fields.");
@@ -289,30 +290,32 @@ namespace MovieRental
         {
             if (eLastNameTxt.Text != "" && eFirstNameTxt.Text != "" && StreetTxt.Text != "" && CityTxt.Text != ""
                 && StateTxt.Text != "" && ZipCodeTxt.Text != "" && TelephoneTxt.Text != "" && HourlyRateTxt.Text != ""
-                && TypeTxt.Text != "" && SocialSecurityTxt.Text != "" && EmailTxt.Text != "")
+                && TypeCB.Text != "" && SocialSecurityTxt.Text != "" && EmailTxt.Text != "")
             {
                 if (!ValidateEmployeeForm())
                 {
                     MessageBox.Show("Please fix errors.");
                     return;
                 }
+
+
                 cmd = new SqlCommand("update Employee set SocialSecurityNumber=@socialsec, LastName=@lastname, FirstName=@firstname," +
                     "Street=@street, City=@city, State=@state, ZipCode=@zipcode, Telephone=@phone, StartDate=@startdate," +
                     "HourlyRate=@hrate, EmployeeType=@type, EmailAddress=@email where EID=@eid", con);
                 con.Open();
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@eid", EID);
-                cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text);
-                cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text);
-                cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text);
-                cmd.Parameters.AddWithValue("@street", StreetTxt.Text);
-                cmd.Parameters.AddWithValue("@city", CityTxt.Text);
-                cmd.Parameters.AddWithValue("@state", StateTxt.Text);
-                cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text);
-                cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text);
+                cmd.Parameters.AddWithValue("@socialsec", SocialSecurityTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@lastname", eLastNameTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@firstname", eFirstNameTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@street", StreetTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@city", CityTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@state", StateTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@zipcode", ZipCodeTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@phone", TelephoneTxt.Text.Trim());
                 cmd.Parameters.AddWithValue("@startdate", Convert.ToDateTime(dateTimePicker5.Text));
-                cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text);
-                cmd.Parameters.AddWithValue("@type", TypeTxt.Text);
+                cmd.Parameters.AddWithValue("@hrate", HourlyRateTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@type", TypeCB.Text.Trim());
                 cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -322,8 +325,8 @@ namespace MovieRental
                     cmd = new SqlCommand("update Password set EmailAddress=@email, Password=@password, EID=@EID, CID=@CID,UserType=@type where EID=@EID", con);
                     con.Open();
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@email", EmailTxt.Text);
-                    cmd.Parameters.AddWithValue("@password", PasswordTxt.Text);
+                    cmd.Parameters.AddWithValue("@email", EmailTxt.Text.Trim());
+                    cmd.Parameters.AddWithValue("@password", PasswordTxt.Text.Trim());
                     cmd.Parameters.AddWithValue("@EID", EID);
                     cmd.Parameters.AddWithValue("@CID", DBNull.Value);
                     cmd.Parameters.AddWithValue("@type", "e");
@@ -331,6 +334,7 @@ namespace MovieRental
                     con.Close();
                 }
                 DisplayEmployees();
+                ClearEmployeeData();
             }
             else
                 MessageBox.Show("Please fill out the fields.");
@@ -528,6 +532,16 @@ namespace MovieRental
 
         }
 
+        private void DisplayCasting()
+        {
+            con.Open();
+            DataTable dt5 = new DataTable();
+            adapt = new SqlDataAdapter("select * from Casting", con);
+            adapt.Fill(dt5);
+            dataGridView3.DataSource = dt5;
+            con.Close();
+        }
+
         private void ClearData()
         {
             MovieNameTxt.Clear();
@@ -554,6 +568,22 @@ namespace MovieRental
             AIDtxt.Clear();
         }
 
+        private void ClearEmployeeData()
+        {
+            eLastNameTxt.Clear();
+            eFirstNameTxt.Clear();
+            StreetTxt.Clear();
+            CityTxt.Clear();
+            StateTxt.Clear();
+            ZipCodeTxt.Clear();
+            TelephoneTxt.Clear();
+            HourlyRateTxt.Clear();
+            TypeTxt.Clear();
+            SocialSecurityTxt.Clear();
+            EmailTxt.Clear();
+            PasswordTxt.Clear();
+        }
+
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             MID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -561,17 +591,17 @@ namespace MovieRental
             //movieName = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
             MovieTypeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString().Trim();
             //movieType = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
-            DistFeeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            NumCopiesTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            DistFeeTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString().Trim();
+            NumCopiesTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Trim();
             /*char[] delimiterChars = {' '};
             string[] releaseDateStrings = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString().Split(delimiterChars);
             string[] addDateStrings = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString().Split(delimiterChars);
             ReleaseDateTxt.Text = releaseDateStrings[0];
             AddDateTxt.Text = addDateStrings[0];*/
-            DirectorTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
-            CurrentNumTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
-            dateTimePicker2.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
-            dateTimePicker3.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            DirectorTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString().Trim();
+            CurrentNumTxt.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString().Trim();
+            dateTimePicker2.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString().Trim();
+            dateTimePicker3.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString().Trim();
             if (dataGridView1.Rows[e.RowIndex].Cells[9].Value == DBNull.Value)
             {
                 pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("Noimage");
@@ -592,19 +622,24 @@ namespace MovieRental
 
         private void dataGridView4_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            EID = dataGridView4.Rows[e.RowIndex].Cells[0].Value.ToString();
-            SocialSecurityTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[1].Value.ToString();
-            eLastNameTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[2].Value.ToString();
-            eFirstNameTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[3].Value.ToString();
+            EID = dataGridView4.Rows[e.RowIndex].Cells[0].Value.ToString().Trim();
+            SocialSecurityTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[1].Value.ToString().Trim();
+            eLastNameTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[2].Value.ToString().Trim();
+            eFirstNameTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[3].Value.ToString().Trim();
             StreetTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[4].Value.ToString();
-            CityTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[5].Value.ToString();
-            StateTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[6].Value.ToString();
-            ZipCodeTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[7].Value.ToString();
-            TelephoneTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[8].Value.ToString();
-            dateTimePicker5.Text = dataGridView4.Rows[e.RowIndex].Cells[9].Value.ToString();
-            HourlyRateTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[10].Value.ToString();
-            TypeTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[11].Value.ToString();
-            EmailTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[12].Value.ToString();
+            CityTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[5].Value.ToString().Trim();
+            StateTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[6].Value.ToString().Trim();
+            ZipCodeTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[7].Value.ToString().Trim();
+            TelephoneTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[8].Value.ToString().Trim();
+            dateTimePicker5.Text = dataGridView4.Rows[e.RowIndex].Cells[9].Value.ToString().Trim();
+            HourlyRateTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[10].Value.ToString().Trim();
+            //TypeTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[11].Value.ToString().Trim();
+            if (dataGridView4.Rows[e.RowIndex].Cells[11].Value.ToString().Trim() == "manager")
+                TypeCB.SelectedIndex = 1;
+            else
+                TypeCB.SelectedIndex = 0;
+
+            EmailTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[12].Value.ToString().Trim();
 
         }
 
@@ -684,17 +719,45 @@ namespace MovieRental
             ClearData();
         }
 
-
+        int pos = 0;
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView2.BringToFront();
+            Console.WriteLine("Before" + pos);
+            if (pos == 2)
+            {
+                dataGridView3.BringToFront();
+                DisplayRecentMovies();
+                pos--;
+            }
+            else if (pos == 1)
+            {
+                pos--;
+                dataGridView2.BringToFront();
+            }
+            else
+                dataGridView2.BringToFront();
+
+            Console.WriteLine("After" + pos);
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            dataGridView3.BringToFront();
-            DisplayRecentMovies();
+            Console.WriteLine("Before" + pos);
+            if (pos == 0)
+            {
+                pos++;
+                dataGridView3.BringToFront();
+                DisplayRecentMovies();
+            }
+            else if (pos == 1)
+            {
+                DisplayCasting();
+                pos++;
+                
+            }
+
+            Console.WriteLine("After" + pos);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1351,6 +1414,11 @@ namespace MovieRental
                 dataGridView2.DataSource = dt5;
             con.Close();
             dataGridView2.BringToFront();
+        }
+
+        private void ClearEmployeeBtn_Click(object sender, EventArgs e)
+        {
+            ClearEmployeeData();
         }
     }
 }
