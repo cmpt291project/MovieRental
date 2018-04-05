@@ -65,6 +65,10 @@
             this.ziperror = new System.Windows.Forms.ErrorProvider(this.components);
             this.telerror = new System.Windows.Forms.ErrorProvider(this.components);
             this.crederror = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailerror)).BeginInit();
@@ -80,6 +84,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.limited);
             this.panel1.Controls.Add(this.unlimited3);
             this.panel1.Controls.Add(this.unlimited2);
@@ -166,7 +174,7 @@
             // 
             // submit
             // 
-            this.submit.Location = new System.Drawing.Point(420, 848);
+            this.submit.Location = new System.Drawing.Point(388, 869);
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(151, 67);
             this.submit.TabIndex = 33;
@@ -389,6 +397,42 @@
             // 
             this.crederror.ContainerControl = this;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(44, 802);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(113, 25);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "$10/month";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(205, 802);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(113, 25);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "$15/month";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(415, 802);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(113, 25);
+            this.label12.TabIndex = 41;
+            this.label12.Text = "$20/month";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(645, 802);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(113, 25);
+            this.label13.TabIndex = 42;
+            this.label13.Text = "$25/month";
+            // 
             // NewUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -453,5 +497,9 @@
         private System.Windows.Forms.ErrorProvider ziperror;
         private System.Windows.Forms.ErrorProvider telerror;
         private System.Windows.Forms.ErrorProvider crederror;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }

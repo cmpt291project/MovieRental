@@ -62,7 +62,7 @@ namespace MovieRental
                 }
             }
 
-            if (countat > 0 || countdot > 0)
+            if (countat > 1 || countdot > 1)
             {
                 emailerror.SetError(EmailAddress, "This email not valid.");
                 return false;
