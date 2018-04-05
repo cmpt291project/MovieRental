@@ -53,6 +53,7 @@ namespace MovieRental
             a.Fill(t);
             int i = 1;
             int x = 0;
+            bool empty = true;
             foreach (DataRow row in t.Rows)
             {
                 foreach (DataColumn column in t.Columns)
@@ -75,6 +76,16 @@ namespace MovieRental
                 newGroupBox.setImage(newGroupBox.groupBox, image);
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
                 list.Add(newGroupBox);
+                empty = false;
+            }
+            if (empty == true)
+            {
+                Label emptyLabel = new Label();
+                emptyLabel.Location = new Point(50, 100);
+                emptyLabel.Font = new Font("Segoe UI", 24);
+                emptyLabel.Text = "There is no rented movie currently.";
+                emptyLabel.AutoSize = true;
+                YourMoviePanel2.Controls.Add(emptyLabel);
             }
         }
 
@@ -114,6 +125,7 @@ namespace MovieRental
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
                 list.Add(newGroupBox);
             }
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -132,6 +144,7 @@ namespace MovieRental
             a.Fill(t);
             int i = 1;
             int x = 0;
+            bool empty = true;
             foreach (DataRow row in t.Rows)
             {
                 foreach (DataColumn column in t.Columns)
@@ -152,7 +165,16 @@ namespace MovieRental
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
                 newGroupBox.SetChooseMovieButton(newGroupBox.groupBox, "Rent");
                 newGroupBox.DeleteMovieFromListButton(newGroupBox.groupBox, "Delete");
-
+                empty = false;
+            }
+            if (empty == true)
+            {
+                Label emptyLabel = new Label();
+                emptyLabel.Location = new Point(100, 100);
+                emptyLabel.Font = new Font("Arial", 20);
+                emptyLabel.Text = "Wish List is empty.";
+                emptyLabel.AutoSize = true;
+                YourMoviePanel2.Controls.Add(emptyLabel);
             }
         }
     }

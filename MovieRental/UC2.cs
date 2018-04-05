@@ -143,7 +143,12 @@ namespace MovieRental
             }
 
             else if (YourMovieTab.SelectedIndex == 2)
-                Console.WriteLine("Your Movies");
+            {
+                YourMovieControl.Instance.createWishList();
+                Ranking.Instance.update();
+                Like.Instance.update();
+                topControl.Instance.update();
+            }
 
             else
                 Console.WriteLine("Search");
