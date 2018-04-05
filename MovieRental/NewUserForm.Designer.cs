@@ -394,11 +394,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(960, 898);
+            this.ClientSize = new System.Drawing.Size(994, 898);
             this.Controls.Add(this.panel1);
             this.Name = "NewUserForm";
             this.Text = "NewUserForm";
-            
+            this.Load += new System.EventHandler(this.NewUserForm_Load_1);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameError)).EndInit();

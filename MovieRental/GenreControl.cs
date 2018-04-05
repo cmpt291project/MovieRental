@@ -47,7 +47,7 @@ namespace MovieRental
             panelInGerneControl.Controls.Clear();
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("Select M.MovieName, M.MID,rate from Movie M left join (Select AVG(Rating) as rate, MID from MovieRating Group by MID) T ON M.MID = T.MID where M.MovieType = '"+ lb.Name.ToString() +"'", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("Select M.MovieName, Poster, M.MID,rate from Movie M left join (Select AVG(Rating) as rate, MID from MovieRating Group by MID) T ON M.MID = T.MID where M.MovieType = '"+ lb.Name.ToString() +"'", connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             int i = 0;
@@ -58,7 +58,19 @@ namespace MovieRental
                 MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
                 movieBoxRent.createNewBox(panelInGerneControl, i,0);
                 //MessageBox.Show(row["MID"].ToString().Trim());
+                if (row["Poster"] == DBNull.Value)
+                {
+                    //MessageBox.Show("image null");
+                    //MemoryStream ms = new MemoryStream((byte[])Properties.Resources.ResourceManager.GetObject("001"));
+                    movieBoxRent.CreatePictureImage((Image)Properties.Resources.ResourceManager.GetObject("Noimage"));
+                }
+                else
+                {
+                    byte[] ImageArray = (byte[])row["Poster"];
+                    Image image = Image.FromStream(new MemoryStream(ImageArray));
 
+                    movieBoxRent.CreatePictureImage(image);
+                }
                 //movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
                 movieBoxRent.CreateName(row["MovieName"].ToString());
                 //MessageBox.Show(row["MovieName"].ToString());
@@ -109,6 +121,11 @@ namespace MovieRental
                 //}
             }
             connection.Close();
+        }
+
+        private void Horror_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

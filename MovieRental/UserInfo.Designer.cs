@@ -36,6 +36,8 @@
             this.FirstName = new System.Windows.Forms.TextBox();
             this.user = new System.Windows.Forms.TabControl();
             this.info = new System.Windows.Forms.TabPage();
+            this.accountno = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.save = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.edit = new System.Windows.Forms.Button();
@@ -67,8 +69,6 @@
             this.modify = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.label8 = new System.Windows.Forms.Label();
-            this.accountno = new System.Windows.Forms.TextBox();
             this.user.SuspendLayout();
             this.info.SuspendLayout();
             this.plan.SuspendLayout();
@@ -143,6 +143,25 @@
             this.info.TabIndex = 0;
             this.info.Text = "UserInfo";
             this.info.UseVisualStyleBackColor = true;
+            // 
+            // accountno
+            // 
+            this.accountno.Enabled = false;
+            this.accountno.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.accountno.Location = new System.Drawing.Point(522, 86);
+            this.accountno.Name = "accountno";
+            this.accountno.Size = new System.Drawing.Size(157, 38);
+            this.accountno.TabIndex = 26;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Location = new System.Drawing.Point(516, 32);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(163, 31);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Account No.";
             // 
             // save
             // 
@@ -265,6 +284,7 @@
             this.CreditCardNumber.Size = new System.Drawing.Size(500, 38);
             this.CreditCardNumber.TabIndex = 12;
             this.CreditCardNumber.Text = "creditcard";
+            this.CreditCardNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CreditCardNumber_KeyPress);
             // 
             // EmailAddress
             // 
@@ -285,6 +305,7 @@
             this.Telephone.Size = new System.Drawing.Size(335, 38);
             this.Telephone.TabIndex = 10;
             this.Telephone.Text = "tel";
+            this.Telephone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Telephone_KeyPress);
             // 
             // ZipCode
             // 
@@ -461,25 +482,6 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(516, 32);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(163, 31);
-            this.label8.TabIndex = 25;
-            this.label8.Text = "Account No.";
-            // 
-            // accountno
-            // 
-            this.accountno.Enabled = false;
-            this.accountno.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.accountno.Location = new System.Drawing.Point(522, 86);
-            this.accountno.Name = "accountno";
-            this.accountno.Size = new System.Drawing.Size(157, 38);
-            this.accountno.TabIndex = 26;
             // 
             // UserInfo
             // 

@@ -105,6 +105,7 @@
             this.Horror.TabIndex = 8;
             this.Horror.TabStop = true;
             this.Horror.Text = "Horror";
+            this.Horror.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Horror_LinkClicked);
             // 
             // GenreControl
             // 
@@ -119,7 +120,7 @@
             this.Controls.Add(this.panelInGerneControl);
             this.Controls.Add(this.Drama);
             this.Name = "GenreControl";
-            this.Size = new System.Drawing.Size(1410, 665);
+            this.Size = new System.Drawing.Size(1376, 631);
             this.Load += new System.EventHandler(this.GenreControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
