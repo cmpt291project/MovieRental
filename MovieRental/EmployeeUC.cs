@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -380,38 +381,64 @@ namespace MovieRental
 
         public void createMostActiveCustomer()
         {
-            Reporting.Controls.Clear();
-            //list.Clear();
-            SqlConnection connection = new SqlConnection(Form4.connectionString);
-            connection.Open();
-            SqlDataAdapter a = new SqlDataAdapter("SELECT M.MovieName, M.Director, M.MovieType, M.ReleaseDate, M.AddDate, O.MID, count(O.MID) from [Order] O, Movie M where O.MID = M.MID group by M.MovieName, M.Director, M.MovieType, M.ReleaseDate, M.AddDate, O.MID" + 
-                            " order by cast(O.MID as int) ASC", connection);
-            DataTable t = new DataTable();
-            a.Fill(t);
-            int i = 1;
-            int x = 0;
-            foreach (DataRow row in t.Rows)
-            {
-                foreach (DataColumn column in t.Columns)
-                {
-                    movieInfo[x] = row[column].ToString();
-                    x++;
-                }
-                x = 0;
-                MovieGroupBox newGroupBox = new MovieGroupBox();
-                newGroupBox.setGroupBox(Reporting, i);
-                i++;
-                var releaseDate = movieInfo[3].Substring(0, movieInfo[3].IndexOf(' '));
-                var addDate = movieInfo[4].Substring(0, movieInfo[4].IndexOf(' '));
-
-                newGroupBox.setImage(newGroupBox.groupBox, movieInfo[5].ToString().Trim());
-                newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
-                newGroupBox.setLabel(newGroupBox.groupBox, "Number of copies sold: " + movieInfo[6]);
-                //newGroupBox.SetChooseMovieButton(newGroupBox.groupBox, "Rent");
-                //newGroupBox.DeleteMovieFromListButton(newGroupBox.groupBox, "Delete");
-
-            }
+            //Reporting.Controls.Clear();
+            con.Open();
+            DataTable dt = new DataTable();
+            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, count(O.MID) from Customer as C, [Order] as O where C.CID = O.CID and month(O.OrderDate) = '" + MonthToInt(month.SelectedItem.ToString()) + "' group by C.FirstName, C.LastName", con);
+            adapt.Fill(dt);
+            dataGridView1.DataSource = dt;
+            con.Close();
         }
+
+        public int MonthToInt(string month)
+        {
+            int num = 1;
+            switch (month)
+            {
+                case "January":
+                    num = 1;
+                    break;
+                case "February":
+                    num = 2;
+                    break;
+                case "March":
+                    num = 3;
+                    break;
+                case "April":
+                    num = 4;
+                    break;
+                case "May":
+                    num = 5;
+                    break;
+                case "June":
+                    num = 6;
+                    break;
+                case "July":
+                    num = 7;
+                    break;
+                case "August":
+                    num = 8;
+                    break;
+                case "September":
+                    num = 9;
+                    break;
+                case "October":
+                    num = 10;
+                    break;
+                case "November":
+                    num = 11;
+                    break;
+                case "December":
+                    num = 12;
+                    break;
+                default:
+                    break;
+            }
+            return num;
+
+
+        }
+
         private void Atype_MouseClick(object sender, MouseEventArgs e)
         {
             Atype.DroppedDown = true;
@@ -422,7 +449,7 @@ namespace MovieRental
             dataGridView2.Enabled = true;
             con.Open();
             DataTable dt = new DataTable();
-            adapt = new SqlDataAdapter("select concat(C.FirstName, C.LastName) as Fullname, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID", con);
+            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID", con);
             adapt.Fill(dt);
             dataGridView2.DataSource = dt;
             con.Close();
