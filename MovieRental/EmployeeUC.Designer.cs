@@ -133,9 +133,9 @@
             this.reportPanel.Controls.Add(this.Reporting);
             this.reportPanel.Controls.Add(this.button7);
             this.reportPanel.Controls.Add(this.mostcustomer);
-            this.reportPanel.Location = new System.Drawing.Point(1, 46);
+            this.reportPanel.Location = new System.Drawing.Point(1, 44);
             this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(680, 654);
+            this.reportPanel.Size = new System.Drawing.Size(680, 659);
             this.reportPanel.TabIndex = 48;
             this.reportPanel.Visible = false;
             // 
@@ -401,7 +401,7 @@
             this.panel2.Controls.Add(this.FirstName);
             this.panel2.Location = new System.Drawing.Point(0, 83);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(678, 325);
+            this.panel2.Size = new System.Drawing.Size(678, 334);
             this.panel2.TabIndex = 47;
             // 
             // add
@@ -739,7 +739,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.panel4);
             this.Name = "EmployeeUC";
-            this.Size = new System.Drawing.Size(862, 720);
+            this.Size = new System.Drawing.Size(862, 728);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.reportPanel.ResumeLayout(false);

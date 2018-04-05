@@ -350,18 +350,18 @@ namespace MovieRental
             this.e = e;
             if (dataGridView2.Rows[e.RowIndex].Cells.Count >= 10)
             {
-                cidtext.Text = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString();
-                FirstName.Text = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString();
-                LastName.Text = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString();
-                Street.Text = dataGridView2.Rows[e.RowIndex].Cells[3].Value.ToString();
-                City.Text = dataGridView2.Rows[e.RowIndex].Cells[4].Value.ToString();
-                State.Text = dataGridView2.Rows[e.RowIndex].Cells[5].Value.ToString();
-                ZipCode.Text = dataGridView2.Rows[e.RowIndex].Cells[6].Value.ToString();
-                Telephone.Text = dataGridView2.Rows[e.RowIndex].Cells[7].Value.ToString();
-                EmailAddress.Text = dataGridView2.Rows[e.RowIndex].Cells[8].Value.ToString();
-                Atype.Text = dataGridView2.Rows[e.RowIndex].Cells[10].Value.ToString();
-                AccountCreationDate.Text = dataGridView2.Rows[e.RowIndex].Cells[11].Value.ToString();
-                CreditCardNumber.Text = dataGridView2.Rows[e.RowIndex].Cells[12].Value.ToString();
+                cidtext.Text = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString().Trim();
+                FirstName.Text = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString().Trim();
+                LastName.Text = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString().Trim();
+                Street.Text = dataGridView2.Rows[e.RowIndex].Cells[3].Value.ToString().Trim();
+                City.Text = dataGridView2.Rows[e.RowIndex].Cells[4].Value.ToString().Trim();
+                State.Text = dataGridView2.Rows[e.RowIndex].Cells[5].Value.ToString().Trim();
+                ZipCode.Text = dataGridView2.Rows[e.RowIndex].Cells[6].Value.ToString().Trim();
+                Telephone.Text = dataGridView2.Rows[e.RowIndex].Cells[7].Value.ToString().Trim();
+                EmailAddress.Text = dataGridView2.Rows[e.RowIndex].Cells[8].Value.ToString().Trim();
+                Atype.Text = dataGridView2.Rows[e.RowIndex].Cells[10].Value.ToString().Trim();
+                AccountCreationDate.Text = dataGridView2.Rows[e.RowIndex].Cells[11].Value.ToString().Trim();
+                CreditCardNumber.Text = dataGridView2.Rows[e.RowIndex].Cells[12].Value.ToString().Trim();
             }
             button2.Enabled = true;
             button3.Enabled = true;
@@ -488,7 +488,7 @@ namespace MovieRental
 
         private void FirstName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -496,7 +496,7 @@ namespace MovieRental
 
         private void LastName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -504,7 +504,7 @@ namespace MovieRental
 
         private void Street_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -512,7 +512,7 @@ namespace MovieRental
 
         private void City_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -520,7 +520,7 @@ namespace MovieRental
 
         private void State_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -528,7 +528,7 @@ namespace MovieRental
 
         private void ZipCode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -536,7 +536,7 @@ namespace MovieRental
 
         private void Telephone_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -544,7 +544,7 @@ namespace MovieRental
 
         private void CreditCardNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
