@@ -177,7 +177,7 @@ namespace MovieRental
                 }
             }
 
-            if (countat > 0 || countdot > 0) {
+            if (countat > 1 || countdot > 1) {
                 MessageBox.Show("email not valid");
                 return false;
             }
