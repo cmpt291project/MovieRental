@@ -625,7 +625,8 @@ namespace MovieRental
             ZipCodeTxt.Clear();
             TelephoneTxt.Clear();
             HourlyRateTxt.Clear();
-            TypeTxt.Clear();
+            //TypeTxt.Clear();
+            TypeCB.Items.Clear();
             SocialSecurityTxt.Clear();
             EmailTxt.Clear();
             PasswordTxt.Clear();
