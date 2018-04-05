@@ -100,6 +100,7 @@ namespace MovieRental
                 text.Location = new Point(260, 0);
                 text.Size = new Size(135, 21);
                 text.Top = i * 30 + 25;
+
                 groupBox.Controls.Add(text);
 
 
