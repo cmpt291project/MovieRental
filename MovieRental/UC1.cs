@@ -65,7 +65,7 @@ namespace MovieRental
             if (scmd.ExecuteScalar().ToString() == "1")
             {
                 //pictureBox1.Image = new Bitmap(@"C:\Users\Mic 18\Documents\Visual Studio 2015\Projects\mylogin\granted.png");
-                MessageBox.Show("YOU ARE GRANTED WITH ACCESS");
+                //MessageBox.Show("YOU ARE GRANTED WITH ACCESS");
                 SqlCommand scmd2 = new SqlCommand("select UserType from Password where EmailAddress=@email and Password=@pwd", scn);
                 scmd.Parameters.Clear();
                 

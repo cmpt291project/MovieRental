@@ -1151,6 +1151,7 @@
             this.LogoutBtn.TabIndex = 30;
             this.LogoutBtn.Text = "Logout";
             this.LogoutBtn.UseVisualStyleBackColor = true;
+            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
             // 
             // ManagerUC2
             // 
