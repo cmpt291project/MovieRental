@@ -109,9 +109,16 @@ namespace MovieRental
                 newGroupBox.SetReturnButton(newGroupBox.groupBox, "ReturnMovie");
 
                 Byte[] data = new Byte[0];
-                data = (Byte[])(row["Poster"]);
-                Image image = Image.FromStream(new MemoryStream(data));
-                newGroupBox.setImage(newGroupBox.groupBox, image);
+                if (row["Poster"] == DBNull.Value)
+                {
+                    newGroupBox.setImage(newGroupBox.groupBox, ((Image)Properties.Resources.ResourceManager.GetObject("Noimage")));
+                }
+                else
+                {
+                    data = (Byte[])(row["Poster"]);
+                    Image image = Image.FromStream(new MemoryStream(data));
+                    newGroupBox.setImage(newGroupBox.groupBox, image);
+                }
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
                 list.Add(newGroupBox);
                 empty = false;
@@ -205,9 +212,17 @@ namespace MovieRental
                 var releaseDate = movieInfo[3].Substring(0, movieInfo[3].IndexOf(' '));
                 var addDate = movieInfo[4].Substring(0, movieInfo[4].IndexOf(' '));
                 Byte[] data = new Byte[0];
-                data = (Byte[])(row["Poster"]);
-                Image image = Image.FromStream(new MemoryStream(data));
-                newGroupBox.setImage(newGroupBox.groupBox, image);
+                if (row["Poster"] == DBNull.Value)
+                {
+                    newGroupBox.setImage(newGroupBox.groupBox, ((Image)Properties.Resources.ResourceManager.GetObject("Noimage")));
+                }
+                else
+                {
+                    data = (Byte[])(row["Poster"]);
+
+                    Image image = Image.FromStream(new MemoryStream(data));
+                    newGroupBox.setImage(newGroupBox.groupBox, image);
+                }
                 newGroupBox.setMovieInfo(newGroupBox.groupBox, movieInfo[0], movieInfo[1], movieInfo[2], releaseDate, addDate, movieInfo[5].ToString());
                 newGroupBox.SetChooseMovieButton(newGroupBox.groupBox, "Rent");
                 newGroupBox.SetIndex(newGroupBox.groupBox,i-1);
