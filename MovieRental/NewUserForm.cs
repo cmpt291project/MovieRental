@@ -42,6 +42,32 @@ namespace MovieRental
             {
                 return false;
             }
+            if (!(EmailAddress.Text.Contains('@') && EmailAddress.Text.Contains('.')))
+            {
+                emailerror.SetError(EmailAddress, "This email not valid.");
+                return false;
+            }
+            int countat = 0;
+            int countdot = 0;
+            foreach (char c in EmailAddress.Text)
+            {
+                if (c == '@')
+                {
+                    countat++;
+                }
+
+                if (c == '.')
+                {
+                    countdot++;
+                }
+            }
+
+            if (countat > 0 || countdot > 0)
+            {
+                emailerror.SetError(EmailAddress, "This email not valid.");
+                return false;
+            }
+
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter dataAdapter = new SqlDataAdapter("select CID from Customer where EmailAddress = '" + EmailAddress.Text + "' and CID != '" + UC1.id + "'", connection);
@@ -183,6 +209,9 @@ namespace MovieRental
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-       
+        private void NewUserForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
