@@ -46,13 +46,14 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.help = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.YourMoviePanel = new System.Windows.Forms.Panel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.help = new System.Windows.Forms.Button();
+            this.logout = new System.Windows.Forms.Button();
             this.YourMovieTab.SuspendLayout();
             this.Features.SuspendLayout();
             this.Suggestion.SuspendLayout();
@@ -68,7 +69,7 @@
             this.YourMovieTab.Controls.Add(this.YourMovie);
             this.YourMovieTab.Controls.Add(this.tabPage1);
             this.YourMovieTab.Location = new System.Drawing.Point(0, 62);
-            this.YourMovieTab.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.YourMovieTab.Margin = new System.Windows.Forms.Padding(6);
             this.YourMovieTab.Name = "YourMovieTab";
             this.YourMovieTab.SelectedIndex = 0;
             this.YourMovieTab.Size = new System.Drawing.Size(1466, 1485);
@@ -85,9 +86,9 @@
             this.Features.Controls.Add(this.label2);
             this.Features.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Features.Location = new System.Drawing.Point(8, 39);
-            this.Features.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.Features.Margin = new System.Windows.Forms.Padding(12);
             this.Features.Name = "Features";
-            this.Features.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Features.Padding = new System.Windows.Forms.Padding(6);
             this.Features.Size = new System.Drawing.Size(1450, 1438);
             this.Features.TabIndex = 0;
             this.Features.Text = "Feature";
@@ -96,7 +97,7 @@
             // panelGenre
             // 
             this.panelGenre.Location = new System.Drawing.Point(32, 844);
-            this.panelGenre.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panelGenre.Margin = new System.Windows.Forms.Padding(6);
             this.panelGenre.Name = "panelGenre";
             this.panelGenre.Size = new System.Drawing.Size(1400, 792);
             this.panelGenre.TabIndex = 4;
@@ -116,7 +117,7 @@
             // 
             this.newRelease.AutoSize = true;
             this.newRelease.Location = new System.Drawing.Point(28, 77);
-            this.newRelease.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.newRelease.Margin = new System.Windows.Forms.Padding(6);
             this.newRelease.Name = "newRelease";
             this.newRelease.Size = new System.Drawing.Size(1410, 677);
             this.newRelease.TabIndex = 1;
@@ -142,9 +143,9 @@
             this.Suggestion.Controls.Add(this.label1);
             this.Suggestion.Controls.Add(this.rank);
             this.Suggestion.Location = new System.Drawing.Point(8, 39);
-            this.Suggestion.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.Suggestion.Margin = new System.Windows.Forms.Padding(12);
             this.Suggestion.Name = "Suggestion";
-            this.Suggestion.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Suggestion.Padding = new System.Windows.Forms.Padding(6);
             this.Suggestion.Size = new System.Drawing.Size(1450, 1438);
             this.Suggestion.TabIndex = 1;
             this.Suggestion.Text = "Suggestion";
@@ -164,7 +165,7 @@
             // top
             // 
             this.top.Location = new System.Drawing.Point(22, 1527);
-            this.top.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.top.Margin = new System.Windows.Forms.Padding(4);
             this.top.Name = "top";
             this.top.Size = new System.Drawing.Size(1410, 715);
             this.top.TabIndex = 4;
@@ -172,9 +173,9 @@
             // like
             // 
             this.like.Location = new System.Drawing.Point(22, 812);
-            this.like.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.like.Margin = new System.Windows.Forms.Padding(4);
             this.like.Name = "like";
-            this.like.Size = new System.Drawing.Size(1410, 637);
+            this.like.Size = new System.Drawing.Size(1410, 647);
             this.like.TabIndex = 3;
             // 
             // youmayalsolike
@@ -202,7 +203,7 @@
             // rank
             // 
             this.rank.Location = new System.Drawing.Point(22, 71);
-            this.rank.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rank.Margin = new System.Windows.Forms.Padding(4);
             this.rank.Name = "rank";
             this.rank.Size = new System.Drawing.Size(1410, 662);
             this.rank.TabIndex = 0;
@@ -211,9 +212,9 @@
             // 
             this.YourMovie.AutoScroll = true;
             this.YourMovie.Location = new System.Drawing.Point(8, 39);
-            this.YourMovie.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.YourMovie.Margin = new System.Windows.Forms.Padding(12);
             this.YourMovie.Name = "YourMovie";
-            this.YourMovie.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.YourMovie.Padding = new System.Windows.Forms.Padding(12);
             this.YourMovie.Size = new System.Drawing.Size(1450, 1438);
             this.YourMovie.TabIndex = 0;
             this.YourMovie.Text = "Your Movie";
@@ -223,9 +224,9 @@
             // 
             this.tabPage1.Controls.Add(this.SearchPanel);
             this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
             this.tabPage1.Size = new System.Drawing.Size(1450, 1438);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Search";
@@ -234,28 +235,40 @@
             // SearchPanel
             // 
             this.SearchPanel.Location = new System.Drawing.Point(0, 23);
-            this.SearchPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SearchPanel.Margin = new System.Windows.Forms.Padding(6);
             this.SearchPanel.Name = "SearchPanel";
             this.SearchPanel.Size = new System.Drawing.Size(1450, 1412);
             this.SearchPanel.TabIndex = 0;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.logout);
             this.panel1.Controls.Add(this.help);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(563, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.panel1.Location = new System.Drawing.Point(478, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(848, 92);
+            this.panel1.Size = new System.Drawing.Size(1000, 92);
             this.panel1.TabIndex = 2;
+            // 
+            // help
+            // 
+            this.help.Location = new System.Drawing.Point(684, 9);
+            this.help.Margin = new System.Windows.Forms.Padding(12);
+            this.help.Name = "help";
+            this.help.Size = new System.Drawing.Size(140, 83);
+            this.help.TabIndex = 4;
+            this.help.Text = "Help";
+            this.help.UseVisualStyleBackColor = true;
+            this.help.Click += new System.EventHandler(this.help_Click);
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(364, 9);
-            this.button2.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.button2.Margin = new System.Windows.Forms.Padding(12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 83);
             this.button2.TabIndex = 3;
@@ -266,7 +279,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(520, 9);
-            this.button1.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.button1.Margin = new System.Windows.Forms.Padding(12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(140, 83);
             this.button1.TabIndex = 2;
@@ -277,7 +290,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(0, 48);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(12);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(268, 31);
             this.textBox1.TabIndex = 1;
@@ -286,7 +299,7 @@
             // 
             this.pictureBox1.Image = global::MovieRental.Properties.Resources.Icons8_Ios7_Very_Basic_Search;
             this.pictureBox1.Location = new System.Drawing.Point(272, 42);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(68, 44);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -307,16 +320,15 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // help
+            // logout
             // 
-            this.help.Location = new System.Drawing.Point(684, 9);
-            this.help.Margin = new System.Windows.Forms.Padding(12);
-            this.help.Name = "help";
-            this.help.Size = new System.Drawing.Size(140, 83);
-            this.help.TabIndex = 4;
-            this.help.Text = "Help";
-            this.help.UseVisualStyleBackColor = true;
-            this.help.Click += new System.EventHandler(this.help_Click);
+            this.logout.Location = new System.Drawing.Point(848, 9);
+            this.logout.Margin = new System.Windows.Forms.Padding(12);
+            this.logout.Name = "logout";
+            this.logout.Size = new System.Drawing.Size(132, 83);
+            this.logout.TabIndex = 5;
+            this.logout.Text = "Log Out";
+            this.logout.UseVisualStyleBackColor = true;
             // 
             // UC2
             // 
@@ -325,9 +337,9 @@
             this.AutoSize = true;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.YourMovieTab);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "UC2";
-            this.Size = new System.Drawing.Size(1478, 1565);
+            this.Size = new System.Drawing.Size(1490, 1565);
             this.Load += new System.EventHandler(this.UC2_Load);
             this.YourMovieTab.ResumeLayout(false);
             this.Features.ResumeLayout(false);
@@ -368,5 +380,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel SearchPanel;
         private System.Windows.Forms.Button help;
+        private System.Windows.Forms.Button logout;
     }
 }

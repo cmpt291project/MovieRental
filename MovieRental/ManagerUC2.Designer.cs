@@ -78,12 +78,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.TypeCB = new System.Windows.Forms.ComboBox();
+            this.ClearEmployeeBtn = new System.Windows.Forms.Button();
             this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
             this.label32 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.PasswordTxt = new System.Windows.Forms.TextBox();
             this.EmailTxt = new System.Windows.Forms.TextBox();
-            this.TypeTxt = new System.Windows.Forms.TextBox();
             this.HourlyRateTxt = new System.Windows.Forms.TextBox();
             this.TelephoneTxt = new System.Windows.Forms.TextBox();
             this.ZipCodeTxt = new System.Windows.Forms.TextBox();
@@ -131,8 +132,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.ClearEmployeeBtn = new System.Windows.Forms.Button();
-            this.TypeCB = new System.Windows.Forms.ComboBox();
+            this.LogoutBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -624,7 +624,6 @@
             this.panel3.Controls.Add(this.label29);
             this.panel3.Controls.Add(this.PasswordTxt);
             this.panel3.Controls.Add(this.EmailTxt);
-            this.panel3.Controls.Add(this.TypeTxt);
             this.panel3.Controls.Add(this.HourlyRateTxt);
             this.panel3.Controls.Add(this.TelephoneTxt);
             this.panel3.Controls.Add(this.ZipCodeTxt);
@@ -652,6 +651,28 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(603, 283);
             this.panel3.TabIndex = 28;
+            // 
+            // TypeCB
+            // 
+            this.TypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TypeCB.FormattingEnabled = true;
+            this.TypeCB.Items.AddRange(new object[] {
+            "regular",
+            "manager"});
+            this.TypeCB.Location = new System.Drawing.Point(278, 190);
+            this.TypeCB.Name = "TypeCB";
+            this.TypeCB.Size = new System.Drawing.Size(101, 21);
+            this.TypeCB.TabIndex = 31;
+            // 
+            // ClearEmployeeBtn
+            // 
+            this.ClearEmployeeBtn.Location = new System.Drawing.Point(196, 252);
+            this.ClearEmployeeBtn.Name = "ClearEmployeeBtn";
+            this.ClearEmployeeBtn.Size = new System.Drawing.Size(54, 23);
+            this.ClearEmployeeBtn.TabIndex = 30;
+            this.ClearEmployeeBtn.Text = "Clear";
+            this.ClearEmployeeBtn.UseVisualStyleBackColor = true;
+            this.ClearEmployeeBtn.Click += new System.EventHandler(this.ClearEmployeeBtn_Click);
             // 
             // dateTimePicker5
             // 
@@ -693,13 +714,6 @@
             this.EmailTxt.Name = "EmailTxt";
             this.EmailTxt.Size = new System.Drawing.Size(100, 20);
             this.EmailTxt.TabIndex = 25;
-            // 
-            // TypeTxt
-            // 
-            this.TypeTxt.Location = new System.Drawing.Point(279, 193);
-            this.TypeTxt.Name = "TypeTxt";
-            this.TypeTxt.Size = new System.Drawing.Size(100, 20);
-            this.TypeTxt.TabIndex = 24;
             // 
             // HourlyRateTxt
             // 
@@ -1129,32 +1143,21 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // ClearEmployeeBtn
+            // LogoutBtn
             // 
-            this.ClearEmployeeBtn.Location = new System.Drawing.Point(196, 252);
-            this.ClearEmployeeBtn.Name = "ClearEmployeeBtn";
-            this.ClearEmployeeBtn.Size = new System.Drawing.Size(54, 23);
-            this.ClearEmployeeBtn.TabIndex = 30;
-            this.ClearEmployeeBtn.Text = "Clear";
-            this.ClearEmployeeBtn.UseVisualStyleBackColor = true;
-            this.ClearEmployeeBtn.Click += new System.EventHandler(this.ClearEmployeeBtn_Click);
-            // 
-            // TypeCB
-            // 
-            this.TypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TypeCB.FormattingEnabled = true;
-            this.TypeCB.Items.AddRange(new object[] {
-            "regular",
-            "manager"});
-            this.TypeCB.Location = new System.Drawing.Point(278, 222);
-            this.TypeCB.Name = "TypeCB";
-            this.TypeCB.Size = new System.Drawing.Size(101, 21);
-            this.TypeCB.TabIndex = 31;
+            this.LogoutBtn.Location = new System.Drawing.Point(720, 7);
+            this.LogoutBtn.Name = "LogoutBtn";
+            this.LogoutBtn.Size = new System.Drawing.Size(54, 23);
+            this.LogoutBtn.TabIndex = 30;
+            this.LogoutBtn.Text = "Logout";
+            this.LogoutBtn.UseVisualStyleBackColor = true;
+            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
             // 
             // ManagerUC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.LogoutBtn);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dataGridView6);
@@ -1167,7 +1170,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Name = "ManagerUC2";
-            this.Size = new System.Drawing.Size(726, 559);
+            this.Size = new System.Drawing.Size(777, 559);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1231,7 +1234,6 @@
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox EmailTxt;
-        private System.Windows.Forms.TextBox TypeTxt;
         private System.Windows.Forms.TextBox HourlyRateTxt;
         private System.Windows.Forms.TextBox TelephoneTxt;
         private System.Windows.Forms.TextBox ZipCodeTxt;
@@ -1294,5 +1296,6 @@
         private System.Windows.Forms.TextBox searchActorTxt;
         private System.Windows.Forms.Button ClearEmployeeBtn;
         private System.Windows.Forms.ComboBox TypeCB;
+        private System.Windows.Forms.Button LogoutBtn;
     }
 }
