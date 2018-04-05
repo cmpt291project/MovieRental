@@ -30,6 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.reportbutton = new System.Windows.Forms.Button();
+            this.reportPanel = new System.Windows.Forms.Panel();
+            this.ReportLabel = new System.Windows.Forms.Label();
+            this.Reporting = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
+            this.mostcustomer = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.add = new System.Windows.Forms.Button();
             this.cidtext = new System.Windows.Forms.TextBox();
@@ -77,27 +83,24 @@
             this.button3 = new System.Windows.Forms.Button();
             this.suggest = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.reportPanel = new System.Windows.Forms.Panel();
-            this.Reporting = new System.Windows.Forms.Panel();
-            this.mostcustomer = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.ReportLabel = new System.Windows.Forms.Label();
-            this.reportbutton = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.month = new System.Windows.Forms.ComboBox();
             this.panel4.SuspendLayout();
+            this.reportPanel.SuspendLayout();
+            this.Reporting.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.reportPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.reportbutton);
             this.panel4.Controls.Add(this.reportPanel);
-            this.panel4.Controls.Add(this.panel2);
             this.panel4.Controls.Add(this.Allcustomer);
             this.panel4.Controls.Add(this.button6);
             this.panel4.Controls.Add(this.update);
@@ -110,8 +113,72 @@
             this.panel4.Controls.Add(this.panel1);
             this.panel4.Location = new System.Drawing.Point(48, 17);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(698, 700);
+            this.panel4.Size = new System.Drawing.Size(683, 700);
             this.panel4.TabIndex = 29;
+            // 
+            // reportbutton
+            // 
+            this.reportbutton.Location = new System.Drawing.Point(209, 4);
+            this.reportbutton.Name = "reportbutton";
+            this.reportbutton.Size = new System.Drawing.Size(114, 34);
+            this.reportbutton.TabIndex = 49;
+            this.reportbutton.Text = "Report Summary";
+            this.reportbutton.UseVisualStyleBackColor = true;
+            this.reportbutton.Click += new System.EventHandler(this.reportbutton_Click);
+            // 
+            // reportPanel
+            // 
+            this.reportPanel.Controls.Add(this.month);
+            this.reportPanel.Controls.Add(this.ReportLabel);
+            this.reportPanel.Controls.Add(this.Reporting);
+            this.reportPanel.Controls.Add(this.button7);
+            this.reportPanel.Controls.Add(this.mostcustomer);
+            this.reportPanel.Location = new System.Drawing.Point(1, 46);
+            this.reportPanel.Name = "reportPanel";
+            this.reportPanel.Size = new System.Drawing.Size(680, 654);
+            this.reportPanel.TabIndex = 48;
+            this.reportPanel.Visible = false;
+            // 
+            // ReportLabel
+            // 
+            this.ReportLabel.AutoSize = true;
+            this.ReportLabel.Font = new System.Drawing.Font("SimSun", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ReportLabel.Location = new System.Drawing.Point(40, 13);
+            this.ReportLabel.Name = "ReportLabel";
+            this.ReportLabel.Size = new System.Drawing.Size(109, 29);
+            this.ReportLabel.TabIndex = 3;
+            this.ReportLabel.Text = "Report";
+            // 
+            // Reporting
+            // 
+            this.Reporting.AutoScroll = true;
+            this.Reporting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Reporting.Controls.Add(this.dataGridView1);
+            this.Reporting.Location = new System.Drawing.Point(29, 45);
+            this.Reporting.Name = "Reporting";
+            this.Reporting.Size = new System.Drawing.Size(512, 561);
+            this.Reporting.TabIndex = 0;
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("SimSun", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button7.Location = new System.Drawing.Point(546, 89);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(126, 39);
+            this.button7.TabIndex = 2;
+            this.button7.Text = "Best Selling Movie";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // mostcustomer
+            // 
+            this.mostcustomer.Font = new System.Drawing.Font("SimSun", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.mostcustomer.Location = new System.Drawing.Point(546, 43);
+            this.mostcustomer.Name = "mostcustomer";
+            this.mostcustomer.Size = new System.Drawing.Size(124, 39);
+            this.mostcustomer.TabIndex = 1;
+            this.mostcustomer.Text = "Most Active Customer";
+            this.mostcustomer.UseVisualStyleBackColor = true;
+            this.mostcustomer.Click += new System.EventHandler(this.mostcustomer_Click);
             // 
             // panel2
             // 
@@ -127,9 +194,9 @@
             this.panel2.Controls.Add(this.st);
             this.panel2.Controls.Add(this.name);
             this.panel2.Controls.Add(this.FirstName);
-            this.panel2.Location = new System.Drawing.Point(15, 286);
+            this.panel2.Location = new System.Drawing.Point(0, 83);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(732, 414);
+            this.panel2.Size = new System.Drawing.Size(678, 325);
             this.panel2.TabIndex = 47;
             // 
             // add
@@ -451,7 +518,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(562, 137);
+            this.button6.Location = new System.Drawing.Point(547, 137);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(109, 38);
             this.button6.TabIndex = 32;
@@ -461,7 +528,7 @@
             // 
             // update
             // 
-            this.update.Location = new System.Drawing.Point(562, 90);
+            this.update.Location = new System.Drawing.Point(547, 90);
             this.update.Name = "update";
             this.update.Size = new System.Drawing.Size(111, 41);
             this.update.TabIndex = 31;
@@ -491,7 +558,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(602, 11);
+            this.button4.Location = new System.Drawing.Point(578, 13);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 7;
@@ -501,7 +568,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(562, 46);
+            this.button1.Location = new System.Drawing.Point(547, 47);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(109, 37);
             this.button1.TabIndex = 4;
@@ -511,7 +578,7 @@
             // 
             // searchBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(521, 11);
+            this.searchBtn.Location = new System.Drawing.Point(497, 13);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(75, 23);
             this.searchBtn.TabIndex = 3;
@@ -521,16 +588,17 @@
             // 
             // searchTxt
             // 
-            this.searchTxt.Location = new System.Drawing.Point(415, 11);
+            this.searchTxt.Location = new System.Drawing.Point(391, 13);
             this.searchTxt.Name = "searchTxt";
             this.searchTxt.Size = new System.Drawing.Size(100, 21);
             this.searchTxt.TabIndex = 1;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel5);
-            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.suggest);
             this.panel1.Location = new System.Drawing.Point(15, 286);
             this.panel1.Name = "panel1";
@@ -592,7 +660,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(578, 68);
+            this.button2.Location = new System.Drawing.Point(534, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 37);
             this.button2.TabIndex = 5;
@@ -602,7 +670,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(577, 25);
+            this.button3.Location = new System.Drawing.Point(533, 46);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 37);
             this.button3.TabIndex = 6;
@@ -622,67 +690,37 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // reportPanel
+            // dataGridView1
             // 
-            this.reportPanel.Controls.Add(this.ReportLabel);
-            this.reportPanel.Controls.Add(this.Reporting);
-            this.reportPanel.Controls.Add(this.button7);
-            this.reportPanel.Controls.Add(this.mostcustomer);
-            this.reportPanel.Location = new System.Drawing.Point(1, 45);
-            this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(696, 637);
-            this.reportPanel.TabIndex = 48;
-            this.reportPanel.Visible = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonShadow;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 11);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(491, 261);
+            this.dataGridView1.TabIndex = 0;
             // 
-            // Reporting
+            // month
             // 
-            this.Reporting.AutoScroll = true;
-            this.Reporting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Reporting.Location = new System.Drawing.Point(29, 68);
-            this.Reporting.Name = "Reporting";
-            this.Reporting.Size = new System.Drawing.Size(512, 538);
-            this.Reporting.TabIndex = 0;
-            // 
-            // mostcustomer
-            // 
-            this.mostcustomer.Font = new System.Drawing.Font("SimSun", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.mostcustomer.Location = new System.Drawing.Point(561, 36);
-            this.mostcustomer.Name = "mostcustomer";
-            this.mostcustomer.Size = new System.Drawing.Size(124, 39);
-            this.mostcustomer.TabIndex = 1;
-            this.mostcustomer.Text = "Most Active Customer";
-            this.mostcustomer.UseVisualStyleBackColor = true;
-            this.mostcustomer.Click += new System.EventHandler(this.mostcustomer_Click);
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("SimSun", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button7.Location = new System.Drawing.Point(561, 89);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(124, 39);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "Best Selling Movie";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // ReportLabel
-            // 
-            this.ReportLabel.AutoSize = true;
-            this.ReportLabel.Font = new System.Drawing.Font("SimSun", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ReportLabel.Location = new System.Drawing.Point(209, 13);
-            this.ReportLabel.Name = "ReportLabel";
-            this.ReportLabel.Size = new System.Drawing.Size(109, 29);
-            this.ReportLabel.TabIndex = 3;
-            this.ReportLabel.Text = "Report";
-            // 
-            // reportbutton
-            // 
-            this.reportbutton.Location = new System.Drawing.Point(209, 4);
-            this.reportbutton.Name = "reportbutton";
-            this.reportbutton.Size = new System.Drawing.Size(114, 34);
-            this.reportbutton.TabIndex = 49;
-            this.reportbutton.Text = "Report Summary";
-            this.reportbutton.UseVisualStyleBackColor = true;
-            this.reportbutton.Click += new System.EventHandler(this.reportbutton_Click);
+            this.month.FormattingEnabled = true;
+            this.month.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "Novemeber",
+            "Decemeber"});
+            this.month.Location = new System.Drawing.Point(547, 137);
+            this.month.Name = "month";
+            this.month.Size = new System.Drawing.Size(93, 20);
+            this.month.TabIndex = 4;
             // 
             // EmployeeUC
             // 
@@ -694,6 +732,9 @@
             this.Size = new System.Drawing.Size(862, 720);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.reportPanel.ResumeLayout(false);
+            this.reportPanel.PerformLayout();
+            this.Reporting.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -703,8 +744,7 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.reportPanel.ResumeLayout(false);
-            this.reportPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -765,5 +805,7 @@
         private System.Windows.Forms.Panel Reporting;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button mostcustomer;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox month;
     }
 }
