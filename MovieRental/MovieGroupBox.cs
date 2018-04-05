@@ -102,6 +102,7 @@ namespace MovieRental
                 text.Top = i * 30 + 25;
                 groupBox.Controls.Add(text);
 
+
             }  
         }
 
