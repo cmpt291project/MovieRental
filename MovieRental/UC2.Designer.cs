@@ -248,7 +248,7 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(446, 0);
+            this.panel1.Location = new System.Drawing.Point(478, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1000, 92);
@@ -339,7 +339,7 @@
             this.Controls.Add(this.YourMovieTab);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "UC2";
-            this.Size = new System.Drawing.Size(1478, 1565);
+            this.Size = new System.Drawing.Size(1490, 1565);
             this.Load += new System.EventHandler(this.UC2_Load);
             this.YourMovieTab.ResumeLayout(false);
             this.Features.ResumeLayout(false);
