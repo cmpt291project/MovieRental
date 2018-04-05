@@ -65,15 +65,15 @@ namespace MovieRental
             
             if (dataTable.Rows.Count > 0)
             {
-                FirstName.Text = dataTable.Rows[0]["FirstName"].ToString();
-                LastName.Text = dataTable.Rows[0]["LastName"].ToString();
-                Street.Text = dataTable.Rows[0]["Street"].ToString();
-                City.Text = dataTable.Rows[0]["City"].ToString();
-                State.Text = dataTable.Rows[0]["State"].ToString();
-                ZipCode.Text = dataTable.Rows[0]["ZipCode"].ToString();
-                Telephone.Text = dataTable.Rows[0]["Telephone"].ToString();
-                EmailAddress.Text = dataTable.Rows[0]["EmailAddress"].ToString();
-                CreditCardNumber.Text = dataTable.Rows[0]["CreditCardNumber"].ToString();
+                FirstName.Text = dataTable.Rows[0]["FirstName"].ToString().Trim();
+                LastName.Text = dataTable.Rows[0]["LastName"].ToString().Trim();
+                Street.Text = dataTable.Rows[0]["Street"].ToString().Trim();
+                City.Text = dataTable.Rows[0]["City"].ToString().Trim();
+                State.Text = dataTable.Rows[0]["State"].ToString().Trim();
+                ZipCode.Text = dataTable.Rows[0]["ZipCode"].ToString().Trim();
+                Telephone.Text = dataTable.Rows[0]["Telephone"].ToString().Trim();
+                EmailAddress.Text = dataTable.Rows[0]["EmailAddress"].ToString().Trim();
+                CreditCardNumber.Text = dataTable.Rows[0]["CreditCardNumber"].ToString().Trim();
                 DateTime dt = (DateTime)dataTable.Rows[0]["AccountCreationDate"];
                 AccountCreationDate.Text = dt.ToString("d");
                 accountno.Text = dataTable.Rows[0]["AccountNumber"].ToString();
@@ -114,15 +114,15 @@ namespace MovieRental
                 userTable.Rows[0].BeginEdit();
 
 
-                userTable.Rows[0]["FirstName"] = FirstName.Text;
-                userTable.Rows[0]["LastName"] = LastName.Text;
-                userTable.Rows[0]["Street"] = Street.Text;
-                userTable.Rows[0]["City"] = City.Text;
-                userTable.Rows[0]["State"] = State.Text;
-                userTable.Rows[0]["ZipCode"] = ZipCode.Text;
-                userTable.Rows[0]["Telephone"] = Telephone.Text;
-                userTable.Rows[0]["EmailAddress"] = EmailAddress.Text;
-                userTable.Rows[0]["CreditCardNumber"] = CreditCardNumber.Text;
+                userTable.Rows[0]["FirstName"] = FirstName.Text.Trim();
+                userTable.Rows[0]["LastName"] = LastName.Text.Trim();
+                userTable.Rows[0]["Street"] = Street.Text.Trim();
+                userTable.Rows[0]["City"] = City.Text.Trim();
+                userTable.Rows[0]["State"] = State.Text.Trim();
+                userTable.Rows[0]["ZipCode"] = ZipCode.Text.Trim();
+                userTable.Rows[0]["Telephone"] = Telephone.Text.Trim();
+                userTable.Rows[0]["EmailAddress"] = EmailAddress.Text.Trim();
+                userTable.Rows[0]["CreditCardNumber"] = CreditCardNumber.Text.Trim();
 
                 userTable.Rows[0].EndEdit();
                 //userTable.Rows[0].EndEdit();
@@ -157,6 +157,30 @@ namespace MovieRental
             {
                 return false;
             }
+            if (!(EmailAddress.Text.Contains('@') && EmailAddress.Text.Contains('.')))
+            {
+                MessageBox.Show("email not valid");
+                return false;
+            }
+            int countat = 0;
+            int countdot = 0;
+            foreach (char c in EmailAddress.Text)
+            {
+                if (c == '@')
+                {
+                    countat++;
+                }
+
+                if (c == '.')
+                {
+                    countdot++;
+                }
+            }
+
+            if (countat > 0 || countdot > 0) {
+                MessageBox.Show("email not valid");
+                return false;
+            }
 
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
@@ -165,7 +189,7 @@ namespace MovieRental
             dataAdapter.Fill(dataTable);            
             if (dataTable.Rows.Count > 0)
             {
-                MessageBox.Show("datatabel not null");
+                MessageBox.Show("email already registered by other customer.");
                 connection.Close();
                 return false;
             }
@@ -211,6 +235,24 @@ namespace MovieRental
             changeCheckBoxState(false);
 
             MessageBox.Show("Your new plan will start from next month.");
+        }
+
+      /*  private void EmailAddress_TextChanged(object sender, EventArgs e)
+        {
+            if (EmailAddress.Text.Contains('@') && EmailAddress.Text.Contains('.'))
+            {
+
+            }
+        }*/
+
+        private void Telephone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void CreditCardNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
