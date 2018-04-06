@@ -126,6 +126,7 @@ namespace MovieRental
         {
             if (LastNameTxt.Text != "" && FirstNameTxt.Text != "" && genderCB.Text != "")
             {
+                
                 using (cmd = new SqlCommand("select MAX(CAST(AID as int))+1 from Actor", con))
                 {
                     con.Open();
@@ -990,7 +991,9 @@ namespace MovieRental
             // movie name
             con.Open();
             DataTable dt5 = new DataTable();
-            adapt = new SqlDataAdapter("select * from Movie where MovieName like @search and MID in (select MID from [Order])", con);
+            //adapt = new SqlDataAdapter("select * from Movie where MovieName like @search and MID in (select MID from [Order])", con);
+            adapt = new SqlDataAdapter("select O.OID, O.MID, O.CID, O.EID, O.OrderDate, O.ReturnDate, M.MovieName, M.MovieType, M.NumberOfCopies, M.CurrentNum " +
+                "from [Order] as O, (select * from Movie where MovieName like @search) as M where O.MID = M.MID", con);
             adapt.SelectCommand.Parameters.AddWithValue("@search", "%" + searchString + "%");
             adapt.Fill(dt5);
             con.Close();
