@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.logout = new System.Windows.Forms.Button();
             this.year = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.reportbutton = new System.Windows.Forms.Button();
@@ -62,6 +63,9 @@
             this.cidtext = new System.Windows.Forms.TextBox();
             this.CID = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.password = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.Atype = new System.Windows.Forms.ComboBox();
             this.save = new System.Windows.Forms.Button();
@@ -87,10 +91,6 @@
             this.FirstName = new System.Windows.Forms.TextBox();
             this.suggest = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label14 = new System.Windows.Forms.Label();
-            this.password = new System.Windows.Forms.TextBox();
-            this.logout = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.reportPanel.SuspendLayout();
             this.Reporting.SuspendLayout();
@@ -124,6 +124,16 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(683, 696);
             this.panel4.TabIndex = 29;
+            // 
+            // logout
+            // 
+            this.logout.Location = new System.Drawing.Point(600, 12);
+            this.logout.Name = "logout";
+            this.logout.Size = new System.Drawing.Size(71, 21);
+            this.logout.TabIndex = 51;
+            this.logout.Text = "Log Out";
+            this.logout.UseVisualStyleBackColor = true;
+            this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
             // year
             // 
@@ -186,9 +196,9 @@
             this.reportPanel.Controls.Add(this.Reporting);
             this.reportPanel.Controls.Add(this.button7);
             this.reportPanel.Controls.Add(this.mostcustomer);
-            this.reportPanel.Location = new System.Drawing.Point(1, 46);
+            this.reportPanel.Location = new System.Drawing.Point(1, 44);
             this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(680, 657);
+            this.reportPanel.Size = new System.Drawing.Size(680, 659);
             this.reportPanel.TabIndex = 48;
             this.reportPanel.Visible = false;
             // 
@@ -512,6 +522,32 @@
             this.panel3.Size = new System.Drawing.Size(543, 284);
             this.panel3.TabIndex = 47;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(442, 225);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(89, 25);
+            this.button8.TabIndex = 50;
+            this.button8.Text = "Cancel";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // password
+            // 
+            this.password.Location = new System.Drawing.Point(329, 200);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(168, 21);
+            this.password.TabIndex = 49;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(325, 170);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 12);
+            this.label14.TabIndex = 48;
+            this.label14.Text = "PassWord";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -788,42 +824,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(325, 170);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(53, 12);
-            this.label14.TabIndex = 48;
-            this.label14.Text = "PassWord";
-            // 
-            // password
-            // 
-            this.password.Location = new System.Drawing.Point(329, 200);
-            this.password.Name = "password";
-            this.password.Size = new System.Drawing.Size(168, 21);
-            this.password.TabIndex = 49;
-            // 
-            // logout
-            // 
-            this.logout.Location = new System.Drawing.Point(600, 12);
-            this.logout.Name = "logout";
-            this.logout.Size = new System.Drawing.Size(71, 21);
-            this.logout.TabIndex = 51;
-            this.logout.Text = "Log Out";
-            this.logout.UseVisualStyleBackColor = true;
-            this.logout.Click += new System.EventHandler(this.logout_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(442, 225);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(89, 25);
-            this.button8.TabIndex = 50;
-            this.button8.Text = "Cancel";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // EmployeeUC
             // 

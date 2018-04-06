@@ -136,6 +136,7 @@ namespace MovieRental
             Atype.Text = "";
             AccountCreationDate.Text = "";
             CreditCardNumber.Text = "";
+            password.Text = "";
         }
         private void save_Click(object sender, EventArgs e)
         {
@@ -169,13 +170,8 @@ namespace MovieRental
 
         private void save_Click_1(object sender, EventArgs e)
         {
-            changeFieldState(false);
-            save.Enabled = false;
-            panel4.BringToFront();
-            dataGridView2.Enabled = true;
-            panel2.Visible = false;
+            
             sendSaveQuery();
-            MessageBox.Show("Save successfully!");
             save.Enabled = true;
         }
 
@@ -281,7 +277,6 @@ namespace MovieRental
                 errorProvider1.SetError(EmailAddress, "The email address has been taken.");
                 return;
             }
-
             if (!inputValid(EmailAddress.Text))
             {
                 return;
@@ -338,7 +333,14 @@ namespace MovieRental
             cmd.ExecuteNonQuery();
             con.Close();
             DisplayData();
+            MessageBox.Show("Save successfully!");
+            changeFieldState(false);
+            save.Enabled = false;
+            panel4.BringToFront();
+            dataGridView2.Enabled = true;
+            panel2.Visible = false;
         }
+
         private bool CheckCustomer()
         {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
@@ -371,6 +373,17 @@ namespace MovieRental
             connection.Open();
             SqlDataAdapter dataAdapter = new SqlDataAdapter("Select EmailAddress from Customer where CID != '" + cidtext.Text + "'", connection);
             DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                if (row["EmailAddress"].ToString().Trim() == EmailAddress.Text)
+                {
+                    return false;
+                }
+            }
+
+            dataAdapter = new SqlDataAdapter("Select EmailAddress from Password where CID != '" + cidtext.Text + "'", connection);
+            dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             foreach (DataRow row in dataTable.Rows)
             {
@@ -506,6 +519,7 @@ namespace MovieRental
                 MessageBox.Show("Please fix the error before add!");
             }
             DisplayData();
+            MessageBox.Show("Save successfully!");
         }
 
         private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
