@@ -35,6 +35,8 @@ namespace MovieRental
             else
                 UC1.Instance.BringToFront();
 
+            
+
 
             connectionString = ConfigurationManager.
                 ConnectionStrings["MovieRental.Properties." +

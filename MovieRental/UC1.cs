@@ -109,6 +109,8 @@ namespace MovieRental
                         }
                         else
                             ManagerUC2.Instance.BringToFront();
+
+
                     }
                       
                     else
