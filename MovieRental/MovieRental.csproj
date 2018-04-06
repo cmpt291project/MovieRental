@@ -85,6 +85,12 @@
     <Compile Include="FeatureControl.Designer.cs">
       <DependentUpon>FeatureControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeHelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeHelpForm.Designer.cs">
+      <DependentUpon>EmployeeHelpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenreControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeHelpForm.resx">
+      <DependentUpon>EmployeeHelpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>

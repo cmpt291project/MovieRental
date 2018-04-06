@@ -72,7 +72,7 @@
             this.YourMoviePanel2.AutoScroll = true;
             this.YourMoviePanel2.Location = new System.Drawing.Point(111, 12);
             this.YourMoviePanel2.Name = "YourMoviePanel2";
-            this.YourMoviePanel2.Size = new System.Drawing.Size(591, 358);
+            this.YourMoviePanel2.Size = new System.Drawing.Size(591, 601);
             this.YourMoviePanel2.TabIndex = 0;
             // 
             // YourMovieControl
@@ -84,7 +84,7 @@
             this.Controls.Add(this.RentalHistory);
             this.Controls.Add(this.CurrentRental);
             this.Name = "YourMovieControl";
-            this.Size = new System.Drawing.Size(777, 392);
+            this.Size = new System.Drawing.Size(777, 626);
             this.Load += new System.EventHandler(this.YourMovieControl_Load);
             this.ResumeLayout(false);
 
