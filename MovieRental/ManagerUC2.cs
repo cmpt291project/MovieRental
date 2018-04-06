@@ -45,6 +45,12 @@ namespace MovieRental
             Controls.Add(panel2);
             Controls.Add(panel3);
             Controls.Add(panel4);
+            Controls.Add(dataGridView1);
+            Controls.Add(dataGridView2);
+            Controls.Add(dataGridView3);
+            Controls.Add(dataGridView4);
+            Controls.Add(dataGridView5);
+            Controls.Add(dataGridView6);
             panel1.BringToFront();
             dataGridView1.BringToFront();
             
@@ -1482,6 +1488,14 @@ namespace MovieRental
 
             UC1.email = "";
             UC1.id = "";
+
+            dataGridView1.Visible = false;
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = false;
+            dataGridView4.Visible = false;
+            dataGridView5.Visible = false;
+            dataGridView6.Visible = false;
+
         }
     }
 }
