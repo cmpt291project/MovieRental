@@ -85,6 +85,7 @@ namespace MovieRental
         }
 
         public void initialDisplay() {
+            panelInGerneControl.Controls.Clear();
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter dataAdapter = new SqlDataAdapter("select top 5 MovieName, M.MID, rate, Poster from(Select AVG(Rating) as rate, MID from MovieRating Group by MID) as T, Movie M where T.MID = M.MID Order by NEWID()", connection);

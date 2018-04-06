@@ -31,7 +31,11 @@ namespace MovieRental
 
         private void UC2_Load(object sender, EventArgs e)
         {
-            
+            update();
+            fresh();
+        }
+
+        public void update() {
             if (!rank.Controls.Contains(Ranking.Instance))
             {
                 rank.Controls.Add(Ranking.Instance);
@@ -45,10 +49,14 @@ namespace MovieRental
             {
                 YourMovie.Controls.Add(YourMovieControl.Instance);
                 YourMovieControl.Instance.Dock = DockStyle.Fill;
+                
                 YourMovieControl.Instance.BringToFront();
             }
             else
+            {
+                //YourMovieControl.Instance.createWishList();
                 YourMovieControl.Instance.BringToFront();
+            }
             //new release in feature
             if (!newRelease.Controls.Contains(FeatureControl.Instance))
             {
@@ -58,7 +66,7 @@ namespace MovieRental
             }
             else
                 FeatureControl.Instance.BringToFront();
-            
+
             //genre in feature
             if (!panelGenre.Controls.Contains(GenreControl.Instance))
             {
@@ -95,8 +103,7 @@ namespace MovieRental
                 SearchUC.Instance.BringToFront();
             }
             else
-                SearchUC.Instance.BringToFront();  
-
+                SearchUC.Instance.BringToFront();
         }
 
         private void Form2Tab1_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,6 +164,14 @@ namespace MovieRental
 
         }
 
+        public void fresh() {
+            //MessageBox.Show(UC1.id);
+            YourMovieTab.SelectedIndex = 0;
+            YourMovieControl.Instance.createWishList();
+            FeatureControl.Instance.update();
+            GenreControl.Instance.initialDisplay();
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             YourMovieTab.SelectedIndex = 3;
@@ -178,17 +193,24 @@ namespace MovieRental
 
         private void logout_Click(object sender, EventArgs e)
         {
-            if (!panel1.Controls.Contains(UC1.Instance))
-            {
-                panel1.Controls.Add(UC1.Instance);
-                UC1.Instance.Dock = DockStyle.Fill;
-                UC1.Instance.BringToFront();
-            }
-            else
-                UC1.Instance.BringToFront();
-
+            UC2.Instance.Hide();
             UC1.email = "";
             UC1.id = "";
+            UC1.Instance.Show();
+            UC1.Instance.clean();
+         /*   if (!panel1.Controls.Contains(UC1.Instance))
+            {
+                MessageBox.Show("in f");
+                panel1.Controls.Add(UC1.Instance);
+                UC1.Instance.Dock = DockStyle.Fill;
+                UC1.Instance.Show();
+            }
+            else
+            {
+                MessageBox.Show("in 2");
+                UC1.Instance.BringToFront();
+
+            }*/            
         }
     }
 }

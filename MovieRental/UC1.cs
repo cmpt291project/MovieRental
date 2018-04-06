@@ -86,12 +86,18 @@ namespace MovieRental
                     Console.WriteLine(id + " " + email);
                     if (!pnl.Controls.Contains(UC2.Instance))
                     {
+                        UC1.Instance.Hide();
                         pnl.Controls.Add(UC2.Instance);
                         UC2.Instance.Dock = DockStyle.Fill;
-                        UC2.Instance.BringToFront();
+                        UC2.Instance.fresh();
+                        UC2.Instance.Show();                                            
                     }
                     else
-                        UC2.Instance.BringToFront();
+                    {
+                        UC2.Instance.fresh();
+                        UC1.Instance.Hide();
+                        UC2.Instance.Show();
+                    }
                 }
                 else
                 {
@@ -152,6 +158,11 @@ namespace MovieRental
         {
             HelpForm hp = new HelpForm();
             hp.Show();
+        }
+
+        public void clean() {
+            textBox1.Clear();
+            textBox2.Clear();
         }
 
     }

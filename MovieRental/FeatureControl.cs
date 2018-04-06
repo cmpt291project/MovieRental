@@ -37,6 +37,8 @@ namespace MovieRental
         }
 
         public void update() {
+            //MessageBox.Show(UC1.id + "in feature");
+            panelFeature.Controls.Clear();
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter dataAdapter = new SqlDataAdapter("select top 5 MovieName, M.MID, rate, M.Poster from(Select AVG(Rating) as rate, MID from MovieRating Group by MID) as T, Movie M where T.MID = M.MID Order by  M.ReleaseDate DESC", connection);
