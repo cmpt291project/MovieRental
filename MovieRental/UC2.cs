@@ -175,5 +175,20 @@ namespace MovieRental
             HelpForm hp = new HelpForm();
             hp.Show();
         }
+
+        private void logout_Click(object sender, EventArgs e)
+        {
+            if (!panel1.Controls.Contains(UC1.Instance))
+            {
+                panel1.Controls.Add(UC1.Instance);
+                UC1.Instance.Dock = DockStyle.Fill;
+                UC1.Instance.BringToFront();
+            }
+            else
+                UC1.Instance.BringToFront();
+
+            UC1.email = "";
+            UC1.id = "";
+        }
     }
 }
