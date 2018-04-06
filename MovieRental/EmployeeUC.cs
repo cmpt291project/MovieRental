@@ -826,6 +826,12 @@ namespace MovieRental
             DisplayData();
         }
 
+        private void button9_Click(object sender, EventArgs e)
+        {
+            EmployeeHelpForm ehf = new EmployeeHelpForm();
+            ehf.Show();
+        }
+
         private void Atype_MouseClick(object sender, MouseEventArgs e)
         {
             Atype.DroppedDown = true;

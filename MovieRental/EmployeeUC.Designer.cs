@@ -91,6 +91,7 @@
             this.FirstName = new System.Windows.Forms.TextBox();
             this.suggest = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.button9 = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.reportPanel.SuspendLayout();
             this.Reporting.SuspendLayout();
@@ -105,6 +106,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.button9);
             this.panel4.Controls.Add(this.logout);
             this.panel4.Controls.Add(this.year);
             this.panel4.Controls.Add(this.comboBox1);
@@ -127,9 +129,9 @@
             // 
             // logout
             // 
-            this.logout.Location = new System.Drawing.Point(600, 12);
+            this.logout.Location = new System.Drawing.Point(620, 12);
             this.logout.Name = "logout";
-            this.logout.Size = new System.Drawing.Size(71, 21);
+            this.logout.Size = new System.Drawing.Size(59, 21);
             this.logout.TabIndex = 51;
             this.logout.Text = "Log Out";
             this.logout.UseVisualStyleBackColor = true;
@@ -329,9 +331,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(519, 11);
+            this.button4.Location = new System.Drawing.Point(503, 12);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(56, 23);
             this.button4.TabIndex = 7;
             this.button4.Text = "reset";
             this.button4.UseVisualStyleBackColor = true;
@@ -349,9 +351,9 @@
             // 
             // searchBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(438, 11);
+            this.searchBtn.Location = new System.Drawing.Point(433, 11);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(75, 23);
+            this.searchBtn.Size = new System.Drawing.Size(64, 23);
             this.searchBtn.TabIndex = 3;
             this.searchBtn.Text = "Search Customer";
             this.searchBtn.UseVisualStyleBackColor = true;
@@ -825,6 +827,16 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(562, 12);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(52, 23);
+            this.button9.TabIndex = 52;
+            this.button9.Text = "Help";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // EmployeeUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -916,5 +928,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button logout;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }
