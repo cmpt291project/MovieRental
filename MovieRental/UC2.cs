@@ -197,6 +197,7 @@ namespace MovieRental
             UC1.email = "";
             UC1.id = "";
             UC1.Instance.Show();
+            UC1.Instance.clean();
          /*   if (!panel1.Controls.Contains(UC1.Instance))
             {
                 MessageBox.Show("in f");

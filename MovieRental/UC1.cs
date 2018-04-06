@@ -160,5 +160,10 @@ namespace MovieRental
             hp.Show();
         }
 
+        public void clean() {
+            textBox1.Clear();
+            textBox2.Clear();
+        }
+
     }
 }
