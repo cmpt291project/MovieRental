@@ -133,6 +133,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.LogoutBtn = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -145,12 +146,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 292);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(603, 264);
@@ -1076,7 +1078,7 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(9, 292);
+            this.dataGridView2.Location = new System.Drawing.Point(6, 3);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(603, 264);
@@ -1085,7 +1087,7 @@
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(9, 292);
+            this.dataGridView3.Location = new System.Drawing.Point(6, 3);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(603, 264);
@@ -1109,7 +1111,7 @@
             // dataGridView4
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(9, 292);
+            this.dataGridView4.Location = new System.Drawing.Point(6, 3);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.Size = new System.Drawing.Size(603, 264);
@@ -1120,7 +1122,7 @@
             // dataGridView5
             // 
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(9, 292);
+            this.dataGridView5.Location = new System.Drawing.Point(6, 3);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.ReadOnly = true;
             this.dataGridView5.Size = new System.Drawing.Size(603, 264);
@@ -1129,7 +1131,7 @@
             // dataGridView6
             // 
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView6.Location = new System.Drawing.Point(9, 292);
+            this.dataGridView6.Location = new System.Drawing.Point(6, 3);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.ReadOnly = true;
             this.dataGridView6.Size = new System.Drawing.Size(603, 264);
@@ -1153,22 +1155,30 @@
             this.LogoutBtn.UseVisualStyleBackColor = true;
             this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.dataGridView1);
+            this.panel5.Controls.Add(this.dataGridView2);
+            this.panel5.Controls.Add(this.dataGridView3);
+            this.panel5.Controls.Add(this.dataGridView4);
+            this.panel5.Controls.Add(this.dataGridView5);
+            this.panel5.Controls.Add(this.dataGridView6);
+            this.panel5.Location = new System.Drawing.Point(9, 289);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(635, 267);
+            this.panel5.TabIndex = 31;
+            // 
             // ManagerUC2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.LogoutBtn);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.dataGridView6);
-            this.Controls.Add(this.dataGridView5);
-            this.Controls.Add(this.dataGridView4);
-            this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
             this.Name = "ManagerUC2";
             this.Size = new System.Drawing.Size(777, 559);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -1187,6 +1197,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1297,5 +1308,6 @@
         private System.Windows.Forms.Button ClearEmployeeBtn;
         private System.Windows.Forms.ComboBox TypeCB;
         private System.Windows.Forms.Button LogoutBtn;
+        private System.Windows.Forms.Panel panel5;
     }
 }
