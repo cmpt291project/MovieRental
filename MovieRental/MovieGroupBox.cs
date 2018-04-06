@@ -74,10 +74,10 @@ namespace MovieRental
         {
             SqlConnection con = new SqlConnection(Form4.connectionString);
             con.Open();
-            SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] +1 where cast([Sequence] as int) = (select cast([Sequence] as int) from MovieQueue where MID = '" + MID + "') - 1");
+            SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] +1 where cast([Sequence] as int) = (select cast([Sequence] as int) from MovieQueue where CID = '" + UC1.id + "' and MID = '" + MID + "') - 1");
             updateSquence.Connection = con;
             updateSquence.ExecuteNonQuery();
-            updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where MID = '" + MID + "' and [Sequence] > 1");
+            updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where CID = '"+UC1.id + "' and MID = '" + MID + "' and [Sequence] > 1");
             updateSquence.Connection = con;
             updateSquence.ExecuteNonQuery();
             con.Close();
@@ -90,10 +90,10 @@ namespace MovieRental
         {
             SqlConnection con = new SqlConnection(Form4.connectionString);
             con.Open();
-            SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where cast([Sequence] as int) = (select [Sequence] from MovieQueue where MID = '" + MID + "') + 1");
+            SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where cast([Sequence] as int) = (select [Sequence] from MovieQueue where CID = '" + UC1.id + "' and MID = '" + MID + "') + 1");
             updateSquence.Connection = con;
             updateSquence.ExecuteNonQuery();
-            updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] + 1 where MID = '" + MID +"' and exists (select [Sequence] from MovieQueue where MID != '" + MID + "' and [Sequence] >= (select [Sequence] from MovieQueue where MID = '" + MID + "'))");
+            updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] + 1 where MID = '" + MID + "' and exists (select [Sequence] from MovieQueue where CID = '" + UC1.id + "' and MID != '" + MID + "' and [Sequence] >= (select [Sequence] from MovieQueue where CID = '" + UC1.id + "' and MID = '" + MID + "'))");
             updateSquence.Connection = con;
             updateSquence.ExecuteNonQuery();
             con.Close();
@@ -245,13 +245,13 @@ namespace MovieRental
         {
             SqlConnection con = new SqlConnection(Form4.connectionString);
             con.Open();
-            SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where cast([Sequence] as int) > (select [Sequence] from MovieQueue where MID = '" + MID + "')");
+            SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where cast([Sequence] as int) > (select [Sequence] from MovieQueue where MID = '" + MID + "' and CID = '"+ UC1.id + "')");
             updateSquence.Connection = con;
             updateSquence.ExecuteNonQuery();
             con.Close();
             con = new SqlConnection(Form4.connectionString);
             con.Open();
-            SqlCommand delete = new SqlCommand("DELETE FROM MovieQueue WHERE MID = '" + MID + "'");
+            SqlCommand delete = new SqlCommand("DELETE FROM MovieQueue WHERE CID = '" + UC1.id + "' and MID = '" + MID + "'");
             delete.Connection = con;
             delete.ExecuteNonQuery();
             con.Close();
@@ -339,6 +339,13 @@ namespace MovieRental
             SqlDataAdapter plan = new SqlDataAdapter("select NumberATime, NumberEachMonth from[Plan] p, Customer c where c.AccountType = p.[Plan] and c.CID = '" + UC1.id + "'", con);
             DataTable p = new DataTable();
             plan.Fill(p);
+
+            if (CheckCurrentRental())
+            {
+                MessageBox.Show("You already rent this movie! Check your current rental!");
+                return;
+            }
+
             if (userStatus.Rows.Count == 0 && userMonth.Rows.Count == 0)
             {
                 MessageBox.Show("rent successfull");
@@ -376,6 +383,30 @@ namespace MovieRental
             //MessageBox.Show("not null");
         }
 
+        private bool CheckCurrentRental()
+        {
+            SqlConnection connection = new SqlConnection(Form4.connectionString);
+            connection.Open();
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select MID from [Order] where ActualReturnDate is null and MID = '" + MID + "' and CID =" + UC1.id, connection);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            /*foreach (DataRow row in dataTable.Rows)
+            {
+                //MessageBox.Show(row["ActualReturnDate"].ToString());
+                if (row["MID"].ToString() == "")
+                {
+                    return false;
+                }
+            }*/
+
+            if (dataTable.Rows.Count == 0 || dataTable == null)
+            {
+                return false;
+            }
+            connection.Close();
+            return true;
+        }
+
         private bool CheckMovieRent(string name)
         {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
@@ -401,7 +432,7 @@ namespace MovieRental
             DataTable movie = new DataTable();
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter selectMovie = new SqlDataAdapter("SELECT * from Movie M where M.MID = " + MID, connection);
+            SqlDataAdapter selectMovie = new SqlDataAdapter("SELECT * from Movie M where M.CID = '" + UC1.id + " and M.MID = " + MID, connection);
             selectMovie.Fill(movie);
             SqlCommandBuilder sb = new SqlCommandBuilder(selectMovie);
             int num = Convert.ToInt32(movie.Rows[0]["CurrentNum"]);
