@@ -181,26 +181,37 @@ namespace MovieRental
 
         private void suggestion()
         {
-            //MessageBox.Show("update");
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT top 5 MovieName, M.MID, rate from(Select AVG(Rating) as rate, MID FROM MovieRating group by MID) as T , Movie M where T.MID = M.MID Order by rate DESC", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select top 5 Poster, M.MID, M.MovieName, (select AVG(rating) from MovieRating mr where mr.MID = M.MID ) rate from (select MovieType, O.MID from[Order] O, Movie M where CID = '" + UC1.id + "' and O.MID = M.MID) T, Movie M where M.MovieType = T.MovieType and T.MID != M.MID Order by NEWID()", connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
-            
             int i = 0;
             foreach (DataRow row in dataTable.Rows)
             {
                 //foreach (DataColumn column in dataTable.Columns)
                 //{
                 MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
-                movieBoxRent.createNewBox(suggest, i,0);
+                movieBoxRent.createNewBox(suggest, i, 0);
                 //MessageBox.Show(row["MID"].ToString().Trim());
+                if (row["Poster"] == DBNull.Value)
+                {
 
-                //movieBoxRent.CreatePicture(row["MID"].ToString().Trim());
+                    movieBoxRent.CreatePictureImage((Image)Properties.Resources.ResourceManager.GetObject("Noimage"));
+                }
+                else
+                {
+                    byte[] ImageArray = (byte[])row["Poster"];
+                    Image image = Image.FromStream(new MemoryStream(ImageArray));
+
+                    movieBoxRent.CreatePictureImage(image);
+                }
+
                 movieBoxRent.CreateName(row["MovieName"].ToString());
                 //MessageBox.Show(row["MovieName"].ToString());
                 movieBoxRent.CreateScore(row["rate"].ToString());
+                //movieBoxRent.CreateButtonRent();
+                //Console.WriteLine(row["MovieName"]);
                 i++;
                 //}
             }
@@ -222,6 +233,42 @@ namespace MovieRental
                 sendAddQuery();
                 return;
             }
+            if (!checkemail())
+            {
+                MessageBox.Show("The email address has been taken.");
+                errorProvider1.SetError(EmailAddress, "The email address has been taken.");
+                return;
+            }
+
+            if (!inputValid(EmailAddress.Text))
+            {
+                return;
+            }
+            if (!(EmailAddress.Text.Contains('@') && EmailAddress.Text.Contains('.')))
+            {
+                MessageBox.Show("email not valid");
+                return;
+            }
+            int countat = 0;
+            int countdot = 0;
+            foreach (char c in EmailAddress.Text)
+            {
+                if (c == '@')
+                {
+                    countat++;
+                }
+
+                if (c == '.')
+                {
+                    countdot++;
+                }
+            }
+
+            if (countat > 1 || countdot > 1)
+            {
+                MessageBox.Show("email not valid");
+                return;
+            }
             DateTimeOffset localDate = DateTimeOffset.Now;
             cmd = new SqlCommand("update Customer set LastName=@lastname, FirstName=@firstname," +
                     "Street=@street, City=@city, State=@state, ZipCode=@zipcode, Telephone=@phone, CreditCardNumber=@creditcard," +
@@ -239,6 +286,13 @@ namespace MovieRental
             cmd.Parameters.AddWithValue("@creditcard", CreditCardNumber.Text);
             cmd.Parameters.AddWithValue("@type", Atype.Text);
             cmd.Parameters.AddWithValue("@email", EmailAddress.Text);
+            cmd.ExecuteNonQuery();
+            cmd = new SqlCommand("update Password set EmailAddress=@email, Password=@password, CID=@cid, UserType=@type", con);
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@email", EmailAddress.Text);
+            cmd.Parameters.AddWithValue("@password", password.Text);
+            cmd.Parameters.AddWithValue("@cid", cidtext.Text);
+            cmd.Parameters.AddWithValue("@type", "c");
             cmd.ExecuteNonQuery();
             con.Close();
             DisplayData();
@@ -337,6 +391,19 @@ namespace MovieRental
                     MessageBox.Show("email not valid");
                     return;
                 }
+                string cid = "";
+                SqlConnection connection = new SqlConnection(Form4.connectionString);
+                connection.Open();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MAX(CID)+1 as CID from Customer", connection);
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    cid = row["CID"].ToString();
+                            
+                }
+                //MessageBox.Show(dataTable.Rows.Count.ToString());
+                connection.Close();
                 string newMID;
                 Random generator = new Random();
                 int r = generator.Next(0, 999999);
@@ -382,6 +449,15 @@ namespace MovieRental
                     }
 
                 }
+                con.Open();
+                cmd = new SqlCommand("insert into Password(EmailAddress, Password, CID, UserType) values(@email, @password, @cid, @type)", con);
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@email", EmailAddress.Text);
+                cmd.Parameters.AddWithValue("@password", password.Text);
+                cmd.Parameters.AddWithValue("@cid", cid);
+                cmd.Parameters.AddWithValue("@type", "c");
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
             else
             {
@@ -716,6 +792,9 @@ namespace MovieRental
         {
             con.Open();
             SqlCommand sqlCmd = new SqlCommand("Delete from Customer Where CID=@CID", con);
+            sqlCmd.Parameters.AddWithValue("CID", dataGridView2.CurrentRow.Cells["CID"].Value.ToString());
+            sqlCmd.ExecuteNonQuery();
+            sqlCmd = new SqlCommand("Delete from Password Where CID=@CID", con);
             sqlCmd.Parameters.AddWithValue("CID", dataGridView2.CurrentRow.Cells["CID"].Value.ToString());
             sqlCmd.ExecuteNonQuery();
             con.Close();
