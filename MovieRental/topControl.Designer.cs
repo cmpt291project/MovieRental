@@ -38,6 +38,7 @@
             this.panelintop.Name = "panelintop";
             this.panelintop.Size = new System.Drawing.Size(1410, 638);
             this.panelintop.TabIndex = 1;
+            this.panelintop.Paint += new System.Windows.Forms.PaintEventHandler(this.panelintop_Paint);
             // 
             // topControl
             // 
@@ -46,7 +47,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.panelintop);
             this.Name = "topControl";
-            this.Size = new System.Drawing.Size(1400, 666);
+            this.Size = new System.Drawing.Size(1366, 632);
             this.Load += new System.EventHandler(this.topControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
