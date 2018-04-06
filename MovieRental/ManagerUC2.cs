@@ -27,8 +27,9 @@ namespace MovieRental
         }
 
         private string newMID;
-        private string MID;
-        private string EID;
+        private string MID = "";
+        private string EID = "";
+        private string AID = "";
         private string newAID;
         private string newEID;
         SqlConnection con = new SqlConnection(Form4.connectionString);
@@ -159,6 +160,35 @@ namespace MovieRental
                 MessageBox.Show("Please fill out Actor fields.");
 
             
+        }
+
+        private void updateActorBtn_Click(object sender, EventArgs e)
+        {
+
+            if (LastNameTxt.Text != "" && FirstNameTxt.Text != "" && genderCB.Text != "")
+            {
+                
+
+                if (AID == "")
+                {
+                    MessageBox.Show("Please select an actor from the grid");
+                    return;
+                }
+
+                cmd = new SqlCommand("update Actor set LastName=@lname, FirstName=@fname, Gender=@gender, DateofBirth=@dob where AID=@aid", con);
+                con.Open();
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@aid", AID.Trim());
+                cmd.Parameters.AddWithValue("@lname", LastNameTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@fname", FirstNameTxt.Text.Trim());
+                cmd.Parameters.AddWithValue("@gender", genderCB.Text.Trim());
+                cmd.Parameters.AddWithValue("@dob", Convert.ToDateTime(dateTimePicker4.Text));
+                cmd.ExecuteNonQuery();
+                con.Close();
+                DisplayActors();
+                ClearActorData();
+                AID = "";
+            }
         }
 
         private void Insert_Click(object sender, EventArgs e)
@@ -328,6 +358,11 @@ namespace MovieRental
                 && StateTxt.Text != "" && ZipCodeTxt.Text != "" && TelephoneTxt.Text != "" && HourlyRateTxt.Text != ""
                 && TypeCB.Text != "" && SocialSecurityTxt.Text != "" && EmailTxt.Text != "")
             {
+                if (EID == "")
+                {
+                    MessageBox.Show("Please select employee from grid");
+                    return;
+                }
                 if (!ValidateEmployeeForm())
                 {
                     MessageBox.Show("Please fix errors.");
@@ -359,7 +394,6 @@ namespace MovieRental
 
                         }
                     }
-                    
                     con.Close();
                 }
                
@@ -418,6 +452,7 @@ namespace MovieRental
 
                 DisplayEmployees();
                 ClearEmployeeData();
+                EID = "";
             }
             else
                 MessageBox.Show("Please fill out the fields.");
@@ -429,12 +464,17 @@ namespace MovieRental
             if (MovieNameTxt.Text != "" && MovieTypeTxt.Text != "" && DistFeeTxt.Text != "" && NumCopiesTxt.Text != ""
                 && DirectorTxt.Text != "" && CurrentNumTxt.Text != "" && picNameTxt.Text.Trim() != "" && (int)pictureBox1.Tag != 1)
             {
+                if (MID == "")
+                {
+                    MessageBox.Show("Please select movie from the grid.");
+                    return;
+                }
                 if (!ValidateMovieForm())
                 {
                     MessageBox.Show("Please fix error.");
                     return;
                 }
-                Console.WriteLine("strFilePath: " + strFilePath);
+                //Console.WriteLine("strFilePath: " + strFilePath);
                 if (strFilePath == "")
                 {
                     cmd = new SqlCommand("update Movie set MovieName=@name, MovieType=@type, DistribututionFee=@distfee, " +
@@ -458,10 +498,6 @@ namespace MovieRental
                     cmd.ExecuteNonQuery();
                     con.Close();
 
-                    /*if (ImageByteArray.Length != 0)
-                    {
-                        ImageByteArray = new byte[] { };
-                    }*/
                 }
                 else
                 {
@@ -496,6 +532,7 @@ namespace MovieRental
                 }
                 DisplayData();
                 ClearData();
+                MID = "";
             }
             else
             {
@@ -571,7 +608,7 @@ namespace MovieRental
         {
             con.Open();
             DataTable dt3 = new DataTable();
-            adapt = new SqlDataAdapter("SELECT TOP 5 * from Movie order by AddDate DESC", con);
+            adapt = new SqlDataAdapter("SELECT TOP 10 * from Movie order by AddDate DESC", con);
             adapt.Fill(dt3);
             dataGridView3.DataSource = dt3;
             con.Close();
@@ -714,6 +751,22 @@ namespace MovieRental
 
         }
 
+        private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {   
+            AID = dataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString();
+            LastNameTxt.Text = dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString().Trim();
+            FirstNameTxt.Text = dataGridView2.Rows[e.RowIndex].Cells[2].Value.ToString().Trim();
+            if (dataGridView2.Rows[e.RowIndex].Cells[3].Value.ToString().Trim() == "M")
+                genderCB.SelectedIndex = 0;
+            else if (dataGridView2.Rows[e.RowIndex].Cells[3].Value.ToString().Trim() == "F")
+                genderCB.SelectedIndex = 1;
+            else
+                genderCB.SelectedIndex = -1;
+            dateTimePicker4.Text = dataGridView2.Rows[e.RowIndex].Cells[4].Value.ToString().Trim();
+
+
+        }
+
         private void dataGridView4_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             EID = dataGridView4.Rows[e.RowIndex].Cells[0].Value.ToString().Trim();
@@ -818,42 +871,55 @@ namespace MovieRental
         int pos = 0;
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Before" + pos);
+
             if (pos == 2)
             {
                 dataGridView3.BringToFront();
                 DisplayRecentMovies();
                 pos--;
+                label41.Text = "Recently added Movies";
             }
             else if (pos == 1)
             {
                 pos--;
                 dataGridView2.BringToFront();
+                //int n = dataGridView2.Columns.Count;
+               // dataGridView2.Columns[n-1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                label41.Text = "Actors";
             }
             else
+            {
                 dataGridView2.BringToFront();
-
-            Console.WriteLine("After" + pos);
+                //int n = dataGridView2.Columns.Count;
+                //dataGridView2.Columns[n-1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                label41.Text = "Actors";
+            }
+           
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Before" + pos);
+            
             if (pos == 0)
             {
                 pos++;
                 dataGridView3.BringToFront();
                 DisplayRecentMovies();
+                int n = dataGridView3.Columns.Count;
+                dataGridView3.Columns[n - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                label41.Text = "Recently added Movies";
             }
             else if (pos == 1)
             {
                 DisplayCasting();
+                int n = dataGridView3.Columns.Count;
+                dataGridView3.Columns[n - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 pos++;
-                
+                label41.Text = "Casting";
             }
 
-            Console.WriteLine("After" + pos);
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -869,6 +935,8 @@ namespace MovieRental
                 case 1:
                     panel2.BringToFront();
                     DisplayActors();
+                    int n = dataGridView2.Columns.Count;
+                    dataGridView2.Columns[n - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     dataGridView2.BringToFront();
                     
                     break;
@@ -1468,6 +1536,7 @@ namespace MovieRental
         private void clearDataBtn_Click(object sender, EventArgs e)
         {
             ClearData();
+            MID = "";
         }
 
         private void searchMovieTxt_TextChanged(object sender, EventArgs e)
@@ -1515,6 +1584,7 @@ namespace MovieRental
         private void ClearEmployeeBtn_Click(object sender, EventArgs e)
         {
             ClearEmployeeData();
+            EID = "";
         }
 
         private void LogoutBtn_Click(object sender, EventArgs e)
@@ -1551,9 +1621,5 @@ namespace MovieRental
 
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
