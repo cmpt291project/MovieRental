@@ -31,7 +31,7 @@ namespace MovieRental
         {
             groupBox.Name = "Movie Name";
             groupBox.Location = new Point(150, 200);
-            groupBox.Size = new Size(400, 200);
+            groupBox.Size = new Size(500, 200);
             groupBox.Top = index * 220 - 195;
             groupBox.Left = 65;
             groupBox.BackColor = Color.FromArgb(222, 222, 255);
@@ -48,6 +48,58 @@ namespace MovieRental
             label1.Size = new Size(50, 10);
             label1.Text = labelname;
             groupBox.Controls.Add(label1);
+        }
+
+        public void setUpDownButton(GroupBox groupBox)
+        {
+            Button button = new Button();
+            button.Location = new Point(430, 50);
+            groupBox.Controls.Add(button);
+            button.AutoSize = true;
+            button.Text = "Up";
+            button.Font = new Font("Segoe UI", 11);
+            button.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
+            button.Click += new EventHandler(MoveUpSequence);
+            Button button2 = new Button();
+            button2.Location = new Point(430, 100);
+            groupBox.Controls.Add(button2);
+            button2.Text = "Down";
+            button2.AutoSize = true;
+            button2.Font = new Font("Segoe UI", 11);
+            button2.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
+            button2.Click += new EventHandler(MoveDownSequence);
+        }
+
+        public void MoveUpSequence(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(Form4.connectionString);
+            con.Open();
+            SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] +1 where cast([Sequence] as int) = (select cast([Sequence] as int) from MovieQueue where MID = '" + MID + "') - 1");
+            updateSquence.Connection = con;
+            updateSquence.ExecuteNonQuery();
+            updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where MID = '" + MID + "' and [Sequence] > 1");
+            updateSquence.Connection = con;
+            updateSquence.ExecuteNonQuery();
+            con.Close();
+
+            updateall();
+            YourMovieControl.Instance.createWishList();
+        }
+
+        public void MoveDownSequence(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(Form4.connectionString);
+            con.Open();
+            SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where cast([Sequence] as int) = (select [Sequence] from MovieQueue where MID = '" + MID + "') + 1");
+            updateSquence.Connection = con;
+            updateSquence.ExecuteNonQuery();
+            updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] + 1 where MID = '" + MID + "'");// and cast([Sequence] as int) <= (select MAX([Sequence]) from MovieQueue)");
+            updateSquence.Connection = con;
+            updateSquence.ExecuteNonQuery();
+            con.Close();
+
+            updateall();
+            YourMovieControl.Instance.createWishList();
         }
 
         public void setImage(GroupBox groupBox, Image ximage)
