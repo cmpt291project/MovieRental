@@ -170,7 +170,13 @@ namespace MovieRental
                 {
                     if (ImageByteArray.Length != 0)
                     {
-                        ImageByteArray = new byte[] { };
+                        Image temp = pictureBox1.Image;
+                        //ImageByteArray = (byte[])converter.ConvertTo(pictureBox1.Image, typeof(byte[]));
+                        //ImageByteArray = new byte[] { };
+                        MemoryStream strm = new MemoryStream();
+                        temp.Save(strm, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        ImageByteArray = strm.ToArray();
+
                     }
                 }
                 else
