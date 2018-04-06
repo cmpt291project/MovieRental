@@ -15,6 +15,7 @@ namespace MovieRental
     public partial class UserInfo : UserControl
     {
         private static UserInfo _instance;
+        private string email;
         public static UserInfo Instance
         {
             get
@@ -73,6 +74,7 @@ namespace MovieRental
                 ZipCode.Text = dataTable.Rows[0]["ZipCode"].ToString().Trim();
                 Telephone.Text = dataTable.Rows[0]["Telephone"].ToString().Trim();
                 EmailAddress.Text = dataTable.Rows[0]["EmailAddress"].ToString().Trim();
+                email = dataTable.Rows[0]["EmailAddress"].ToString().Trim();
                 CreditCardNumber.Text = dataTable.Rows[0]["CreditCardNumber"].ToString().Trim();
                 DateTime dt = (DateTime)dataTable.Rows[0]["AccountCreationDate"];
                 AccountCreationDate.Text = dt.ToString("d");
@@ -128,6 +130,17 @@ namespace MovieRental
                 //userTable.Rows[0].EndEdit();
                 SqlCommandBuilder sb = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.Update(userTable);
+
+                string s = "select * from Password where EmailAddress = '" + email + "'";
+                SqlDataAdapter data = new SqlDataAdapter(s, connection);
+                DataTable table = new DataTable();
+                data.Fill(table);
+                table.Rows[0].BeginEdit();
+                table.Rows[0]["EmailAddress"] = EmailAddress.Text.Trim();
+                table.Rows[0].EndEdit();
+                SqlCommandBuilder builder = new SqlCommandBuilder(data);
+                data.Update(table);
+
                 connection.Close();
             
                 save.Enabled = false;
