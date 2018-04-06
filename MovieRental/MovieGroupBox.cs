@@ -53,7 +53,7 @@ namespace MovieRental
         public void setUpDownButton(GroupBox groupBox)
         {
             Button button = new Button();
-            button.Location = new Point(430, 50);
+            button.Location = new Point(415, 50);
             groupBox.Controls.Add(button);
             button.AutoSize = true;
             button.Text = "Up";
@@ -61,7 +61,7 @@ namespace MovieRental
             button.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
             button.Click += new EventHandler(MoveUpSequence);
             Button button2 = new Button();
-            button2.Location = new Point(430, 100);
+            button2.Location = new Point(415, 100);
             groupBox.Controls.Add(button2);
             button2.Text = "Down";
             button2.AutoSize = true;
