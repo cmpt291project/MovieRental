@@ -78,6 +78,9 @@ namespace MovieRental
             connection.Close();
         }
 
-        
+        private void panelFeature_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -77,7 +77,8 @@ namespace MovieRental
 
                 //Console.WriteLine(result);
                 if (result)
-                {               
+                {
+                    //MessageBox.Show("user login");
                     SqlCommand scmd3 = new SqlCommand("select CID from Customer where EmailAddress=@email", scn);
                     scmd3.Parameters.Clear();
                     scmd3.Parameters.AddWithValue("@email", textBox1.Text);
@@ -90,13 +91,15 @@ namespace MovieRental
                         pnl.Controls.Add(UC2.Instance);
                         UC2.Instance.Dock = DockStyle.Fill;
                         UC2.Instance.fresh();
-                        UC2.Instance.Show();                                            
+                        UC2.Instance.Show();
+                        UC2.Instance.BringToFront();
                     }
                     else
                     {
                         UC2.Instance.fresh();
                         UC1.Instance.Hide();
                         UC2.Instance.Show();
+                        UC2.Instance.BringToFront();
                     }
                 }
                 else

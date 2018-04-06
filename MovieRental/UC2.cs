@@ -193,6 +193,20 @@ namespace MovieRental
 
         private void logout_Click(object sender, EventArgs e)
         {
+            /*foreach (Control p in UC1.Instance.Controls)
+            {
+                if (p.Name == "pnl")
+                    if (!p.Controls.Contains(UC1.Instance))
+                    {
+                        p.Controls.Add(UC1.Instance);
+                        UC1.Instance.Dock = DockStyle.Fill;
+                        UC1.Instance.BringToFront();
+                    }
+                    else
+                    {
+                        UC1.Instance.BringToFront();
+                    }
+            }*/
             UC2.Instance.Hide();
             UC1.email = "";
             UC1.id = "";

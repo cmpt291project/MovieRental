@@ -53,7 +53,7 @@ namespace MovieRental
                 //MessageBox.Show(row["MID"].ToString().Trim());
                 if (row["Poster"] == DBNull.Value)
                 {
-                    
+                    //MessageBox.Show("null poster");
                     movieBoxRent.CreatePictureImage((Image)Properties.Resources.ResourceManager.GetObject("Noimage"));
                 }
                 else

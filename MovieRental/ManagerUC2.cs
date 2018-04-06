@@ -180,8 +180,25 @@ namespace MovieRental
                     temp.Save(strm, System.Drawing.Imaging.ImageFormat.Jpeg);
                     ImageByteArray = strm.ToArray();
                 }
+                using (cmd = new SqlCommand("select count (*) as cnt from Movie where MovieName=@name", con))
+                {
+                    
+                    con.Open();
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@name", MovieNameTxt.Text);
+                    //Console.WriteLine(cmd.ExecuteScalar().ToString());
+                    if (cmd.ExecuteScalar().ToString() == "1")
+                    {
+                        MessageBox.Show("Movie already in database");
+                        con.Close();
+                        return;
+                    }
+                    con.Close();
+                    
 
-                using(cmd = new SqlCommand("select MAX(CAST(MID as int))+1 from Movie", con))
+                }
+
+                using (cmd = new SqlCommand("select MAX(CAST(MID as int))+1 from Movie", con))
                 {
                     con.Open();
                     Console.WriteLine(cmd.ExecuteScalar().ToString());
@@ -1525,6 +1542,11 @@ namespace MovieRental
 
             SendToBack();
             //Hide();
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
