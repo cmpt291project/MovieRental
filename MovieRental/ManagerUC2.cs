@@ -647,6 +647,14 @@ namespace MovieRental
             PasswordTxt.Clear();
         }
 
+        private void ClearRentals()
+        {
+            MovieTypeCB.SelectedIndex = -1;
+            searchTxt.Clear();
+            Search2Txt.Clear();
+            comboBox2.SelectedIndex = -1;
+        }
+
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             MID = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -1507,6 +1515,7 @@ namespace MovieRental
             ClearData();
             ClearEmployeeData();
             ClearCastingData();
+            ClearRentals();
             comboBox1.SelectedIndex = -1;
             panel1.BringToFront();
             dataGridView1.BringToFront();
