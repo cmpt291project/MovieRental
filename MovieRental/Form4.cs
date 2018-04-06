@@ -14,6 +14,16 @@ namespace MovieRental
 {
     public partial class Form4 : Form
     {
+        private static Form4 _instance;
+        public static Form4 Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new Form4();
+                return _instance;
+            }
+        }
         public static string connectionString;
 
         public Form4()
