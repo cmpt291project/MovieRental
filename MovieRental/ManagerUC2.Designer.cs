@@ -1175,10 +1175,10 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.LogoutBtn);
             this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel4);
             this.Name = "ManagerUC2";
             this.Size = new System.Drawing.Size(777, 559);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
