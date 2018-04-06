@@ -192,7 +192,7 @@ namespace MovieRental
             list.Clear();
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter a = new SqlDataAdapter("SELECT MovieName, Director, MovieType, ReleaseDate, AddDate, M.MID, Poster FROM MovieQueue as MQ, Movie as M WHERE M.MID = MQ.MID and MQ.CID ='" + UC1.id + "'", connection);
+            SqlDataAdapter a = new SqlDataAdapter("SELECT MovieName, Director, MovieType, ReleaseDate, AddDate, M.MID, Poster FROM MovieQueue as MQ, Movie as M WHERE M.MID = MQ.MID and MQ.CID ='" + UC1.id + "' order by [Sequence]", connection);
             DataTable t = new DataTable();
             a.Fill(t);
             int i = 1;
@@ -227,6 +227,7 @@ namespace MovieRental
                 newGroupBox.SetChooseMovieButton(newGroupBox.groupBox, "Rent");
                 newGroupBox.SetIndex(newGroupBox.groupBox,i-1);
                 newGroupBox.DeleteMovieFromListButton(newGroupBox.groupBox, "Delete");
+                newGroupBox.setUpDownButton(newGroupBox.groupBox);
                 empty = false;
             }
             if (empty == true)
