@@ -93,7 +93,7 @@ namespace MovieRental
             SqlCommand updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] -1 where cast([Sequence] as int) = (select [Sequence] from MovieQueue where MID = '" + MID + "') + 1");
             updateSquence.Connection = con;
             updateSquence.ExecuteNonQuery();
-            updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] + 1 where MID = '" + MID + "'");// and cast([Sequence] as int) <= (select MAX([Sequence]) from MovieQueue)");
+            updateSquence = new SqlCommand("update MovieQueue set [Sequence] = [Sequence] + 1 where MID = '" + MID +"' and exists (select [Sequence] from MovieQueue where MID != '" + MID + "' and [Sequence] >= (select [Sequence] from MovieQueue where MID = '" + MID + "'))");
             updateSquence.Connection = con;
             updateSquence.ExecuteNonQuery();
             con.Close();
@@ -196,7 +196,6 @@ namespace MovieRental
         {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            MessageBox.Show(MID);
             SqlDataAdapter dataAdapter = new SqlDataAdapter("select ActualReturnDate, OID from [Order] as O where O.CID ='" + UC1.id + "' and ActualReturnDate is null and O.MID = " + MID, connection);
             SqlDataAdapter selectMovie = new SqlDataAdapter("SELECT CurrentNum, MID from Movie M where M.MID = " + MID, connection);
 
