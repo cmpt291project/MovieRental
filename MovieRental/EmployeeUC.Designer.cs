@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.year = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.reportbutton = new System.Windows.Forms.Button();
             this.reportPanel = new System.Windows.Forms.Panel();
@@ -86,7 +87,8 @@
             this.FirstName = new System.Windows.Forms.TextBox();
             this.suggest = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.year = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.password = new System.Windows.Forms.TextBox();
             this.panel4.SuspendLayout();
             this.reportPanel.SuspendLayout();
             this.Reporting.SuspendLayout();
@@ -119,6 +121,27 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(683, 700);
             this.panel4.TabIndex = 29;
+            // 
+            // year
+            // 
+            this.year.FormattingEnabled = true;
+            this.year.Items.AddRange(new object[] {
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022"});
+            this.year.Location = new System.Drawing.Point(548, 217);
+            this.year.Name = "year";
+            this.year.Size = new System.Drawing.Size(93, 20);
+            this.year.TabIndex = 5;
             // 
             // comboBox1
             // 
@@ -160,9 +183,9 @@
             this.reportPanel.Controls.Add(this.Reporting);
             this.reportPanel.Controls.Add(this.button7);
             this.reportPanel.Controls.Add(this.mostcustomer);
-            this.reportPanel.Location = new System.Drawing.Point(1, 40);
+            this.reportPanel.Location = new System.Drawing.Point(1, 46);
             this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(680, 663);
+            this.reportPanel.Size = new System.Drawing.Size(680, 657);
             this.reportPanel.TabIndex = 48;
             this.reportPanel.Visible = false;
             // 
@@ -427,9 +450,9 @@
             this.panel2.Controls.Add(this.st);
             this.panel2.Controls.Add(this.name);
             this.panel2.Controls.Add(this.FirstName);
-            this.panel2.Location = new System.Drawing.Point(0, 83);
+            this.panel2.Location = new System.Drawing.Point(0, 71);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(678, 334);
+            this.panel2.Size = new System.Drawing.Size(678, 346);
             this.panel2.TabIndex = 47;
             // 
             // add
@@ -463,6 +486,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.password);
+            this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.Atype);
             this.panel3.Controls.Add(this.save);
@@ -760,26 +785,21 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // year
+            // label14
             // 
-            this.year.FormattingEnabled = true;
-            this.year.Items.AddRange(new object[] {
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022"});
-            this.year.Location = new System.Drawing.Point(548, 217);
-            this.year.Name = "year";
-            this.year.Size = new System.Drawing.Size(93, 20);
-            this.year.TabIndex = 5;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(325, 170);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 12);
+            this.label14.TabIndex = 48;
+            this.label14.Text = "PassWord";
+            // 
+            // password
+            // 
+            this.password.Location = new System.Drawing.Point(329, 200);
+            this.password.Name = "password";
+            this.password.Size = new System.Drawing.Size(168, 21);
+            this.password.TabIndex = 49;
             // 
             // EmployeeUC
             // 
@@ -868,5 +888,7 @@
         private System.Windows.Forms.ComboBox month;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox year;
+        private System.Windows.Forms.TextBox password;
+        private System.Windows.Forms.Label label14;
     }
 }

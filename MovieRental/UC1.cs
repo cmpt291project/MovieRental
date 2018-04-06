@@ -45,6 +45,7 @@ namespace MovieRental
 
         private void validate_User()
         {
+
             Panel pnl = Parent as Panel;
             if (pnl == null)
             {
@@ -158,5 +159,6 @@ namespace MovieRental
             HelpForm hp = new HelpForm();
             hp.Show();
         }
+
     }
 }

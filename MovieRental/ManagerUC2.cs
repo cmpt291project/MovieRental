@@ -45,12 +45,19 @@ namespace MovieRental
             Controls.Add(panel2);
             Controls.Add(panel3);
             Controls.Add(panel4);
-            Controls.Add(dataGridView1);
+            Controls.Add(panel5);
+            panel5.Controls.Add(dataGridView1);
+            panel5.Controls.Add(dataGridView2);
+            panel5.Controls.Add(dataGridView3);
+            panel5.Controls.Add(dataGridView4);
+            panel5.Controls.Add(dataGridView5);
+            panel5.Controls.Add(dataGridView6);
+            /*Controls.Add(dataGridView1);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView3);
             Controls.Add(dataGridView4);
             Controls.Add(dataGridView5);
-            Controls.Add(dataGridView6);
+            Controls.Add(dataGridView6);*/
             panel1.BringToFront();
             dataGridView1.BringToFront();
             
@@ -606,13 +613,15 @@ namespace MovieRental
             picNameTxt.Clear();
             pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject("Noimage");
             pictureBox1.Tag = 1;
+            searchMovieTxt.Clear();
         }
 
         private void ClearActorData()
         {
             LastNameTxt.Clear();
             FirstNameTxt.Clear();
-            genderCB.Items.Clear();
+            genderCB.SelectedIndex = -1;
+            searchActorTxt.Clear();
 
         }
         private void ClearCastingData()
@@ -632,7 +641,7 @@ namespace MovieRental
             TelephoneTxt.Clear();
             HourlyRateTxt.Clear();
             //TypeTxt.Clear();
-            TypeCB.Items.Clear();
+            TypeCB.SelectedIndex = -1;
             SocialSecurityTxt.Clear();
             EmailTxt.Clear();
             PasswordTxt.Clear();
@@ -690,8 +699,10 @@ namespace MovieRental
             //TypeTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[11].Value.ToString().Trim();
             if (dataGridView4.Rows[e.RowIndex].Cells[11].Value.ToString().Trim() == "manager")
                 TypeCB.SelectedIndex = 1;
-            else
+            else if (dataGridView4.Rows[e.RowIndex].Cells[11].Value.ToString().Trim() == "regular")
                 TypeCB.SelectedIndex = 0;
+            else
+                TypeCB.SelectedIndex = -1;
 
             EmailTxt.Text = dataGridView4.Rows[e.RowIndex].Cells[12].Value.ToString().Trim();
 
@@ -1477,24 +1488,30 @@ namespace MovieRental
 
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
-            if (!panel1.Controls.Contains(UC1.Instance))
+            foreach(Control p in UC1.Instance.Controls)
             {
-                panel1.Controls.Add(UC1.Instance);
-                UC1.Instance.Dock = DockStyle.Fill;
-                UC1.Instance.BringToFront();
+                if (p.Name == "pnl")
+                    if (!p.Controls.Contains(UC1.Instance))
+                    {
+                        p.Controls.Add(UC1.Instance);
+                        UC1.Instance.Dock = DockStyle.Fill;
+                        UC1.Instance.BringToFront();
+                    }
+                    else
+                    {
+                       UC1.Instance.BringToFront();
+                    }
             }
-            else
-                UC1.Instance.BringToFront();
 
+            ClearActorData();
+            ClearData();
+            ClearEmployeeData();
+            ClearCastingData();
             UC1.email = "";
             UC1.id = "";
 
-            dataGridView1.Visible = false;
-            dataGridView2.Visible = false;
-            dataGridView3.Visible = false;
-            dataGridView4.Visible = false;
-            dataGridView5.Visible = false;
-            dataGridView6.Visible = false;
+            SendToBack();
+            //Hide();
 
         }
     }
