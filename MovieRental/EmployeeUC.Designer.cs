@@ -89,6 +89,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label14 = new System.Windows.Forms.Label();
             this.password = new System.Windows.Forms.TextBox();
+            this.logout = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.reportPanel.SuspendLayout();
             this.Reporting.SuspendLayout();
@@ -103,6 +104,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.logout);
             this.panel4.Controls.Add(this.year);
             this.panel4.Controls.Add(this.comboBox1);
             this.panel4.Controls.Add(this.reportbutton);
@@ -117,9 +119,9 @@
             this.panel4.Controls.Add(this.searchBtn);
             this.panel4.Controls.Add(this.searchTxt);
             this.panel4.Controls.Add(this.panel1);
-            this.panel4.Location = new System.Drawing.Point(48, 17);
+            this.panel4.Location = new System.Drawing.Point(48, 21);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(683, 700);
+            this.panel4.Size = new System.Drawing.Size(683, 696);
             this.panel4.TabIndex = 29;
             // 
             // year
@@ -316,7 +318,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(578, 13);
+            this.button4.Location = new System.Drawing.Point(519, 11);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 7;
@@ -336,7 +338,7 @@
             // 
             // searchBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(497, 13);
+            this.searchBtn.Location = new System.Drawing.Point(438, 11);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(75, 23);
             this.searchBtn.TabIndex = 3;
@@ -346,7 +348,7 @@
             // 
             // searchTxt
             // 
-            this.searchTxt.Location = new System.Drawing.Point(391, 13);
+            this.searchTxt.Location = new System.Drawing.Point(329, 12);
             this.searchTxt.Name = "searchTxt";
             this.searchTxt.Size = new System.Drawing.Size(100, 21);
             this.searchTxt.TabIndex = 1;
@@ -801,6 +803,16 @@
             this.password.Size = new System.Drawing.Size(168, 21);
             this.password.TabIndex = 49;
             // 
+            // logout
+            // 
+            this.logout.Location = new System.Drawing.Point(600, 12);
+            this.logout.Name = "logout";
+            this.logout.Size = new System.Drawing.Size(71, 21);
+            this.logout.TabIndex = 51;
+            this.logout.Text = "Log Out";
+            this.logout.UseVisualStyleBackColor = true;
+            this.logout.Click += new System.EventHandler(this.logout_Click);
+            // 
             // EmployeeUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -890,5 +902,6 @@
         private System.Windows.Forms.ComboBox year;
         private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button logout;
     }
 }

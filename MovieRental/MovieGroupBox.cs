@@ -207,7 +207,6 @@ namespace MovieRental
             movieRow.Rows[0].EndEdit();
             SqlCommandBuilder sd = new SqlCommandBuilder(selectMovie);
             selectMovie.Update(movieRow);
-            MessageBox.Show(MID);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             dataTable.Rows[0].BeginEdit();
@@ -344,6 +343,10 @@ namespace MovieRental
             {
                 MessageBox.Show("rent successfull");
                 RentMovie(con, num, movie, select);
+                DeleteMovieInWishList();
+                UpdateCustomerRating();
+                YourMovieControl.Instance.createWishList();
+                updateall();
                 //rentb.Text = "Rented";
                 //rentb.Enabled = false;
 
@@ -362,13 +365,14 @@ namespace MovieRental
                 MessageBox.Show("rent successfull" + d.Date.ToString("d"));
                 //MessageBox.Show(userStatus.Rows[0]["cur"]);
                 RentMovie(con, num, movie, select);
+                DeleteMovieInWishList();
+                UpdateCustomerRating();
+                YourMovieControl.Instance.createWishList();
+                updateall();
                 //rentb.Text = "Rented";
                 //rentb.Enabled = false;
             }
-            DeleteMovieInWishList();
-            UpdateCustomerRating();
-            YourMovieControl.Instance.createWishList();
-            updateall();
+            
             //MessageBox.Show("not null");
         }
 
