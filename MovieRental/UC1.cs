@@ -112,6 +112,8 @@ namespace MovieRental
                         {
                             pnl.Controls.Add(ManagerUC2.Instance);
                             ManagerUC2.Instance.Dock = DockStyle.Fill;
+                            //ManagerUC2.Instance.BringToFront();
+                            //Hide();
                             ManagerUC2.Instance.BringToFront();
                         }
                         else

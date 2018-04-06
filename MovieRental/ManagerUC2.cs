@@ -1521,6 +1521,7 @@ namespace MovieRental
             dataGridView1.BringToFront();
             UC1.email = "";
             UC1.id = "";
+            UC1.Instance.clean();
 
             SendToBack();
             //Hide();
