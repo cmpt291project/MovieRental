@@ -36,6 +36,7 @@ namespace MovieRental
         }
 
         public void update() {
+            panelintop.Controls.Clear();
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             string sql = "select * from (select top 10 count(MID) num, mid from[Order] O group by MID order by num DESC) T , Movie M left join(Select AVG(Rating) as rate, MID from MovieRating Group by MID ) as T2 on T2.MID = m.MID where T.MID = M.mid ";
@@ -69,6 +70,11 @@ namespace MovieRental
             }
 
             connection.Close();
+        }
+
+        private void panelintop_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
