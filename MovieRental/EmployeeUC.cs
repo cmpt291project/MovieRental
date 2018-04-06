@@ -222,6 +222,41 @@ namespace MovieRental
                 i++;
                 //}
             }
+            if (i == 0)
+            {
+                dataAdapter = new SqlDataAdapter("select top 5 Poster, M.MID, M.MovieName, (select AVG(rating) from MovieRating mr where mr.MID = M.MID ) rate from Movie M Order by NEWID()", connection);
+                dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                i = 0;
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    //foreach (DataColumn column in dataTable.Columns)
+                    //{
+                    MovieBoxRent movieBoxRent = new MovieBoxRent(row["MID"].ToString());
+                    movieBoxRent.createNewBox(suggest, i, 0);
+                    //MessageBox.Show(row["MID"].ToString().Trim());
+                    if (row["Poster"] == DBNull.Value)
+                    {
+
+                        movieBoxRent.CreatePictureImage((Image)Properties.Resources.ResourceManager.GetObject("Noimage"));
+                    }
+                    else
+                    {
+                        byte[] ImageArray = (byte[])row["Poster"];
+                        Image image = Image.FromStream(new MemoryStream(ImageArray));
+
+                        movieBoxRent.CreatePictureImage(image);
+                    }
+
+                    movieBoxRent.CreateName(row["MovieName"].ToString());
+                    //MessageBox.Show(row["MovieName"].ToString());
+                    movieBoxRent.CreateScore(row["rate"].ToString());
+                    //movieBoxRent.CreateButtonRent();
+                    //Console.WriteLine(row["MovieName"]);
+                    i++;
+                    //}
+                }
+            } 
             connection.Close();
         }
 
@@ -294,7 +329,7 @@ namespace MovieRental
             cmd.Parameters.AddWithValue("@type", Atype.Text);
             cmd.Parameters.AddWithValue("@email", EmailAddress.Text);
             cmd.ExecuteNonQuery();
-            cmd = new SqlCommand("update Password set EmailAddress=@email, Password=@password, CID=@cid, UserType=@type", con);
+            cmd = new SqlCommand("update Password set EmailAddress=@email, Password=@password, CID=@cid, UserType=@type where CID=@cid", con);
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@email", EmailAddress.Text);
             cmd.Parameters.AddWithValue("@password", password.Text);
@@ -334,7 +369,7 @@ namespace MovieRental
         {
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("Select EmailAddress from Customer", connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("Select EmailAddress from Customer where CID != '" + cidtext.Text + "'", connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             foreach (DataRow row in dataTable.Rows)
@@ -490,6 +525,16 @@ namespace MovieRental
                 Atype.Text = dataGridView2.Rows[e.RowIndex].Cells[10].Value.ToString().Trim();
                 AccountCreationDate.Text = dataGridView2.Rows[e.RowIndex].Cells[11].Value.ToString().Trim();
                 CreditCardNumber.Text = dataGridView2.Rows[e.RowIndex].Cells[12].Value.ToString().Trim();
+                SqlConnection connection = new SqlConnection(Form4.connectionString);
+                connection.Open();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("Select P.Password from Password P where CID = '" + cidtext.Text + "'", connection);
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    password.Text = row["Password"].ToString().Trim();
+                }
+                connection.Close();
             }
             button2.Enabled = true;
             button3.Enabled = true;
@@ -758,6 +803,11 @@ namespace MovieRental
         }
 
         private void clearText()
+        {
+            DisplayData();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
         {
             DisplayData();
         }

@@ -90,6 +90,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.password = new System.Windows.Forms.TextBox();
             this.logout = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.reportPanel.SuspendLayout();
             this.Reporting.SuspendLayout();
@@ -488,6 +489,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button8);
             this.panel3.Controls.Add(this.password);
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.label13);
@@ -813,6 +815,16 @@
             this.logout.UseVisualStyleBackColor = true;
             this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(442, 225);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(89, 25);
+            this.button8.TabIndex = 50;
+            this.button8.Text = "Cancel";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // EmployeeUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -903,5 +915,6 @@
         private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button logout;
+        private System.Windows.Forms.Button button8;
     }
 }
