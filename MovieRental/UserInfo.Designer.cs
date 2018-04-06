@@ -60,19 +60,19 @@
             this.st = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.Label();
             this.plan = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.gb = new System.Windows.Forms.GroupBox();
             this.limited = new System.Windows.Forms.RadioButton();
             this.unlimited3 = new System.Windows.Forms.RadioButton();
             this.unlimited2 = new System.Windows.Forms.RadioButton();
             this.unlimited1 = new System.Windows.Forms.RadioButton();
             this.confirm = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
             this.modify = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.user.SuspendLayout();
             this.info.SuspendLayout();
             this.plan.SuspendLayout();
@@ -320,6 +320,7 @@
             this.ZipCode.Size = new System.Drawing.Size(157, 38);
             this.ZipCode.TabIndex = 9;
             this.ZipCode.Text = "zipcode";
+            this.ZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ZipCode_KeyPress);
             // 
             // State
             // 
@@ -399,6 +400,15 @@
             this.plan.Text = "ManageYourPlan";
             this.plan.UseVisualStyleBackColor = true;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(744, 307);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(113, 25);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "$25/month";
+            // 
             // gb
             // 
             this.gb.Controls.Add(this.limited);
@@ -474,6 +484,15 @@
             this.confirm.UseVisualStyleBackColor = true;
             this.confirm.Click += new System.EventHandler(this.confirm_Click);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(744, 246);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(113, 25);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "$20/month";
+            // 
             // modify
             // 
             this.modify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -485,29 +504,14 @@
             this.modify.UseVisualStyleBackColor = true;
             this.modify.Click += new System.EventHandler(this.modify_Click);
             // 
-            // contextMenuStrip1
+            // label10
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(744, 307);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(113, 25);
-            this.label13.TabIndex = 46;
-            this.label13.Text = "$25/month";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(744, 246);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(113, 25);
-            this.label12.TabIndex = 45;
-            this.label12.Text = "$20/month";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(744, 128);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(113, 25);
+            this.label10.TabIndex = 43;
+            this.label10.Text = "$10/month";
             // 
             // label11
             // 
@@ -518,14 +522,11 @@
             this.label11.TabIndex = 44;
             this.label11.Text = "$15/month";
             // 
-            // label10
+            // contextMenuStrip1
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(744, 128);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(113, 25);
-            this.label10.TabIndex = 43;
-            this.label10.Text = "$10/month";
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // UserInfo
             // 

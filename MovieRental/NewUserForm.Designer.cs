@@ -30,6 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pass = new System.Windows.Forms.TextBox();
+            this.la = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.limited = new System.Windows.Forms.RadioButton();
             this.unlimited3 = new System.Windows.Forms.RadioButton();
             this.unlimited2 = new System.Windows.Forms.RadioButton();
@@ -65,12 +71,6 @@
             this.ziperror = new System.Windows.Forms.ErrorProvider(this.components);
             this.telerror = new System.Windows.Forms.ErrorProvider(this.components);
             this.crederror = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.la = new System.Windows.Forms.Label();
-            this.pass = new System.Windows.Forms.TextBox();
             this.passerror = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameError)).BeginInit();
@@ -123,6 +123,60 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(909, 959);
             this.panel1.TabIndex = 0;
+            // 
+            // pass
+            // 
+            this.pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pass.Location = new System.Drawing.Point(225, 498);
+            this.pass.Name = "pass";
+            this.pass.Size = new System.Drawing.Size(335, 38);
+            this.pass.TabIndex = 44;
+            // 
+            // la
+            // 
+            this.la.AutoSize = true;
+            this.la.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la.Location = new System.Drawing.Point(43, 498);
+            this.la.Name = "la";
+            this.la.Size = new System.Drawing.Size(142, 31);
+            this.la.TabIndex = 43;
+            this.la.Text = "Password:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(205, 802);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(113, 25);
+            this.label13.TabIndex = 42;
+            this.label13.Text = "$25/month";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(415, 802);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(113, 25);
+            this.label12.TabIndex = 41;
+            this.label12.Text = "$20/month";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(657, 802);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(113, 25);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "$15/month";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(44, 802);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(113, 25);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "$10/month";
             // 
             // limited
             // 
@@ -261,6 +315,7 @@
             this.ZipCode.Name = "ZipCode";
             this.ZipCode.Size = new System.Drawing.Size(157, 38);
             this.ZipCode.TabIndex = 25;
+            this.ZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ZipCode_KeyPress);
             // 
             // State
             // 
@@ -403,60 +458,6 @@
             // 
             this.crederror.ContainerControl = this;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(44, 802);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(113, 25);
-            this.label10.TabIndex = 39;
-            this.label10.Text = "$10/month";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(205, 802);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(113, 25);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "$15/month";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(415, 802);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(113, 25);
-            this.label12.TabIndex = 41;
-            this.label12.Text = "$20/month";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(645, 802);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(113, 25);
-            this.label13.TabIndex = 42;
-            this.label13.Text = "$25/month";
-            // 
-            // la
-            // 
-            this.la.AutoSize = true;
-            this.la.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la.Location = new System.Drawing.Point(43, 498);
-            this.la.Name = "la";
-            this.la.Size = new System.Drawing.Size(142, 31);
-            this.la.TabIndex = 43;
-            this.la.Text = "Password:";
-            // 
-            // pass
-            // 
-            this.pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pass.Location = new System.Drawing.Point(225, 498);
-            this.pass.Name = "pass";
-            this.pass.Size = new System.Drawing.Size(335, 38);
-            this.pass.TabIndex = 44;
-            // 
             // passerror
             // 
             this.passerror.ContainerControl = this;
@@ -466,7 +467,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(994, 898);
+            this.ClientSize = new System.Drawing.Size(994, 982);
             this.Controls.Add(this.panel1);
             this.Name = "NewUserForm";
             this.Text = "NewUserForm";

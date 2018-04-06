@@ -143,7 +143,7 @@ namespace MovieRental
                 //inspass.Parameters.AddWithValue("@user", s);
                 inspass.ExecuteNonQuery();
 
-                MessageBox.Show("Account created. Your default password is your firstname. Please change it as soon as possible. Now please log in.");
+                MessageBox.Show("Account created. Now please log in.");
                 this.Dispose();
             }
             
@@ -212,6 +212,11 @@ namespace MovieRental
         private void NewUserForm_Load_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void ZipCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

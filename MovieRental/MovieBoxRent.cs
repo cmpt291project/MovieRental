@@ -253,16 +253,16 @@ namespace MovieRental
             }
             else if (userStatus.Rows.Count != 0 && userStatus.Rows[0]["cur"].ToString() == p.Rows[0]["NumberATime"].ToString())
             {
-                MessageBox.Show("You already rent" + userStatus.Rows[0]["cur"] + "movies. Limit each time reached. Please return your current rental first. ");
+                MessageBox.Show("You already rent " + userStatus.Rows[0]["cur"] + " movies. Limit each time reached. Please return your current rental first. ");
             }
             else if (userMonth.Rows.Count != 0 && userMonth.Rows[0]["curMon"].ToString() == p.Rows[0]["NumberEachMonth"].ToString())
             {
-                MessageBox.Show("You already rent" + userMonth.Rows[0]["curMon"] + "movies. Monthly limit reached.  Please return your current rental first.");
+                MessageBox.Show("You already rent " + userMonth.Rows[0]["curMon"] + " movies this month. Monthly limit reached. Update your plan to get unlimited rental each month.");
             }
             else
             {
                 DateTime d = DateTime.Today;
-                MessageBox.Show("rent successfull" + d.Date.ToString("d"));                
+                MessageBox.Show("rent successfull at " + d.Date.ToString("d"));                
                //MessageBox.Show(userStatus.Rows[0]["cur"]);
                 RentMovie(con, num, movie, select);
                 rent.Text = "Rented";
