@@ -52,6 +52,7 @@ namespace MovieRental
         {
             dataGridView2.Enabled = true;
             button1.Enabled = true;
+            year.Visible = false;
             con.Open();
             currentPage = "Customer";
             DataTable dt = new DataTable();
@@ -184,7 +185,6 @@ namespace MovieRental
             SqlConnection connection = new SqlConnection(Form4.connectionString);
             connection.Open();
             SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT top 5 MovieName, M.MID, rate from(Select AVG(Rating) as rate, MID FROM MovieRating group by MID) as T , Movie M where T.MID = M.MID Order by rate DESC", connection);
-            //SqlDataAdapter dataAdapter2 = new SqlDataAdapter("SELECT M.MovieName from Movie M, MovieQueue MQ where M.MID = MQ.MID and connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             
@@ -288,6 +288,16 @@ namespace MovieRental
             return true;
         }
 
+        private bool inputValid(string s)
+        {
+            s.Trim();
+            if (s.Contains("'") || s == "" || s == "NULL")
+            {
+                return false;
+            }
+            return true;
+        }
+
         private void sendAddQuery()
         {
             if (checkallbool()) {
@@ -295,6 +305,36 @@ namespace MovieRental
                 {
                     MessageBox.Show("The email address has been taken.");
                     errorProvider1.SetError(EmailAddress, "The email address has been taken.");
+                    return;
+                }
+
+                if (!inputValid(EmailAddress.Text))
+                {
+                    return;
+                }
+                if (!(EmailAddress.Text.Contains('@') && EmailAddress.Text.Contains('.')))
+                {
+                    MessageBox.Show("email not valid");
+                    return;
+                }
+                int countat = 0;
+                int countdot = 0;
+                foreach (char c in EmailAddress.Text)
+                {
+                    if (c == '@')
+                    {
+                        countat++;
+                    }
+
+                    if (c == '.')
+                    {
+                        countdot++;
+                    }
+                }
+
+                if (countat > 1 || countdot > 1)
+                {
+                    MessageBox.Show("email not valid");
                     return;
                 }
                 string newMID;
@@ -418,6 +458,7 @@ namespace MovieRental
         private void reportbutton_Click(object sender, EventArgs e)
         {
             reportPanel.Visible = true;
+            year.Visible = true;
             comboBox1.Visible = false;
             searchBtn.Enabled = false;
         }
@@ -431,14 +472,19 @@ namespace MovieRental
         public void createMostActiveCustomer()
         {
             //Reporting.Controls.Clear();
-            if (month.Text == "")
+            if (month.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a month!");
                 return;
             }
+            if (year.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a year");
+                return;
+            }
             con.Open();
             DataTable dt = new DataTable();
-            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, count(O.MID) from Customer as C, [Order] as O where C.CID = O.CID and month(O.OrderDate) = '" + MonthToInt(month.SelectedItem.ToString()) + "' group by C.FirstName, C.LastName", con);
+            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, count(O.MID) from Customer as C, [Order] as O where C.CID = O.CID and month(O.OrderDate) = '" + MonthToInt(month.SelectedItem.ToString()) + "' and year(O.OrderDate) = '" + year.SelectedItem.ToString() + "' group by C.FirstName, C.LastName", con);
             adapt.Fill(dt);
             dataGridView1.DataSource = dt;
             con.Close();
@@ -565,14 +611,19 @@ namespace MovieRental
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if(month.Text == "")
+            if (month.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a month!");
                 return;
             }
+            if (year.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a year");
+                return;
+            }
             con.Open();
             DataTable dt = new DataTable();
-            adapt = new SqlDataAdapter("select M.MovieName, count(O.MID) as NumOfSelling from Movie M, [Order] as O where M.MID = O.MID and month(O.OrderDate) = '" + MonthToInt(month.SelectedItem.ToString()) + "' group by M.MovieName order by NumOfSelling DESC", con);
+            adapt = new SqlDataAdapter("select M.MovieName, count(O.MID) as NumOfSelling from Movie M, [Order] as O where M.MID = O.MID and month(O.OrderDate) = '" + MonthToInt(month.SelectedItem.ToString()) + "' and year(O.OrderDate) = '" + year.SelectedItem.ToString() + "' group by M.MovieName order by NumOfSelling DESC", con);
             adapt.Fill(dt);
             dataGridView1.DataSource = dt;
             con.Close();
@@ -585,13 +636,23 @@ namespace MovieRental
 
         private void RecordOrderChange()
         {
+            if (year.SelectedIndex == -1)
+            {
+                year.SelectedItem = "2018";
+            }
             con.Open();
             DataTable dt = new DataTable();
-            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID and month(O.OrderDate) = '" + MonthToInt(comboBox1.SelectedItem.ToString()) + "'", con);
+            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID and month(O.OrderDate) = '" + MonthToInt(comboBox1.SelectedItem.ToString()) + "' and year(O.OrderDate) = '" + year.SelectedItem.ToString() + "'", con);
             adapt.Fill(dt);
             dataGridView2.DataSource = dt;
             con.Close();
         }
+
+        private void month_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void Atype_MouseClick(object sender, MouseEventArgs e)
         {
             Atype.DroppedDown = true;
@@ -600,6 +661,7 @@ namespace MovieRental
         private void button5_Click(object sender, EventArgs e)
         {
             dataGridView2.Enabled = true;
+            year.Visible = true;
             searchBtn.Enabled = true;
             button1.Enabled = false;
             comboBox1.Visible = true;
@@ -608,7 +670,7 @@ namespace MovieRental
             panel1.Visible = false;
             con.Open();
             DataTable dt = new DataTable();
-            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID and month(O.OrderDate) = '4'", con);
+            adapt = new SqlDataAdapter("select C.FirstName, C.LastName, M.MovieName, OrderDate from Movie as M, Customer as C, [Order] as O where M.MID = O.MID and C.CID = O.CID and month(O.OrderDate) = '4' and year(O.OrderDate) = '2018'", con);
             adapt.Fill(dt);
             dataGridView2.DataSource = dt;
             con.Close();

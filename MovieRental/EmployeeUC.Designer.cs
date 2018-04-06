@@ -86,6 +86,7 @@
             this.FirstName = new System.Windows.Forms.TextBox();
             this.suggest = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.year = new System.Windows.Forms.ComboBox();
             this.panel4.SuspendLayout();
             this.reportPanel.SuspendLayout();
             this.Reporting.SuspendLayout();
@@ -100,6 +101,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.year);
             this.panel4.Controls.Add(this.comboBox1);
             this.panel4.Controls.Add(this.reportbutton);
             this.panel4.Controls.Add(this.reportPanel);
@@ -134,9 +136,9 @@
             "October",
             "November",
             "December"});
-            this.comboBox1.Location = new System.Drawing.Point(553, 188);
+            this.comboBox1.Location = new System.Drawing.Point(549, 188);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(88, 20);
+            this.comboBox1.Size = new System.Drawing.Size(92, 20);
             this.comboBox1.TabIndex = 50;
             this.comboBox1.Visible = false;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -158,9 +160,9 @@
             this.reportPanel.Controls.Add(this.Reporting);
             this.reportPanel.Controls.Add(this.button7);
             this.reportPanel.Controls.Add(this.mostcustomer);
-            this.reportPanel.Location = new System.Drawing.Point(1, 45);
+            this.reportPanel.Location = new System.Drawing.Point(1, 40);
             this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(680, 658);
+            this.reportPanel.Size = new System.Drawing.Size(680, 663);
             this.reportPanel.TabIndex = 48;
             this.reportPanel.Visible = false;
             // 
@@ -184,6 +186,7 @@
             this.month.Name = "month";
             this.month.Size = new System.Drawing.Size(93, 20);
             this.month.TabIndex = 4;
+            this.month.SelectedIndexChanged += new System.EventHandler(this.month_SelectedIndexChanged);
             // 
             // ReportLabel
             // 
@@ -757,6 +760,27 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // year
+            // 
+            this.year.FormattingEnabled = true;
+            this.year.Items.AddRange(new object[] {
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022"});
+            this.year.Location = new System.Drawing.Point(548, 217);
+            this.year.Name = "year";
+            this.year.Size = new System.Drawing.Size(93, 20);
+            this.year.TabIndex = 5;
+            // 
             // EmployeeUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -843,5 +867,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox month;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox year;
     }
 }
