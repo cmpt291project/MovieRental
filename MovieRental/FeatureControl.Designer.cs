@@ -47,7 +47,7 @@
             this.panelFeature.Name = "panelFeature";
             this.panelFeature.Size = new System.Drawing.Size(1732, 532);
             this.panelFeature.TabIndex = 0;
-            
+            this.panelFeature.Paint += new System.Windows.Forms.PaintEventHandler(this.panelFeature_Paint);
             // 
             // FeatureControl
             // 
@@ -58,7 +58,7 @@
             this.Controls.Add(this.panelFeature);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FeatureControl";
-            this.Size = new System.Drawing.Size(1342, 510);
+            this.Size = new System.Drawing.Size(1308, 476);
             this.Load += new System.EventHandler(this.FeatureControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
