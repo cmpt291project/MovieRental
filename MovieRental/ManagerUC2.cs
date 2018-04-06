@@ -1507,6 +1507,9 @@ namespace MovieRental
             ClearData();
             ClearEmployeeData();
             ClearCastingData();
+            comboBox1.SelectedIndex = -1;
+            panel1.BringToFront();
+            dataGridView1.BringToFront();
             UC1.email = "";
             UC1.id = "";
 
