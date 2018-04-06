@@ -71,6 +71,13 @@ namespace MovieRental
             reportPanel.Visible = false;
             comboBox1.Visible = false;
             searchBtn.Enabled = true;
+            suggest.Controls.Clear();
+            label12.Text = "Address";
+            label10.Text = "CustomerName";
+            searchTxt.Text = "";
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            month.SelectedIndex = -1;
         }
 
 
@@ -727,6 +734,32 @@ namespace MovieRental
         private void month_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void logout_Click(object sender, EventArgs e)
+        {
+            foreach (Control p in UC1.Instance.Controls)
+            {
+                if (p.Name == "pnl")
+                    if (!p.Controls.Contains(UC1.Instance))
+                    {
+                        p.Controls.Add(UC1.Instance);
+                        UC1.Instance.Dock = DockStyle.Fill;
+                        UC1.Instance.BringToFront();
+                    }
+                    else
+                    {
+                        UC1.Instance.BringToFront();
+                    }
+            }
+            UC1.Instance.clean();
+            SendToBack();
+            clearText();
+        }
+
+        private void clearText()
+        {
+            DisplayData();
         }
 
         private void Atype_MouseClick(object sender, MouseEventArgs e)
