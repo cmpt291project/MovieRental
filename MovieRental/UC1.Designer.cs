@@ -40,24 +40,24 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(572, 267);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox1.Location = new System.Drawing.Point(600, 530);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(426, 31);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(572, 408);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox2.Location = new System.Drawing.Point(600, 671);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(6);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(426, 31);
             this.textBox2.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(572, 502);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button1.Location = new System.Drawing.Point(600, 765);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(188, 52);
             this.button1.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(352, 252);
+            this.label1.Location = new System.Drawing.Point(380, 515);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 56);
@@ -80,7 +80,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(306, 392);
+            this.label2.Location = new System.Drawing.Point(334, 655);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(205, 56);
@@ -90,7 +90,7 @@
             // Create
             // 
             this.Create.AutoSize = true;
-            this.Create.Location = new System.Drawing.Point(566, 583);
+            this.Create.Location = new System.Drawing.Point(594, 846);
             this.Create.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.Create.Name = "Create";
             this.Create.Size = new System.Drawing.Size(164, 25);
@@ -103,7 +103,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Palatino Linotype", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(560, 56);
+            this.label3.Location = new System.Drawing.Point(586, 240);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(353, 73);
@@ -112,8 +112,8 @@
             // 
             // help
             // 
-            this.help.Location = new System.Drawing.Point(810, 502);
-            this.help.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.help.Location = new System.Drawing.Point(838, 765);
+            this.help.Margin = new System.Windows.Forms.Padding(4);
             this.help.Name = "help";
             this.help.Size = new System.Drawing.Size(188, 52);
             this.help.TabIndex = 8;
@@ -133,9 +133,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "UC1";
-            this.Size = new System.Drawing.Size(1430, 867);
+            this.Size = new System.Drawing.Size(1430, 1230);
             this.Load += new System.EventHandler(this.UC1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

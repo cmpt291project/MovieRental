@@ -267,5 +267,10 @@ namespace MovieRental
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+
+        private void ZipCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 }
